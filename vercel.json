@@ -1,7 +1,6 @@
 {
   "cleanUrls": true,
-  "redirects": [
-    { "source": "/what-others-say", "destination": "/what-others-say.html" },
-    { "source": "/index", "destination": "/index.html" }
+  "rewrites": [
+    { "source": "/what-others-say", "destination": "/what-others-say.html" }
   ]
 }
