@@ -1,4 +1,5 @@
 {
+  "scope": "jenkinsmark-gmailcoms-projects",
   "buildCommand": null,
   "outputDirectory": ".",
   "framework": null

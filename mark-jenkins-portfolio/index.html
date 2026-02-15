@@ -1,0 +1,1595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mark Jenkins | Senior Design Manager</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        /* ========================================
+           MARK JENKINS — BRUTALIST PORTFOLIO
+           Aesthetic: Industrial Brutalist
+           ======================================== */
+
+        :root {
+            --bg: #0a0a0a;
+            --surface: #141414;
+            --surface-light: #1f1f1f;
+            --text: #f5f5f5;
+            --text-muted: #888;
+            --text-subtle: #666;
+            --accent-primary: #ff3d00;
+            --accent-secondary: #00ff88;
+            --accent-tertiary: #4d4dff;
+            --border: #333;
+            --grid-color: rgba(255, 255, 255, 0.03);
+            --ease-expo: cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Space Mono', monospace;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        /* Custom Cursor */
+        .cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--accent-primary);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 10000;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s, border-color 0.3s;
+            mix-blend-mode: difference;
+        }
+
+        .cursor.active {
+            width: 60px;
+            height: 60px;
+            border-color: var(--accent-secondary);
+            background: var(--accent-secondary);
+        }
+
+        /* Background Grid */
+        .grid-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image:
+                linear-gradient(var(--grid-color) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+            background-size: 100px 100px;
+            mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+        }
+
+        /* Noise Overlay */
+        .noise {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            pointer-events: none;
+            opacity: 0.03;
+            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-family: 'Clash Display', sans-serif;
+            font-weight: 600;
+            line-height: 1.1;
+            text-transform: uppercase;
+        }
+
+        .display-xl {
+            font-size: clamp(3rem, 12vw, 10rem);
+            letter-spacing: -0.03em;
+        }
+
+        .display-lg {
+            font-size: clamp(2rem, 6vw, 5rem);
+            letter-spacing: -0.02em;
+        }
+
+        .display-md {
+            font-size: clamp(1.5rem, 4vw, 3rem);
+        }
+
+        .display-serif {
+            font-family: 'Georgia', serif;
+            font-weight: 400;
+            text-transform: none;
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        section {
+            padding: 120px 0;
+            position: relative;
+        }
+
+        /* Border Utilities */
+        .border-top { border-top: 1px solid var(--border); }
+        .border-bottom { border-bottom: 1px solid var(--border); }
+        .border-all { border: 1px solid var(--border); }
+
+        /* ========================================
+           HEADER / NAV
+           ======================================== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
+            mix-blend-mode: difference;
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(20px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Clash Display', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-decoration: none;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-mark {
+            width: 40px;
+            height: 40px;
+            background: var(--accent-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            position: relative;
+            padding: 8px 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-primary);
+            transition: width 0.4s var(--ease-expo);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            padding: 10px 20px;
+            background: var(--text);
+            color: var(--bg) !important;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        .nav-cta::after {
+            display: none !important;
+        }
+
+        .nav-cta:hover {
+            background: var(--accent-primary);
+        }
+
+        .menu-btn {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        .menu-btn span {
+            width: 30px;
+            height: 2px;
+            background: var(--text);
+            transition: transform 0.3s;
+        }
+
+        /* ========================================
+           HERO SECTION
+           ======================================== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding-top: 100px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 80px;
+            align-items: end;
+        }
+
+        .hero-meta {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+
+        .meta-line {
+            width: 60px;
+            height: 1px;
+            background: var(--accent-secondary);
+        }
+
+        .meta-text {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+        }
+
+        .hero-headline {
+            margin-bottom: 40px;
+        }
+
+        .hero-headline .line {
+            display: block;
+            overflow: hidden;
+        }
+
+        .hero-headline .word {
+            display: inline-block;
+            transform: translateY(100%);
+            animation: slideUp 0.8s var(--ease-expo) forwards;
+        }
+
+        .hero-headline .word:nth-child(2) { animation-delay: 0.1s; }
+        .hero-headline .word:nth-child(3) { animation-delay: 0.2s; }
+
+        @keyframes slideUp {
+            to { transform: translateY(0); }
+        }
+
+        .hero-headline .accent {
+            color: var(--accent-secondary);
+            font-style: italic;
+        }
+
+        .hero-lead {
+            font-size: 1.2rem;
+            line-height: 1.7;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+        }
+
+        .hero-right {
+            padding-bottom: 8px;
+        }
+
+        .hero-image {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 40px;
+        }
+
+        .hero-image img {
+            width: 100%;
+            max-width: 280px;
+            height: auto;
+            display: block;
+            border-radius: 4px;
+            filter: grayscale(30%);
+            transition: filter 0.6s;
+        }
+
+        .hero-image:hover img {
+            filter: grayscale(0%);
+        }
+
+        .hero-image-frame {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            right: -12px;
+            bottom: -12px;
+            border: 2px solid var(--accent-secondary);
+            border-radius: 4px;
+            pointer-events: none;
+            transition: all 0.6s var(--ease-expo);
+        }
+
+        .hero-image:hover .hero-image-frame {
+            top: 16px;
+            left: -16px;
+            right: 16px;
+            bottom: 16px;
+        }
+
+        .hero-credentials {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .credential {
+            padding: 8px 16px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background: var(--surface-light);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            color: var(--text-muted);
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 40px;
+            left: 40px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .scroll-text {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-subtle);
+        }
+
+        .scroll-line {
+            width: 60px;
+            height: 1px;
+            background: var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .scroll-line::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--accent-secondary);
+            animation: scrollLine 2s infinite;
+        }
+
+        @keyframes scrollLine {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        /* ========================================
+           MARQUEE SECTION
+           ======================================== */
+        .marquee-section {
+            padding: 80px 0;
+            background: var(--accent-primary);
+            overflow: hidden;
+        }
+
+        .marquee {
+            display: flex;
+            animation: marquee 20s linear infinite;
+        }
+
+        .marquee-content {
+            display: flex;
+            align-items: center;
+            gap: 60px;
+            padding-right: 60px;
+            white-space: nowrap;
+        }
+
+        .marquee-item {
+            font-family: 'Clash Display', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--bg);
+            text-transform: uppercase;
+        }
+
+        .marquee-separator {
+            width: 8px;
+            height: 8px;
+            background: var(--bg);
+            transform: rotate(45deg);
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* ========================================
+           SECTIONS COMMON
+           ======================================== */
+        .section {
+            padding: 160px 0;
+        }
+
+        .section-grid {
+            max-width: var(--container);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 100px 1fr;
+            gap: 80px;
+        }
+
+        .section-header {
+            position: relative;
+        }
+
+        .section-number {
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent-secondary);
+        }
+
+        .section-title {
+            font-family: 'Clash Display', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-top: 40px;
+        }
+
+        /* ========================================
+           ABOUT SECTION
+           ======================================== */
+        .about-section {
+            background: var(--surface);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+        }
+
+        .lead-text {
+            font-family: 'Georgia', serif;
+            font-size: 1.6rem;
+            line-height: 1.4;
+            margin-bottom: 40px;
+        }
+
+        .about-details {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--text-muted);
+        }
+
+        .about-details p {
+            margin-bottom: 24px;
+        }
+
+        .stats-grid {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 60px;
+            padding-top: 60px;
+            border-top: 1px solid var(--border);
+        }
+
+        .stat-card {
+            padding: 40px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            transition: all 0.6s var(--ease-expo);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .stat-number {
+            font-family: 'Clash Display', sans-serif;
+            font-size: 3rem;
+            font-weight: 600;
+            color: var(--text);
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .stat-number.static {
+            font-size: 2rem;
+            color: var(--accent-secondary);
+        }
+
+        .stat-suffix {
+            font-family: 'Clash Display', sans-serif;
+            font-size: 2rem;
+            color: var(--accent-secondary);
+        }
+
+        .stat-label {
+            display: block;
+            margin-top: 8px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-subtle);
+        }
+
+        /* ========================================
+           TEACHING SECTION
+           ======================================== */
+        .teaching-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+
+        .teaching-card {
+            padding: 40px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.6s var(--ease-expo);
+        }
+
+        .teaching-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 0;
+            background: var(--accent-secondary);
+            transition: height 0.6s var(--ease-expo);
+        }
+
+        .teaching-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .teaching-card:hover::before {
+            height: 100%;
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+        }
+
+        .card-icon {
+            font-size: 1.5rem;
+            color: var(--accent-secondary);
+            opacity: 0.6;
+        }
+
+        .card-period {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-subtle);
+        }
+
+        .card-title {
+            font-family: 'Clash Display', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .card-org {
+            font-family: 'Space Mono', monospace;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .card-desc {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--text-muted);
+        }
+
+        /* ========================================
+           EXPERIENCE SECTION
+           ======================================== */
+        .experience-section {
+            background: var(--surface);
+        }
+
+        .experience-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 60px;
+        }
+
+        .current-role {
+            padding: 40px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-left: 4px solid var(--accent-secondary);
+        }
+
+        .role-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            background: var(--accent-secondary);
+            color: var(--bg);
+            margin-bottom: 16px;
+        }
+
+        .role-title {
+            font-family: 'Clash Display', sans-serif;
+            font-size: 2rem;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .role-period {
+            font-size: 1rem;
+            color: var(--text-muted);
+        }
+
+        .past-clients {
+            padding: 40px 0;
+        }
+
+        .clients-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-subtle);
+            margin-bottom: 24px;
+        }
+
+        .clients-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .client-item {
+            padding: 12px 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            transition: all 0.4s var(--ease-expo);
+        }
+
+        .client-item:hover {
+            background: var(--text);
+            color: var(--bg);
+            border-color: var(--text);
+            transform: translateY(-2px);
+        }
+
+        /* ========================================
+           PHILOSOPHY SECTION
+           ======================================== */
+        .philosophy-section {
+            background: var(--text);
+            color: var(--bg);
+        }
+
+        .philosophy-section .section-number {
+            color: var(--accent-secondary);
+        }
+
+        .philosophy-section .section-title {
+            color: var(--bg);
+        }
+
+        .philosophy-quote {
+            font-family: 'Georgia', serif;
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-style: italic;
+            line-height: 1.5;
+            margin-bottom: 60px;
+            padding-left: 40px;
+            border-left: 3px solid var(--accent-secondary);
+            opacity: 0.9;
+        }
+
+        .principles-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+
+        .principle {
+            padding: 40px;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            transition: all 0.6s var(--ease-expo);
+        }
+
+        .principle:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--accent-secondary);
+        }
+
+        .principle-num {
+            display: block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent-secondary);
+            margin-bottom: 16px;
+        }
+
+        .principle h3 {
+            font-family: 'Clash Display', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 500;
+            margin-bottom: 16px;
+            color: var(--bg);
+        }
+
+        .principle p {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: rgba(0, 0, 0, 0.7);
+        }
+
+        /* ========================================
+           CONTACT SECTION
+           ======================================== */
+        .contact-section {
+            padding-bottom: 160px;
+        }
+
+        .contact-intro {
+            font-family: 'Georgia', serif;
+            font-size: 1.3rem;
+            line-height: 1.6;
+            color: var(--text-muted);
+            margin-bottom: 60px;
+            max-width: 600px;
+        }
+
+        .contact-actions {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 24px;
+            max-width: 600px;
+        }
+
+        .contact-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 40px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            transition: all 0.6s var(--ease-expo);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--text);
+            transform: translateY(100%);
+            transition: transform 0.6s var(--ease-expo);
+            z-index: 0;
+        }
+
+        .contact-btn:hover::before {
+            transform: translateY(0);
+        }
+
+        .contact-btn > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            font-size: 1rem;
+            font-weight: 700;
+            background: var(--surface-light);
+            border-radius: 50%;
+            margin-bottom: 16px;
+            transition: all 0.3s;
+        }
+
+        .email-btn .btn-icon {
+            background: var(--accent-secondary);
+            color: var(--bg);
+        }
+
+        .btn-text {
+            font-family: 'Clash Display', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .contact-btn:hover .btn-text {
+            color: var(--bg);
+        }
+
+        .btn-sub {
+            font-size: 0.85rem;
+            color: var(--text-subtle);
+            margin-top: 4px;
+            transition: color 0.3s;
+        }
+
+        .contact-btn:hover .btn-sub {
+            color: var(--text-muted);
+        }
+
+        .social-btn {
+            align-items: center;
+            text-align: center;
+        }
+
+        .social-btn .btn-icon {
+            margin: 0 auto 16px;
+        }
+
+        .social-btn .btn-text {
+            font-size: 1rem;
+        }
+
+        /* ========================================
+           FOOTER
+           ======================================== */
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-left {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .footer-logo {
+            font-family: 'Clash Display', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .footer-copy {
+            font-size: 0.85rem;
+            color: var(--text-subtle);
+        }
+
+        .footer-note {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* ========================================
+           SCROLL PROGRESS
+           ======================================== */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary), var(--accent-tertiary));
+            z-index: 9999;
+            transform-origin: left;
+            transform: scaleX(0);
+        }
+
+        /* ========================================
+           ANIMATION UTILITIES
+           ======================================== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s var(--ease-expo);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ========================================
+           RESPONSIVE
+           ======================================== */
+        @media (max-width: 1024px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+
+            .hero-title {
+                font-size: clamp(2.5rem, 6vw, 5rem);
+            }
+
+            .hero-right {
+                padding-bottom: 0;
+                text-align: center;
+            }
+
+            .hero-image {
+                margin-bottom: 40px;
+            }
+
+            .hero-credentials {
+                justify-content: center;
+            }
+
+            .about-content,
+            .principles-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-actions {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .email-btn {
+                grid-column: 1 / -1;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            :root {
+                --nav-height: 70px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .menu-btn {
+                display: flex;
+            }
+
+            .cursor {
+                display: none;
+            }
+
+            body {
+                cursor: auto;
+            }
+
+            section {
+                padding: 100px 0;
+            }
+
+            .section-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .section-number {
+                position: static;
+                margin-bottom: 8px;
+            }
+
+            .section-title {
+                margin-top: 0;
+                font-size: 2rem;
+            }
+
+            .hero-scroll {
+                display: none;
+            }
+
+            .hero-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+
+            .meta-line {
+                display: none;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .teaching-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-actions {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+
+            .footer-left {
+                flex-direction: column;
+                gap: 4px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Scroll Progress -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor" id="cursor"></div>
+
+    <!-- Background -->
+    <div class="grid-bg"></div>
+    <div class="noise"></div>
+
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">
+                <div class="logo-mark">MJ</div>
+                Mark Jenkins
+            </a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#philosophy">Philosophy</a></li>
+                <li><a href="what-others-say.html">Testimonials</a></li>
+                <li><a href="#contact" class="nav-cta">Let's Talk</a></li>
+            </ul>
+            <button class="menu-btn" aria-label="Menu">
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+        <div class="mobile-menu-content">
+            <a href="#about" class="mobile-link">About</a>
+            <a href="#experience" class="mobile-link">Experience</a>
+            <a href="#philosophy" class="mobile-link">Philosophy</a>
+            <a href="what-others-say.html" class="mobile-link">Testimonials</a>
+            <a href="#contact" class="mobile-link mobile-cta">Let's Talk</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-left">
+                    <div class="hero-meta">
+                        <span class="meta-line"></span>
+                        <span class="meta-text">Design Leader, Designer, Manager, AI Fanatic</span>
+                    </div>
+                    <h1 class="hero-headline display-xl">
+                        <span class="line">
+                            <span class="word">Design</span>
+                        </span>
+                        <span class="line">
+                            <span class="word">Leadership</span>
+                        </span>
+                        <span class="line">
+                            <span class="word accent">With Purpose</span>
+                        </span>
+                    </h1>
+                    <p class="hero-lead">20+ years crafting experiences that solve real problems through strategic design and human-centered thinking.</p>
+                </div>
+                <div class="hero-right">
+                    <div class="hero-image">
+                        <img src="https://www.theluckystrike.co.uk/wp-content/uploads/2021/02/abca8a4c-2e96-4601-b4ee-407825d1c1f7-e1612512377934.jpg" alt="Mark Jenkins - Senior Design Manager">
+                        <span class="hero-image-frame"></span>
+                    </div>
+                    <div class="hero-credentials" data-companies="Uber,Google,Adidas,Klarna,eBay,The Guardian,Virgin,Emirates,Hilton,Unilever,Depop,Just Eat,Hyundai,Time Out">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-scroll">
+            <span class="scroll-text">Scroll to explore</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- Marquee -->
+    <div class="marquee-section">
+        <div class="marquee">
+            <div class="marquee-content">
+                <span class="marquee-item">Design Leadership</span>
+                <div class="marquee-separator"></div>
+                <span class="marquee-item">Product Strategy</span>
+                <div class="marquee-separator"></div>
+                <span class="marquee-item">Team Building</span>
+                <div class="marquee-separator"></div>
+                <span class="marquee-item">User Experience</span>
+                <div class="marquee-separator"></div>
+                <span class="marquee-item">Design Systems</span>
+                <div class="marquee-separator"></div>
+                <span class="marquee-item">Brand Identity</span>
+                <div class="marquee-separator"></div>
+            </div>
+            <div class="marquee-content" aria-hidden="true">
+                <span class="marquee-item">Design Leadership</span>
+                <div class="marquee-separator"></div>
+                <span class="marquee-item">Product Strategy</span>
+                <div class="marquee-separator"></div>
+                <span class="marquee-item">Team Building</span>
+                <div class="marquee-separator"></div>
+                <span class="marquee-item">User Experience</span>
+                <div class="marquee-separator"></div>
+                <span class="marquee-item">Design Systems</span>
+                <div class="marquee-separator"></div>
+                <span class="marquee-item">Brand Identity</span>
+                <div class="marquee-separator"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section id="about" class="section about-section">
+        <div class="section-grid">
+            <div class="section-header">
+                <span class="section-number">01</span>
+                <h2 class="section-title">About</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-intro">
+                    <p class="lead-text display-serif">I'm a design leader who bridges strategy and execution—helping teams create products that matter while growing the next generation of designers.</p>
+                </div>
+                <div class="about-details">
+                    <p>My approach combines two decades of hands-on experience with strategic leadership. From research and wireframing to prototyping and team development, I believe that informed decisions are the foundation of exceptional products.</p>
+                    <p>Currently leading design teams at HackerOne, exploring how AI can amplify human creativity in design workflows.</p>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-number" data-target="20">0</span><span class="stat-suffix">+</span>
+                        <span class="stat-label">Years Experience</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" data-target="400">0</span><span class="stat-suffix">+</span>
+                        <span class="stat-label">People Mentored</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number static">Global</span>
+                        <span class="stat-label">Client Reach</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Teaching Section -->
+    <section id="teaching" class="section teaching-section">
+        <div class="section-grid">
+            <div class="section-header">
+                <span class="section-number">02</span>
+                <h2 class="section-title">Teaching</h2>
+            </div>
+            <div class="teaching-grid">
+                <div class="teaching-card">
+                    <div class="card-header">
+                        <span class="card-icon">⬢</span>
+                        <span class="card-period">2017—2020</span>
+                    </div>
+                    <h3 class="card-title">Lead Instructor</h3>
+                    <p class="card-org">General Assembly</p>
+                    <p class="card-desc">Developed and delivered UX design curriculum, helping 200+ aspiring designers launch their careers in tech.</p>
+                </div>
+                <div class="teaching-card">
+                    <div class="card-header">
+                        <span class="card-icon">⬢</span>
+                        <span class="card-period">2015—2017</span>
+                    </div>
+                    <h3 class="card-title">Lead Tutor</h3>
+                    <p class="card-org">The Guardian London</p>
+                    <p class="card-desc">Taught user experience and digital design principles to 200+ professionals across media and publishing.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section experience-section">
+        <div class="section-grid">
+            <div class="section-header">
+                <span class="section-number">03</span>
+                <h2 class="section-title">Clients</h2>
+            </div>
+            <div class="experience-content">
+                <div class="current-role">
+                    <div class="role-badge">Current</div>
+                    <h3 class="role-title">HackerOne</h3>
+                    <p class="role-period">Senior Design Manager, Product Design</p>
+                </div>
+                <div class="past-clients">
+                    <h3 class="clients-label">Previously</h3>
+                    <div class="clients-list">
+                        <span class="client-item">Uber</span>
+                        <span class="client-item">Adidas</span>
+                        <span class="client-item">Klarna</span>
+                        <span class="client-item">eBay</span>
+                        <span class="client-item">Google</span>
+                        <span class="client-item">The Guardian</span>
+                        <span class="client-item">Virgin Group</span>
+                        <span class="client-item">Emirates</span>
+                        <span class="client-item">Hilton</span>
+                        <span class="client-item">AXE</span>
+                        <span class="client-item">BFI</span>
+                        <span class="client-item">Unilever</span>
+                        <span class="client-item">Depop</span>
+                        <span class="client-item">Just Eat</span>
+                        <span class="client-item">Hyundai</span>
+                        <span class="client-item">Time Out</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Philosophy Section -->
+    <section id="philosophy" class="section philosophy-section">
+        <div class="section-grid">
+            <div class="section-header">
+                <span class="section-number">04</span>
+                <h2 class="section-title">Philosophy</h2>
+            </div>
+            <div class="philosophy-content">
+                <blockquote class="philosophy-quote display-serif">
+                    "Crafting experiences that solve real problems in a simple way—through research, iteration, and genuine human understanding."
+                </blockquote>
+                <div class="principles-grid">
+                    <div class="principle">
+                        <span class="principle-num">01</span>
+                        <h3>User-Centered</h3>
+                        <p>Every design decision starts with understanding the humans behind the screen—their needs, frustrations, and aspirations.</p>
+                    </div>
+                    <div class="principle">
+                        <span class="principle-num">02</span>
+                        <h3>Strategic</h3>
+                        <p>Design is a business tool. I align creative solutions with real objectives to deliver measurable impact.</p>
+                    </div>
+                    <div class="principle">
+                        <span class="principle-num">03</span>
+                        <h3>Iterative</h3>
+                        <p>Great work comes from continuous testing, learning, and refining. Perfect is a direction, not a destination.</p>
+                    </div>
+                    <div class="principle">
+                        <span class="principle-num">04</span>
+                        <h3>Empowering</h3>
+                        <p>I build teams that think critically, challenge assumptions, and grow together toward excellence.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact-section">
+        <div class="section-grid">
+            <div class="section-header">
+                <span class="section-number">05</span>
+                <h2 class="section-title">Contact</h2>
+            </div>
+            <div class="contact-content">
+                <p class="contact-intro display-serif">Interested in discussing a project, opportunity, or just want to share design ideas? I'd love to hear from you.</p>
+                <div class="contact-actions">
+                    <a href="mailto:mark@theluckystrike.co.uk" class="contact-btn email-btn">
+                        <span class="btn-icon">↗</span>
+                        <span class="btn-text">Email Me</span>
+                        <span class="btn-sub">mark@theluckystrike.co.uk</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/markjenkins1981/" target="_blank" rel="noopener" class="contact-btn social-btn linkedin">
+                        <span class="btn-icon">in</span>
+                        <span class="btn-text">LinkedIn</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-left">
+                    <span class="footer-logo">MJ Mark Jenkins</span>
+                    <span class="footer-copy">© 2025</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ========================================
+        // CUSTOM CURSOR
+        // ========================================
+        const cursor = document.getElementById('cursor');
+        let mouseX = 0, mouseY = 0;
+        let cursorX = 0, cursorY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
+
+        function animateCursor() {
+            const dx = mouseX - cursorX;
+            const dy = mouseY - cursorY;
+            cursorX += dx * 0.15;
+            cursorY += dy * 0.15;
+            cursor.style.left = cursorX + 'px';
+            cursor.style.top = cursorY + 'px';
+            requestAnimationFrame(animateCursor);
+        }
+        animateCursor();
+
+        // Cursor hover effects
+        const hoverElements = document.querySelectorAll('a, button, .client-item, .stat-card, .teaching-card, .principle, .contact-btn');
+        hoverElements.forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('active'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('active'));
+        });
+
+        // ========================================
+        // SCROLL PROGRESS
+        // ========================================
+        const scrollProgress = document.getElementById('scrollProgress');
+
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = scrollTop / docHeight;
+            scrollProgress.style.transform = `scaleX(${progress})`;
+        });
+
+        // ========================================
+        // SCROLL REVEAL ANIMATIONS
+        // ========================================
+        const revealElements = document.querySelectorAll('.reveal, .section-header, .about-content, .teaching-grid, .experience-content, .philosophy-content, .contact-content, .stat-card, .teaching-card, .principle, .client-item');
+
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    const delay = index * 50;
+                    entry.target.style.transitionDelay = `${delay}ms`;
+                    entry.target.classList.add('active');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        revealElements.forEach(el => {
+            el.classList.add('reveal');
+            revealObserver.observe(el);
+        });
+
+        // ========================================
+        // COUNTER ANIMATION
+        // ========================================
+        function initCounterAnimation() {
+            const counters = document.querySelectorAll('.stat-number[data-target]');
+            let animated = false;
+
+            const animateCounter = (counter) => {
+                const target = parseInt(counter.dataset.target);
+                const duration = 2000;
+                const step = target / (duration / 16);
+                let current = 0;
+
+                const updateCounter = () => {
+                    current += step;
+                    if (current < target) {
+                        counter.textContent = Math.floor(current);
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        counter.textContent = target;
+                    }
+                };
+
+                updateCounter();
+            };
+
+            const counterObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !animated) {
+                        animated = true;
+                        counters.forEach(counter => animateCounter(counter));
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            const statsGrid = document.querySelector('.stats-grid');
+            if (statsGrid) {
+                counterObserver.observe(statsGrid);
+            }
+        }
+        initCounterAnimation();
+
+        // ========================================
+        // SMOOTH SCROLL FOR NAV LINKS
+        // ========================================
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // ========================================
+        // SHUFFLE CREDENTIALS
+        // ========================================
+        function shuffleCredentials() {
+            const container = document.querySelector('.hero-credentials');
+            if (!container) return;
+
+            const companies = container.dataset.companies.split(',');
+            const shuffled = companies.sort(() => Math.random() - 0.5);
+            const selected = shuffled.slice(0, 4);
+
+            container.innerHTML = selected.map(company =>
+                `<span class="credential">${company}</span>`
+            ).join('');
+        }
+        shuffleCredentials();
+
+        // ========================================
+        // MOBILE MENU
+        // ========================================
+        const menuBtn = document.querySelector('.menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        menuBtn.addEventListener('click', () => {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            mobileMenu.classList.toggle('active');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.style.display = 'none';
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // ========================================
+        // ACTIVE NAV LINK
+        // ========================================
+        const sections = document.querySelectorAll('section[id]');
+        const navLinksAll = document.querySelectorAll('.nav-links a:not(.nav-cta)');
+
+        const navObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
+                    navLinksAll.forEach(link => {
+                        link.style.color = '';
+                        if (link.getAttribute('href') === `#${id}`) {
+                            link.style.color = 'var(--accent-secondary)';
+                        }
+                    });
+                }
+            });
+        }, { rootMargin: '-50% 0px -50% 0px', threshold: 0 });
+
+        sections.forEach(section => navObserver.observe(section));
+
+        // ========================================
+        // HERO PARALLAX
+        // ========================================
+        const heroRight = document.querySelector('.hero-right');
+        const credentials = document.querySelector('.hero-credentials');
+
+        if (heroRight && credentials) {
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const heroHeight = document.querySelector('.hero').offsetHeight;
+
+                if (scrolled < heroHeight) {
+                    credentials.style.transform = `translateY(${scrolled * 0.1}px)`;
+                    credentials.style.opacity = 1 - (scrolled / heroHeight);
+                }
+            });
+        }
+    </script>
+</body>
+</html>
