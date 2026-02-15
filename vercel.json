@@ -1,4 +1,5 @@
 {
+  "cleanUrls": true,
   "rewrites": [
     { "source": "/what-others-say", "destination": "/what-others-say.html" },
     { "source": "/testimonials", "destination": "/what-others-say.html" }
