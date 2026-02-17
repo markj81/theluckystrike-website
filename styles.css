@@ -831,12 +831,12 @@ img { max-width: 100%; display: block; }
     .client { padding: 0.5rem 1rem; font-size: 0.8rem; }
     .footer-container { flex-direction: column; gap: var(--spacing-sm); text-align: center; }
     .testimonials-grid { grid-template-columns: 1fr; }
-    .cube-container { width: 280px; height: 280px; }
-    .cube-face { width: 280px; height: 280px; }
-    .cube-face.front  { transform: rotateY(0deg) translateZ(140px); }
-    .cube-face.back   { transform: rotateY(180deg) translateZ(140px); }
-    .cube-face.right  { transform: rotateY(90deg) translateZ(140px); }
-    .cube-face.left   { transform: rotateY(-90deg) translateZ(140px); }
+    .cube-container { width: 210px; height: 210px; }
+    .cube-face { width: 210px; height: 210px; }
+    .cube-face.front  { transform: rotateY(0deg) translateZ(105px); }
+    .cube-face.back   { transform: rotateY(180deg) translateZ(105px); }
+    .cube-face.right  { transform: rotateY(90deg) translateZ(105px); }
+    .cube-face.left   { transform: rotateY(-90deg) translateZ(105px); }
     .cube-face.top    { transform: rotateX(90deg) translateZ(140px); }
     .cube-face.bottom { transform: rotateX(-90deg) translateZ(140px); }
 }

@@ -30,8 +30,8 @@ function initMobileMenu() {
 
 // Theme Toggle with Liquid Blend Effect
 function initThemeToggle() {
-    const toggle = document.querySelector('.theme-toggle');
-    if (!toggle) return;
+    const toggles = document.querySelectorAll('.theme-toggle');
+    if (!toggles.length) return;
 
     // Check for saved theme
     const savedTheme = localStorage.getItem('theme') || 'light';
@@ -39,41 +39,53 @@ function initThemeToggle() {
         document.documentElement.setAttribute('data-theme', 'dark');
     }
 
-    toggle.addEventListener('click', () => {
-        const currentTheme = document.documentElement.getAttribute('data-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        const blob = document.querySelector('.liquid-blob');
-        const overlay = document.querySelector('.theme-liquid-overlay');
+    // Sync all toggles to reflect current state
+    function syncToggles() {
+        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        toggles.forEach(toggle => {
+            toggle.classList.toggle('dark', isDark);
+        });
+    }
+    syncToggles();
 
-        if (!blob || !overlay) return;
+    toggles.forEach(toggle => {
+        toggle.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            const blob = document.querySelector('.liquid-blob');
+            const overlay = document.querySelector('.theme-liquid-overlay');
 
-        // Set blob color based on target theme
-        const blobColor = newTheme === 'dark' ? '#0D0D0D' : '#FAFAF9';
+            if (!blob || !overlay) return;
 
-        // Position blob at center-top to cover nav bar
-        blob.style.left = '50%';
-        blob.style.top = '15%';
-        blob.style.background = blobColor;
+            // Set blob color based on target theme
+            const blobColor = newTheme === 'dark' ? '#0D0D0D' : '#FAFAF9';
 
-        // Reset animation
-        blob.style.animation = 'none';
-        blob.offsetHeight; // Force reflow
-        blob.style.animation = 'liquidExpand 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards';
+            // Position blob at center-top to cover nav bar
+            blob.style.left = '50%';
+            blob.style.top = '15%';
+            blob.style.background = blobColor;
 
-        // Switch theme after animation completes
-        setTimeout(() => {
-            if (newTheme === 'dark') {
-                document.documentElement.setAttribute('data-theme', 'dark');
-            } else {
-                document.documentElement.removeAttribute('data-theme');
-            }
-            localStorage.setItem('theme', newTheme);
-        }, 280);
-
-        // Reset blob for next time
-        setTimeout(() => {
+            // Reset animation
             blob.style.animation = 'none';
-        }, 350);
+            blob.offsetHeight; // Force reflow
+            blob.style.animation = 'liquidExpand 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards';
+
+            // Switch theme after animation completes
+            setTimeout(() => {
+                if (newTheme === 'dark') {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                } else {
+                    document.documentElement.removeAttribute('data-theme');
+                }
+                localStorage.setItem('theme', newTheme);
+                syncToggles();
+            }, 280);
+
+            // Reset blob for next time
+            setTimeout(() => {
+                blob.style.animation = 'none';
+            }, 350);
+        });
     });
 }
 
