@@ -7,26 +7,28 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Grain Overlay -->
-    <div class="grain"></div>
-
+    <div class="theme-liquid-overlay">
+        <div class="liquid-blob"></div>
+    </div>
     <!-- Navigation -->
     <nav class="nav">
         <div class="nav-container">
-            <a href="#" class="nav-logo">
-                <span class="logo-mark">◆</span>
-                Mark Jenkins
-            </a>
+            <a href="#" class="nav-logo">Mark Jenkins</a>
             <ul class="nav-links">
                 <li><a href="#about">About</a></li>
                 <li><a href="#experience">Experience</a></li>
                 <li><a href="#philosophy">Philosophy</a></li>
                 <li><a href="testimonials.html">Testimonials</a></li>
-                <li><a href="#contact" class="nav-cta">Let's Talk</a></li>
             </ul>
+            <div class="nav-right">
+                <button class="theme-toggle" aria-label="Toggle dark mode">
+                    <span class="toggle-slider"></span>
+                </button>
+                <a href="#contact" class="nav-cta">Get in touch</a>
+            </div>
             <button class="nav-toggle" aria-label="Toggle menu">
                 <span></span>
                 <span></span>
@@ -41,175 +43,151 @@
             <a href="#experience" class="mobile-link">Experience</a>
             <a href="#philosophy" class="mobile-link">Philosophy</a>
             <a href="testimonials.html" class="mobile-link">Testimonials</a>
-            <a href="#contact" class="mobile-link mobile-cta">Let's Talk</a>
+            <a href="#contact" class="mobile-link mobile-cta">Get in touch</a>
         </div>
     </div>
 
     <!-- Hero Section -->
     <header class="hero">
-        <div class="halftone-overlay"></div>
-        <div class="hero-grid">
-            <div class="hero-left">
-                <div class="hero-meta">
-                    <span class="meta-line"></span>
-                    <span class="meta-text">Design Leader, Designer, Manager, AI Fanatic</span>
-                </div>
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-label">Design Leader & AI Fanatic</div>
                 <h1 class="hero-title">
-                    <span class="line-reveal">Design</span>
-                    <span class="line-reveal">Leadership</span>
-                    <span class="line-reveal accent">With Purpose</span>
+                    <span class="title-line">Leading design teams</span>
+                    <span class="title-line">to create experiences</span>
+                    <span class="title-line">that <em>matter</em></span>
                 </h1>
-                <p class="hero-lead">20+ years crafting experiences that solve real problems through strategic design and human-centered thinking.</p>
+                <p class="hero-description">20+ years crafting experiences that solve real problems through strategic design and human-centered thinking.</p>
             </div>
-            <div class="hero-right">
-                <div class="hero-image">
-                    <img src="images/mark-jenkins.jpg" alt="Mark Jenkins - Senior Design Manager">
-                    <span class="hero-image-frame"></span>
-                </div>
-                <div class="hero-credentials" data-companies="Uber,Google,Adidas,Klarna,eBay,The Guardian,Virgin,Emirates,Hilton,Unilever,Depop,Just Eat,Hyundai,Time Out">
-                    <!-- Companies will be randomly inserted here -->
+            <div class="hero-visual">
+                <div class="cube-container">
+                    <div class="cube">
+                        <div class="cube-face front"></div>
+                        <div class="cube-face back"></div>
+                        <div class="cube-face right"></div>
+                        <div class="cube-face left"></div>
+                        <div class="cube-face top"></div>
+                        <div class="cube-face bottom"></div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="hero-scroll">
-            <span class="scroll-text">Scroll to explore</span>
-            <div class="scroll-line"></div>
         </div>
     </header>
 
     <!-- About Section -->
-    <section id="about" class="section about-section">
-        <div class="section-grid">
+    <section id="about" class="section">
+        <div class="section-container">
             <div class="section-header">
-                <span class="section-number">01</span>
-                <h2 class="section-title">About</h2>
+                <span class="section-label">About</span>
+                <h2 class="section-title">Bridging strategy and execution</h2>
             </div>
-            <div class="about-content">
-                <div class="about-intro">
-                    <p class="lead-text">I'm a design leader who bridges strategy and execution—helping teams create products that matter while growing the next generation of designers.</p>
+            <div class="about-grid">
+                <div class="about-lead">
+                    <p>I'm a design leader who helps teams create products that matter while growing the next generation of designers.</p>
                 </div>
                 <div class="about-details">
                     <p><strong>My approach</strong> combines two decades of hands-on experience with strategic leadership. From research and wireframing to prototyping and team development, I believe that informed decisions are the foundation of exceptional products.</p>
-                    <p><strong>Currently</strong> exploring how AI can amplify human creativity in design workflows, experimenting with agents, subagents, skills and more in Claude Code and building side projects with all sorts of tools and LLMs. Having a lot of fun doing so!</p>
-                </div>
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <span class="stat-number" data-target="20">0</span><span class="stat-suffix">+</span>
-                        <span class="stat-label">Years Experience</span>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-number" data-target="400">0</span><span class="stat-suffix">+</span>
-                        <span class="stat-label">People Mentored</span>
-                    </div>
-                    <div class="stat-card">
-                        <span class="stat-number static">Global</span>
-                        <span class="stat-label">Client Reach</span>
-                    </div>
+                    <p><strong>Currently exploring</strong> how AI can amplify human creativity in design workflows, experimenting with agents, subagents, and skills in Claude Code and building side projects with all sorts of tools and LLMs.</p>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Teaching Section -->
-    <section id="teaching" class="section teaching-section">
-        <div class="section-grid">
-            <div class="section-header">
-                <span class="section-number">02</span>
-                <h2 class="section-title">Teaching</h2>
-            </div>
-            <div class="teaching-grid">
-                <div class="teaching-card">
-                    <div class="card-header">
-                        <span class="card-icon">⬢</span>
-                        <span class="card-period">2017—2020</span>
-                    </div>
-                    <h3 class="card-title">Lead Instructor</h3>
-                    <p class="card-org">General Assembly</p>
-                    <p class="card-desc">Developed and delivered UX design curriculum, helping 200+ aspiring designers launch their careers in tech.</p>
+            <div class="stats-row">
+                <div class="stat">
+                    <span class="stat-value">20+</span>
+                    <span class="stat-label">Years Experience</span>
                 </div>
-                <div class="teaching-card">
-                    <div class="card-header">
-                        <span class="card-icon">⬢</span>
-                        <span class="card-period">2015—2017</span>
-                    </div>
-                    <h3 class="card-title">Lead Tutor</h3>
-                    <p class="card-org">The Guardian London</p>
-                    <p class="card-desc">Taught user experience and digital design principles to 200+ professionals across media and publishing.</p>
+                <div class="stat">
+                    <span class="stat-value">400+</span>
+                    <span class="stat-label">People Mentored</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-value">Global</span>
+                    <span class="stat-label">Client Reach</span>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Experience Section -->
-    <section id="experience" class="section experience-section">
-        <div class="section-grid">
+    <section id="experience" class="section">
+        <div class="section-container">
             <div class="section-header">
-                <span class="section-number">03</span>
-                <h2 class="section-title">Clients</h2>
+                <span class="section-label">Experience</span>
+                <h2 class="section-title">Companies I've worked with</h2>
             </div>
-            <div class="experience-content">
-                <div class="current-role">
-                    <div class="role-badge">Current</div>
-                    <h3 class="role-title">HackerOne</h3>
-                    <p class="role-period">Senior Design Manager, Product Design</p>
-                </div>
-                <div class="past-clients">
-                    <h3 class="clients-label">Previously</h3>
-                    <div class="clients-list">
-                        <span class="client-item">Uber</span>
-                        <span class="client-item">Adidas</span>
-                        <span class="client-item">Klarna</span>
-                        <span class="client-item">eBay</span>
-                        <span class="client-item">Google</span>
-                        <span class="client-item">The Guardian</span>
-                        <span class="client-item">Virgin Group</span>
-                        <span class="client-item">Emirates</span>
-                        <span class="client-item">Hilton</span>
-                        <span class="client-item">AXE</span>
-                        <span class="client-item">BFI</span>
-                        <span class="client-item">Unilever</span>
-                        <span class="client-item">Depop</span>
-                        <span class="client-item">Just Eat</span>
-                        <span class="client-item">Hyundai</span>
-                        <span class="client-item">Time Out</span>
-                    </div>
-                </div>
+            <div class="clients-grid">
+                <span class="client current">HackerOne</span>
+                <span class="client">Uber</span>
+                <span class="client">Adidas</span>
+                <span class="client">Google</span>
+                <span class="client">Klarna</span>
+                <span class="client">eBay</span>
+                <span class="client">The Guardian</span>
+                <span class="client">Virgin Group</span>
+                <span class="client">Emirates</span>
+                <span class="client">Hilton</span>
+                <span class="client">Unilever</span>
+                <span class="client">Depop</span>
+                <span class="client">Just Eat</span>
+                <span class="client">Hyundai</span>
+                <span class="client">Time Out</span>
             </div>
         </div>
     </section>
 
     <!-- Philosophy Section -->
-    <section id="philosophy" class="section philosophy-section">
-        <div class="section-grid">
+    <section id="philosophy" class="section">
+        <div class="section-container">
             <div class="section-header">
-                <span class="section-number">04</span>
-                <h2 class="section-title">Philosophy</h2>
+                <span class="section-label">Philosophy</span>
+                <h2 class="section-title">What I believe</h2>
             </div>
-            <div class="philosophy-content">
-                <blockquote class="philosophy-quote">
-                    "Crafting experiences that solve real problems in a simple way—through research, iteration, and genuine human understanding."
-                </blockquote>
-                <div class="principles-grid">
-                    <div class="principle">
-                        <span class="principle-num">01</span>
-                        <h3>User-Centered</h3>
-                        <p>Every design decision starts with understanding the humans behind the screen—their needs, frustrations, and aspirations.</p>
-                    </div>
-                    <div class="principle">
-                        <span class="principle-num">02</span>
-                        <h3>Strategic</h3>
-                        <p>Design is a business tool. I align creative solutions with real objectives to deliver measurable impact.</p>
-                    </div>
-                    <div class="principle">
-                        <span class="principle-num">03</span>
-                        <h3>Iterative</h3>
-                        <p>Great work comes from continuous testing, learning, and refining. Perfect is a direction, not a destination.</p>
-                    </div>
-                    <div class="principle">
-                        <span class="principle-num">04</span>
-                        <h3>Empowering</h3>
-                        <p>I build teams that think critically, challenge assumptions, and grow together toward excellence.</p>
-                    </div>
+            <blockquote class="philosophy-quote">
+                "Crafting experiences that solve real problems in a simple way—through research, iteration, and genuine human understanding."
+            </blockquote>
+            <div class="principles-grid">
+                <div class="principle">
+                    <span class="principle-number">01</span>
+                    <h3 class="principle-title">Empowering</h3>
+                    <p class="principle-text">I build teams that think critically, challenge assumptions, and grow together toward excellence.</p>
+                </div>
+                <div class="principle">
+                    <span class="principle-number">02</span>
+                    <h3 class="principle-title">Strategic</h3>
+                    <p class="principle-text">Design is a business tool. I align creative solutions with real objectives to deliver measurable impact.</p>
+                </div>
+                <div class="principle">
+                    <span class="principle-number">03</span>
+                    <h3 class="principle-title">User-Centered</h3>
+                    <p class="principle-text">Every design decision starts with understanding the humans behind the screen—their needs, frustrations, and aspirations.</p>
+                </div>
+                <div class="principle">
+                    <span class="principle-number">04</span>
+                    <h3 class="principle-title">Iterative</h3>
+                    <p class="principle-text">Great work comes from continuous testing, learning, and refining. Perfect is a direction, not a destination.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Teaching Section -->
+    <section class="section">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-label">Teaching</span>
+                <h2 class="section-title">Sharing knowledge</h2>
+            </div>
+            <div class="teaching-grid">
+                <div class="teaching-card">
+                    <span class="teaching-period">2017 — 2020</span>
+                    <h3 class="teaching-title">Lead Instructor</h3>
+                    <p class="teaching-org">General Assembly</p>
+                    <p class="teaching-desc">Developed and delivered UX design curriculum, helping 200+ aspiring designers launch their careers in tech.</p>
+                </div>
+                <div class="teaching-card">
+                    <span class="teaching-period">2015 — 2017</span>
+                    <h3 class="teaching-title">Lead Tutor</h3>
+                    <p class="teaching-org">The Guardian London</p>
+                    <p class="teaching-desc">Taught user experience and digital design principles to 200+ professionals across media and publishing.</p>
                 </div>
             </div>
         </div>
@@ -217,22 +195,23 @@
 
     <!-- Contact Section -->
     <section id="contact" class="section contact-section">
-        <div class="section-grid">
-            <div class="section-header">
-                <span class="section-number">05</span>
-                <h2 class="section-title">Contact</h2>
-            </div>
-            <div class="contact-content">
-                <p class="contact-intro">Interested in discussing a project, opportunity, or just want to share design ideas? I'd love to hear from you.</p>
+        <div class="section-container">
+            <div class="contact-grid">
+                <div class="contact-content">
+                    <span class="section-label">Contact</span>
+                    <h2 class="section-title">Let's work together</h2>
+                    <p class="contact-text">Interested in discussing a project, opportunity, or just want to share design ideas? I'd love to hear from you.</p>
+                </div>
                 <div class="contact-actions">
-                    <a href="mailto:jenkins.mark@gmail.com" class="contact-btn email-btn">
-                        <span class="btn-icon">↗</span>
-                        <span class="btn-text">Email Me</span>
-                        <span class="btn-sub">jenkins.mark@gmail.com</span>
+                    <a href="mailto:jenkins.mark@gmail.com" class="contact-link">
+                        <span class="link-label">Email</span>
+                        <span class="link-value">jenkins.mark@gmail.com</span>
+                        <span class="link-arrow">→</span>
                     </a>
-                    <a href="https://www.linkedin.com/in/markjenkins1981/" target="_blank" rel="noopener" class="contact-btn social-btn linkedin">
-                        <span class="btn-icon">in</span>
-                        <span class="btn-text">LinkedIn</span>
+                    <a href="https://www.linkedin.com/in/markjenkins1981/" target="_blank" rel="noopener" class="contact-link">
+                        <span class="link-label">LinkedIn</span>
+                        <span class="link-value">Connect with me</span>
+                        <span class="link-arrow">→</span>
                     </a>
                 </div>
             </div>
@@ -241,14 +220,19 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="footer-content">
+        <div class="footer-container">
             <div class="footer-left">
-                <span class="footer-logo">◆ Mark Jenkins</span>
-                <span class="footer-copy">© <script>document.write(new Date().getFullYear())</script></span>
+                <span class="footer-logo">Mark Jenkins</span>
+                <span class="footer-copy">© 2026</span>
+            </div>
+            <div class="footer-right">
+                <a href="mailto:jenkins.mark@gmail.com">Email</a>
+                <a href="https://www.linkedin.com/in/markjenkins1981/" target="_blank" rel="noopener">LinkedIn</a>
             </div>
         </div>
     </footer>
 
     <script src="script.js"></script>
+    
 </body>
 </html>
