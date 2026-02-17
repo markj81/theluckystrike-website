@@ -323,6 +323,23 @@ img { max-width: 100%; display: block; }
     padding: calc(80px + var(--spacing-lg)) var(--spacing-md) var(--spacing-lg);
     display: flex;
     align-items: center;
+    position: relative;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url('https://static.vecteezy.com/system/resources/thumbnails/068/090/624/small/purple-halftone-pattern-retro-comic-gradient-background-violet-pixelated-dotted-texture-overlay-cartoon-pop-art-faded-gradient-pattern-backdrop-for-poster-banner-booklet-cover-vector.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.14;
+    mix-blend-mode: multiply;
+    pointer-events: none;
+}
+
+:root[data-theme="dark"] .hero::before {
+    opacity: 0.45;
 }
 
 .hero-container {
