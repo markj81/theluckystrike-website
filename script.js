@@ -2,20 +2,6 @@
 // SWISS EDITORIAL PORTFOLIO
 // ========================================
 
-// Shuffle company credentials on page load
-function shuffleCredentials() {
-    const container = document.querySelector('.hero-credentials');
-    if (!container) return;
-
-    const companies = container.dataset.companies.split(',');
-    const shuffled = companies.sort(() => Math.random() - 0.5);
-    const selected = shuffled.slice(0, 4);
-
-    container.innerHTML = selected.map(company =>
-        `<span class="credential">${company}</span>`
-    ).join('');
-}
-
 document.addEventListener('DOMContentLoaded', () => {
     initMobileMenu();
     initScrollAnimations();
@@ -222,34 +208,6 @@ function initHeroAnimations() {
 // TESTIMONIALS ANIMATION
 // ========================================
 function initTestimonialsAnimation() {
-    const testimonialCards = document.querySelectorAll('.testimonial-card');
-
-    if (!testimonialCards.length) return;
-
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry, index) => {
-            if (entry.isIntersecting) {
-                entry.target.style.transitionDelay = `${index * 50}ms`;
-                entry.target.classList.add('revealed');
-            }
-        });
-    }, observerOptions);
-
-    testimonialCards.forEach(card => {
-        observer.observe(card);
-    });
-}
-
-// ========================================
-// TESTIMONIALS ANIMATION
-// ========================================
-function initTestimonialsAnimation() {
     const cards = document.querySelectorAll('.testimonial-card');
 
     if (cards.length === 0) return;
@@ -282,6 +240,7 @@ window.addEventListener('scroll', () => {
         nav.style.background = 'rgba(248, 246, 243, 0.85)';
     }
 });
+
 // ========================================
 // SHUFFLE CREDENTIALS
 // ========================================
