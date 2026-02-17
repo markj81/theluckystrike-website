@@ -3,6 +3,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     initMobileMenu();
     initThemeToggle();
+    initScrollAnimations();
 });
 
 // Mobile Menu
@@ -99,4 +100,29 @@ window.addEventListener('scroll', () => {
     } else {
         nav.classList.remove('scrolled');
     }
+});
+
+// Scroll Animations
+function initScrollAnimations() {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+                // Add staggered delay based on index
+                setTimeout(() => {
+                    entry.target.classList.add('visible');
+                }, index * 100);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.animate-on-scroll').forEach(el => {
+        observer.observe(el);
+    });
+}
+
+// Initialize on DOM ready
+document.addEventListener('DOMContentLoaded', () => {
+    initMobileMenu();
+    initThemeToggle();
+    initScrollAnimations();
 });

@@ -337,6 +337,8 @@ img { max-width: 100%; display: block; }
     mix-blend-mode: multiply;
     filter: blur(5px);
     pointer-events: none;
+    mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
 }
 
 :root[data-theme="dark"] .hero::before {
@@ -396,7 +398,32 @@ img { max-width: 100%; display: block; }
     to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes fadeIn { to { opacity: 1; } }
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Scroll Animations */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
 
 /* 3D Cube */
 .cube-container {
