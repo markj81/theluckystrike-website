@@ -417,8 +417,6 @@ img { max-width: 100%; display: block; }
 .cube-face.back   { transform: rotateY(180deg) translateZ(175px); }
 .cube-face.right  { transform: rotateY(90deg) translateZ(175px); }
 .cube-face.left   { transform: rotateY(-90deg) translateZ(175px); }
-.cube-face.top    { transform: rotateX(90deg) translateZ(175px); }
-.cube-face.bottom { transform: rotateX(-90deg) translateZ(175px); }
 
 .hero-visual {
     position: relative;
