@@ -312,6 +312,11 @@ img { max-width: 100%; display: block; }
     border-radius: 100px;
 }
 
+.mobile-theme-toggle {
+    margin-top: var(--spacing-sm);
+    padding: 0.75rem 1.5rem;
+}
+
 /* Hero Section */
 .hero {
     min-height: 100vh;
