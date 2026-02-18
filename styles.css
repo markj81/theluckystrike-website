@@ -4,13 +4,13 @@
 
 /* CSS Variables */
 :root {
-    --color-bg: #FAFAF9;
-    --color-text: #1A1A1A;
-    --color-text-muted: #6B6B6B;
-    --color-accent: #2D2D2D;
+    --color-bg: #0D0D0D;
+    --color-text: #F5F5F5;
+    --color-text-muted: #A0A0A0;
+    --color-accent: #E0E0E0;
     --color-accent-purple: #7E57C2;
-    --color-border: #E5E5E5;
-    --color-card: #FFFFFF;
+    --color-border: #2A2A2A;
+    --color-card: #1A1A1A;
 
     --font-serif: 'Instrument Serif', Georgia, serif;
     --font-sans: 'DM Sans', -apple-system, sans-serif;
@@ -386,24 +386,6 @@ body:has(.mobile-menu.active) .nav-toggle {
     position: relative;
 }
 
-.hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: url('https://static.vecteezy.com/system/resources/thumbnails/068/090/624/small/purple-halftone-pattern-retro-comic-gradient-background-violet-pixelated-dotted-texture-overlay-cartoon-pop-art-faded-gradient-pattern-backdrop-for-poster-banner-booklet-cover-vector.jpg');
-    background-size: cover;
-    background-position: center;
-    opacity: 0.14;
-    mix-blend-mode: multiply;
-    filter: blur(5px);
-    pointer-events: none;
-    mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
-}
-
-:root[data-theme="dark"] .hero::before {
-    opacity: 0.45;
-}
 
 .hero-container {
     max-width: var(--container-width);
@@ -430,7 +412,7 @@ body:has(.mobile-menu.active) .nav-toggle {
     line-height: 1.05;
     letter-spacing: -0.02em;
     margin-bottom: var(--spacing-md);
-    color: #7E57C2;
+    color: #F5F5F5;
 }
 
 .hero-title em { font-style: italic; }
@@ -1084,4 +1066,33 @@ body:has(.mobile-menu.active) .nav-toggle {
     100% {
         top: 110vh;
     }
+}
+
+/* Hero Animated Background */
+.hero-bg { position: absolute; inset: 0; z-index: 0; overflow: hidden; background: var(--color-bg); }
+.hero { overflow: hidden; position: relative; }
+.hero-container { position: relative; z-index: 1; }
+.hero-visual { z-index: 10; }
+
+.bg-orb { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.6; animation: float 20s ease-in-out infinite; }
+.orb-1 { width: 600px; height: 600px; background: radial-gradient(circle, #7E57C2 0%, transparent 70%); top: -200px; right: -100px; }
+.orb-2 { width: 500px; height: 500px; background: radial-gradient(circle, #5C6BC0 0%, transparent 70%); bottom: -150px; left: -100px; animation-delay: -7s; }
+.orb-3 { width: 400px; height: 400px; background: radial-gradient(circle, #9575CD 0%, transparent 70%); top: 50%; left: 50%; transform: translate(-50%, -50%); animation-delay: -14s; }
+
+@keyframes float {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    25% { transform: translate(30px, -30px) scale(1.05); }
+    50% { transform: translate(-20px, 20px) scale(0.95); }
+    75% { transform: translate(-30px, -20px) scale(1.02); }
+}
+
+.bg-shape { position: absolute; opacity: 0.15; animation: drift 25s ease-in-out infinite; }
+.shape-1 { width: 200px; height: 200px; border: 1px solid #7E57C2; border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; top: 20%; left: 10%; }
+.shape-2 { width: 150px; height: 150px; border: 1px solid #9575CD; border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; bottom: 25%; right: 15%; animation-delay: -10s; }
+.shape-3 { width: 100px; height: 100px; background: linear-gradient(135deg, #7E57C2, #5C6BC0); border-radius: 50%; top: 60%; left: 20%; animation-delay: -5s; opacity: 0.1; }
+
+@keyframes drift {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    33% { transform: translate(40px, -60px) rotate(120deg); }
+    66% { transform: translate(-30px, 30px) rotate(240deg); }
 }
