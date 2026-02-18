@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
     initThemeToggle();
     initScrollAnimations();
     initTestimonialCarousel();
-    initModal();
 });
 
 // Testimonial Carousel
@@ -231,7 +230,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initMackerelEasterEgg();
 });
 
-// Mackerel Easter Egg - Press M
+// Modal - Press M to open
 function initMackerelEasterEgg() {
     document.addEventListener('keydown', (e) => {
         if (e.key === 'm' || e.key === 'M') {
