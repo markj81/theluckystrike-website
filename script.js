@@ -69,7 +69,7 @@ function initThemeToggle() {
             // Reset animation
             blob.style.animation = 'none';
             blob.offsetHeight; // Force reflow
-            blob.style.animation = 'liquidExpand 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards';
+            blob.style.animation = 'liquidExpand 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards';
 
             // Switch theme after animation completes
             setTimeout(() => {
@@ -80,12 +80,12 @@ function initThemeToggle() {
                 }
                 localStorage.setItem('theme', newTheme);
                 syncToggles();
-            }, 280);
+            }, 380);
 
             // Reset blob for next time
             setTimeout(() => {
                 blob.style.animation = 'none';
-            }, 350);
+            }, 450);
         });
     });
 }

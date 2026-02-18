@@ -132,7 +132,7 @@ html { scroll-behavior: smooth; }
         opacity: 1;
     }
     100% {
-        transform: translate(-50%, -50%) scale(50);
+        transform: translate(-50%, -50%) scale(80);
         border-radius: 50%;
         opacity: 0;
         animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
