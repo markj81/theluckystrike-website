@@ -69,7 +69,13 @@ function initThemeToggle() {
             // Reset animation
             blob.style.animation = 'none';
             blob.offsetHeight; // Force reflow
-            blob.style.animation = 'liquidExpand 0.4s cubic-bezier(0.4, 0, 0.2, 1) forwards';
+            // Longer animation on larger screens for smoother transition
+            const isLargeScreen = window.innerWidth > 768;
+            const duration = isLargeScreen ? '0.9s' : '0.4s';
+            const delay = isLargeScreen ? 880 : 380;
+            const resetDelay = isLargeScreen ? 980 : 450;
+
+            blob.style.animation = `liquidExpand ${duration} cubic-bezier(0.4, 0, 0.2, 1) forwards`;
 
             // Switch theme after animation completes
             setTimeout(() => {
@@ -80,12 +86,12 @@ function initThemeToggle() {
                 }
                 localStorage.setItem('theme', newTheme);
                 syncToggles();
-            }, 380);
+            }, delay);
 
             // Reset blob for next time
             setTimeout(() => {
                 blob.style.animation = 'none';
-            }, 450);
+            }, resetDelay);
         });
     });
 }
