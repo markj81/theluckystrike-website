@@ -914,7 +914,7 @@ body:has(.mobile-menu.active) .nav-toggle {
     font-weight: 400;
     line-height: 1.1;
     margin-bottom: var(--spacing-md);
-    color: #7E57C2;
+    color: #ffffff;
 }
 
 .page-title .accent { font-style: italic; }
