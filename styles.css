@@ -1052,7 +1052,6 @@ body:has(.mobile-menu.active) .nav-toggle {
     width: 200px;
     height: auto;
     z-index: 10000;
-    filter: blur(2px);
     animation: mackerelFall 2s ease-in forwards;
 }
 
@@ -1074,7 +1073,6 @@ body:has(.mobile-menu.active) .nav-toggle {
     width: 200px;
     height: auto;
     z-index: 9999;
-    filter: blur(2px);
     animation: mackerel-fall 2s ease-in forwards;
     pointer-events: none;
 }
