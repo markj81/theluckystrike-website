@@ -675,6 +675,98 @@ body:has(.mobile-menu.active) .nav-toggle {
     font-size: 0.95rem;
 }
 
+/* Featured Testimonials Carousel */
+.testimonial-carousel-section {
+    overflow: hidden;
+    padding: var(--spacing-xl) 0;
+}
+
+.testimonial-carousel-wrapper {
+    overflow: hidden;
+    position: relative;
+}
+
+.testimonial-carousel-wrapper::before,
+.testimonial-carousel-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 80px;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.testimonial-carousel-wrapper::before {
+    left: 0;
+    background: linear-gradient(to right, var(--color-bg), transparent);
+}
+
+.testimonial-carousel-wrapper::after {
+    right: 0;
+    background: linear-gradient(to left, var(--color-bg), transparent);
+}
+
+.testimonial-carousel-track {
+    display: flex;
+    gap: var(--spacing-md);
+    animation: carousel-scroll 30s linear infinite;
+}
+
+.testimonial-carousel-track:hover {
+    animation-play-state: paused;
+}
+
+@keyframes carousel-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+.testimonial-carousel-card {
+    flex: 0 0 400px;
+    max-width: 400px;
+    padding: var(--spacing-lg);
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+}
+
+.testimonial-carousel-quote {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: var(--spacing-md);
+    color: var(--color-text);
+}
+
+.testimonial-carousel-author {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.testimonial-carousel-author img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.testimonial-carousel-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.testimonial-carousel-name {
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.testimonial-carousel-role {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+}
+
 /* Teaching Section */
 .teaching-grid {
     display: grid;

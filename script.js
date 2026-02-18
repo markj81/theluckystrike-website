@@ -4,7 +4,96 @@ document.addEventListener('DOMContentLoaded', () => {
     initMobileMenu();
     initThemeToggle();
     initScrollAnimations();
+    initTestimonialCarousel();
 });
+
+// Testimonial Carousel
+function initTestimonialCarousel() {
+    const track = document.querySelector('.testimonial-carousel-track');
+    if (!track) return;
+
+    const testimonials = [
+        {
+            quote: "Mark is a fantastic leader with a clear sense of direction and a natural ability to motivate the people around him.",
+            name: "Kate Lakey",
+            role: "Software Engineer",
+            company: "HackerOne",
+            photo: "images/kate.jpeg"
+        },
+        {
+            quote: "I had the pleasure of working with Mark at HackerOne. As an Engineering leader, Mark is like your best Claude SKILL.MD in product design and design leadership.",
+            name: "Bert Sinnema",
+            role: "VP of Engineering",
+            company: "Eye Security",
+            photo: "images/bert.jpg"
+        },
+        {
+            quote: "Mark played a big role in my growth as a product designer. He challenged me, supported me, and ultimately promoted me to Senior Product Designer.",
+            name: "Elliot Nolten",
+            role: "Design Manager",
+            company: "IKEA",
+            photo: "images/elliot.jpeg"
+        },
+        {
+            quote: "Mark is a kind and deeply empathetic manager who leads with clarity and care. He has intentionally created a supportive and psychologically safe environment.",
+            name: "Joohye Jubilo",
+            role: "Staff Product Designer",
+            company: "HackerOne",
+            photo: "images/joohye.jpeg"
+        },
+        {
+            quote: "Mark is a transformational design leader who fundamentally elevated how design operated at our company.",
+            name: "Vlad Osypov",
+            role: "Senior Software Engineering Manager",
+            company: "HackerOne",
+            photo: "images/vlad.jpeg"
+        },
+        {
+            quote: "Mark has a rare ability to balance strategic thinking with genuine care for his team. He leads with empathy and intention.",
+            name: "Camilo Sanchez",
+            role: "Senior Product Designer",
+            company: "HackerOne",
+            photo: "images/camilo.jpeg"
+        },
+        {
+            quote: "Mark brought a great level of care, energy, and intentionality to his work. He is always invested in his team's success.",
+            name: "Nathalia Coutinho",
+            role: "Senior Software Engineer",
+            company: "Eye Security",
+            photo: "images/nathalia.jpeg"
+        },
+        {
+            quote: "Mark has an exceptional ability to keep teams unblocked and moving forward, even across time zones.",
+            name: "Courtney Bregar",
+            role: "Principal Product Designer",
+            company: "HackerOne",
+            photo: "images/courtney.jpeg"
+        }
+    ];
+
+    // Shuffle testimonials
+    const shuffled = testimonials.sort(() => Math.random() - 0.5);
+
+    // Create two sets for seamless loop
+    const allTestimonials = [...shuffled, ...shuffled];
+
+    // Build HTML
+    allTestimonials.forEach(t => {
+        const card = document.createElement('div');
+        card.className = 'testimonial-carousel-card';
+        card.innerHTML = `
+            <blockquote class="testimonial-carousel-quote">"${t.quote}"</blockquote>
+            <div class="testimonial-carousel-author">
+                <img src="${t.photo}" alt="${t.name}" class="testimonial-carousel-photo">
+                <div class="testimonial-carousel-info">
+                    <span class="testimonial-carousel-name">${t.name}</span>
+                    <span class="testimonial-carousel-role">${t.role}${t.company ? ', ' + t.company : ''}</span>
+                </div>
+            </div>
+        `;
+        track.appendChild(card);
+    });
+}
 
 // Mobile Menu
 function initMobileMenu() {
