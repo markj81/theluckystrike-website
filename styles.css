@@ -176,6 +176,7 @@ img { max-width: 100%; display: block; }
     align-items: center;
     justify-content: space-between;
     gap: var(--spacing-md);
+    overflow: visible;
 }
 
 .nav-logo {
@@ -272,27 +273,93 @@ img { max-width: 100%; display: block; }
     transition: var(--transition);
 }
 
+.nav-toggle.active span:first-child {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.nav-toggle.active span:last-child {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+.nav-toggle.active {
+    z-index: 1002;
+}
+
 /* Mobile Menu */
 .mobile-menu {
     position: fixed;
     inset: 0;
-    z-index: 99;
+    z-index: 9999;
     background: var(--color-bg);
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     opacity: 0;
     visibility: hidden;
+    pointer-events: none;
     transition: var(--transition);
 }
 
-.mobile-menu.active { opacity: 1; visibility: visible; }
+.mobile-menu.active { opacity: 1; visibility: visible; pointer-events: auto; }
+
+.mobile-menu-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    z-index: 10000;
+}
+
+.mobile-menu-close span {
+    width: 28px;
+    height: 2px;
+    background: var(--color-text);
+}
+
+.mobile-menu-close span:first-child {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.mobile-menu-close span:last-child {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+.mobile-menu.active { opacity: 1; visibility: visible; pointer-events: auto; }
+
+body:has(.mobile-menu.active) .nav-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10002;
+    pointer-events: auto;
+}
 
 .mobile-menu-content {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: var(--spacing-md);
+    position: relative;
+    padding-top: 40px;
+}
+
+.mobile-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 2.5rem;
+    background: none;
+    border: none;
+    color: var(--color-text);
+    cursor: pointer;
+    z-index: 10;
 }
 
 .mobile-link {
@@ -865,7 +932,9 @@ img { max-width: 100%; display: block; }
     .nav-links { display: none; }
     .nav-cta { display: none; }
     .nav-right { display: none; }
-    .nav-toggle { display: flex; }
+    .nav { background: var(--color-bg); }
+    .nav-toggle { display: flex; z-index: 10000; pointer-events: auto; }
+    .mobile-menu { z-index: 9999; }
     .hero { padding-top: calc(80px + var(--spacing-md)); }
     .hero-title { font-size: 2.5rem; }
     .principles-grid, .teaching-grid { grid-template-columns: 1fr; }

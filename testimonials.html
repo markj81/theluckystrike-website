@@ -29,7 +29,7 @@
                 </button>
                 <a href="index.html#contact" class="nav-cta">Get in touch</a>
             </div>
-            <button class="nav-toggle" aria-label="Toggle menu">
+            <button class="nav-toggle" aria-label="Toggle menu" onclick="console.log('clicked'); document.querySelector('.mobile-menu').classList.toggle('active'); document.querySelector('.nav-toggle').classList.toggle('active');">
                 <span></span>
                 <span></span>
             </button>
@@ -38,14 +38,18 @@
 
     <!-- Mobile Menu -->
     <div class="mobile-menu">
+        <button class="mobile-menu-close" aria-label="Close menu" onclick="document.querySelector('.mobile-menu').classList.remove('active'); document.querySelector('.nav-toggle').classList.remove('active');">
+            <span></span>
+            <span></span>
+        </button>
         <div class="mobile-menu-content">
+            <button class="theme-toggle mobile-theme-toggle" aria-label="Toggle dark mode">
+                <span class="toggle-slider"></span>
+            </button>
             <a href="index.html#about" class="mobile-link">About</a>
             <a href="index.html#experience" class="mobile-link">Experience</a>
             <a href="index.html#philosophy" class="mobile-link">Philosophy</a>
             <a href="testimonials.html" class="mobile-link">Testimonials</a>
-            <button class="theme-toggle mobile-theme-toggle" aria-label="Toggle dark mode">
-                <span class="toggle-slider"></span>
-            </button>
             <a href="index.html#contact" class="mobile-link mobile-cta">Get in touch</a>
         </div>
     </div>
