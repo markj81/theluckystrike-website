@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initThemeToggle();
     initScrollAnimations();
     initTestimonialCarousel();
+    initModal();
 });
 
 // Testimonial Carousel
@@ -234,23 +235,52 @@ document.addEventListener('DOMContentLoaded', () => {
 function initMackerelEasterEgg() {
     document.addEventListener('keydown', (e) => {
         if (e.key === 'm' || e.key === 'M') {
-            dropMackerel();
+            openModal();
         }
     });
 }
 
-function dropMackerel() {
-    // Check if already animating
-    if (document.querySelector('.mackerel-drop')) return;
+function openModal() {
+    const modal = document.getElementById('modal');
+    if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+}
 
-    const mackerel = document.createElement('img');
-    mackerel.src = 'images/mackerel.png';
-    mackerel.className = 'mackerel-drop';
-    mackerel.alt = 'Mackerel';
-    document.body.appendChild(mackerel);
+function closeModal() {
+    const modal = document.getElementById('modal');
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
 
-    // Remove after animation completes
-    setTimeout(() => {
-        mackerel.remove();
-    }, 2000);
+// Initialize modal close handlers
+document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('modal');
+    if (!modal) return;
+
+    // Close on X button
+    modal.querySelector('.modal-close').addEventListener('click', closeModal);
+
+    // Close on Cancel button
+    modal.querySelector('.modal-btn-cancel').addEventListener('click', closeModal);
+
+    // Close on OK button
+    modal.querySelector('.modal-btn-ok').addEventListener('click', closeModal);
+
+    // Close on overlay click
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.classList.contains('active')) {
+            closeModal();
+        }
+    });
 }
