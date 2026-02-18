@@ -904,11 +904,11 @@ body:has(.mobile-menu.active) .nav-toggle {
 }
 
 .testimonial-quote {
-    font-family: var(--font-serif);
-    font-size: 1rem;
-    font-style: italic;
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
     line-height: 1.5;
     margin-bottom: var(--spacing-md);
+    color: var(--color-text-muted);
 }
 
 .testimonial-author {
