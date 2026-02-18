@@ -68,14 +68,21 @@ function initTestimonialCarousel() {
             role: "Principal Product Designer",
             company: "HackerOne",
             photo: "images/courtney.jpeg"
+        },
+        {
+            quote: "I've been lucky enough to work with Mark in more than one capacity! As a Senior Manager of Product Design, he's built a team that clearly trusts him and genuinely enjoys working with him. He creates safety and challenges people while backing them fully.",
+            name: "Esther Wolting",
+            role: "Senior Engineering Manager",
+            company: "HackerOne",
+            photo: "images/esther.jpg"
         }
     ];
 
     // Shuffle testimonials
     const shuffled = testimonials.sort(() => Math.random() - 0.5);
 
-    // Create two sets for seamless loop
-    const allTestimonials = [...shuffled, ...shuffled];
+    // Create three sets for seamless infinite loop
+    const allTestimonials = [...shuffled, ...shuffled, ...shuffled];
 
     // Build HTML
     allTestimonials.forEach(t => {
@@ -220,4 +227,41 @@ document.addEventListener('DOMContentLoaded', () => {
     initMobileMenu();
     initThemeToggle();
     initScrollAnimations();
+    initMackerelEasterEgg();
 });
+
+// Mackerel Easter Egg - Press M twice
+function initMackerelEasterEgg() {
+    let lastKeyTime = 0;
+    const keyDelay = 300; // ms between keypresses
+
+    document.addEventListener('keydown', (e) => {
+        const currentTime = Date.now();
+
+        if (e.key === 'm' || e.key === 'M') {
+            if (currentTime - lastKeyTime < keyDelay) {
+                // Double M pressed - drop the mackerel!
+                dropMackerel();
+                lastKeyTime = 0; // Reset to prevent triple-trigger
+            } else {
+                lastKeyTime = currentTime;
+            }
+        }
+    });
+}
+
+function dropMackerel() {
+    // Check if already animating
+    if (document.querySelector('.mackerel-drop')) return;
+
+    const mackerel = document.createElement('img');
+    mackerel.src = 'images/mackerel.png';
+    mackerel.className = 'mackerel-drop';
+    mackerel.alt = 'Mackerel';
+    document.body.appendChild(mackerel);
+
+    // Remove after animation completes
+    setTimeout(() => {
+        mackerel.remove();
+    }, 2000);
+}
