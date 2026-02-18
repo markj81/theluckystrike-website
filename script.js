@@ -71,9 +71,9 @@ function initThemeToggle() {
             blob.offsetHeight; // Force reflow
             // Longer animation on larger screens for smoother transition
             const isLargeScreen = window.innerWidth > 768;
-            const duration = isLargeScreen ? '0.9s' : '0.4s';
-            const delay = isLargeScreen ? 880 : 380;
-            const resetDelay = isLargeScreen ? 980 : 450;
+            const duration = isLargeScreen ? '1.2s' : '0.4s';
+            const delay = isLargeScreen ? 1150 : 380;
+            const resetDelay = isLargeScreen ? 1250 : 450;
 
             blob.style.animation = `liquidExpand ${duration} cubic-bezier(0.4, 0, 0.2, 1) forwards`;
 
