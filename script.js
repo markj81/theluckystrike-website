@@ -230,22 +230,11 @@ document.addEventListener('DOMContentLoaded', () => {
     initMackerelEasterEgg();
 });
 
-// Mackerel Easter Egg - Press M twice
+// Mackerel Easter Egg - Press M
 function initMackerelEasterEgg() {
-    let lastKeyTime = 0;
-    const keyDelay = 300; // ms between keypresses
-
     document.addEventListener('keydown', (e) => {
-        const currentTime = Date.now();
-
         if (e.key === 'm' || e.key === 'M') {
-            if (currentTime - lastKeyTime < keyDelay) {
-                // Double M pressed - drop the mackerel!
-                dropMackerel();
-                lastKeyTime = 0; // Reset to prevent triple-trigger
-            } else {
-                lastKeyTime = currentTime;
-            }
+            dropMackerel();
         }
     });
 }
