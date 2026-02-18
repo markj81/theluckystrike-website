@@ -70,7 +70,7 @@ function initTestimonialCarousel() {
             photo: "images/courtney.jpeg"
         },
         {
-            quote: "I've been lucky enough to work with Mark in more than one capacity! As a Senior Manager of Product Design, he's built a team that clearly trusts him and genuinely enjoys working with him. He creates safety and challenges people while backing them fully.",
+            quote: "Mark combines design depth, leadership, creativity, and just the right amount of mischief. I'd work with him again in a heartbeat.",
             name: "Esther Wolting",
             role: "Senior Engineering Manager",
             company: "HackerOne",
