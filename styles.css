@@ -619,12 +619,6 @@ body:has(.mobile-menu.active) .nav-toggle {
     color: var(--color-text);
 }
 
-.client.current {
-    background: var(--color-text);
-    color: var(--color-bg);
-    border-color: var(--color-text);
-}
-
 /* Philosophy Section */
 .philosophy-quote {
     font-family: var(--font-serif);
