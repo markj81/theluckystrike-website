@@ -1,5 +1,11 @@
 {
   "rewrites": [
-    { "source": "/index", "destination": "/index.html" }
+    { "source": "/index", "destination": "/index.html" },
+    { "source": "/testimonials", "destination": "/testimonials.html" },
+    { "source": "/testimonials/", "destination": "/testimonials.html" }
+  ],
+  "redirects": [
+    { "source": "/index.html", "destination": "/", "permanent": true },
+    { "source": "/testimonials.html", "destination": "/testimonials", "permanent": true }
   ]
 }
