@@ -654,7 +654,7 @@ body:has(.mobile-menu.active) .nav-toggle {
 /* Featured Testimonials Carousel */
 .testimonial-carousel-section {
     overflow: hidden;
-    padding: var(--spacing-xl) 0;
+    padding: var(--spacing-xl) var(--spacing-md);
 }
 
 .testimonial-carousel-wrapper {
