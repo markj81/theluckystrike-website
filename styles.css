@@ -686,7 +686,7 @@ body:has(.mobile-menu.active) .nav-toggle {
 .testimonial-carousel-track {
     display: flex;
     gap: var(--spacing-md);
-    animation: carousel-scroll 30s linear infinite;
+    animation: carousel-scroll 8s linear infinite;
 }
 
 .testimonial-carousel-track:hover {
