@@ -2,9 +2,12 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     initMobileMenu();
-    initThemeToggle();
     initScrollAnimations();
     initTestimonialCarousel();
+    initSpotifyCarousel();
+    initScrollSpy();
+    initMackerelEasterEgg();
+    initModalHandlers();
 });
 
 // Testimonial Carousel
@@ -81,11 +84,8 @@ function initTestimonialCarousel() {
     // Shuffle testimonials
     const shuffled = testimonials.sort(() => Math.random() - 0.5);
 
-    // Create three sets for seamless infinite loop
-    const allTestimonials = [...shuffled, ...shuffled, ...shuffled];
-
-    // Build HTML
-    allTestimonials.forEach(t => {
+    // Build one set first, then clone it for seamless loop
+    shuffled.forEach(t => {
         const card = document.createElement('div');
         card.className = 'testimonial-carousel-card';
         card.innerHTML = `
@@ -100,6 +100,70 @@ function initTestimonialCarousel() {
         `;
         track.appendChild(card);
     });
+
+    // Measure exact left offset of where clones will start, then clone and start animation
+    requestAnimationFrame(() => {
+        const cards = Array.from(track.children);
+        // Clone and append duplicate set
+        const clones = cards.map(c => c.cloneNode(true));
+        clones.forEach(c => track.appendChild(c));
+        // The loop point is the left edge of the first clone = right edge of last original card
+        // Use getBoundingClientRect relative to track to get pixel-perfect offset
+        const trackLeft = track.getBoundingClientRect().left;
+        const firstCloneLeft = clones[0].getBoundingClientRect().left;
+        const oneSetWidth = firstCloneLeft - trackLeft;
+        track.style.setProperty('--one-set-width', `${oneSetWidth}px`);
+        track.style.animation = 'carousel-scroll 54s linear infinite';
+    });
+
+    // Pause/play state
+    let isPaused = false;
+
+    function pause() {
+        isPaused = true;
+        track.style.animationPlayState = 'paused';
+        const btn = document.querySelector('.carousel-pause-btn');
+        if (btn) {
+            btn.setAttribute('aria-label', 'Play carousel');
+            btn.setAttribute('aria-pressed', 'true');
+        }
+    }
+
+    function play() {
+        isPaused = false;
+        track.style.animationPlayState = 'running';
+        // Also remove any hover-paused state from wrapper
+        const btn = document.querySelector('.carousel-pause-btn');
+        if (btn) {
+            btn.setAttribute('aria-label', 'Pause carousel');
+            btn.setAttribute('aria-pressed', 'false');
+        }
+    }
+
+    // Pause button
+    const pauseBtn = document.querySelector('.carousel-pause-btn');
+    if (pauseBtn) {
+        pauseBtn.addEventListener('click', () => isPaused ? play() : pause());
+    }
+
+    // Pause on focus (keyboard tab into a card)
+    track.addEventListener('focusin', pause);
+    track.addEventListener('focusout', (e) => {
+        if (!track.contains(e.relatedTarget)) play();
+    });
+
+    // Touch: pause on touch, resume on release
+    const wrapper = document.querySelector('.testimonial-carousel-wrapper');
+    if (wrapper) {
+        let touchStartX = 0;
+        wrapper.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+            pause();
+        }, { passive: true });
+        wrapper.addEventListener('touchend', () => {
+            play();
+        }, { passive: true });
+    }
 }
 
 // Mobile Menu
@@ -125,71 +189,27 @@ function initMobileMenu() {
     });
 }
 
-// Theme Toggle with Liquid Blend Effect
-function initThemeToggle() {
-    const toggles = document.querySelectorAll('.theme-toggle');
-    if (!toggles.length) return;
+// Scroll Spy — highlights nav link for the section currently in view
+function initScrollSpy() {
+    const sections = ['about', 'experience', 'philosophy', 'contact'].map(id =>
+        document.getElementById(id)
+    ).filter(Boolean);
 
-    // Check for saved theme
-    const savedTheme = localStorage.getItem('theme') || 'dark';
-    if (savedTheme === 'dark') {
-        document.documentElement.setAttribute('data-theme', 'dark');
-    }
+    const navLinks = document.querySelectorAll('.nav-links a');
 
-    // Sync all toggles to reflect current state
-    function syncToggles() {
-        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-        toggles.forEach(toggle => {
-            toggle.classList.toggle('dark', isDark);
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                navLinks.forEach(link => {
+                    const href = link.getAttribute('href');
+                    const isMatch = href === `#${entry.target.id}` || href === `/#${entry.target.id}`;
+                    link.classList.toggle('active', isMatch);
+                });
+            }
         });
-    }
-    syncToggles();
+    }, { rootMargin: '-40% 0px -55% 0px' });
 
-    toggles.forEach(toggle => {
-        toggle.addEventListener('click', () => {
-            const currentTheme = document.documentElement.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            const blob = document.querySelector('.liquid-blob');
-            const overlay = document.querySelector('.theme-liquid-overlay');
-
-            if (!blob || !overlay) return;
-
-            // Set blob color based on target theme
-            const blobColor = newTheme === 'dark' ? '#0D0D0D' : '#FAFAF9';
-
-            // Position blob at center-top to cover nav bar
-            blob.style.left = '50%';
-            blob.style.top = '15%';
-            blob.style.background = blobColor;
-
-            // Reset animation
-            blob.style.animation = 'none';
-            blob.offsetHeight; // Force reflow
-            // Longer animation on larger screens for smoother transition
-            const isLargeScreen = window.innerWidth > 768;
-            const duration = isLargeScreen ? '1.2s' : '0.4s';
-            const delay = isLargeScreen ? 1150 : 380;
-            const resetDelay = isLargeScreen ? 1250 : 450;
-
-            blob.style.animation = `liquidExpand ${duration} cubic-bezier(0.4, 0, 0.2, 1) forwards`;
-
-            // Switch theme after animation completes
-            setTimeout(() => {
-                if (newTheme === 'dark') {
-                    document.documentElement.setAttribute('data-theme', 'dark');
-                } else {
-                    document.documentElement.removeAttribute('data-theme');
-                }
-                localStorage.setItem('theme', newTheme);
-                syncToggles();
-            }, delay);
-
-            // Reset blob for next time
-            setTimeout(() => {
-                blob.style.animation = 'none';
-            }, resetDelay);
-        });
-    });
+    sections.forEach(section => observer.observe(section));
 }
 
 // Nav scroll effect
@@ -222,14 +242,6 @@ function initScrollAnimations() {
     });
 }
 
-// Initialize on DOM ready
-document.addEventListener('DOMContentLoaded', () => {
-    initMobileMenu();
-    initThemeToggle();
-    initScrollAnimations();
-    initMackerelEasterEgg();
-});
-
 // Modal - Press M to open
 function initMackerelEasterEgg() {
     document.addEventListener('keydown', (e) => {
@@ -255,31 +267,133 @@ function closeModal() {
     }
 }
 
+function closeModal2() {
+    const modal2 = document.getElementById('modal-2');
+    if (modal2) {
+        modal2.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
+
+function openModal2() {
+    closeModal();
+    const modal2 = document.getElementById('modal-2');
+    if (modal2) {
+        modal2.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
 // Initialize modal close handlers
-document.addEventListener('DOMContentLoaded', () => {
+function initModalHandlers() {
     const modal = document.getElementById('modal');
+    const modal2 = document.getElementById('modal-2');
     if (!modal) return;
 
-    // Close on X button
+    // Modal 1: X closes, OK/Cancel open modal 2
     modal.querySelector('.modal-close').addEventListener('click', closeModal);
-
-    // Close on Cancel button
-    modal.querySelector('.modal-btn-cancel').addEventListener('click', closeModal);
-
-    // Close on OK button
-    modal.querySelector('.modal-btn-ok').addEventListener('click', closeModal);
-
-    // Close on overlay click
+    modal.querySelector('.modal-btn-cancel').addEventListener('click', openModal2);
+    modal.querySelector('.modal-btn-ok').addEventListener('click', openModal2);
     modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-            closeModal();
-        }
+        if (e.target === modal) openModal2();
     });
 
-    // Close on Escape key
+    // Modal 2: all buttons actually close
+    if (modal2) {
+        modal2.querySelector('.modal-2-close').addEventListener('click', closeModal2);
+        modal2.querySelector('.modal-2-btn-cancel').addEventListener('click', closeModal2);
+        modal2.querySelector('.modal-2-btn-ok').addEventListener('click', closeModal2);
+        modal2.addEventListener('click', (e) => {
+            if (e.target === modal2) closeModal2();
+        });
+    }
+
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modal.classList.contains('active')) {
-            closeModal();
+        if (e.key === 'Escape') {
+            if (modal2 && modal2.classList.contains('active')) closeModal2();
+            else if (modal.classList.contains('active')) closeModal();
         }
     });
-});
+}
+
+// Spotify Recently Played Carousel
+async function initSpotifyCarousel() {
+    const track = document.querySelector('.spotify-carousel-track');
+    if (!track) return;
+
+    // Show skeletons while loading
+    for (let i = 0; i < 8; i++) {
+        const skeleton = document.createElement('div');
+        skeleton.className = 'spotify-album-skeleton';
+        skeleton.innerHTML = `
+            <div class="spotify-skeleton-art"></div>
+            <div class="spotify-skeleton-text"></div>
+            <div class="spotify-skeleton-text short"></div>
+        `;
+        track.appendChild(skeleton);
+    }
+
+    try {
+        const res = await fetch('/api/spotify');
+        if (!res.ok) throw new Error('API error');
+        const { albums } = await res.json();
+
+        // Clear skeletons
+        track.innerHTML = '';
+
+        if (!albums || albums.length === 0) {
+            track.closest('.spotify-section').style.display = 'none';
+            return;
+        }
+
+        // Build first set
+        albums.forEach(album => {
+            track.appendChild(buildAlbumCard(album));
+        });
+
+        // Measure then clone for seamless loop
+        requestAnimationFrame(() => {
+            const cards = Array.from(track.children);
+            const clones = cards.map(c => c.cloneNode(true));
+            clones.forEach(c => track.appendChild(c));
+
+            const trackLeft = track.getBoundingClientRect().left;
+            const firstCloneLeft = clones[0].getBoundingClientRect().left;
+            const setWidth = firstCloneLeft - trackLeft;
+            track.style.setProperty('--spotify-set-width', `${setWidth}px`);
+            track.style.animation = 'spotify-scroll 40s linear infinite';
+        });
+
+        // Pause on hover (handled by CSS on wrapper, but pause completely on focus too)
+        track.addEventListener('focusin', () => {
+            track.style.animationPlayState = 'paused';
+        });
+        track.addEventListener('focusout', (e) => {
+            if (!track.contains(e.relatedTarget)) {
+                track.style.animationPlayState = 'running';
+            }
+        });
+
+    } catch (err) {
+        // On error, hide the section silently — don't break the page
+        const section = track.closest('.spotify-section');
+        if (section) section.style.display = 'none';
+    }
+}
+
+function buildAlbumCard(album) {
+    const a = document.createElement('a');
+    a.className = 'spotify-album';
+    a.href = album.url;
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+    a.setAttribute('aria-label', `${album.name} by ${album.artist} on Spotify`);
+    a.innerHTML = `
+        <img src="${album.image}" alt="${album.name}" class="spotify-album-art" loading="lazy">
+        <div class="spotify-album-info">
+            <span class="spotify-album-name">${album.name}</span>
+            <span class="spotify-album-artist">${album.artist}</span>
+        </div>
+    `;
+    return a;
+}

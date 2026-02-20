@@ -1,4 +1,20 @@
 <!DOCTYPE html>
+<!--
+ __  __       ' __  __           _       _
+|  \/  | ___  |  \/  | ___   __| | __ _| |___
+| |\/| |/ _ \ | |\/| |/ _ \ / _` |/ _` | / __|
+| |  | | (_) || |  | | (_) | (_| | (_| | \__ \
+|_|  |_|\___/ |_|  |_|\___/ \__,_|\__,_|_|___/
+
+ __  __         ____            _     _
+|  \/  | ___   |  _ \ _ __ ___ | |__ | | ___ _ __ ___  ___
+| |\/| |/ _ \  | |_) | '__/ _ \| '_ \| |/ _ \ '_ ` _ \/ __|
+| |  | | (_) | |  __/| | | (_) | |_) | |  __/ | | | | \__ \
+|_|  |_|\___/  |_|   |_|  \___/|_.__/|_|\___|_| |_| |_|___/
+
+    👉 Press M for an Easter Egg
+
+-->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -18,9 +34,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="theme-liquid-overlay">
-        <div class="liquid-blob"></div>
-    </div>
     <!-- Navigation -->
     <nav class="nav">
         <div class="nav-container">
@@ -34,7 +47,7 @@
             <div class="nav-right">
                 <a href="#contact" class="nav-cta">Get in touch</a>
             </div>
-            <button class="nav-toggle" aria-label="Toggle menu" onclick="console.log('clicked'); document.querySelector('.mobile-menu').classList.toggle('active'); document.querySelector('.nav-toggle').classList.toggle('active');">
+            <button class="nav-toggle" aria-label="Toggle menu">
                 <span></span>
                 <span></span>
             </button>
@@ -150,6 +163,45 @@
         </div>
     </section>
 
+    <!-- Teaching Section -->
+    <section class="section">
+        <div class="section-container animate-on-scroll">
+            <div class="section-header">
+                <span class="section-label">Teaching</span>
+                <h2 class="section-title">Sharing knowledge</h2>
+            </div>
+            <div class="teaching-grid">
+                <div class="teaching-card">
+                    <span class="teaching-period">2017 — 2020</span>
+                    <h3 class="teaching-title">Lead Instructor</h3>
+                    <p class="teaching-org">General Assembly</p>
+                    <p class="teaching-desc">Developed and delivered UX design curriculum, helping 200+ aspiring designers launch their careers in tech.</p>
+                </div>
+                <div class="teaching-card">
+                    <span class="teaching-period">2015 — 2017</span>
+                    <h3 class="teaching-title">Lead Tutor</h3>
+                    <p class="teaching-org">The Guardian London</p>
+                    <p class="teaching-desc">Taught user experience and digital design principles to 200+ professionals across media and publishing.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Currently Listening Section -->
+    <section class="section spotify-section">
+        <div class="section-container animate-on-scroll">
+            <div class="section-header">
+                <span class="section-label">Currently listening</span>
+                <h2 class="section-title">What's on the turntable</h2>
+            </div>
+            <div class="spotify-carousel-wrapper" role="region" aria-label="Recently played albums">
+                <div class="spotify-carousel-track">
+                    <!-- Albums injected by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Philosophy Section -->
     <section id="philosophy" class="section">
         <div class="section-container animate-on-scroll">
@@ -192,34 +244,16 @@
                 <span class="section-label">Testimonials</span>
                 <h2 class="section-title">What others say</h2>
             </div>
-            <div class="testimonial-carousel-wrapper">
-                <div class="testimonial-carousel-track">
+            <div class="testimonial-carousel-wrapper" role="region" aria-label="Testimonials carousel">
+                <div class="testimonial-carousel-track" aria-live="off">
                     <!-- Testimonials will be injected by JavaScript -->
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Teaching Section -->
-    <section class="section">
-        <div class="section-container animate-on-scroll">
-            <div class="section-header">
-                <span class="section-label">Teaching</span>
-                <h2 class="section-title">Sharing knowledge</h2>
-            </div>
-            <div class="teaching-grid">
-                <div class="teaching-card">
-                    <span class="teaching-period">2017 — 2020</span>
-                    <h3 class="teaching-title">Lead Instructor</h3>
-                    <p class="teaching-org">General Assembly</p>
-                    <p class="teaching-desc">Developed and delivered UX design curriculum, helping 200+ aspiring designers launch their careers in tech.</p>
-                </div>
-                <div class="teaching-card">
-                    <span class="teaching-period">2015 — 2017</span>
-                    <h3 class="teaching-title">Lead Tutor</h3>
-                    <p class="teaching-org">The Guardian London</p>
-                    <p class="teaching-desc">Taught user experience and digital design principles to 200+ professionals across media and publishing.</p>
-                </div>
+            <div class="carousel-controls">
+                <button class="carousel-pause-btn" aria-label="Pause carousel" aria-pressed="false">
+                    <svg class="icon-pause" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><rect x="3" y="2" width="4" height="12" rx="1"/><rect x="9" y="2" width="4" height="12" rx="1"/></svg>
+                    <svg class="icon-play" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 2l10 6-10 6V2z"/></svg>
+                </button>
             </div>
         </div>
     </section>
@@ -265,7 +299,7 @@
 
     <script src="script.js"></script>
 
-    <!-- Modal -->
+    <!-- Modal 1 -->
     <div class="modal-overlay" id="modal">
         <div class="modal">
             <button class="modal-close" aria-label="Close modal">&times;</button>
@@ -276,6 +310,21 @@
             <div class="modal-actions">
                 <button class="modal-btn modal-btn-cancel">Cancel</button>
                 <button class="modal-btn modal-btn-ok">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 2 -->
+    <div class="modal-overlay" id="modal-2">
+        <div class="modal">
+            <button class="modal-close modal-2-close" aria-label="Close modal">&times;</button>
+            <h2 class="modal-title">Are you sure you want to cancel?</h2>
+            <div class="modal-content">
+                <p style="text-align: center; font-size: 2rem; margin: 1rem 0;">🤔</p>
+            </div>
+            <div class="modal-actions">
+                <button class="modal-btn modal-btn-cancel modal-2-btn-cancel">No wait</button>
+                <button class="modal-btn modal-btn-ok modal-2-btn-ok">Yes, close</button>
             </div>
         </div>
     </div>
