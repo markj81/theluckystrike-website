@@ -361,7 +361,7 @@ async function initSpotifyCarousel() {
             const firstCloneLeft = clones[0].getBoundingClientRect().left;
             const setWidth = firstCloneLeft - trackLeft;
             track.style.setProperty('--spotify-set-width', `${setWidth}px`);
-            track.style.animation = 'spotify-scroll 40s linear infinite';
+            track.style.animation = 'spotify-scroll 60s linear infinite';
         });
 
         // Pause on hover (handled by CSS on wrapper, but pause completely on focus too)
