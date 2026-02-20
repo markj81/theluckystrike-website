@@ -33,7 +33,7 @@
     padding: 0;
 }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
 
 body {
     font-family: var(--font-sans);
@@ -947,7 +947,7 @@ body:has(.mobile-menu.active) .nav-toggle {
 }
 
 /* Hero Animated Background */
-.hero-bg { position: absolute; inset: 0; z-index: 0; background: var(--color-bg); }
+.hero-bg { position: absolute; inset: 0; z-index: 0; background: var(--color-bg); overflow: hidden; }
 .hero { overflow: visible; position: relative; }
 .hero-container { position: relative; z-index: 1; }
 .hero-visual { z-index: 10; }
