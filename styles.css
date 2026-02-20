@@ -947,14 +947,13 @@ body:has(.mobile-menu.active) .nav-toggle {
 
 /* Hero Animated Background */
 .hero-bg { position: absolute; inset: 0; z-index: 0; overflow: hidden; background: var(--color-bg); }
-.hero-bg::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 400px; background: linear-gradient(to bottom, transparent 0%, var(--color-bg) 80%); z-index: 2; pointer-events: none; }
 .hero { overflow: hidden; position: relative; }
 .hero-container { position: relative; z-index: 1; }
 .hero-visual { z-index: 10; }
 
 .bg-orb { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.6; animation: float 20s ease-in-out infinite; }
 .orb-1 { width: 600px; height: 600px; background: radial-gradient(circle, #7E57C2 0%, transparent 70%); top: -200px; right: -100px; }
-.orb-2 { width: 500px; height: 500px; background: radial-gradient(circle, #5C6BC0 0%, transparent 70%); bottom: -150px; left: -100px; animation-delay: -7s; }
+.orb-2 { width: 500px; height: 500px; background: radial-gradient(circle, #5C6BC0 0%, transparent 70%); bottom: 0; left: -100px; animation-delay: -7s; }
 .orb-3 { width: 400px; height: 400px; background: radial-gradient(circle, #9575CD 0%, transparent 70%); top: 50%; left: 50%; transform: translate(-50%, -50%); animation-delay: -14s; }
 
 @keyframes float {
