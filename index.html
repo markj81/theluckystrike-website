@@ -34,8 +34,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <!-- Navigation -->
-    <nav class="nav">
+    <nav class="nav" aria-label="Primary navigation">
         <div class="nav-container">
             <a href="#" class="nav-logo">Mark Jenkins</a>
             <ul class="nav-links">
@@ -47,7 +48,7 @@
             <div class="nav-right">
                 <a href="#contact" class="nav-cta">Get in touch</a>
             </div>
-            <button class="nav-toggle" aria-label="Toggle menu">
+            <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
                 <span></span>
                 <span></span>
             </button>
@@ -55,7 +56,7 @@
     </nav>
 
     <!-- Mobile Menu -->
-    <div class="mobile-menu">
+    <div class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation">
         <button class="mobile-menu-close" aria-label="Close menu" onclick="document.querySelector('.mobile-menu').classList.remove('active'); document.querySelector('.nav-toggle').classList.remove('active');">
             <span></span>
             <span></span>
@@ -69,9 +70,10 @@
         </div>
     </div>
 
+    <main id="main-content">
     <!-- Hero Section -->
     <header class="hero">
-        <div class="hero-bg">
+        <div class="hero-bg" aria-hidden="true">
             <div class="bg-orb orb-1"></div>
             <div class="bg-orb orb-2"></div>
             <div class="bg-orb orb-3"></div>
@@ -81,7 +83,7 @@
         </div>
         <div class="hero-container" style="position: relative; z-index: 1;">
             <div class="hero-content">
-                <div class="hero-label">Design Leader, Product Designer and AI Fanatic 🧢</div>
+                <div class="hero-label">Design Leader, Product Designer and AI Fanatic <span aria-hidden="true">🧢</span></div>
                 <h1 class="hero-title">
                     <span class="title-line">Leading design teams</span>
                     <span class="title-line">to create experiences</span>
@@ -90,7 +92,7 @@
                 <p class="hero-description">20+ years crafting experiences that solve real problems through strategic design and human-centered thinking.</p>
             </div>
             <div class="hero-visual">
-                <div class="cube-container">
+                <div class="cube-container" aria-hidden="true">
                     <div class="cube">
                         <div class="cube-face front"></div>
                         <div class="cube-face back"></div>
@@ -103,11 +105,11 @@
     </header>
 
     <!-- About Section -->
-    <section id="about" class="section animate-on-scroll">
+    <section id="about" class="section animate-on-scroll" aria-labelledby="about-heading">
         <div class="section-container animate-on-scroll">
             <div class="section-header">
                 <span class="section-label">About</span>
-                <h2 class="section-title">Bridging strategy and execution</h2>
+                <h2 class="section-title" id="about-heading">Bridging strategy and execution</h2>
             </div>
             <div class="about-grid">
                 <div class="about-lead">
@@ -136,11 +138,11 @@
     </section>
 
     <!-- Experience Section -->
-    <section id="experience" class="section">
+    <section id="experience" class="section" aria-labelledby="experience-heading">
         <div class="section-container animate-on-scroll">
             <div class="section-header">
                 <span class="section-label">Experience</span>
-                <h2 class="section-title">Some of the companies I've worked with</h2>
+                <h2 class="section-title" id="experience-heading">Some of the companies I've worked with</h2>
             </div>
             <div class="clients-grid">
                 <span class="client">HackerOne</span>
@@ -164,11 +166,11 @@
     </section>
 
     <!-- Teaching Section -->
-    <section class="section">
+    <section class="section" aria-labelledby="teaching-heading">
         <div class="section-container animate-on-scroll">
             <div class="section-header">
                 <span class="section-label">Teaching</span>
-                <h2 class="section-title">Sharing knowledge</h2>
+                <h2 class="section-title" id="teaching-heading">Sharing knowledge</h2>
             </div>
             <div class="teaching-grid">
                 <div class="teaching-card">
@@ -188,26 +190,32 @@
     </section>
 
     <!-- Currently Listening Section -->
-    <section class="section spotify-section">
+    <section class="section spotify-section" aria-labelledby="listening-heading">
         <div class="section-container animate-on-scroll">
             <div class="section-header">
                 <span class="section-label">Currently listening</span>
-                <h2 class="section-title">What's on the turntable</h2>
+                <h2 class="section-title" id="listening-heading">What's on the turntable</h2>
             </div>
             <div class="spotify-carousel-wrapper" role="region" aria-label="Recently played albums">
                 <div class="spotify-carousel-track">
                     <!-- Albums injected by JavaScript -->
                 </div>
             </div>
+            <div class="carousel-controls">
+                <button class="spotify-pause-btn" aria-label="Pause carousel" aria-pressed="false">
+                    <svg class="icon-pause" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><rect x="3" y="2" width="4" height="12" rx="1"/><rect x="9" y="2" width="4" height="12" rx="1"/></svg>
+                    <svg class="icon-play" width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 2l10 6-10 6V2z"/></svg>
+                </button>
+            </div>
         </div>
     </section>
 
     <!-- Philosophy Section -->
-    <section id="philosophy" class="section">
+    <section id="philosophy" class="section" aria-labelledby="philosophy-heading">
         <div class="section-container animate-on-scroll">
             <div class="section-header">
                 <span class="section-label">Philosophy</span>
-                <h2 class="section-title">What I believe</h2>
+                <h2 class="section-title" id="philosophy-heading">What I believe</h2>
             </div>
             <blockquote class="philosophy-quote">
                 "Crafting experiences that solve real problems in a simple way—through research, iteration, and genuine human understanding."
@@ -238,11 +246,11 @@
     </section>
 
     <!-- Featured Testimonials Carousel -->
-    <section class="section testimonial-carousel-section">
+    <section class="section testimonial-carousel-section" aria-labelledby="testimonials-heading">
         <div class="section-container animate-on-scroll">
             <div class="section-header">
                 <span class="section-label">Testimonials</span>
-                <h2 class="section-title">What others say</h2>
+                <h2 class="section-title" id="testimonials-heading">What others say</h2>
             </div>
             <div class="testimonial-carousel-wrapper" role="region" aria-label="Testimonials carousel">
                 <div class="testimonial-carousel-track" aria-live="off">
@@ -259,29 +267,31 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="section contact-section">
+    <section id="contact" class="section contact-section" aria-labelledby="contact-heading">
         <div class="section-container animate-on-scroll">
             <div class="contact-grid">
                 <div class="contact-content">
                     <span class="section-label">Contact</span>
-                    <h2 class="section-title">Let's work together</h2>
+                    <h2 class="section-title" id="contact-heading">Let's work together</h2>
                     <p class="contact-text">Interested in discussing a project, opportunity, or just want to share design ideas? I'd love to hear from you.</p>
                 </div>
                 <div class="contact-actions">
                     <a href="mailto:jenkins.mark@gmail.com" class="contact-link">
                         <span class="link-label">Email</span>
                         <span class="link-value">jenkins.mark@gmail.com</span>
-                        <span class="link-arrow">→</span>
+                        <span class="link-arrow" aria-hidden="true">→</span>
                     </a>
                     <a href="https://www.linkedin.com/in/markjenkins1981/" target="_blank" rel="noopener" class="contact-link">
                         <span class="link-label">LinkedIn</span>
                         <span class="link-value">Connect with me</span>
-                        <span class="link-arrow">→</span>
+                        <span class="link-arrow" aria-hidden="true">→</span>
                     </a>
                 </div>
             </div>
         </div>
     </section>
+
+    </main><!-- /#main-content -->
 
     <!-- Footer -->
     <footer class="footer">
@@ -301,9 +311,9 @@
 
     <!-- Modal 1 -->
     <div class="modal-overlay" id="modal">
-        <div class="modal">
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
             <button class="modal-close" aria-label="Close modal">&times;</button>
-            <h2 class="modal-title">Mo' Modals, Mo' Problems</h2>
+            <h2 class="modal-title" id="modal-title">Mo' Modals, Mo' Problems</h2>
             <div class="modal-content">
                 <img src="https://media1.tenor.com/m/q1T0EsqOJP4AAAAC/biggie-smalls-pimpin.gif" alt="Mo' Modals GIF" class="modal-gif">
             </div>
@@ -316,9 +326,9 @@
 
     <!-- Modal 2 -->
     <div class="modal-overlay" id="modal-2">
-        <div class="modal">
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-2-title">
             <button class="modal-close modal-2-close" aria-label="Close modal">&times;</button>
-            <h2 class="modal-title">Are you sure you want to cancel?</h2>
+            <h2 class="modal-title" id="modal-2-title">Are you sure you want to cancel?</h2>
             <div class="modal-content">
                 <p style="text-align: center; font-size: 2rem; margin: 1rem 0;">🤔</p>
             </div>
