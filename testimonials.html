@@ -22,11 +22,12 @@
     <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
-    <div class="theme-liquid-overlay">
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <div class="theme-liquid-overlay" aria-hidden="true">
         <div class="liquid-blob"></div>
     </div>
     <!-- Navigation -->
-    <nav class="nav">
+    <nav class="nav" aria-label="Primary navigation">
         <div class="nav-container">
             <a href="/" class="nav-logo">Mark Jenkins</a>
             <ul class="nav-links">
@@ -38,7 +39,7 @@
             <div class="nav-right">
                 <a href="/#contact" class="nav-cta">Get in touch</a>
             </div>
-            <button class="nav-toggle" aria-label="Toggle menu" onclick="console.log('clicked'); document.querySelector('.mobile-menu').classList.toggle('active'); document.querySelector('.nav-toggle').classList.toggle('active');">
+            <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu" onclick="console.log('clicked'); document.querySelector('.mobile-menu').classList.toggle('active'); document.querySelector('.nav-toggle').classList.toggle('active'); this.setAttribute('aria-expanded', this.getAttribute('aria-expanded') === 'false' ? 'true' : 'false');">
                 <span></span>
                 <span></span>
             </button>
@@ -46,7 +47,7 @@
     </nav>
 
     <!-- Mobile Menu -->
-    <div class="mobile-menu">
+    <div class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation">
         <button class="mobile-menu-close" aria-label="Close menu" onclick="document.querySelector('.mobile-menu').classList.remove('active'); document.querySelector('.nav-toggle').classList.remove('active');">
             <span></span>
             <span></span>
@@ -60,6 +61,7 @@
         </div>
     </div>
 
+    <main id="main-content">
     <!-- Page Header -->
     <header class="page-header">
         <div class="page-header-grid">
@@ -73,17 +75,15 @@
     <section class="testimonials-section">
         <div class="testimonials-grid">
             <div class="testimonial-card">
-                <a href="https://github.com/markj81/mark-jenkins-skill/blob/main/SKILL.md" target="_blank" rel="noopener" class="testimonial-card-link">
-                    <div class="testimonial-photo">
-                        <img src="images/bert.jpg" alt="Bert Sinnema">
-                    </div>
-                    <blockquote class="testimonial-quote">"I had the pleasure of working with Mark at HackerOne. As an Engineering leader, Mark is like your best Claude SKILL.MD in product design and design leadership - Never disappoints, great advice and gets it done."</blockquote>
+                <div class="testimonial-photo">
+                    <img src="images/bert.jpg" alt="Bert Sinnema">
+                </div>
+                <blockquote class="testimonial-quote">"I had the pleasure of working with Mark at HackerOne. As an Engineering leader, Mark is like your best Claude SKILL.MD in product design and design leadership - Never disappoints, great advice and gets it done."</blockquote>
                 <div class="testimonial-author">
-                    <span class="author-name">Bert Sinnema</span>
+                    <a href="https://github.com/markj81/mark-jenkins-skill/blob/main/SKILL.md" target="_blank" rel="noopener" class="author-name">Bert Sinnema</a>
                     <span class="author-role">VP of Engineering</span>
                     <span class="author-company">Eye Security</span>
                 </div>
-                </a>
             </div>
 
             <div class="testimonial-card">
@@ -435,6 +435,8 @@
 
         </div>
     </section>
+
+    </main><!-- /#main-content -->
 
     <!-- Footer -->
     <footer class="footer">

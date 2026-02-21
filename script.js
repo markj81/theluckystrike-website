@@ -10,6 +10,34 @@ document.addEventListener('DOMContentLoaded', () => {
     initModalHandlers();
 });
 
+// ─── Focus Trap Utility ──────────────────────────────────────────────────────
+// Returns a cleanup function that removes the trap.
+function createFocusTrap(container) {
+    const focusable = () => Array.from(
+        container.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])')
+    ).filter(el => !el.disabled && el.offsetParent !== null);
+
+    function handleKeydown(e) {
+        if (e.key !== 'Tab') return;
+        const els = focusable();
+        if (!els.length) return;
+        const first = els[0];
+        const last = els[els.length - 1];
+        if (e.shiftKey) {
+            if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+        } else {
+            if (document.activeElement === last) { e.preventDefault(); first.focus(); }
+        }
+    }
+
+    container.addEventListener('keydown', handleKeydown);
+    // Move focus into container immediately
+    const els = focusable();
+    if (els.length) els[0].focus();
+
+    return () => container.removeEventListener('keydown', handleKeydown);
+}
+
 // Testimonial Carousel
 function initTestimonialCarousel() {
     const track = document.querySelector('.testimonial-carousel-track');
@@ -104,8 +132,12 @@ function initTestimonialCarousel() {
     // Measure exact left offset of where clones will start, then clone and start animation
     requestAnimationFrame(() => {
         const cards = Array.from(track.children);
-        // Clone and append duplicate set
-        const clones = cards.map(c => c.cloneNode(true));
+        // Clone and append duplicate set — hide clones from screen readers
+        const clones = cards.map(c => {
+            const clone = c.cloneNode(true);
+            clone.setAttribute('aria-hidden', 'true');
+            return clone;
+        });
         clones.forEach(c => track.appendChild(c));
         // The loop point is the left edge of the first clone = right edge of last original card
         // Use getBoundingClientRect relative to track to get pixel-perfect offset
@@ -174,18 +206,36 @@ function initMobileMenu() {
 
     if (!toggle || !menu) return;
 
+    let removeTrap = null;
+
+    function openMenu() {
+        toggle.classList.add('active');
+        menu.classList.add('active');
+        toggle.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+        removeTrap = createFocusTrap(menu);
+    }
+
+    function closeMenu() {
+        toggle.classList.remove('active');
+        menu.classList.remove('active');
+        toggle.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+        if (removeTrap) { removeTrap(); removeTrap = null; }
+        toggle.focus();
+    }
+
     toggle.addEventListener('click', () => {
-        toggle.classList.toggle('active');
-        menu.classList.toggle('active');
-        document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : '';
+        menu.classList.contains('active') ? closeMenu() : openMenu();
     });
 
     links.forEach(link => {
-        link.addEventListener('click', () => {
-            toggle.classList.remove('active');
-            menu.classList.remove('active');
-            document.body.style.overflow = '';
-        });
+        link.addEventListener('click', closeMenu);
+    });
+
+    // Close on Escape
+    menu.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeMenu();
     });
 }
 
@@ -251,37 +301,47 @@ function initMackerelEasterEgg() {
     });
 }
 
+let _modalTrigger = null;
+let _removeModal1Trap = null;
+let _removeModal2Trap = null;
+
 function openModal() {
     const modal = document.getElementById('modal');
-    if (modal) {
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
+    if (!modal) return;
+    _modalTrigger = document.activeElement;
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    _removeModal1Trap = createFocusTrap(modal.querySelector('.modal'));
 }
 
 function closeModal() {
     const modal = document.getElementById('modal');
-    if (modal) {
-        modal.classList.remove('active');
-        document.body.style.overflow = '';
-    }
+    if (!modal) return;
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+    if (_removeModal1Trap) { _removeModal1Trap(); _removeModal1Trap = null; }
+    if (_modalTrigger) { _modalTrigger.focus(); _modalTrigger = null; }
 }
 
 function closeModal2() {
     const modal2 = document.getElementById('modal-2');
-    if (modal2) {
-        modal2.classList.remove('active');
-        document.body.style.overflow = '';
-    }
+    if (!modal2) return;
+    modal2.classList.remove('active');
+    document.body.style.overflow = '';
+    if (_removeModal2Trap) { _removeModal2Trap(); _removeModal2Trap = null; }
+    if (_modalTrigger) { _modalTrigger.focus(); _modalTrigger = null; }
 }
 
 function openModal2() {
-    closeModal();
+    if (_removeModal1Trap) { _removeModal1Trap(); _removeModal1Trap = null; }
+    const modal1 = document.getElementById('modal');
+    if (modal1) modal1.classList.remove('active');
+
     const modal2 = document.getElementById('modal-2');
-    if (modal2) {
-        modal2.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
+    if (!modal2) return;
+    modal2.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    _removeModal2Trap = createFocusTrap(modal2.querySelector('.modal'));
 }
 
 // Initialize modal close handlers
@@ -351,10 +411,14 @@ async function initSpotifyCarousel() {
             track.appendChild(buildAlbumCard(album));
         });
 
-        // Measure then clone for seamless loop
+        // Measure then clone for seamless loop — hide clones from screen readers
         requestAnimationFrame(() => {
             const cards = Array.from(track.children);
-            const clones = cards.map(c => c.cloneNode(true));
+            const clones = cards.map(c => {
+                const clone = c.cloneNode(true);
+                clone.setAttribute('aria-hidden', 'true');
+                return clone;
+            });
             clones.forEach(c => track.appendChild(c));
 
             const trackLeft = track.getBoundingClientRect().left;
@@ -364,14 +428,32 @@ async function initSpotifyCarousel() {
             track.style.animation = 'spotify-scroll 60s linear infinite';
         });
 
-        // Pause on hover (handled by CSS on wrapper, but pause completely on focus too)
-        track.addEventListener('focusin', () => {
+        // Pause/play state for Spotify carousel
+        let isSpotifyPaused = false;
+
+        function pauseSpotify() {
+            isSpotifyPaused = true;
             track.style.animationPlayState = 'paused';
-        });
+            const btn = document.querySelector('.spotify-pause-btn');
+            if (btn) { btn.setAttribute('aria-label', 'Play carousel'); btn.setAttribute('aria-pressed', 'true'); }
+        }
+
+        function playSpotify() {
+            isSpotifyPaused = false;
+            track.style.animationPlayState = 'running';
+            const btn = document.querySelector('.spotify-pause-btn');
+            if (btn) { btn.setAttribute('aria-label', 'Pause carousel'); btn.setAttribute('aria-pressed', 'false'); }
+        }
+
+        const spotifyPauseBtn = document.querySelector('.spotify-pause-btn');
+        if (spotifyPauseBtn) {
+            spotifyPauseBtn.addEventListener('click', () => isSpotifyPaused ? playSpotify() : pauseSpotify());
+        }
+
+        // Pause on focus (keyboard navigation into a card)
+        track.addEventListener('focusin', pauseSpotify);
         track.addEventListener('focusout', (e) => {
-            if (!track.contains(e.relatedTarget)) {
-                track.style.animationPlayState = 'running';
-            }
+            if (!track.contains(e.relatedTarget)) playSpotify();
         });
 
     } catch (err) {

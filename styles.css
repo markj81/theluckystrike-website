@@ -26,6 +26,30 @@
     --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Skip Link */
+.skip-link {
+    position: absolute;
+    top: -100%;
+    left: 1rem;
+    padding: 0.5rem 1.25rem;
+    background: var(--color-text);
+    color: var(--color-bg);
+    border-radius: 4px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    z-index: 10001;
+    text-decoration: none;
+    transition: top 0.1s;
+}
+.skip-link:focus { top: 1rem; }
+
+/* Focus Visible */
+:focus-visible {
+    outline: 2px solid var(--color-accent-purple);
+    outline-offset: 3px;
+    border-radius: 2px;
+}
+
 /* Reset & Base */
 *, *::before, *::after {
     box-sizing: border-box;
@@ -568,7 +592,8 @@ body:has(.mobile-menu.active) .nav-toggle {
     margin-top: var(--spacing-md);
 }
 
-.carousel-pause-btn {
+.carousel-pause-btn,
+.spotify-pause-btn {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -581,15 +606,19 @@ body:has(.mobile-menu.active) .nav-toggle {
     transition: var(--transition);
 }
 
-.carousel-pause-btn:hover {
+.carousel-pause-btn:hover,
+.spotify-pause-btn:hover {
     border-color: var(--color-text);
     color: var(--color-text);
 }
 
 /* Show pause icon by default, play icon when paused */
-.carousel-pause-btn .icon-play { display: none; }
-.carousel-pause-btn[aria-pressed="true"] .icon-pause { display: none; }
-.carousel-pause-btn[aria-pressed="true"] .icon-play { display: block; }
+.carousel-pause-btn .icon-play,
+.spotify-pause-btn .icon-play { display: none; }
+.carousel-pause-btn[aria-pressed="true"] .icon-pause,
+.spotify-pause-btn[aria-pressed="true"] .icon-pause { display: none; }
+.carousel-pause-btn[aria-pressed="true"] .icon-play,
+.spotify-pause-btn[aria-pressed="true"] .icon-play { display: block; }
 
 @keyframes carousel-scroll {
     0% { transform: translateX(0); }
@@ -925,6 +954,18 @@ body:has(.mobile-menu.active) .nav-toggle {
         transition-duration: 0.01ms !important;
     }
     html { scroll-behavior: auto; }
+    .animate-on-scroll {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+    .title-line,
+    .hero-description,
+    .hero-visual {
+        opacity: 1 !important;
+        transform: none !important;
+        animation: none !important;
+    }
 }
 
 /* Mackerel Easter Egg */
