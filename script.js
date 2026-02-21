@@ -145,7 +145,7 @@ function initTestimonialCarousel() {
         const firstCloneLeft = clones[0].getBoundingClientRect().left;
         const oneSetWidth = firstCloneLeft - trackLeft;
         track.style.setProperty('--one-set-width', `${oneSetWidth}px`);
-        track.style.animation = 'carousel-scroll 54s linear infinite';
+        track.style.animation = 'carousel-scroll 60s linear infinite';
     });
 
     // Pause/play state
