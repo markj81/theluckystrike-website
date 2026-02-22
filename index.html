@@ -38,10 +38,13 @@
     <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
+    <!-- Skip link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
     <!-- Navigation -->
     <nav class="nav">
         <div class="nav-container">
-            <a href="#" class="nav-logo">Mark Jenkins</a>
+            <a href="/" class="nav-logo">Mark Jenkins</a>
             <ul class="nav-links">
                 <li><a href="#about">About</a></li>
                 <li><a href="#experience">Experience</a></li>
@@ -51,7 +54,7 @@
             <div class="nav-right">
                 <a href="#contact" class="nav-cta">Get in touch</a>
             </div>
-            <button class="nav-toggle" aria-label="Toggle menu">
+            <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
                 <span></span>
                 <span></span>
             </button>
@@ -59,7 +62,7 @@
     </nav>
 
     <!-- Mobile Menu -->
-    <div class="mobile-menu">
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
         <button class="mobile-menu-close" aria-label="Close menu" onclick="document.querySelector('.mobile-menu').classList.remove('active'); document.querySelector('.nav-toggle').classList.remove('active');">
             <span></span>
             <span></span>
@@ -96,10 +99,10 @@
             <div class="hero-visual">
                 <div class="cube-container">
                     <div class="cube">
-                        <div class="cube-face front"></div>
-                        <div class="cube-face back"></div>
-                        <div class="cube-face right"></div>
-                        <div class="cube-face left"></div>
+                        <div class="cube-face front" aria-hidden="true"></div>
+                        <div class="cube-face back" aria-hidden="true"></div>
+                        <div class="cube-face right" aria-hidden="true"></div>
+                        <div class="cube-face left" aria-hidden="true"></div>
                     </div>
                 </div>
             </div>
@@ -107,7 +110,7 @@
     </header>
 
     <!-- About Section -->
-    <section id="about" class="section animate-on-scroll">
+    <main id="main-content">\n    <section id="main-content" class="section animate-on-scroll">
         <div class="section-container animate-on-scroll">
             <div class="section-header">
                 <span class="section-label">About</span>
@@ -146,23 +149,23 @@
                 <span class="section-label">Experience</span>
                 <h2 class="section-title">Some of the companies I've worked with</h2>
             </div>
-            <div class="clients-grid">
-                <span class="client">HackerOne</span>
-                <span class="client">Funda</span>
-                <span class="client">Uber</span>
-                <span class="client">Adidas</span>
-                <span class="client">Google</span>
-                <span class="client">Klarna</span>
-                <span class="client">eBay</span>
-                <span class="client">The Guardian</span>
-                <span class="client">Virgin Group</span>
-                <span class="client">Emirates</span>
-                <span class="client">Hilton</span>
-                <span class="client">Unilever</span>
-                <span class="client">Depop</span>
-                <span class="client">Just Eat</span>
-                <span class="client">Hyundai</span>
-                <span class="client">Time Out</span>
+            <div class="clients-grid" role="list">
+                <span class="client" role="listitem">HackerOne</span>
+                <span class="client" role="listitem">Funda</span>
+                <span class="client" role="listitem">Uber</span>
+                <span class="client" role="listitem">Adidas</span>
+                <span class="client" role="listitem">Google</span>
+                <span class="client" role="listitem">Klarna</span>
+                <span class="client" role="listitem">eBay</span>
+                <span class="client" role="listitem">The Guardian</span>
+                <span class="client" role="listitem">Virgin Group</span>
+                <span class="client" role="listitem">Emirates</span>
+                <span class="client" role="listitem">Hilton</span>
+                <span class="client" role="listitem">Unilever</span>
+                <span class="client" role="listitem">Depop</span>
+                <span class="client" role="listitem">Just Eat</span>
+                <span class="client" role="listitem">Hyundai</span>
+                <span class="client" role="listitem">Time Out</span>
             </div>
         </div>
     </section>
@@ -301,13 +304,13 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 
     <!-- Modal 1 -->
-    <div class="modal-overlay" id="modal">
+    <div class="modal-overlay" id="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title-1" aria-hidden="true">
         <div class="modal">
             <button class="modal-close" aria-label="Close modal">&times;</button>
-            <h2 class="modal-title">Mo' Modals, Mo' Problems</h2>
+            <h2 class="modal-title" id="modal-title-1">Mo' Modals, Mo' Problems</h2>
             <div class="modal-content">
                 <img src="https://media1.tenor.com/m/q1T0EsqOJP4AAAAC/biggie-smalls-pimpin.gif" alt="Mo' Modals GIF" class="modal-gif">
             </div>
@@ -319,10 +322,10 @@
     </div>
 
     <!-- Modal 2 -->
-    <div class="modal-overlay" id="modal-2">
+    <div class="modal-overlay" id="modal-2" role="dialog" aria-modal="true" aria-labelledby="modal-title-2" aria-hidden="true">
         <div class="modal">
             <button class="modal-close modal-2-close" aria-label="Close modal">&times;</button>
-            <h2 class="modal-title">Are you sure you want to cancel?</h2>
+            <h2 class="modal-title" id="modal-title-2">Are you sure you want to cancel?</h2>
             <div class="modal-content">
                 <p style="text-align: center; font-size: 2rem; margin: 1rem 0;">🤔</p>
             </div>

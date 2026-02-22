@@ -4,8 +4,25 @@
 const TOKEN_URL = 'https://accounts.spotify.com/api/token';
 const RECENTLY_PLAYED_URL = 'https://api.spotify.com/v1/me/player/recently-played?limit=20';
 
+// In-memory token cache
+let tokenCache = {
+    access_token: null,
+    expiresAt: 0
+};
+
 async function getAccessToken() {
     const { SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET, SPOTIFY_REFRESH_TOKEN } = process.env;
+
+    // Validate required environment variables
+    if (!SPOTIFY_CLIENT_ID || !SPOTIFY_CLIENT_SECRET || !SPOTIFY_REFRESH_TOKEN) {
+        throw new Error('Missing required Spotify environment variables');
+    }
+
+    // Check if we have a valid cached token
+    const now = Date.now();
+    if (tokenCache.access_token && tokenCache.expiresAt > now) {
+        return { access_token: tokenCache.access_token };
+    }
 
     const basic = Buffer.from(`${SPOTIFY_CLIENT_ID}:${SPOTIFY_CLIENT_SECRET}`).toString('base64');
 
@@ -21,13 +38,31 @@ async function getAccessToken() {
         }),
     });
 
-    return res.json();
+    const data = await res.json();
+
+    // Cache the token with buffer time (expires in 1 hour, cache for 50 minutes)
+    if (data.access_token) {
+        tokenCache.access_token = data.access_token;
+        tokenCache.expiresAt = Date.now() + (50 * 60 * 1000);
+    }
+
+    return data;
 }
 
 export default async function handler(req, res) {
-    // CORS — allow same origin only
-    res.setHeader('Access-Control-Allow-Origin', '*');
+    // CORS — use specific origin from env or same origin only
+    const allowedOrigin = process.env.ALLOWED_ORIGIN || '';
+    const origin = req.headers.origin || '';
+
+    // If ALLOWED_ORIGIN is set, only allow that origin; otherwise allow same origin
+    if (allowedOrigin) {
+        res.setHeader('Access-Control-Allow-Origin', allowedOrigin);
+    } else if (origin) {
+        // Allow same-origin requests
+        res.setHeader('Access-Control-Allow-Origin', origin);
+    }
     res.setHeader('Access-Control-Allow-Methods', 'GET');
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
 
     try {
         const { access_token } = await getAccessToken();
@@ -65,6 +100,7 @@ export default async function handler(req, res) {
         return res.status(200).json({ albums });
     } catch (err) {
         console.error('Spotify handler error:', err);
-        return res.status(500).json({ error: 'Internal server error' });
+        const message = err.message.includes('Missing required') ? 'Configuration error' : 'Internal server error';
+        return res.status(500).json({ error: message });
     }
 }

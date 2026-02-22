@@ -91,7 +91,7 @@ function initTestimonialCarousel() {
         card.innerHTML = `
             <blockquote class="testimonial-carousel-quote">"${t.quote}"</blockquote>
             <div class="testimonial-carousel-author">
-                <img src="${t.photo}" alt="${t.name}" class="testimonial-carousel-photo">
+                <img src="${t.photo}" alt="${t.name}" class="testimonial-carousel-photo" loading="lazy">
                 <div class="testimonial-carousel-info">
                     <span class="testimonial-carousel-name">${t.name}</span>
                     <span class="testimonial-carousel-role">${t.role}${t.company ? ', ' + t.company : ''}</span>
@@ -175,15 +175,20 @@ function initMobileMenu() {
     if (!toggle || !menu) return;
 
     toggle.addEventListener('click', () => {
-        toggle.classList.toggle('active');
+        const isActive = toggle.classList.toggle('active');
         menu.classList.toggle('active');
-        document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : '';
+        // Update ARIA states
+        toggle.setAttribute('aria-expanded', isActive);
+        menu.setAttribute('aria-hidden', !isActive);
+        document.body.style.overflow = isActive ? 'hidden' : '';
     });
 
     links.forEach(link => {
         link.addEventListener('click', () => {
             toggle.classList.remove('active');
             menu.classList.remove('active');
+            toggle.setAttribute('aria-expanded', 'false');
+            menu.setAttribute('aria-hidden', 'true');
             document.body.style.overflow = '';
         });
     });
@@ -245,17 +250,24 @@ function initScrollAnimations() {
 // Modal - Press M to open
 function initMackerelEasterEgg() {
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'm' || e.key === 'M') {
+        const tag = e.target.tagName.toLowerCase();
+        const isInput = tag === 'input' || tag === 'textarea' || e.target.isContentEditable;
+        if (!isInput && (e.key === 'm' || e.key === 'M')) {
             openModal();
         }
     });
 }
 
+let lastFocusedElement = null;
+
 function openModal() {
     const modal = document.getElementById('modal');
     if (modal) {
+        lastFocusedElement = document.activeElement;
         modal.classList.add('active');
+        modal.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
+        modal.querySelector('.modal-close').focus();
     }
 }
 
@@ -263,7 +275,12 @@ function closeModal() {
     const modal = document.getElementById('modal');
     if (modal) {
         modal.classList.remove('active');
+        modal.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = '';
+        if (lastFocusedElement) {
+            lastFocusedElement.focus();
+            lastFocusedElement = null;
+        }
     }
 }
 
@@ -271,7 +288,12 @@ function closeModal2() {
     const modal2 = document.getElementById('modal-2');
     if (modal2) {
         modal2.classList.remove('active');
+        modal2.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = '';
+        if (lastFocusedElement) {
+            lastFocusedElement.focus();
+            lastFocusedElement = null;
+        }
     }
 }
 
@@ -280,7 +302,9 @@ function openModal2() {
     const modal2 = document.getElementById('modal-2');
     if (modal2) {
         modal2.classList.add('active');
+        modal2.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
+        modal2.querySelector('.modal-2-close').focus();
     }
 }
 
