@@ -429,15 +429,6 @@ body:has(.mobile-menu.active) .nav-toggle {
 
 .hero-image {
     width: 100%;
-    max-width: 350px;
-    height: auto;
-    border-radius: var(--radius);
-    object-fit: cover;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-}
-
-.hero-image {
-    width: 100%;
     height: auto;
     max-width: 400px;
     border-radius: var(--radius-lg);
