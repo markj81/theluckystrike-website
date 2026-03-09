@@ -38,7 +38,7 @@
             <div class="nav-right">
                 <a href="/#contact" class="nav-cta">Get in touch</a>
             </div>
-            <button class="nav-toggle" aria-label="Toggle menu" onclick="console.log('clicked'); document.querySelector('.mobile-menu').classList.toggle('active'); document.querySelector('.nav-toggle').classList.toggle('active');">
+            <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
                 <span></span>
                 <span></span>
             </button>
@@ -46,7 +46,7 @@
     </nav>
 
     <!-- Mobile Menu -->
-    <div class="mobile-menu">
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
         <button class="mobile-menu-close" aria-label="Close menu" onclick="document.querySelector('.mobile-menu').classList.remove('active'); document.querySelector('.nav-toggle').classList.remove('active');">
             <span></span>
             <span></span>
