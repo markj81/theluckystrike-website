@@ -484,6 +484,17 @@ body:has(.mobile-menu.active) .nav-toggle {
     margin-bottom: var(--spacing-sm);
 }
 
+.about-details a {
+    color: var(--color-accent-purple);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 0.2s ease;
+}
+
+.about-details a:hover {
+    color: var(--color-text);
+}
+
 .stats-row {
     display: flex;
     gap: var(--spacing-lg);
