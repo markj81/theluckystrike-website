@@ -11,7 +11,6 @@ A static portfolio site with no build step — just HTML, CSS, and vanilla JS, d
 - **Homepage** — Hero, about, client logos, teaching history, design philosophy, and contact
 - **Testimonials** — Full-page testimonial wall from colleagues at HackerOne, IKEA, Google, and others
 - **Spotify carousel** — Live "what's on the turntable" section powered by a serverless API
-- **3D cube** — WebGL easter egg on the paris page
 - **Mo' Modals** — Nested modal easter egg (press M on the homepage)
 - **llms.txt** — AI-readable profile for LLM discovery
 
@@ -21,7 +20,7 @@ A static portfolio site with no build step — just HTML, CSS, and vanilla JS, d
 |-------|-------|
 | Markup | Semantic HTML5 with ARIA, skip links, scroll-spy navigation |
 | Styling | Custom CSS with design tokens, Instrument Serif + DM Sans |
-| Scripts | Vanilla JS — scroll animations, carousels, WebGL cube |
+| Scripts | Vanilla JS — scroll animations, carousels, easter eggs |
 | API | Vercel serverless function (`/api/spotify.js`) |
 | Hosting | Vercel with custom domain, rewrites, and redirects |
 | Analytics | Vercel Analytics + Speed Insights |
@@ -32,7 +31,6 @@ A static portfolio site with no build step — just HTML, CSS, and vanilla JS, d
 |------|------|-------------|
 | `/` | `index.html` | Main portfolio page |
 | `/testimonials` | `testimonials.html` | Full testimonial collection |
-| `/paris.html` | `paris.html` | Hidden page with 3D WebGL cube |
 | `/llms.txt` | `llms.txt` | Machine-readable profile |
 
 ## Run Locally
@@ -58,10 +56,8 @@ vercel --prod   # Production deploy
 ```
 ├── index.html           # Homepage
 ├── testimonials.html    # Testimonials page
-├── paris.html           # Easter egg page (WebGL cube)
 ├── styles.css           # All styles with CSS custom properties
 ├── script.js            # Scroll animations, carousels, easter eggs
-├── cube.js              # WebGL 3D cube renderer
 ├── api/
 │   └── spotify.js       # Vercel serverless — Spotify recently played
 ├── images/              # Headshots and profile photo
