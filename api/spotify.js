@@ -50,19 +50,18 @@ async function getAccessToken() {
 }
 
 export default async function handler(req, res) {
-    // CORS — use specific origin from env or same origin only
-    const allowedOrigin = process.env.ALLOWED_ORIGIN || '';
-    const origin = req.headers.origin || '';
+    // Only allow GET requests
+    if (req.method !== 'GET') {
+        return res.status(405).json({ error: 'Method not allowed' });
+    }
 
-    // If ALLOWED_ORIGIN is set, only allow that origin; otherwise allow same origin
+    // CORS — require ALLOWED_ORIGIN env var; no fallback to reflected origin
+    const allowedOrigin = process.env.ALLOWED_ORIGIN;
     if (allowedOrigin) {
         res.setHeader('Access-Control-Allow-Origin', allowedOrigin);
-    } else if (origin) {
-        // Allow same-origin requests
-        res.setHeader('Access-Control-Allow-Origin', origin);
+        res.setHeader('Access-Control-Allow-Methods', 'GET');
+        res.setHeader('Vary', 'Origin');
     }
-    res.setHeader('Access-Control-Allow-Methods', 'GET');
-    res.setHeader('Access-Control-Allow-Credentials', 'true');
 
     try {
         const { access_token } = await getAccessToken();
