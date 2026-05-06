@@ -1016,8 +1016,8 @@ body:has(.mobile-menu.active) .nav-toggle {
     }
 }
 
-/* Hero Animated Background */
-.hero-bg { position: absolute; inset: 0; z-index: 0; background: var(--color-bg); overflow: hidden; clip-path: inset(0); }
+/* Hero Animated Background - Flowing Mesh Gradient */
+.hero-bg { position: absolute; inset: 0; z-index: 0; background: radial-gradient(ellipse at 30% 20%, #1a0a2e 0%, #0D0D0D 40%, #050508 100%); overflow: hidden; }
 .hero { overflow: hidden; position: relative; }
 .hero-container { position: relative; z-index: 1; }
 .hero-visual { z-index: 10; }
@@ -1027,27 +1027,76 @@ body:has(.mobile-menu.active) .nav-toggle {
     .hero { overflow: visible; }
 }
 
-.bg-orb { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.6; animation: float 20s ease-in-out infinite; }
-.orb-1 { width: 600px; height: 600px; background: radial-gradient(circle, #7E57C2 0%, transparent 70%); top: -200px; right: -100px; }
-.orb-2 { width: 500px; height: 500px; background: radial-gradient(circle, #5C6BC0 0%, transparent 70%); bottom: 0; left: -100px; animation-delay: -7s; }
-.orb-3 { width: 400px; height: 400px; background: radial-gradient(circle, #9575CD 0%, transparent 70%); top: 50%; left: 50%; transform: translate(-50%, -50%); animation-delay: -14s; }
+.bg-orb { position: absolute; border-radius: 50%; filter: blur(80px); mix-blend-mode: screen; opacity: 0.9; }
 
-@keyframes float {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    25% { transform: translate(30px, -30px) scale(1.05); }
-    50% { transform: translate(-20px, 20px) scale(0.95); }
-    75% { transform: translate(-30px, -20px) scale(1.02); }
+.hero-bg .orb-1 {
+    width: 60vw;
+    height: 60vw;
+    max-width: 900px;
+    max-height: 900px;
+    top: -20%;
+    left: -10%;
+    background: radial-gradient(circle at 40% 40%, #8B5CF6, #7C3AED 50%, transparent 70%);
+    animation: bg-morph1 18s ease-in-out infinite, bg-drift1 30s ease-in-out infinite;
 }
 
-.bg-shape { position: absolute; opacity: 0.15; animation: drift 25s ease-in-out infinite; }
-.shape-1 { width: 200px; height: 200px; border: 1px solid #7E57C2; border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; top: 20%; left: 10%; }
-.shape-2 { width: 150px; height: 150px; border: 1px solid #9575CD; border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; bottom: 25%; right: 15%; animation-delay: -10s; }
-.shape-3 { width: 100px; height: 100px; background: linear-gradient(135deg, #7E57C2, #5C6BC0); border-radius: 50%; top: 60%; left: 20%; animation-delay: -5s; opacity: 0.1; }
+.hero-bg .orb-2 {
+    width: 55vw;
+    height: 55vw;
+    max-width: 800px;
+    max-height: 800px;
+    top: 10%;
+    right: -15%;
+    background: radial-gradient(circle at 60% 50%, #EC4899, #A855F7 50%, transparent 70%);
+    animation: bg-morph2 15s ease-in-out infinite, bg-drift2 25s ease-in-out infinite;
+}
 
-@keyframes drift {
-    0%, 100% { transform: translate(0, 0) rotate(0deg); }
-    33% { transform: translate(40px, -60px) rotate(120deg); }
-    66% { transform: translate(-30px, 30px) rotate(240deg); }
+.hero-bg .orb-3 {
+    width: 45vw;
+    height: 45vw;
+    max-width: 700px;
+    max-height: 700px;
+    bottom: -10%;
+    left: 25%;
+    background: radial-gradient(circle at 30% 60%, #3B82F6, #6366F1 50%, transparent 70%);
+    animation: bg-morph3 12s ease-in-out infinite, bg-drift3 22s ease-in-out infinite;
+}
+
+.bg-shape { display: none; }
+
+@keyframes bg-morph1 {
+    0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; transform: scale(1); }
+    33% { border-radius: 30% 70% 70% 30% / 30% 70% 30% 70%; transform: scale(1.1); }
+    66% { border-radius: 70% 30% 50% 50% / 40% 60% 40% 60%; transform: scale(0.92); }
+}
+
+@keyframes bg-morph2 {
+    0%, 100% { border-radius: 40% 60% 70% 30% / 70% 40% 30% 60%; transform: scale(1.08); }
+    50% { border-radius: 70% 30% 30% 70% / 30% 70% 60% 40%; transform: scale(0.88); }
+}
+
+@keyframes bg-morph3 {
+    0%, 100% { border-radius: 50% 50% 60% 40% / 40% 60% 40% 60%; transform: scale(1); }
+    25% { border-radius: 60% 40% 40% 60% / 50% 50% 50% 50%; transform: scale(1.15); }
+    75% { border-radius: 40% 60% 60% 40% / 60% 40% 60% 40%; transform: scale(0.85); }
+}
+
+@keyframes bg-drift1 {
+    0%, 100% { transform: translate(0, 0); }
+    25% { transform: translate(60px, 40px); }
+    50% { transform: translate(-40px, 70px); }
+    75% { transform: translate(30px, -30px); }
+}
+
+@keyframes bg-drift2 {
+    0%, 100% { transform: translate(0, 0); }
+    33% { transform: translate(-70px, 50px); }
+    66% { transform: translate(50px, -50px); }
+}
+
+@keyframes bg-drift3 {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(70px, -40px); }
 }
 
 /* Mesh Gradient Hero Visual */
