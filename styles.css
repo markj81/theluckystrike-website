@@ -1485,21 +1485,24 @@ body:has(.mobile-menu.active) .nav-toggle {
 
 .testimonials-section { padding: var(--spacing-xl) var(--spacing-md); }
 
-/* Masonry flow — quotes of different lengths set the rhythm */
+/* Broken grid — 12 tracks, dense flow, pseudo-random spans and
+   staggered tops so nothing lines up too politely */
 .testimonials-grid {
     max-width: var(--container-width);
     margin: 0 auto;
-    columns: 3;
-    column-gap: var(--spacing-md);
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-auto-flow: dense;
+    gap: var(--spacing-md);
     counter-reset: voice;
+    align-items: start;
 }
 
 .testimonial-card {
     position: relative;
     display: flex;
     flex-direction: column;
-    break-inside: avoid;
-    margin-bottom: var(--spacing-md);
+    grid-column: span 4;
     padding: var(--spacing-md);
     background: transparent;
     border: 1px solid var(--color-border);
@@ -1507,6 +1510,15 @@ body:has(.mobile-menu.active) .nav-toggle {
     counter-increment: voice;
     transition: border-color 0.4s ease, transform 0.4s var(--ease-out);
 }
+
+/* Width rhythm — de-correlated from the 7-step style cycle */
+.testimonial-card:nth-child(5n+2) { grid-column: span 5; }
+.testimonial-card:nth-child(5n+4) { grid-column: span 3; }
+.testimonial-card:nth-child(11n+6) { grid-column: span 7; }
+
+/* Ragged tops */
+.testimonial-card:nth-child(4n+2) { margin-top: 1.75rem; }
+.testimonial-card:nth-child(9n+5) { margin-top: 3.25rem; }
 
 .testimonial-card:hover {
     border-color: var(--color-border-strong);
@@ -1533,8 +1545,9 @@ body:has(.mobile-menu.active) .nav-toggle {
     opacity: 1;
 }
 
-/* Pull-quote features — every 7th voice runs large */
+/* ----- Variant 1 of 7: pull-quote feature ----- */
 .testimonial-card:nth-child(7n+1) {
+    grid-column: span 6;
     border: none;
     border-top: 1px solid var(--color-accent);
     border-radius: 0;
@@ -1554,6 +1567,106 @@ body:has(.mobile-menu.active) .nav-toggle {
     width: 64px;
     height: 64px;
 }
+
+/* ----- Variant 3 of 7: paper clipping (inverted, pasted-in) ----- */
+.testimonial-card:nth-child(7n+3) {
+    background: var(--color-text);
+    border-color: transparent;
+    color: #1A1A16;
+    transform: rotate(-0.9deg);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.4);
+}
+
+.testimonial-card:nth-child(7n+3):hover {
+    transform: rotate(0deg) translateY(-4px);
+    border-color: transparent;
+}
+
+.testimonial-card:nth-child(7n+3) .testimonial-quote { color: #14140F; }
+
+.testimonial-card:nth-child(7n+3) .testimonial-photo { border-radius: 6px; }
+
+.testimonial-card:nth-child(7n+3) .testimonial-author { border-top-color: rgba(11, 11, 9, 0.22); }
+.testimonial-card:nth-child(7n+3) .author-name { color: #14140F; }
+.testimonial-card:nth-child(7n+3) .author-role,
+.testimonial-card:nth-child(7n+3) .author-company { color: rgba(11, 11, 9, 0.6); }
+
+.testimonial-card:nth-child(7n+3)::after { color: rgba(11, 11, 9, 0.5); }
+.testimonial-card:nth-child(7n+3):hover::after { color: #5d7a0e; }
+
+/* ----- Variant 4 of 7: byline-first profile header ----- */
+.testimonial-card:nth-child(7n+4) .testimonial-photo {
+    order: -2;
+    width: 44px;
+    height: 44px;
+    margin-bottom: var(--spacing-sm);
+}
+
+.testimonial-card:nth-child(7n+4) .testimonial-author {
+    order: -1;
+    border-top: none;
+    border-bottom: 1px solid var(--color-border);
+    padding: 0 0 var(--spacing-sm);
+    margin-bottom: var(--spacing-sm);
+}
+
+.testimonial-card:nth-child(7n+4) .testimonial-quote {
+    margin-bottom: 0;
+    font-style: normal;
+}
+
+/* ----- Variant 5 of 7: sideways byline ----- */
+.testimonial-card:nth-child(7n+5) {
+    grid-column: span 5;
+    padding-right: 4.75rem;
+    min-height: 240px;
+    justify-content: center;
+}
+
+.testimonial-card:nth-child(7n+5) .testimonial-photo {
+    width: 40px;
+    height: 40px;
+}
+
+.testimonial-card:nth-child(7n+5) .testimonial-quote {
+    margin-bottom: 0;
+    font-size: 1.2rem;
+}
+
+.testimonial-card:nth-child(7n+5) .testimonial-author {
+    position: absolute;
+    top: var(--spacing-md);
+    right: 1rem;
+    writing-mode: vertical-rl;
+    border-top: none;
+    border-left: 1px solid var(--color-accent);
+    padding: 0 0 0 0.6rem;
+    max-height: calc(100% - 4rem);
+    overflow: hidden;
+}
+
+.testimonial-card:nth-child(7n+5)::after {
+    right: auto;
+    left: var(--spacing-sm);
+}
+
+/* ----- Variant 6 of 7: marquee annotation (design-file comment) ----- */
+.testimonial-card:nth-child(7n+6) {
+    border: 1px dashed rgba(200, 245, 66, 0.45);
+    background: rgba(200, 245, 66, 0.025);
+}
+
+.testimonial-card:nth-child(7n+6):hover { border-color: rgba(200, 245, 66, 0.8); }
+
+.testimonial-card:nth-child(7n+6) .testimonial-quote {
+    font-family: var(--font-mono);
+    font-style: normal;
+    font-size: 0.85rem;
+    line-height: 1.7;
+    letter-spacing: 0.01em;
+}
+
+.testimonial-card:nth-child(7n+6)::after { color: var(--color-accent); opacity: 0.8; }
 
 /* Per-card scroll reveal — pure CSS, no JS, safe fallback.
    Uses `translate` so it composes with the hover `transform`. */
@@ -1768,7 +1881,8 @@ body:has(.mobile-menu.active) .nav-toggle {
     .hero-visual { justify-self: start; margin-left: 18px; }
     .about-grid { grid-template-columns: 1fr; }
     .contact-grid { grid-template-columns: 1fr; gap: var(--spacing-lg); }
-    .testimonials-grid { columns: 2; }
+    .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+    .testimonials-grid > .testimonial-card:nth-child(n) { grid-column: auto; }
 }
 
 @media (max-width: 768px) {
@@ -1798,7 +1912,8 @@ body:has(.mobile-menu.active) .nav-toggle {
     .link-label { width: 64px; }
 
     .footer-container { flex-direction: column; gap: var(--spacing-sm); text-align: center; }
-    .testimonials-grid { columns: 1; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .testimonials-grid > .testimonial-card:nth-child(n) { grid-column: auto; margin-top: 0; }
 }
 
 /* ----------------------------------------------------------
