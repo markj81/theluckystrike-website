@@ -701,9 +701,49 @@ body:has(.mobile-menu.active) .nav-toggle {
 
 .diag-label-accent { fill: var(--color-accent); }
 
+.diag-dot-dim {
+    fill: var(--color-text-muted);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    transition-delay: var(--d, 0.8s);
+}
+
 .visible .diag-stroke { stroke-dashoffset: 0; }
 .visible .diag-dot,
 .visible .diag-label { opacity: 1; }
+.visible .diag-dot-dim { opacity: 0.7; }
+
+/* Testimonials-page diagrams */
+.diagram-network {
+    position: absolute;
+    right: 0;
+    bottom: -1rem;
+    width: min(320px, 24vw);
+    margin: 0;
+}
+
+.testimonials-grid > .ux-diagram {
+    margin: 0;
+    align-self: center;
+    padding: var(--spacing-sm);
+}
+
+.diagram-scatter { grid-column: span 5; }
+.diagram-ripple { grid-column: span 4; }
+.diagram-gauge { grid-column: span 4; align-self: end; }
+.diagram-stars { grid-column: span 3; }
+.diagram-venn { grid-column: span 3; }
+.diagram-wave { grid-column: span 4; }
+.diagram-bars { grid-column: span 3; }
+
+@media (max-width: 1024px) {
+    .diagram-network { display: none; }
+    .testimonials-grid > .ux-diagram {
+        grid-column: 1 / -1;
+        max-width: 420px;
+        justify-self: center;
+    }
+}
 
 .diag-row {
     display: flex;
