@@ -8,7 +8,144 @@ document.addEventListener('DOMContentLoaded', () => {
     initScrollSpy();
     initMackerelEasterEgg();
     initModalHandlers();
+    initHeroCanvas();
 });
+
+// Hero flow field — generative ink trails drawn on canvas.
+// Particles follow a slowly morphing noise field; the cursor stirs
+// a vortex into it. Pauses off-screen and honors reduced motion.
+function initHeroCanvas() {
+    const canvas = document.querySelector('.hero-canvas');
+    if (!canvas) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const ctx = canvas.getContext('2d');
+    const hero = canvas.closest('.hero');
+    let w = 0, h = 0;
+    let particles = [];
+    let raf = null;
+    let inView = false;
+    let t = Math.random() * 1000;
+    const mouse = { x: -9999, y: -9999 };
+    const TAU = Math.PI * 2;
+
+    // Tiny value noise (permutation-based, smooth interpolation)
+    const perm = new Uint8Array(512);
+    {
+        const p = Uint8Array.from({ length: 256 }, (_, i) => i);
+        for (let i = 255; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [p[i], p[j]] = [p[j], p[i]];
+        }
+        for (let i = 0; i < 512; i++) perm[i] = p[i & 255];
+    }
+    const fade = v => v * v * (3 - 2 * v);
+    const lerp = (a, b, v) => a + (b - a) * v;
+    function noise2(x, y) {
+        const X = Math.floor(x) & 255, Y = Math.floor(y) & 255;
+        x -= Math.floor(x); y -= Math.floor(y);
+        const u = fade(x), v = fade(y);
+        const a = perm[X + perm[Y]], b = perm[X + 1 + perm[Y]];
+        const c = perm[X + perm[Y + 1]], d = perm[X + 1 + perm[Y + 1]];
+        return lerp(lerp(a, b, u), lerp(c, d, u), v) / 255; // 0..1
+    }
+
+    function spawn(p) {
+        p.x = p.px = Math.random() * w;
+        p.y = p.py = Math.random() * h;
+        p.life = 140 + Math.random() * 260;
+        p.speed = 0.45 + Math.random() * 0.95;
+        p.acid = Math.random() < 0.08;
+        return p;
+    }
+
+    function resize() {
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        w = hero.clientWidth;
+        h = hero.clientHeight;
+        canvas.width = Math.round(w * dpr);
+        canvas.height = Math.round(h * dpr);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        ctx.lineCap = 'round';
+        const target = Math.max(110, Math.min(420, Math.round((w * h) / (w < 768 ? 7000 : 4300))));
+        particles = Array.from({ length: target }, () => spawn({}));
+    }
+
+    function frame() {
+        t += 0.0016;
+
+        // Fade existing trails toward transparent (keeps glows beneath visible)
+        ctx.globalCompositeOperation = 'destination-out';
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.09)';
+        ctx.fillRect(0, 0, w, h);
+        ctx.globalCompositeOperation = 'source-over';
+
+        const s = 0.0015;
+        for (const p of particles) {
+            const angle = noise2(p.x * s + t, p.y * s - t * 0.6) * TAU * 2;
+            let vx = Math.cos(angle) * p.speed;
+            let vy = Math.sin(angle) * p.speed;
+
+            // Cursor vortex: swirl + gentle push within 180px
+            const dx = p.x - mouse.x, dy = p.y - mouse.y;
+            const d2 = dx * dx + dy * dy;
+            if (d2 < 32400) {
+                const d = Math.sqrt(d2) || 1;
+                const f = (1 - d / 180) * 2.2;
+                vx += (-dy / d) * f + (dx / d) * f * 0.35;
+                vy += (dx / d) * f + (dy / d) * f * 0.35;
+            }
+
+            p.px = p.x; p.py = p.y;
+            p.x += vx; p.y += vy;
+            p.life--;
+
+            if (p.life <= 0 || p.x < -8 || p.x > w + 8 || p.y < -8 || p.y > h + 8) {
+                spawn(p);
+                continue;
+            }
+
+            ctx.strokeStyle = p.acid
+                ? 'rgba(200, 245, 66, 0.14)'
+                : 'rgba(236, 233, 223, 0.05)';
+            ctx.lineWidth = p.acid ? 1.2 : 0.8;
+            ctx.beginPath();
+            ctx.moveTo(p.px, p.py);
+            ctx.lineTo(p.x, p.y);
+            ctx.stroke();
+        }
+
+        raf = requestAnimationFrame(frame);
+    }
+
+    function start() {
+        if (!raf && inView && !document.hidden) raf = requestAnimationFrame(frame);
+    }
+    function stop() {
+        if (raf) { cancelAnimationFrame(raf); raf = null; }
+    }
+
+    new IntersectionObserver(([entry]) => {
+        inView = entry.isIntersecting;
+        inView ? start() : stop();
+    }).observe(hero);
+
+    document.addEventListener('visibilitychange', () => {
+        document.hidden ? stop() : start();
+    });
+
+    hero.addEventListener('pointermove', (e) => {
+        const rect = canvas.getBoundingClientRect();
+        mouse.x = e.clientX - rect.left;
+        mouse.y = e.clientY - rect.top;
+    });
+    hero.addEventListener('pointerleave', () => {
+        mouse.x = -9999; mouse.y = -9999;
+    });
+
+    window.addEventListener('resize', resize);
+    resize();
+}
 
 // Testimonial Carousel
 function initTestimonialCarousel() {

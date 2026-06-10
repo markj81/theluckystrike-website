@@ -385,7 +385,7 @@ body:has(.mobile-menu.active) .nav-toggle {
     overflow: hidden;
 }
 
-/* Drafting grid, fading toward the fold */
+/* Drafting grid, fading toward the fold, breathing slowly */
 .hero-bg::before {
     content: '';
     position: absolute;
@@ -397,6 +397,22 @@ body:has(.mobile-menu.active) .nav-toggle {
     opacity: 0.5;
     -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 0%, black 0%, transparent 78%);
     mask-image: radial-gradient(ellipse 90% 80% at 50% 0%, black 0%, transparent 78%);
+    animation: grid-breathe 11s ease-in-out infinite;
+}
+
+@keyframes grid-breathe {
+    0%, 100% { opacity: 0.35; }
+    50% { opacity: 0.6; }
+}
+
+/* Generative ink trails (drawn by script.js) */
+.hero-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    pointer-events: none;
 }
 
 /* Quiet ambient light — repurposed orb hooks */
@@ -429,12 +445,70 @@ body:has(.mobile-menu.active) .nav-toggle {
     animation: orb-breathe 18s ease-in-out infinite reverse;
 }
 
-.hero-bg .orb-3 { display: none; }
-.bg-shape { display: none; }
+.hero-bg .orb-3 {
+    width: 34vw;
+    height: 34vw;
+    max-width: 540px;
+    max-height: 540px;
+    top: 30%;
+    left: 30%;
+    background: radial-gradient(circle, rgba(200, 245, 66, 0.06), transparent 65%);
+    animation: orb-wander 26s ease-in-out infinite;
+}
 
 @keyframes orb-breathe {
     0%, 100% { transform: scale(1); opacity: 1; }
     50% { transform: scale(1.12); opacity: 0.75; }
+}
+
+@keyframes orb-wander {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    30% { transform: translate(9vw, -6vh) scale(1.18); }
+    60% { transform: translate(-7vw, 8vh) scale(0.9); }
+}
+
+/* Drafting-machine scanlines sweeping the grid */
+.bg-shape { display: none; }
+
+.hero-bg .shape-1 {
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent 4%, rgba(200, 245, 66, 0.5) 50%, transparent 96%);
+    mix-blend-mode: screen;
+    animation: scan-y 17s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+    opacity: 0;
+}
+
+.hero-bg .shape-2 {
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 1px;
+    background: linear-gradient(180deg, transparent 4%, rgba(236, 233, 223, 0.32) 50%, transparent 96%);
+    mix-blend-mode: screen;
+    animation: scan-x 29s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+    animation-delay: -9s;
+    opacity: 0;
+}
+
+@keyframes scan-y {
+    0% { transform: translateY(0); opacity: 0; }
+    12% { opacity: 0.55; }
+    88% { opacity: 0.55; }
+    100% { transform: translateY(100svh); opacity: 0; }
+}
+
+@keyframes scan-x {
+    0% { transform: translateX(0); opacity: 0; }
+    12% { opacity: 0.5; }
+    88% { opacity: 0.5; }
+    100% { transform: translateX(100vw); opacity: 0; }
 }
 
 .hero-container {
