@@ -655,6 +655,98 @@ body:has(.mobile-menu.active) .nav-toggle {
 }
 
 /* ----------------------------------------------------------
+   UX diagrams — hairline figures that draw themselves in
+   when their section's .visible reveal fires
+   ---------------------------------------------------------- */
+.ux-diagram { margin: var(--spacing-lg) 0 0; }
+
+.ux-diagram svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: visible;
+}
+
+.diag-stroke {
+    fill: none;
+    stroke: var(--color-border-strong);
+    stroke-width: 1;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    transition: stroke-dashoffset 1.5s var(--ease-out);
+    transition-delay: var(--d, 0s);
+}
+
+.diag-accent { stroke: var(--color-accent); }
+
+.diag-dot {
+    fill: var(--color-accent);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    transition-delay: var(--d, 0.8s);
+}
+
+.diag-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    fill: var(--color-text-muted);
+    opacity: 0;
+    transition: opacity 0.8s ease;
+    transition-delay: var(--d, 1.2s);
+}
+
+.diag-label-accent { fill: var(--color-accent); }
+
+.visible .diag-stroke { stroke-dashoffset: 0; }
+.visible .diag-dot,
+.visible .diag-label { opacity: 1; }
+
+.diag-row {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 0.75rem;
+}
+
+.diag-row span {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    opacity: 0;
+    transition: opacity 0.8s ease 1.2s;
+}
+
+.visible .diag-row span { opacity: 1; }
+
+.diagram-diamond { max-width: 720px; }
+
+.diagram-curve {
+    max-width: 360px;
+    margin-left: auto;
+    margin-right: var(--spacing-md);
+}
+
+.diagram-loop {
+    max-width: 250px;
+    margin: calc(-1 * var(--spacing-lg)) var(--spacing-lg) var(--spacing-lg) auto;
+}
+
+.diagram-flow {
+    max-width: 360px;
+    margin-top: var(--spacing-md);
+}
+
+@media (max-width: 768px) {
+    .diagram-curve { margin: var(--spacing-md) auto 0; }
+    .diagram-loop { margin: 0 auto var(--spacing-md); }
+}
+
+/* ----------------------------------------------------------
    Sections — numbered, hairline-ruled
    ---------------------------------------------------------- */
 .section {
