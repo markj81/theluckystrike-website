@@ -21,7 +21,11 @@
     --color-border-strong: rgba(236, 233, 223, 0.34);
     --color-card: #121210;
     --color-accent-purple: #C8F542; /* legacy alias — focus rings etc. */
+    --color-accent-fill: #C8F542;   /* accent as surface (buttons, floods) */
     --acid-glow: rgba(200, 245, 66, 0.12);
+    --nav-veil: rgba(11, 11, 9, 0.72);
+    --overlay-veil: rgba(11, 11, 9, 0.85);
+    color-scheme: dark;
 
     /* Type */
     --font-serif: 'Instrument Serif', Georgia, serif;
@@ -45,6 +49,73 @@
     --radius: 2px;
     --transition: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ----------------------------------------------------------
+   Paper mode — the same system, inverted. Acid is recalibrated:
+   bright acid stays for fills (ink text on top), but lines and
+   text shift to an ink-adjusted olive that holds contrast on
+   bone. Honors prefers-color-scheme via the inline head script;
+   persisted choice wins.
+   ---------------------------------------------------------- */
+[data-theme="light"] {
+    --color-bg: #ECE9DF;
+    --color-bg-raised: #E3E0D2;
+    --color-text: #16140F;
+    --color-text-muted: #6F6B5D;
+    --color-accent: #5E7A0C;
+    --color-accent-purple: #5E7A0C;
+    --color-accent-fill: #C8F542;
+    --color-accent-ink: #0B0B09;
+    --color-border: rgba(11, 11, 9, 0.14);
+    --color-border-strong: rgba(11, 11, 9, 0.34);
+    --color-card: #E3E0D2;
+    --acid-glow: rgba(140, 178, 22, 0.16);
+    --nav-veil: rgba(236, 233, 223, 0.75);
+    --overlay-veil: rgba(236, 233, 223, 0.85);
+    color-scheme: light;
+}
+
+/* Components that don't invert by token alone */
+[data-theme="light"] .nav-cta:hover { color: #ECE9DF !important; }
+[data-theme="light"] .modal-btn-ok:hover { color: #ECE9DF; }
+
+[data-theme="light"] .hero-bg .shape-1 {
+    mix-blend-mode: multiply;
+    background: linear-gradient(90deg, transparent 4%, rgba(94, 122, 12, 0.45) 50%, transparent 96%);
+}
+
+[data-theme="light"] .hero-bg .shape-2 {
+    mix-blend-mode: multiply;
+    background: linear-gradient(180deg, transparent 4%, rgba(11, 11, 9, 0.28) 50%, transparent 96%);
+}
+
+[data-theme="light"] .hero-bg .orb-2 {
+    background: radial-gradient(circle, rgba(11, 11, 9, 0.05), transparent 65%);
+}
+
+/* The paper-clipping testimonial flips to an ink clipping */
+[data-theme="light"] .testimonial-card:nth-child(7n+3) {
+    background: #14130F;
+    color: #ECE9DF;
+    box-shadow: 0 18px 40px rgba(11, 11, 9, 0.25);
+}
+
+[data-theme="light"] .testimonial-card:nth-child(7n+3) .testimonial-quote { color: #ECE9DF; }
+[data-theme="light"] .testimonial-card:nth-child(7n+3) .testimonial-author { border-top-color: rgba(236, 233, 223, 0.25); }
+[data-theme="light"] .testimonial-card:nth-child(7n+3) .author-name { color: #ECE9DF; }
+[data-theme="light"] .testimonial-card:nth-child(7n+3) .author-role,
+[data-theme="light"] .testimonial-card:nth-child(7n+3) .author-company { color: rgba(236, 233, 223, 0.62); }
+[data-theme="light"] .testimonial-card:nth-child(7n+3)::after { color: rgba(236, 233, 223, 0.55); }
+[data-theme="light"] .testimonial-card:nth-child(7n+3):hover::after { color: #C8F542; }
+
+[data-theme="light"] .testimonial-card:nth-child(7n+6) {
+    border-color: rgba(94, 122, 12, 0.5);
+    background: rgba(94, 122, 12, 0.05);
+}
+
+[data-theme="light"] .testimonial-card:nth-child(7n+1) {
+    background: linear-gradient(180deg, rgba(94, 122, 12, 0.07), transparent 65%);
 }
 
 /* ----------------------------------------------------------
@@ -113,7 +184,7 @@ p, blockquote, figcaption { text-wrap: pretty; }
     @view-transition { navigation: none; }
 }
 
-::selection { background: var(--color-accent); color: var(--color-accent-ink); }
+::selection { background: var(--color-accent-fill); color: var(--color-accent-ink); }
 
 /* Thin, quiet scrollbar */
 @supports (scrollbar-width: thin) {
@@ -168,7 +239,7 @@ body::after {
     top: -100px;
     left: 50%;
     transform: translateX(-50%);
-    background: var(--color-accent);
+    background: var(--color-accent-fill);
     color: var(--color-accent-ink);
     padding: 0.75rem 1.5rem;
     border-radius: var(--radius);
@@ -191,7 +262,7 @@ body::after {
     right: 0;
     z-index: 100;
     padding: 1.1rem var(--spacing-md);
-    background: rgba(11, 11, 9, 0.72);
+    background: var(--nav-veil);
     -webkit-backdrop-filter: blur(14px) saturate(1.4);
     backdrop-filter: blur(14px) saturate(1.4);
     border-bottom: 1px solid transparent;
@@ -281,7 +352,7 @@ body::after {
 
 .nav-cta {
     padding: 0.55rem 1.4rem;
-    background: var(--color-accent);
+    background: var(--color-accent-fill);
     color: var(--color-accent-ink) !important;
     border-radius: 100px;
     font-family: var(--font-mono);
@@ -295,6 +366,43 @@ body::after {
 .nav-cta:hover {
     background: var(--color-text);
     transform: translateY(-1px);
+}
+
+/* Theme toggle — a half-filled disc that rotates on switch */
+.theme-toggle {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 1px solid var(--color-border-strong);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text);
+    flex: none;
+    transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+.theme-toggle::before {
+    content: '';
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    border: 1px solid currentColor;
+    background: linear-gradient(90deg, currentColor 0 50%, transparent 50%);
+    transition: transform 0.55s var(--ease-out);
+}
+
+.theme-toggle:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+}
+
+[data-theme="light"] .theme-toggle::before { transform: rotate(180deg); }
+
+.mobile-menu .theme-toggle {
+    width: 44px;
+    height: 44px;
+    margin-top: var(--spacing-sm);
 }
 
 .nav-toggle {
@@ -396,7 +504,7 @@ body:has(.mobile-menu.active) .nav-toggle {
 .mobile-cta {
     margin-top: var(--spacing-sm);
     padding: 1rem 2.25rem;
-    background: var(--color-accent);
+    background: var(--color-accent-fill);
     color: var(--color-accent-ink) !important;
     border-radius: 100px;
     font-family: var(--font-mono);
@@ -701,6 +809,14 @@ body:has(.mobile-menu.active) .nav-toggle {
     inset: -14px;
     border: 1px solid var(--color-border-strong);
     pointer-events: none;
+}
+
+/* Grid-breaking overlap: on wide screens the portrait layer
+   slides under the headline — type sits above the "selected
+   layer", completing the design-tool metaphor */
+@media (min-width: 1100px) {
+    .hero-content { position: relative; z-index: 2; }
+    .hero-visual { transform: translate(clamp(-11rem, -9vw, -5rem), 1.5rem); }
 }
 
 /* Selection handles at the four corners */
@@ -1443,7 +1559,7 @@ body:has(.mobile-menu.active) .nav-toggle {
 .contact-link:last-child { border-bottom: 1px solid var(--color-border); }
 
 .contact-link:hover {
-    background: var(--color-accent);
+    background: var(--color-accent-fill);
     padding-left: var(--spacing-md);
     transform: none;
 }
@@ -1543,7 +1659,7 @@ body:has(.mobile-menu.active) .nav-toggle {
     font-size: var(--text-note);
     letter-spacing: 0.06em;
     color: var(--color-text-muted);
-    opacity: 0.7;
+    opacity: 0.85;
 }
 
 /* ----------------------------------------------------------
@@ -1896,12 +2012,57 @@ body:has(.mobile-menu.active) .nav-toggle {
 }
 
 /* ----------------------------------------------------------
+   404 page
+   ---------------------------------------------------------- */
+.error-hero .hero-container {
+    grid-template-columns: 1fr;
+    max-width: 820px;
+}
+
+.error-hero::before,
+.error-hero::after { display: none; }
+
+.error-hero .hero-label { color: var(--color-accent); }
+
+.error-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-sm);
+    opacity: 0;
+    animation: fadeUp 0.9s var(--ease-out) forwards 0.8s;
+}
+
+.error-actions .nav-cta { display: inline-flex; }
+
+.error-actions .error-alt {
+    font-family: var(--font-mono);
+    font-size: var(--text-nav);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-text-muted);
+    border-bottom: 1px solid var(--color-border-strong);
+    padding-bottom: 2px;
+    transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.error-actions .error-alt:hover {
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+}
+
+.diagram-deadend {
+    max-width: 380px;
+    margin-top: var(--spacing-lg);
+}
+
+/* ----------------------------------------------------------
    Modals (easter egg)
    ---------------------------------------------------------- */
 .modal-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(11, 11, 9, 0.85);
+    background: var(--overlay-veil);
     -webkit-backdrop-filter: blur(6px);
     backdrop-filter: blur(6px);
     display: flex;
@@ -2003,7 +2164,7 @@ body:has(.mobile-menu.active) .nav-toggle {
 }
 
 .modal-btn-ok {
-    background: var(--color-accent);
+    background: var(--color-accent-fill);
     color: var(--color-accent-ink);
 }
 
@@ -2084,6 +2245,7 @@ body:has(.mobile-menu.active) .nav-toggle {
         transition-duration: 0.01ms !important;
     }
     html { scroll-behavior: auto; }
-    .title-line, .hero-label, .hero-description, .hero-visual { opacity: 1; transform: none; filter: none; }
+    .title-line, .hero-label, .hero-description { opacity: 1; transform: none; filter: none; }
+    .hero-visual { opacity: 1; }
     .animate-on-scroll { opacity: 1; transform: none; }
 }

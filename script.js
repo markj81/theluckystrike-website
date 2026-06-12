@@ -9,7 +9,33 @@ document.addEventListener('DOMContentLoaded', () => {
     initMackerelEasterEgg();
     initModalHandlers();
     initHeroCanvas();
+    initThemeToggle();
 });
+
+// Theme toggle — initial theme is applied by the inline head
+// script (localStorage, falling back to prefers-color-scheme);
+// this wires the buttons and persists the choice.
+function initThemeToggle() {
+    const buttons = document.querySelectorAll('.theme-toggle');
+    if (!buttons.length) return;
+
+    const sync = () => {
+        const light = document.documentElement.dataset.theme === 'light';
+        buttons.forEach(b => {
+            b.setAttribute('aria-pressed', light);
+            b.setAttribute('aria-label', light ? 'Switch to dark theme' : 'Switch to light theme');
+        });
+    };
+
+    buttons.forEach(b => b.addEventListener('click', () => {
+        const next = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
+        document.documentElement.dataset.theme = next;
+        try { localStorage.setItem('theme', next); } catch (e) { /* private mode */ }
+        sync();
+    }));
+
+    sync();
+}
 
 // Hero flow field — generative ink trails drawn on canvas.
 // Particles follow a slowly morphing noise field; the cursor stirs
@@ -28,6 +54,18 @@ function initHeroCanvas() {
     let t = Math.random() * 1000;
     const mouse = { x: -9999, y: -9999 };
     const TAU = Math.PI * 2;
+
+    // Trail palette follows the active theme
+    let inkStroke, acidStroke;
+    function refreshPalette() {
+        const light = document.documentElement.dataset.theme === 'light';
+        inkStroke = light ? 'rgba(11, 11, 9, 0.06)' : 'rgba(236, 233, 223, 0.05)';
+        acidStroke = light ? 'rgba(94, 122, 12, 0.18)' : 'rgba(200, 245, 66, 0.14)';
+        if (w && h) ctx.clearRect(0, 0, w, h); // drop old-theme trails
+    }
+    refreshPalette();
+    new MutationObserver(refreshPalette)
+        .observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
 
     // Tiny value noise (permutation-based, smooth interpolation)
     const perm = new Uint8Array(512);
@@ -105,9 +143,7 @@ function initHeroCanvas() {
                 continue;
             }
 
-            ctx.strokeStyle = p.acid
-                ? 'rgba(200, 245, 66, 0.14)'
-                : 'rgba(236, 233, 223, 0.05)';
+            ctx.strokeStyle = p.acid ? acidStroke : inkStroke;
             ctx.lineWidth = p.acid ? 1.2 : 0.8;
             ctx.beginPath();
             ctx.moveTo(p.px, p.py);

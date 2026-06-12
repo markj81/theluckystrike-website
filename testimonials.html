@@ -17,6 +17,15 @@
     <meta name="twitter:image" content="https://www.theluckystrike.co.uk/images/og-card.png">
     <title>Testimonials | Mark Jenkins | Design Leader, Product Designer and AI Fanatic</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧢</text></svg>">
+    <script>
+        (function () {
+            try {
+                var t = localStorage.getItem('theme') ||
+                    (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+                document.documentElement.dataset.theme = t;
+            } catch (e) {}
+        })();
+    </script>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -41,6 +50,7 @@
                 <li><a href="/testimonials" class="active">Testimonials</a></li>
             </ul>
             <div class="nav-right">
+                <button class="theme-toggle" type="button" aria-label="Switch to light theme" aria-pressed="false"></button>
                 <a href="/#contact" class="nav-cta">Get in touch</a>
             </div>
             <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
@@ -62,6 +72,7 @@
             <a href="/#philosophy" class="mobile-link">Philosophy</a>
             <a href="/testimonials" class="mobile-link">Testimonials</a>
             <a href="/#contact" class="mobile-link mobile-cta">Get in touch</a>
+            <button class="theme-toggle" type="button" aria-label="Switch to light theme" aria-pressed="false"></button>
         </div>
     </div>
 
