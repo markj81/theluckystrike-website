@@ -923,13 +923,15 @@ body:has(.mobile-menu.active) .nav-toggle {
     padding: var(--spacing-sm);
 }
 
-.diagram-scatter { grid-column: span 5; }
-.diagram-ripple { grid-column: span 4; }
-.diagram-gauge { grid-column: span 4; align-self: end; }
-.diagram-stars { grid-column: span 3; }
-.diagram-venn { grid-column: span 3; }
-.diagram-wave { grid-column: span 4; }
-.diagram-bars { grid-column: span 3; }
+/* Figures are pinned to varied column starts — left, center,
+   right — so the dense flow can't shepherd them all to one edge */
+.diagram-stars { grid-column: 9 / span 3; }
+.diagram-venn { grid-column: 1 / span 3; }
+.diagram-scatter { grid-column: 4 / span 5; }
+.diagram-wave { grid-column: 1 / span 4; }
+.diagram-ripple { grid-column: 8 / span 4; }
+.diagram-bars { grid-column: 2 / span 3; }
+.diagram-gauge { grid-column: 5 / span 4; align-self: end; }
 
 @media (max-width: 1024px) {
     .diagram-network { display: none; }
