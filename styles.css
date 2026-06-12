@@ -79,6 +79,40 @@ img { max-width: 100%; display: block; }
 h1, h2, h3, .section-title, .page-title { text-wrap: balance; }
 p, blockquote, figcaption { text-wrap: pretty; }
 
+/* Hanging punctuation: opening quote marks sit outside the text
+   block so quote walls read as typeset. Safari gets the real
+   property; everyone else gets the indent approximation. */
+.testimonial-quote,
+.testimonial-carousel-quote,
+.philosophy-quote {
+    text-indent: -0.42ch;
+}
+
+@supports (hanging-punctuation: first) {
+    .testimonial-quote,
+    .testimonial-carousel-quote,
+    .philosophy-quote {
+        text-indent: 0;
+        hanging-punctuation: first;
+    }
+}
+
+/* Cross-document view transitions: soft cut between pages,
+   nav bar morphs in place */
+@view-transition { navigation: auto; }
+
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation-duration: 0.4s;
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav { view-transition-name: site-nav; }
+
+@media (prefers-reduced-motion: reduce) {
+    @view-transition { navigation: none; }
+}
+
 ::selection { background: var(--color-accent); color: var(--color-accent-ink); }
 
 /* Thin, quiet scrollbar */
@@ -1497,6 +1531,21 @@ body:has(.mobile-menu.active) .nav-toggle {
 
 .footer-right a:hover { color: var(--color-accent); }
 
+.footer-colophon {
+    max-width: var(--container-width);
+    margin: 1.75rem auto 0;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--color-border);
+    display: flex;
+    justify-content: space-between;
+    gap: var(--spacing-sm);
+    font-family: var(--font-mono);
+    font-size: var(--text-note);
+    letter-spacing: 0.06em;
+    color: var(--color-text-muted);
+    opacity: 0.7;
+}
+
 /* ----------------------------------------------------------
    Testimonials page
    ---------------------------------------------------------- */
@@ -2020,6 +2069,7 @@ body:has(.mobile-menu.active) .nav-toggle {
     .link-label { width: 64px; }
 
     .footer-container { flex-direction: column; gap: var(--spacing-sm); text-align: center; }
+    .footer-colophon { flex-direction: column; align-items: center; gap: 0.4rem; text-align: center; }
     .testimonials-grid { grid-template-columns: 1fr; }
     .testimonials-grid > .testimonial-card:nth-child(n) { grid-column: auto; margin-top: 0; }
 }

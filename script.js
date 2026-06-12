@@ -226,7 +226,7 @@ function initTestimonialCarousel() {
         const card = document.createElement('div');
         card.className = 'testimonial-carousel-card';
         card.innerHTML = `
-            <blockquote class="testimonial-carousel-quote">"${t.quote}"</blockquote>
+            <blockquote class="testimonial-carousel-quote">“${t.quote}”</blockquote>
             <div class="testimonial-carousel-author">
                 <img src="${t.photo}" alt="${t.name}" class="testimonial-carousel-photo" loading="lazy">
                 <div class="testimonial-carousel-info">
@@ -241,9 +241,13 @@ function initTestimonialCarousel() {
     // Measure exact left offset of where clones will start, then clone and start animation
     requestAnimationFrame(() => {
         const cards = Array.from(track.children);
-        // Clone and append duplicate set
+        // Clone and append duplicate set (decorative — hide from AT)
         const clones = cards.map(c => c.cloneNode(true));
-        clones.forEach(c => track.appendChild(c));
+        clones.forEach(c => {
+            c.setAttribute('aria-hidden', 'true');
+            c.querySelectorAll('a, button').forEach(el => el.tabIndex = -1);
+            track.appendChild(c);
+        });
         // The loop point is the left edge of the first clone = right edge of last original card
         // Use getBoundingClientRect relative to track to get pixel-perfect offset
         const trackLeft = track.getBoundingClientRect().left;
@@ -512,11 +516,16 @@ async function initSpotifyCarousel() {
             track.appendChild(buildAlbumCard(album));
         });
 
-        // Measure then clone for seamless loop
+        // Measure then clone for seamless loop (decorative — hide from AT)
         requestAnimationFrame(() => {
             const cards = Array.from(track.children);
             const clones = cards.map(c => c.cloneNode(true));
-            clones.forEach(c => track.appendChild(c));
+            clones.forEach(c => {
+                c.setAttribute('aria-hidden', 'true');
+                c.tabIndex = -1;
+                c.querySelectorAll('a, button').forEach(el => el.tabIndex = -1);
+                track.appendChild(c);
+            });
 
             const trackLeft = track.getBoundingClientRect().left;
             const firstCloneLeft = clones[0].getBoundingClientRect().left;
