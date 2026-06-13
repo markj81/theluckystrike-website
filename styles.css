@@ -2252,4 +2252,8 @@ body:has(.mobile-menu.active) .nav-toggle {
     .title-line, .hero-label, .hero-description { opacity: 1; transform: none; filter: none; }
     .hero-visual { opacity: 1; }
     .animate-on-scroll { opacity: 1; transform: none; }
+    /* Stop the carousels cleanly at the start instead of snapping
+       to the end of a 0.01ms loop */
+    .testimonial-carousel-track,
+    .spotify-carousel-track { animation: none !important; transform: none !important; }
 }
