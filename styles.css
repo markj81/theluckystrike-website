@@ -1324,10 +1324,11 @@ body:has(.mobile-menu.active) .nav-toggle {
 .testimonial-carousel-card:hover { border-color: var(--color-border-strong); }
 
 .testimonial-carousel-quote {
-    font-family: var(--font-serif);
-    font-size: 1.18rem;
+    font-family: var(--font-sans);
+    font-size: 1.05rem;
     font-style: normal;
-    line-height: 1.5;
+    line-height: 1.6;
+    letter-spacing: -0.005em;
     margin-bottom: var(--spacing-md);
     color: var(--color-text);
 }
@@ -1831,6 +1832,7 @@ body:has(.mobile-menu.active) .nav-toggle {
 .testimonial-card:nth-child(7n+1):hover { border-top-color: var(--color-accent); }
 
 .testimonial-card:nth-child(7n+1) .testimonial-quote {
+    font-family: var(--font-serif);
     font-size: 1.55rem;
     font-style: italic;
     line-height: 1.38;
@@ -1981,10 +1983,11 @@ body:has(.mobile-menu.active) .nav-toggle {
 .testimonial-card:hover .testimonial-photo img { filter: grayscale(1); }
 
 .testimonial-quote {
-    font-family: var(--font-serif);
-    font-size: 1.15rem;
+    font-family: var(--font-sans);
+    font-size: 1.02rem;
     font-style: normal;
-    line-height: 1.5;
+    line-height: 1.6;
+    letter-spacing: -0.005em;
     margin-bottom: var(--spacing-md);
     color: var(--color-text);
     flex: 1;
