@@ -960,7 +960,7 @@ body:has(.mobile-menu.active) .nav-toggle {
 
 .visible .diag-row span { opacity: 1; }
 
-.diagram-diamond { max-width: 720px; }
+.diagram-diamond { max-width: 720px; margin-bottom: var(--spacing-lg); }
 
 .diagram-curve {
     max-width: 360px;
@@ -1832,10 +1832,8 @@ body:has(.mobile-menu.active) .nav-toggle {
 .testimonial-card:nth-child(7n+1):hover { border-top-color: var(--color-accent); }
 
 .testimonial-card:nth-child(7n+1) .testimonial-quote {
-    font-family: var(--font-serif);
-    font-size: 1.55rem;
-    font-style: italic;
-    line-height: 1.38;
+    font-size: 1.4rem;
+    line-height: 1.4;
     letter-spacing: -0.01em;
 }
 
