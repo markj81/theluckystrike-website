@@ -1326,7 +1326,7 @@ body:has(.mobile-menu.active) .nav-toggle {
 .testimonial-carousel-quote {
     font-family: var(--font-serif);
     font-size: 1.18rem;
-    font-style: italic;
+    font-style: normal;
     line-height: 1.5;
     margin-bottom: var(--spacing-md);
     color: var(--color-text);
@@ -1832,6 +1832,7 @@ body:has(.mobile-menu.active) .nav-toggle {
 
 .testimonial-card:nth-child(7n+1) .testimonial-quote {
     font-size: 1.55rem;
+    font-style: italic;
     line-height: 1.38;
     letter-spacing: -0.01em;
 }
@@ -1981,8 +1982,8 @@ body:has(.mobile-menu.active) .nav-toggle {
 
 .testimonial-quote {
     font-family: var(--font-serif);
-    font-size: 1.1rem;
-    font-style: italic;
+    font-size: 1.15rem;
+    font-style: normal;
     line-height: 1.5;
     margin-bottom: var(--spacing-md);
     color: var(--color-text);
