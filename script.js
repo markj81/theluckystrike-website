@@ -10,7 +10,47 @@ document.addEventListener('DOMContentLoaded', () => {
     initModalHandlers();
     initHeroCanvas();
     initThemeToggle();
+    initContactCopy();
 });
+
+// Copy-to-clipboard contact row. Progressive enhancement: only
+// intercepts when the Clipboard API is available; otherwise the
+// mailto: href is left to behave normally.
+function initContactCopy() {
+    const link = document.querySelector('.contact-copy');
+    if (!link || !navigator.clipboard || !navigator.clipboard.writeText) return;
+
+    const email = link.dataset.copy;
+    const label = link.querySelector('.link-label');
+    const arrow = link.querySelector('.link-arrow');
+    const status = document.getElementById('copy-status');
+    const labelText = label.textContent;
+    const arrowText = arrow.textContent;
+    let resetId = null;
+
+    link.addEventListener('click', async (e) => {
+        e.preventDefault();
+        try {
+            await navigator.clipboard.writeText(email);
+        } catch (err) {
+            // Clipboard blocked (rare) — fall back to opening the mail client
+            window.location.href = link.getAttribute('href');
+            return;
+        }
+        link.classList.add('copied');
+        label.textContent = 'Copied';
+        arrow.textContent = '✓';
+        if (status) status.textContent = `${email} copied to clipboard`;
+
+        clearTimeout(resetId);
+        resetId = setTimeout(() => {
+            link.classList.remove('copied');
+            label.textContent = labelText;
+            arrow.textContent = arrowText;
+            if (status) status.textContent = '';
+        }, 1800);
+    });
+}
 
 // Theme toggle — initial theme is applied by the inline head
 // script (localStorage, falling back to prefers-color-scheme);
