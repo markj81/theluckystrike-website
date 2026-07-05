@@ -1,12 +1,12 @@
 # Mark Jenkins
 
-> Design leader, product designer, and AI enthusiast with 20+ years of experience crafting human-centered digital experiences.
+> Design leader, product designer, and AI enthusiast with 25+ years of experience crafting human-centered digital experiences.
 
 Mark Jenkins helps teams build products that solve real problems through strategic design thinking, hands-on leadership, and an iterative, research-driven approach. He is currently exploring how AI can amplify human creativity in design workflows — experimenting with agents, subagents, and skills in Claude Code.
 
 ## About
 
-- 20+ years of hands-on design and leadership experience
+- 25+ years of hands-on design and leadership experience
 - 400+ people mentored across career stages
 - Global client reach across industries
 - Combines strategic leadership with practical execution: research, wireframing, prototyping, and team development

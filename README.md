@@ -1,6 +1,6 @@
 # theluckystrike.co.uk
 
-Personal portfolio site for Mark Jenkins — design leader, product designer, and AI enthusiast with 20+ years of experience.
+Personal portfolio site for Mark Jenkins — design leader, product designer, and AI enthusiast with 25+ years of experience.
 
 **Live**: [theluckystrike.co.uk](https://www.theluckystrike.co.uk)
 
