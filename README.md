@@ -13,6 +13,7 @@ A static portfolio site with no build step — just HTML, CSS, and vanilla JS, d
 - **Spotify carousel** — Live "what's on the turntable" section powered by a serverless API
 - **Mo' Modals** — Nested modal easter egg (press M on the homepage)
 - **llms.txt** — AI-readable profile for LLM discovery
+- **yt-mpc** — DJ sample pad app (vendored from [UncleWob/YT2TW](https://github.com/UncleWob/YT2TW)), deployed separately — see [`yt-mpc/README.md`](yt-mpc/README.md)
 
 ## Tech
 
@@ -62,7 +63,8 @@ vercel --prod   # Production deploy
 │   └── spotify.js       # Vercel serverless — Spotify recently played
 ├── images/              # Headshots and profile photo
 ├── llms.txt             # LLM-readable profile
-└── vercel.json          # Rewrites, redirects, and deploy config
+├── vercel.json          # Rewrites, redirects, and deploy config
+└── yt-mpc/              # DJ sample pad app — separate Docker deploy, not part of the Vercel build
 ```
 
 ## License

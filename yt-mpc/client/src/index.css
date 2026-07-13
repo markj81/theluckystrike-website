@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-mpc-bg text-mpc-text font-display;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer components {
+  .pad-button {
+    @apply relative rounded-lg bg-mpc-pad cursor-pointer select-none
+           transition-all duration-100 ease-out
+           shadow-pad hover:brightness-110 active:scale-95;
+  }
+
+  .pad-button.active {
+    @apply bg-mpc-pad-active shadow-pad-active;
+    animation: padGlow 0.3s ease-out;
+  }
+
+  .knob-container {
+    @apply relative w-12 h-12 rounded-full bg-mpc-knob shadow-knob
+           border-2 border-gray-700 cursor-pointer;
+  }
+
+  .panel {
+    @apply bg-mpc-surface rounded-xl p-4 shadow-panel border border-gray-800/50;
+  }
+
+  .btn-primary {
+    @apply bg-mpc-accent hover:bg-red-500 text-white font-semibold
+           px-4 py-2 rounded-lg transition-colors duration-150
+           shadow-lg hover:shadow-xl active:scale-95;
+  }
+
+  .btn-secondary {
+    @apply bg-mpc-panel hover:bg-blue-800 text-white font-medium
+           px-3 py-1.5 rounded-lg transition-colors duration-150
+           border border-gray-700;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a2e;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #533483;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #e94560;
+}
+
+/* Waveform region */
+.wavesurfer-region {
+  border-left: 2px solid #e94560 !important;
+  border-right: 2px solid #e94560 !important;
+}
+
+/* Range input styling */
+input[type='range'] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+input[type='range']::-webkit-slider-track {
+  background: #2a2a4a;
+  height: 4px;
+  border-radius: 2px;
+}
+
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #e94560;
+  margin-top: -5px;
+  box-shadow: 0 0 6px rgba(233, 69, 96, 0.5);
+}
+
+input[type='range']::-moz-range-track {
+  background: #2a2a4a;
+  height: 4px;
+  border-radius: 2px;
+}
+
+input[type='range']::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #e94560;
+  border: none;
+  box-shadow: 0 0 6px rgba(233, 69, 96, 0.5);
+}

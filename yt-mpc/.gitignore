@@ -1,0 +1,6 @@
+node_modules
+server/downloads/*.wav
+client/build
+.env
+*.log
+.DS_Store
