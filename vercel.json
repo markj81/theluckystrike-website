@@ -6,6 +6,7 @@
   ],
   "redirects": [
     { "source": "/index.html", "destination": "/", "permanent": true },
-    { "source": "/testimonials.html", "destination": "/testimonials", "permanent": true }
+    { "source": "/testimonials.html", "destination": "/testimonials", "permanent": true },
+    { "source": "/yt-mpc", "destination": "https://theluckystrike-website-production.up.railway.app", "permanent": false }
   ]
 }

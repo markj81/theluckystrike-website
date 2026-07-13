@@ -124,12 +124,11 @@ docker run -p 4000:4000 yt-mpc
 
 ### 2. Point theluckystrike.co.uk/yt-mpc at it
 
-Simplest option — a redirect in the main site's `vercel.json` (add once you have the URL Railway
-gave you, e.g. `https://yt-mpc-production.up.railway.app`, or your custom subdomain if you set
-one up):
+Simplest option — a redirect in the main site's `vercel.json` (already wired up, pointing at the
+live Railway domain):
 
 ```json
-{ "source": "/yt-mpc", "destination": "https://yt-mpc-production.up.railway.app", "permanent": false }
+{ "source": "/yt-mpc", "destination": "https://theluckystrike-website-production.up.railway.app", "permanent": false }
 ```
 
 Users hitting `/yt-mpc` land on the app at its own origin. This is the recommended approach —
