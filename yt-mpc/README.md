@@ -97,25 +97,39 @@ main site's repo, but it is **not** part of the site's Vercel build (`yt-mpc/` i
 out to `yt-dlp`/`ffmpeg` to download and slice audio, which Vercel's serverless functions can't
 do (they're time-limited and have no persistent binaries). It needs a real host.
 
-### 1. Deploy this directory as its own service
+### 1. Deploy this directory as its own service on Railway
 
-Pick any host that runs Docker containers (Railway, Render, Fly.io, a VPS, etc.), pointed at
-this `yt-mpc/` directory, using the included `Dockerfile`:
+This repo includes `railway.json` (points Railway at the `Dockerfile`) so the deploy is just:
+
+1. [railway.app](https://railway.app) → sign in with GitHub → **New Project** → **Deploy from GitHub repo**.
+2. Pick `markj81/theluckystrike-website`.
+3. Open the new service's **Settings**:
+   - **Root Directory**: `yt-mpc` (this is the important one — Railway builds the whole repo by
+     default, but this app only lives in this subfolder).
+   - **Networking → Generate Domain** to get a public `*.up.railway.app` URL. (Optional: add a
+     custom domain, e.g. `yt-mpc.theluckystrike.co.uk`, in the same panel — it'll give you a
+     CNAME target to add at your DNS provider.)
+4. Railway auto-detects `railway.json` and builds via the `Dockerfile` — no other config needed.
+   First build takes a few minutes (it installs ffmpeg, yt-dlp, and builds the Vite client).
+5. Once deployed, open the generated URL and confirm the app loads and a YouTube URL can be
+   downloaded — that's the real test that `yt-dlp`/`ffmpeg` are working inside the container.
+
+Any other Docker host (Render, Fly.io, a VPS) works too — same `Dockerfile`, just without the
+Railway-specific config file:
 
 ```bash
 docker build -t yt-mpc .
 docker run -p 4000:4000 yt-mpc
 ```
 
-Give it a public URL — either the host's default domain, or a subdomain you control, e.g.
-`yt-mpc.theluckystrike.co.uk` (point a CNAME at the host).
-
 ### 2. Point theluckystrike.co.uk/yt-mpc at it
 
-Simplest option — a redirect in the main site's `vercel.json` (add once you have the URL):
+Simplest option — a redirect in the main site's `vercel.json` (add once you have the URL Railway
+gave you, e.g. `https://yt-mpc-production.up.railway.app`, or your custom subdomain if you set
+one up):
 
 ```json
-{ "source": "/yt-mpc", "destination": "https://yt-mpc.theluckystrike.co.uk", "permanent": false }
+{ "source": "/yt-mpc", "destination": "https://yt-mpc-production.up.railway.app", "permanent": false }
 ```
 
 Users hitting `/yt-mpc` land on the app at its own origin. This is the recommended approach —
