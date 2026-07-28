@@ -12,7 +12,7 @@ A static portfolio site with no build step — just HTML, CSS, and vanilla JS, d
 - **Testimonials** — Full-page testimonial wall from colleagues at HackerOne, IKEA, Google, and others
 - **Spotify carousel** — Live "what's on the turntable" section powered by a serverless API
 - **Mo' Modals** — Nested modal easter egg (press M on the homepage)
-- **Hero glass object** — Interactive WebGL glass bust-with-a-cap (drag to orbit) refracting the headshot behind it, replacing the flat portrait; falls back to the plain photo if WebGL is unavailable
+- **Hero glass object** — Interactive WebGL glass silhouette of Mark himself (drag to orbit), background-removed from the actual headshot via OpenCV, refracting the same headshot behind it; replaces the flat portrait and falls back to the plain photo if WebGL is unavailable
 - **llms.txt** — AI-readable profile for LLM discovery
 - **yt-mpc** — DJ sample pad app (vendored from [UncleWob/YT2TW](https://github.com/UncleWob/YT2TW)), deployed separately — see [`yt-mpc/README.md`](yt-mpc/README.md)
 
