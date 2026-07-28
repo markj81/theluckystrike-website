@@ -1,8 +1,9 @@
 // Hero portrait as an interactive glass object (canvasui.dev's glass-object,
-// vendored — see glass-object.js) instead of a flat photo: a bolt extruded
-// into physically-based glass, refracting the headshot behind it. Sits above
-// the hero-bg canvas/orbs layer. Falls back to the plain <img> if WebGL is
-// unavailable or the module fails to load.
+// vendored — see glass-object.js) instead of a flat photo: a bust-with-a-cap
+// silhouette (images/hero-glass-bust.svg) extruded into physically-based
+// glass, refracting the headshot behind it. Sits above the hero-bg
+// canvas/orbs layer. Falls back to the plain <img> if WebGL is unavailable
+// or the module fails to load.
 import { createGlassObject } from "./glass-object.js";
 
 const canvas = document.querySelector(".hero-glass-canvas");
@@ -13,15 +14,15 @@ if (canvas) {
     const instance = createGlassObject(
         { canvas },
         {
-            src: "images/hero-glass-bolt.svg",
+            src: "images/hero-glass-bust.svg",
             backgroundImage: "images/mark-jenkins.jpg",
-            depth: 0.35,
-            bevel: 0.6,
+            depth: 0.25,
+            bevel: 0.45,
             ior: 1.6,
             tint: accent,
             tintDensity: 1,
             highlight: accent,
-            scale: 2.6,
+            scale: 2.4,
             cameraDistance: 4.5,
             floatIntensity: 0.8,
             rotationIntensity: 0.8,
