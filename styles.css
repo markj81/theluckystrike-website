@@ -788,16 +788,6 @@ body:has(.mobile-menu.active) .nav-toggle {
     justify-self: end;
     opacity: 0;
     animation: fadeIn 1.2s ease forwards 0.55s;
-    perspective: 1000px;
-}
-
-/* Tilt card — leans toward the cursor on rotateX/rotateY set by
-   script.js (initHeroTilt); --tilt-x/--tilt-y default to 0 so the
-   portrait sits flat with JS disabled or on touch/reduced-motion. */
-.hero-tilt {
-    position: relative;
-    transform: rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
-    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .hero-image {
@@ -808,25 +798,28 @@ body:has(.mobile-menu.active) .nav-toggle {
     object-fit: cover;
     border-radius: var(--radius);
     filter: grayscale(0) contrast(1.02);
-    transition: filter 0.6s ease;
+    transition: filter 0.6s ease, opacity 0.6s ease;
 }
 
 .hero-visual:hover .hero-image { filter: grayscale(1) contrast(1.06) brightness(0.96); }
 
-/* Specular sheen tracking the cursor, like light on a glass panel */
-.hero-tilt-shine {
+/* js/hero-glass.js adds this once the WebGL glass object has loaded —
+   the flat photo fades out but stays in the DOM (opacity, not display)
+   so its alt text remains the accessible name, and it's still shown as
+   a fallback with JS disabled or WebGL unavailable. */
+.hero-image.hero-image-behind-glass { opacity: 0; }
+
+.hero-glass-canvas {
     position: absolute;
     inset: 0;
-    border-radius: var(--radius);
-    pointer-events: none;
-    opacity: var(--tilt-glow, 0);
-    background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(255, 255, 255, 0.35), transparent 55%);
-    mix-blend-mode: overlay;
-    transition: opacity 0.4s ease;
+    width: 100%;
+    height: 100%;
+    display: block;
+    touch-action: none;
 }
 
 /* Selection bounding box */
-.hero-tilt::before {
+.hero-visual::before {
     content: '';
     position: absolute;
     inset: -14px;
@@ -843,7 +836,7 @@ body:has(.mobile-menu.active) .nav-toggle {
 }
 
 /* Selection handles at the four corners */
-.hero-tilt::after {
+.hero-visual::after {
     content: '';
     position: absolute;
     inset: -18px;
