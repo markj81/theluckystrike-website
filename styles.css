@@ -788,9 +788,20 @@ body:has(.mobile-menu.active) .nav-toggle {
     justify-self: end;
     opacity: 0;
     animation: fadeIn 1.2s ease forwards 0.55s;
+    perspective: 1000px;
+}
+
+/* Tilt card — leans toward the cursor on rotateX/rotateY set by
+   script.js (initHeroTilt); --tilt-x/--tilt-y default to 0 so the
+   portrait sits flat with JS disabled or on touch/reduced-motion. */
+.hero-tilt {
+    position: relative;
+    transform: rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .hero-image {
+    display: block;
     width: 100%;
     max-width: 400px;
     aspect-ratio: 1;
@@ -802,8 +813,20 @@ body:has(.mobile-menu.active) .nav-toggle {
 
 .hero-visual:hover .hero-image { filter: grayscale(1) contrast(1.06) brightness(0.96); }
 
+/* Specular sheen tracking the cursor, like light on a glass panel */
+.hero-tilt-shine {
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius);
+    pointer-events: none;
+    opacity: var(--tilt-glow, 0);
+    background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(255, 255, 255, 0.35), transparent 55%);
+    mix-blend-mode: overlay;
+    transition: opacity 0.4s ease;
+}
+
 /* Selection bounding box */
-.hero-visual::before {
+.hero-tilt::before {
     content: '';
     position: absolute;
     inset: -14px;
@@ -820,7 +843,7 @@ body:has(.mobile-menu.active) .nav-toggle {
 }
 
 /* Selection handles at the four corners */
-.hero-visual::after {
+.hero-tilt::after {
     content: '';
     position: absolute;
     inset: -18px;

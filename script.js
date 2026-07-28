@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initMackerelEasterEgg();
     initModalHandlers();
     initHeroCanvas();
+    initHeroTilt();
     initThemeToggle();
     initContactCopy();
 });
@@ -221,6 +222,38 @@ function initHeroCanvas() {
 
     window.addEventListener('resize', resize);
     resize();
+}
+
+// Hero portrait tilt — the "selected layer" card leans toward the
+// cursor with a tracked specular sheen, standing in for a literal
+// 3D model of the photo. Skipped for touch input and reduced motion.
+function initHeroTilt() {
+    const visual = document.querySelector('.hero-visual');
+    const tilt = document.querySelector('.hero-tilt');
+    if (!visual || !tilt) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (!window.matchMedia('(pointer: fine)').matches) return;
+
+    const MAX_TILT = 10; // degrees
+
+    visual.addEventListener('pointermove', (e) => {
+        const rect = tilt.getBoundingClientRect();
+        const px = (e.clientX - rect.left) / rect.width;
+        const py = (e.clientY - rect.top) / rect.height;
+        const rx = (0.5 - py) * MAX_TILT * 2;
+        const ry = (px - 0.5) * MAX_TILT * 2;
+        tilt.style.setProperty('--tilt-x', `${rx.toFixed(2)}deg`);
+        tilt.style.setProperty('--tilt-y', `${ry.toFixed(2)}deg`);
+        tilt.style.setProperty('--mx', `${(px * 100).toFixed(1)}%`);
+        tilt.style.setProperty('--my', `${(py * 100).toFixed(1)}%`);
+        tilt.style.setProperty('--tilt-glow', '1');
+    });
+
+    visual.addEventListener('pointerleave', () => {
+        tilt.style.setProperty('--tilt-x', '0deg');
+        tilt.style.setProperty('--tilt-y', '0deg');
+        tilt.style.setProperty('--tilt-glow', '0');
+    });
 }
 
 // Testimonial Carousel
