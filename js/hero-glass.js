@@ -1,10 +1,10 @@
 // Hero portrait as an interactive glass object (canvasui.dev's glass-object,
-// vendored — see glass-object.js) instead of a flat photo: his own real
-// silhouette (images/mark-jenkins-cutout.png, background-removed from the
-// headshot via OpenCV GrabCut) extruded into physically-based glass,
-// refracting the headshot behind it. Sits above the hero-bg canvas/orbs
-// layer. Falls back to the plain <img> if WebGL is unavailable or the
-// module fails to load.
+// vendored — see glass-object.js) instead of a flat photo: a vinyl record
+// (images/hero-glass-vinyl.svg, a disc with a spindle hole) extruded into
+// physically-based glass, refracting the headshot behind it — a nod to the
+// "Currently listening" section further down the page. Sits above the
+// hero-bg canvas/orbs layer. Falls back to the plain <img> if WebGL is
+// unavailable or the module fails to load.
 import { createGlassObject } from "./glass-object.js";
 
 const canvas = document.querySelector(".hero-glass-canvas");
@@ -15,23 +15,23 @@ if (canvas) {
     const instance = createGlassObject(
         { canvas },
         {
-            src: "images/mark-jenkins-cutout.png",
+            src: "images/hero-glass-vinyl.svg",
             backgroundImage: "images/mark-jenkins.jpg",
-            depth: 0.2,
-            bevel: 0.35,
+            depth: 0.06,
+            bevel: 0.5,
             ior: 1.6,
             tint: accent,
             tintDensity: 1,
             highlight: accent,
-            scale: 2.4,
+            scale: 2.8,
             cameraDistance: 4.5,
             floatIntensity: 0.8,
-            rotationIntensity: 0.8,
+            rotationIntensity: 0.6,
             floatSpeed: 1.2,
             orbit: true,
             zoom: false,
             autoRotate: true,
-            autoRotateSpeed: 0.8,
+            autoRotateSpeed: 1.4,
             onLoad: () => fallback?.classList.add("hero-image-behind-glass"),
         },
     );
