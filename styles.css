@@ -564,6 +564,65 @@ body:has(.mobile-menu.active) .nav-toggle {
     100% { transform: translateY(46px); opacity: 0; }
 }
 
+/* "Scroll" label above the cue — glitches in short bursts as it
+   enters/leaves view, and every few seconds while the hero is on
+   screen. Chromatic layers are built from the theme's own tokens
+   so the aberration reads as this palette, not stock red/cyan. */
+.hero-scroll-label {
+    position: absolute;
+    bottom: calc(2rem + 66px);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    pointer-events: none;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+}
+
+.glitch { display: inline-block; }
+
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+}
+
+.glitch.is-glitching::before,
+.glitch.is-glitching::after { opacity: 1; }
+
+.glitch.is-glitching::before {
+    color: color-mix(in srgb, var(--color-accent) 85%, transparent);
+    animation: glitch-slice-1 0.5s steps(2, jump-none);
+}
+
+.glitch.is-glitching::after {
+    color: color-mix(in srgb, var(--color-text) 70%, transparent);
+    animation: glitch-slice-2 0.5s steps(2, jump-none);
+}
+
+@keyframes glitch-slice-1 {
+    0%   { clip-path: inset(0 0 82% 0); transform: translate(-2px, 0); }
+    20%  { clip-path: inset(18% 0 55% 0); transform: translate(2px, 0); }
+    40%  { clip-path: inset(48% 0 30% 0); transform: translate(-1px, 0); }
+    60%  { clip-path: inset(62% 0 10% 0); transform: translate(2px, 0); }
+    80%  { clip-path: inset(8% 0 70% 0); transform: translate(-2px, 0); }
+    100% { clip-path: inset(0 0 100% 0); transform: translate(0, 0); }
+}
+
+@keyframes glitch-slice-2 {
+    0%   { clip-path: inset(70% 0 5% 0); transform: translate(2px, 0); }
+    20%  { clip-path: inset(30% 0 45% 0); transform: translate(-2px, 0); }
+    40%  { clip-path: inset(5% 0 75% 0); transform: translate(1px, 0); }
+    60%  { clip-path: inset(50% 0 20% 0); transform: translate(-1px, 0); }
+    80%  { clip-path: inset(20% 0 60% 0); transform: translate(2px, 0); }
+    100% { clip-path: inset(0 0 100% 0); transform: translate(0, 0); }
+}
+
 .hero-bg {
     position: absolute;
     inset: 0;
@@ -2242,6 +2301,7 @@ body:has(.mobile-menu.active) .nav-toggle {
 
     .hero { padding-top: calc(88px + var(--spacing-md)); }
     .hero::before, .hero::after { display: none; }
+    .hero-scroll-label { display: none; }
     .hero-image { max-width: 300px; }
 
     .section { padding: var(--spacing-lg) var(--spacing-md); }
