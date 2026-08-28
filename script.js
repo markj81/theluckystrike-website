@@ -409,6 +409,17 @@ function initMobileMenu() {
             document.body.style.overflow = '';
         });
     });
+
+    const closeBtn = document.querySelector('.mobile-menu-close');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', () => {
+            toggle.classList.remove('active');
+            menu.classList.remove('active');
+            toggle.setAttribute('aria-expanded', 'false');
+            menu.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        });
+    }
 }
 
 // Scroll Spy — highlights nav link for the section currently in view
@@ -634,12 +645,27 @@ function buildAlbumCard(album) {
     a.target = '_blank';
     a.rel = 'noopener noreferrer';
     a.setAttribute('aria-label', `${album.name} by ${album.artist} on Spotify`);
-    a.innerHTML = `
-        <img src="${album.image}" alt="${album.name}" class="spotify-album-art" loading="lazy">
-        <div class="spotify-album-info">
-            <span class="spotify-album-name">${album.name}</span>
-            <span class="spotify-album-artist">${album.artist}</span>
-        </div>
-    `;
+
+    const img = document.createElement('img');
+    img.src = album.image;
+    img.alt = album.name;
+    img.className = 'spotify-album-art';
+    img.loading = 'lazy';
+
+    const info = document.createElement('div');
+    info.className = 'spotify-album-info';
+
+    const nameSpan = document.createElement('span');
+    nameSpan.className = 'spotify-album-name';
+    nameSpan.textContent = album.name;
+
+    const artistSpan = document.createElement('span');
+    artistSpan.className = 'spotify-album-artist';
+    artistSpan.textContent = album.artist;
+
+    info.appendChild(nameSpan);
+    info.appendChild(artistSpan);
+    a.appendChild(img);
+    a.appendChild(info);
     return a;
 }
