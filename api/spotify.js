@@ -40,11 +40,13 @@ async function getAccessToken() {
 
     const data = await res.json();
 
-    // Cache the token with buffer time (expires in 1 hour, cache for 50 minutes)
-    if (data.access_token) {
-        tokenCache.access_token = data.access_token;
-        tokenCache.expiresAt = Date.now() + (50 * 60 * 1000);
+    if (!data.access_token) {
+        throw new Error(`Spotify token refresh failed: ${data.error || 'unknown_error'} - ${data.error_description || res.statusText}`);
     }
+
+    // Cache the token with buffer time (expires in 1 hour, cache for 50 minutes)
+    tokenCache.access_token = data.access_token;
+    tokenCache.expiresAt = Date.now() + (50 * 60 * 1000);
 
     return data;
 }
