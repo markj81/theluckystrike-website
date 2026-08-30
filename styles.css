@@ -802,6 +802,23 @@ body:has(.mobile-menu.active) .nav-toggle {
 
 .hero-visual:hover .hero-image { filter: grayscale(1) contrast(1.06) brightness(0.96); }
 
+/* GPU-shaded portrait (hero-shader.js) — sits over the plain <img>,
+   which stays in the DOM as the no-WebGPU / no-JS fallback. */
+.hero-image-shader {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 1;
+    border-radius: var(--radius);
+    display: block;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.hero-visual.shader-active .hero-image { opacity: 0; }
+.hero-visual.shader-active .hero-image-shader { opacity: 1; }
+
 /* Selection bounding box */
 .hero-visual::before {
     content: '';
