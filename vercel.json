@@ -2,7 +2,9 @@
   "rewrites": [
     { "source": "/index", "destination": "/index.html" },
     { "source": "/testimonials", "destination": "/testimonials.html" },
-    { "source": "/testimonials/", "destination": "/testimonials.html" }
+    { "source": "/testimonials/", "destination": "/testimonials.html" },
+    { "source": "/sample-explorer", "destination": "https://sample-explorer.vercel.app/sample-explorer" },
+    { "source": "/sample-explorer/:path*", "destination": "https://sample-explorer.vercel.app/sample-explorer/:path*" }
   ],
   "redirects": [
     { "source": "/index.html", "destination": "/", "permanent": true },
