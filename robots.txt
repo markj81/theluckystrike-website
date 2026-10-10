@@ -31,3 +31,4 @@ User-agent: DuckAssistBot
 Disallow: /sample-explorer
 
 Sitemap: https://www.theluckystrike.co.uk/sitemap.xml
+Sitemap: https://www.theluckystrike.co.uk/sample-explorer/sitemap.xml
