@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initHeroCanvas();
     initThemeToggle();
     initContactCopy();
+    initHeroGlitch();
 });
 
 // Copy-to-clipboard contact row. Progressive enhancement: only
@@ -462,6 +463,32 @@ function initScrollAnimations() {
     document.querySelectorAll('.animate-on-scroll').forEach(el => {
         observer.observe(el);
     });
+}
+
+// Hero scroll-cue glitch — bursts on enter/exit, then ticks
+// quietly every few seconds while the label is on screen
+function initHeroGlitch() {
+    const label = document.querySelector('.hero-scroll-label.glitch');
+    if (!label) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    let idleTimer = null;
+
+    const burst = () => {
+        label.classList.remove('is-glitching');
+        void label.offsetWidth; // restart the animation cleanly
+        label.classList.add('is-glitching');
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            burst();
+            clearInterval(idleTimer);
+            idleTimer = entry.isIntersecting ? setInterval(burst, 7000) : null;
+        });
+    }, { threshold: 0.5 });
+
+    observer.observe(label);
 }
 
 // Modal - Press M to open
