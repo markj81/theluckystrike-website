@@ -74,7 +74,6 @@ Also: add it to `sitemap.xml` and link it from the portfolio, for example in a "
 
 ## Open questions
 - ~~Repo~~ **Decided 2026-10-09:** new GitHub repo `markj81/sample-explorer`, its own Vercel project.
-- Ties to yt-mpc: should there be a "send this sample to yt-mpc" deep link later?
 - Credit and attribution: show "Data: Genius / MusicBrainz" in the footer, as their terms require
 
 ## Risks
