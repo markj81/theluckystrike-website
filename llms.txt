@@ -2,7 +2,7 @@
 
 > Design leader, product designer, and AI enthusiast with 25+ years of experience crafting human-centered digital experiences.
 
-Mark Jenkins helps teams build products that solve real problems through strategic design thinking, hands-on leadership, and an iterative, research-driven approach. He is currently exploring how AI can amplify human creativity in design workflows — experimenting with agents, subagents, and skills in Claude Code.
+Mark Jenkins helps teams build products that solve real problems through strategic design thinking, hands-on leadership, and an iterative, research-driven approach. He currently leads the design team at WeTravel (https://www.wetravel.com/), setting craft standards, shaping the product, and working out how AI earns its place in it. After hours, he builds with agents, subagents, and skills in Claude Code.
 
 ## About
 
@@ -13,7 +13,9 @@ Mark Jenkins helps teams build products that solve real problems through strateg
 
 ## Experience
 
-Clients and companies include: HackerOne, Funda, Uber, Adidas, Google, Klarna, eBay, The Guardian, Virgin Group, Emirates, Hilton, Unilever, Depop, Just Eat, Hyundai, Time Out.
+Currently: leads the design team at WeTravel.
+
+Previously, clients and companies include: HackerOne, Funda, Uber, Adidas, Google, Klarna, eBay, The Guardian, Virgin Group, Emirates, Hilton, Unilever, Depop, Just Eat, Hyundai, Time Out.
 
 ## Teaching
 
@@ -29,6 +31,6 @@ Clients and companies include: HackerOne, Funda, Uber, Adidas, Google, Klarna, e
 
 ## Contact
 
-- Email: jenkins.mark@gmail.com
+- Email: mark@theluckystrike.co.uk
 - LinkedIn: https://www.linkedin.com/in/markjenkins1981/
 - Website: https://www.theluckystrike.co.uk
