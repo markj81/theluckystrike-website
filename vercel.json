@@ -5,8 +5,8 @@
     { "source": "/testimonials", "destination": "/testimonials.html" },
     { "source": "/sample-explorer", "destination": "https://sample-explorer.vercel.app/sample-explorer" },
     { "source": "/sample-explorer/:path*", "destination": "https://sample-explorer.vercel.app/sample-explorer/:path*" },
-    { "source": "/this-is-fine", "destination": "https://this-is-fine.vercel.app/this-is-fine" },
-    { "source": "/this-is-fine/:path*", "destination": "https://this-is-fine.vercel.app/this-is-fine/:path*" }
+    { "source": "/this-is-fine", "destination": "https://this-is-fine-4kel.vercel.app/this-is-fine" },
+    { "source": "/this-is-fine/:path*", "destination": "https://this-is-fine-4kel.vercel.app/this-is-fine/:path*" }
   ],
   "redirects": [
     { "source": "/index.html", "destination": "/", "permanent": true },
