@@ -239,6 +239,13 @@ Race again, Change lineup, Share (Web Share API with the card as a PNG, download
 - [ ] Next.js + TypeScript, `basePath: '/jockey-face'`, Vercel project, preview deploys
 - [ ] Three.js canvas component: 480×270 render target scaled up, fixed-step loop, input (tap, Space/Enter), debug overlay with fps
 
+**Phase 1 progress (2026-11-02):**
+- Next.js 16.4.4 / React 19.3 app in `~/Projects/jockey-face` (game in `src/game/`, models in `public/models/`, spike kept in `spike/`). Upgraded from 16.4.0 after Next flagged critical advisories; `npm audit` clean. **Sample Explorer is still on 16.4.0 and needs the same upgrade.**
+- Private repo **github.com/markj81/jockey-face**; Vercel project `jockey-face` (team `jenkinsmark-gmailcoms-projects`), Git-connected so pushes to `main` deploy. The first deploy went to production, so it's public at **https://jockey-face.vercel.app/jockey-face** (not linked anywhere yet).
+- Heads now oversized and comical (1.35×, loose spring with side-to-side wobble, a nod on every tap), at Mark's request.
+- `audio.js`: full synthesised soundtrack (no files): title/race/results themes, menu and typing blips, screen whooshes, shutter, bugle, countdown, bell, taps, call-outs, buzzer, finish, fanfare/lose jingles, crowd bed and hoofbeats; mute toggle.
+- Still to do in Phase 1: portfolio rewrite for `/jockey-face`, test on a real phone, decide local vs shared leaderboard.
+
 ### Phase 2 — Setup flow and stable
 - [ ] Screen 1: name entry (validation, 10 characters max)
 - [ ] Screen 2: photo — take a selfie or choose from gallery, live preview on the 3D head, retake
