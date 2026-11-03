@@ -244,7 +244,8 @@ Race again, Change lineup, Share (Web Share API with the card as a PNG, download
 - Private repo **github.com/markj81/jockey-face**; Vercel project `jockey-face` (team `jenkinsmark-gmailcoms-projects`), Git-connected so pushes to `main` deploy. The first deploy went to production, so it's public at **https://jockey-face.vercel.app/jockey-face** (not linked anywhere yet).
 - Heads now oversized and comical (1.35×, loose spring with side-to-side wobble, a nod on every tap), at Mark's request.
 - `audio.js`: full synthesised soundtrack (no files): title/race/results themes, menu and typing blips, screen whooshes, shutter, bugle, countdown, bell, taps, call-outs, buzzer, finish, fanfare/lose jingles, crowd bed and hoofbeats; mute toggle.
-- Still to do in Phase 1: portfolio rewrite for `/jockey-face`, test on a real phone, decide local vs shared leaderboard.
+- Portfolio rewrite for `/jockey-face` added (live once this branch merges).
+- Still to do in Phase 1: test on a real phone, decide local vs shared leaderboard.
 
 ### Phase 2 — Setup flow and stable
 - [ ] Screen 1: name entry (validation, 10 characters max)
@@ -278,7 +279,7 @@ Race again, Change lineup, Share (Web Share API with the card as a PNG, download
 
 ### Phase 7 — Ship
 - [ ] Credits screen (courtesy, not required): horse from BlendSwap "Horse Rigged All Gaits" (CC0), people made with MakeHuman (CC0). Only needed for Ayan's horse (CC BY) if that's ever used again
-- [ ] Portfolio `vercel.json` rewrites for `/jockey-face` and `/jockey-face/:path*`, add to `sitemap.xml`
+- [x] Portfolio `vercel.json` rewrites for `/jockey-face` and `/jockey-face/:path*`, add to `sitemap.xml`
 - [ ] Test on iPhone Safari and Android Chrome (camera permission, audio unlock on first tap, landscape, fps)
 - [ ] OG image and metadata
 
