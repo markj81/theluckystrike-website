@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Listening Room · Lighting spike</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0d0d0b; --bone: #ece6d9; --dim: #8d877b; --acid: #c8f542;
+    --line: rgba(236, 230, 217, .14); --glass: rgba(13, 13, 11, .72);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: var(--ink); color: var(--bone); overflow: hidden;
+    font: 12px/1.4 'Geist Mono', ui-monospace, monospace; -webkit-font-smoothing: antialiased; }
+  canvas { display: block; width: 100%; height: 100%; touch-action: none; }
+  .title { position: fixed; left: 24px; top: 20px; pointer-events: none; }
+  .title h1 { font: italic 400 30px/1 'Instrument Serif', serif; margin: 0 0 6px; letter-spacing: -.01em; }
+  .title p { margin: 0; color: var(--dim); }
+  #loading { position: fixed; inset: 0; display: grid; place-items: center; color: var(--dim); transition: opacity .6s; }
+  .panel { position: fixed; right: 16px; bottom: 16px; width: 320px; max-width: calc(100vw - 32px);
+    background: var(--glass); backdrop-filter: blur(18px) saturate(1.2); -webkit-backdrop-filter: blur(18px);
+    border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px 10px; transition: transform .35s, opacity .35s; }
+  .panel.hidden { transform: translateY(12px); opacity: 0; pointer-events: none; }
+  .panel header { cursor: pointer; }
+  .panel header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
+  .panel h2 { font: italic 400 20px 'Instrument Serif', serif; margin: 0; }
+  .scenes { display: flex; gap: 6px; flex-wrap: wrap; margin: 4px 0 12px; }
+  .scenes button { background: none; color: var(--bone); border: 1px solid var(--line); border-radius: 999px;
+    padding: 5px 10px; font: inherit; cursor: pointer; }
+  .scenes button:hover { border-color: var(--bone); }
+  .scenes button.on { background: var(--acid); color: var(--ink); border-color: var(--acid); }
+  .lamp { border-top: 1px solid var(--line); padding: 10px 0 8px; }
+  .lamp .row { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  .lamp .name { text-transform: uppercase; letter-spacing: .08em; }
+  .lamp .val { color: var(--dim); font-variant-numeric: tabular-nums; }
+  .switch { width: 30px; height: 17px; border-radius: 999px; border: 1px solid var(--line); background: none;
+    position: relative; cursor: pointer; padding: 0; flex: none; }
+  .switch::after { content: ''; position: absolute; top: 2px; left: 2px; width: 11px; height: 11px; border-radius: 50%;
+    background: var(--dim); transition: transform .2s, background .2s; }
+  .switch[aria-checked=true] { border-color: var(--acid); }
+  .switch[aria-checked=true]::after { transform: translateX(13px); background: var(--acid); }
+  input[type=range] { -webkit-appearance: none; appearance: none; width: 100%; height: 18px; background: none; margin: 4px 0 0; cursor: pointer; }
+  input[type=range]::-webkit-slider-runnable-track { height: 3px; border-radius: 2px; background: var(--track, var(--line)); }
+  input[type=range]::-moz-range-track { height: 3px; border-radius: 2px; background: var(--track, var(--line)); }
+  input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 12px; height: 12px; margin-top: -4.5px;
+    border-radius: 50%; background: var(--bone); border: 0; }
+  input[type=range]::-moz-range-thumb { width: 12px; height: 12px; border-radius: 50%; background: var(--bone); border: 0; }
+  input.kelvin { --track: linear-gradient(90deg, #ff8a2a, #ffc78a, #fff3e6, #dfe9ff, #b9ceff); }
+  .opts { display: flex; justify-content: space-between; gap: 10px; border-top: 1px solid var(--line); padding-top: 10px; color: var(--dim); }
+  .opts label { display: flex; align-items: center; gap: 6px; cursor: pointer; }
+  .opts input[type=checkbox] { accent-color: var(--acid); }
+  .keys { color: var(--dim); margin-top: 8px; }
+  kbd { font: inherit; border: 1px solid var(--line); border-radius: 4px; padding: 0 4px; color: var(--bone); }
+  #fps { position: fixed; left: 24px; bottom: 16px; color: var(--dim); }
+  @media (max-width: 600px) {
+    .title { left: 16px; top: 14px; } .title h1 { font-size: 24px; }
+    .panel { right: 8px; left: 8px; bottom: 8px; width: auto; max-width: none; max-height: 60vh; overflow: auto; }
+    .panel.collapsed #lamps, .panel.collapsed .opts, .panel.collapsed .keys { display: none; }
+    .panel.collapsed .scenes { margin-bottom: 2px; }
+    .keys { display: none; }
+    #fps { display: none; }
+  }
+</style>
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+} }
+</script>
+</head>
+<body>
+<div id="loading">Warming up the valves…</div>
+<div class="title">
+  <h1>The Listening Room</h1>
+  <p>Lighting spike · baked per-lamp GI, mixed live</p>
+</div>
+<aside class="panel" id="panel" aria-label="Lights">
+  <header id="panelHead"><h2>Lights</h2><span class="val"><span id="exposureVal"></span> <span id="chev">▴</span></span></header>
+  <div class="scenes" id="scenes"></div>
+  <div id="lamps"></div>
+  <div class="opts">
+    <label><input type="checkbox" id="dimToWarm" checked> Dim-to-warm</label>
+    <label>Exposure <input type="range" id="exposure" min="-2" max="2" step="0.05" value="0" style="width:90px"></label>
+  </div>
+  <div class="keys"><kbd>1</kbd>–<kbd>4</kbd> scenes · <kbd>L</kbd> panel · click a lamp to switch it</div>
+</aside>
+<div id="fps"></div>
+
+<script type="module">
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+
+// ---------------------------------------------------------------- lamps
+// Each lamp owns one baked lightmap (white light). Colour + dimmer are applied live.
+const LAMPS = [
+  { id: 'pendant', label: 'Pendant',    kelvin: 2700, incandescent: true },
+  { id: 'floor',   label: 'Floor lamp', kelvin: 2400, incandescent: true },
+  { id: 'desk',    label: 'Anglepoise', kelvin: 3000, incandescent: true },
+  { id: 'window',  label: 'Window',     kelvin: 6200, incandescent: false, gain: 0.5 },
+];
+const SCENES = {
+  'Sunday morning':   { window: [1.0, 6200], pendant: [0, 2700], floor: [0, 2400], desk: [0, 3000] },
+  'Golden hour':      { window: [0.55, 3300], pendant: [0, 2700], floor: [0.45, 2400], desk: [0, 3000] },
+  'Late night':       { window: [0.05, 9500], pendant: [0, 2700], floor: [0.35, 2200], desk: [0.9, 2900] },
+  'All on':           { window: [0.6, 5600], pendant: [0.8, 2700], floor: [0.7, 2400], desk: [0.8, 3000] },
+};
+const state = Object.fromEntries(LAMPS.map(l => [l.id, { on: true, dim: 0.7, kelvin: l.kelvin, level: 0 }]));
+let dimToWarm = true;
+
+// Blackbody approximation (Tanner Helland), returned in linear RGB normalised to unit luminance,
+// so changing colour temperature never changes brightness.
+function kelvinToLinear(k) {
+  const t = k / 100; let r, g, b;
+  r = t <= 66 ? 255 : 329.698727446 * Math.pow(t - 60, -0.1332047592);
+  g = t <= 66 ? 99.4708025861 * Math.log(t) - 161.1195681661 : 288.1221695283 * Math.pow(t - 60, -0.0755148492);
+  b = t >= 66 ? 255 : t <= 19 ? 0 : 138.5177312231 * Math.log(t - 10) - 305.0447927307;
+  const lin = v => { v = Math.min(255, Math.max(0, v)) / 255; return v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4; };
+  const c = new THREE.Vector3(lin(r), lin(g), lin(b));
+  return c.divideScalar(0.2126 * c.x + 0.7152 * c.y + 0.0722 * c.z);
+}
+// Incandescent filaments shift warmer as they dim: ~2700K at full, ~1800K near off.
+const effectiveKelvin = (lamp, s) =>
+  dimToWarm && lamp.incandescent ? 1800 + (s.kelvin - 1800) * Math.sqrt(Math.min(1, s.level)) : s.kelvin;
+
+// ---------------------------------------------------------------- renderer
+const renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'high-performance' });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.setSize(innerWidth, innerHeight);
+renderer.toneMapping = THREE.AgXToneMapping;
+renderer.toneMappingExposure = 1;
+document.body.prepend(renderer.domElement);
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(58, innerWidth / innerHeight, 0.05, 50);
+camera.position.set(1.7, 1.55, 1.75);
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.target.set(-0.5, 1.0, -0.6);
+controls.enableDamping = true; controls.dampingFactor = 0.07;
+controls.minDistance = 0.6; controls.maxDistance = 3.0;
+controls.maxPolarAngle = Math.PI * 0.62;
+controls.enablePan = false;
+
+const composer = new EffectComposer(renderer);
+composer.addPass(new RenderPass(scene, camera));
+const bloom = new UnrealBloomPass(new THREE.Vector2(innerWidth, innerHeight), 0.35, 0.5, 0.92);
+composer.addPass(bloom);
+composer.addPass(new OutputPass());
+
+// ---------------------------------------------------------------- lightmap mixing shader
+const meta = await (await fetch('public/lamps.json')).json();
+const texLoader = new THREE.TextureLoader();
+const loadLM = id => new Promise(res => texLoader.load(`public/lm_${id}.png`, t => {
+  t.flipY = false; t.channel = 1; t.colorSpace = THREE.NoColorSpace;
+  t.generateMipmaps = false; t.minFilter = THREE.LinearFilter; t.magFilter = THREE.LinearFilter;
+  res(t);
+}));
+const lightmaps = await Promise.all(LAMPS.map(l => loadLM(l.id)));
+const lmUniforms = {
+  lmMaps: { value: lightmaps },
+  lmColors: { value: LAMPS.map(() => new THREE.Vector3()) },
+  lmRange: { value: meta.rgbmRange },
+};
+const N = LAMPS.length;
+const MIX_GLSL = /* glsl */`
+  uniform sampler2D lmMaps[${N}];
+  uniform vec3 lmColors[${N}];
+  uniform float lmRange;
+  vec3 decodeRGBM(vec4 t) { return pow(t.rgb * t.a * lmRange, vec3(2.2)); }
+  vec3 mixLightmaps(vec2 uv) {
+    vec3 sum = vec3(0.0);
+    ${LAMPS.map((_, i) => `sum += decodeRGBM(texture2D(lmMaps[${i}], uv)) * lmColors[${i}];`).join('\n    ')}
+    return sum * PI; // Blender bakes outgoing light / albedo; three's Lambert divides by PI
+  }`;
+
+function patchMaterial(m) {
+  m.lightMap = lightmaps[0]; // turns on USE_LIGHTMAP + the uv1 varying
+  m.onBeforeCompile = shader => {
+    Object.assign(shader.uniforms, lmUniforms);
+    shader.fragmentShader = shader.fragmentShader
+      .replace('#include <lightmap_pars_fragment>', '#include <lightmap_pars_fragment>\n' + MIX_GLSL)
+      .replace('#include <lights_fragment_maps>', THREE.ShaderChunk.lights_fragment_maps.replace(
+        /vec4 lightMapTexel[^;]*;\s*vec3 lightMapIrradiance = [^;]*;/,
+        'vec3 lightMapIrradiance = mixLightmaps( vLightMapUv );'));
+    if (!shader.fragmentShader.includes('mixLightmaps( vLightMapUv )')) console.error('lightmap patch failed');
+  };
+  m.customProgramCacheKey = () => 'lm-mix';
+  m.needsUpdate = true;
+}
+
+// ---------------------------------------------------------------- scene
+const gltf = await new GLTFLoader().loadAsync('public/room.glb');
+scene.add(gltf.scene);
+const emitters = {};
+gltf.scene.traverse(o => {
+  if (!o.isMesh) return;
+  if (o.name.startsWith('EMIT_')) {
+    const id = o.name.slice(5);
+    o.material = o.material.clone();
+    emitters[id] = o;
+    return;
+  }
+  const mats = Array.isArray(o.material) ? o.material : [o.material];
+  mats.forEach(patchMaterial);
+});
+// The window "sky" card should glow, not reflect; make it unlit.
+if (emitters.window) emitters.window.material = new THREE.MeshBasicMaterial({ color: 0xffffff });
+
+// Reflection probe: the room re-renders itself into a cube map whenever the lights move,
+// so the oak floor, vinyl and brass reflect the actual lighting state.
+const cubeRT = new THREE.WebGLCubeRenderTarget(256, { type: THREE.HalfFloatType });
+const cubeCam = new THREE.CubeCamera(0.05, 20, cubeRT);
+cubeCam.position.set(0.2, 1.1, 0.2);
+scene.add(cubeCam);
+const pmrem = new THREE.PMREMGenerator(renderer);
+let envRT = null, probeDirty = true, probeTimer = 0;
+function updateProbe() {
+  cubeCam.update(renderer, scene);
+  const next = pmrem.fromCubemap(cubeRT.texture);
+  scene.environment = next.texture;
+  envRT?.dispose(); envRT = next;
+}
+
+// ---------------------------------------------------------------- per-frame lamp update
+const tmp = new THREE.Vector3();
+function applyLamps(dt) {
+  let moving = false;
+  LAMPS.forEach((lamp, i) => {
+    const s = state[lamp.id];
+    const target = s.on ? s.dim : 0;
+    // Filament thermal lag: ~120ms to glow up, ~250ms to fade. LEDs/daylight are near-instant.
+    const tau = lamp.incandescent ? (target > s.level ? 0.12 : 0.25) : 0.05;
+    s.level += (target - s.level) * (1 - Math.exp(-dt / tau));
+    if (Math.abs(target - s.level) > 1e-3) moving = true;
+    const c = kelvinToLinear(effectiveKelvin(lamp, s));
+    lmUniforms.lmColors.value[i].copy(c).multiplyScalar(s.level * s.level * 1.6 * (lamp.gain ?? 1)); // perceptual fader curve
+    const e = emitters[lamp.id];
+    if (e) {
+      tmp.copy(c).multiplyScalar(s.level);
+      if (lamp.id === 'window') e.material.color.setRGB(0.012 + tmp.x * 1.3, 0.016 + tmp.y * 1.3, 0.03 + tmp.z * 1.4); // night sky ≈ ink blue
+      else { e.material.emissive.setRGB(tmp.x, tmp.y, tmp.z); e.material.emissiveIntensity = lamp.id === 'desk' ? 6 : 3.5; }
+    }
+  });
+  if (moving) probeDirty = true;
+}
+
+// ---------------------------------------------------------------- UI
+const lampsEl = document.getElementById('lamps');
+const ui = {};
+LAMPS.forEach(lamp => {
+  const s = state[lamp.id];
+  const el = document.createElement('div'); el.className = 'lamp';
+  el.innerHTML = `
+    <div class="row"><span class="name">${lamp.label}</span>
+      <span class="val" data-k></span>
+      <button class="switch" role="switch" aria-label="${lamp.label}"></button></div>
+    <input type="range" min="0" max="1" step="0.01" aria-label="${lamp.label} dimmer">
+    <input type="range" class="kelvin" min="1800" max="${lamp.id === 'window' ? 10000 : 6500}" step="50" aria-label="${lamp.label} colour temperature">`;
+  const [dimEl, kEl] = el.querySelectorAll('input');
+  const sw = el.querySelector('.switch'), kv = el.querySelector('[data-k]');
+  dimEl.oninput = () => { s.dim = +dimEl.value; s.on = s.dim > 0; sync(); clearScene(); };
+  kEl.oninput = () => { s.kelvin = +kEl.value; sync(); clearScene(); };
+  sw.onclick = () => { s.on = !s.on; if (s.on && s.dim < 0.05) s.dim = 0.7; sync(); clearScene(); };
+  ui[lamp.id] = () => {
+    dimEl.value = s.dim; kEl.value = s.kelvin; sw.setAttribute('aria-checked', s.on);
+    kv.textContent = `${Math.round(s.dim * 100)}% · ${s.kelvin}K`;
+  };
+  lampsEl.append(el);
+});
+const sync = () => Object.values(ui).forEach(f => f());
+const scenesEl = document.getElementById('scenes');
+function setScene(name) {
+  for (const [id, [dim, k]] of Object.entries(SCENES[name])) Object.assign(state[id], { dim, kelvin: k, on: dim > 0 });
+  [...scenesEl.children].forEach(b => b.classList.toggle('on', b.textContent === name));
+  sync();
+}
+const clearScene = () => [...scenesEl.children].forEach(b => b.classList.remove('on'));
+Object.keys(SCENES).forEach(name => {
+  const b = document.createElement('button'); b.textContent = name; b.onclick = () => setScene(name); scenesEl.append(b);
+});
+document.getElementById('dimToWarm').onchange = e => { dimToWarm = e.target.checked; probeDirty = true; };
+const expEl = document.getElementById('exposure'), expVal = document.getElementById('exposureVal');
+expEl.oninput = () => { renderer.toneMappingExposure = 2 ** +expEl.value; expVal.textContent = `EV ${(+expEl.value).toFixed(1)}`; };
+expEl.oninput();
+addEventListener('keydown', e => {
+  if (e.target.tagName === 'INPUT') return;
+  const names = Object.keys(SCENES);
+  if (e.key >= '1' && e.key <= String(names.length)) setScene(names[+e.key - 1]);
+  if (e.key.toLowerCase() === 'l') document.getElementById('panel').classList.toggle('hidden');
+});
+// Click a shade/globe in the room to switch that lamp.
+const ray = new THREE.Raycaster(), ndc = new THREE.Vector2();
+let downAt = null;
+renderer.domElement.addEventListener('pointerdown', e => downAt = [e.clientX, e.clientY]);
+renderer.domElement.addEventListener('pointerup', e => {
+  if (!downAt || Math.hypot(e.clientX - downAt[0], e.clientY - downAt[1]) > 4) return;
+  ndc.set(e.clientX / innerWidth * 2 - 1, -(e.clientY / innerHeight) * 2 + 1);
+  ray.setFromCamera(ndc, camera);
+  const hit = ray.intersectObjects(Object.values(emitters), false)[0];
+  if (hit) { const s = state[hit.object.name.slice(5)]; s.on = !s.on; if (s.on && s.dim < 0.05) s.dim = 0.7; sync(); clearScene(); }
+});
+
+const panel = document.getElementById('panel'), chev = document.getElementById('chev');
+const isPhone = matchMedia('(max-width: 600px)').matches;
+chev.style.display = isPhone ? '' : 'none';
+if (isPhone) panel.classList.add('collapsed');
+document.getElementById('panelHead').onclick = () => {
+  if (!isPhone) return;
+  chev.textContent = panel.classList.toggle('collapsed') ? '▴' : '▾';
+};
+setScene(new URLSearchParams(location.search).get('scene') || 'Golden hour');
+LAMPS.forEach(l => state[l.id].level = state[l.id].on ? state[l.id].dim : 0); // no fade on first frame
+
+addEventListener('resize', () => {
+  camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix();
+  renderer.setSize(innerWidth, innerHeight); composer.setSize(innerWidth, innerHeight);
+});
+
+// ---------------------------------------------------------------- loop
+const clock = new THREE.Clock(); let frames = 0, fpsT = 0, total = 0;
+const still = new URLSearchParams(location.search).has('still'); // headless review renders
+const fpsEl = document.getElementById('fps');
+renderer.setAnimationLoop(() => {
+  const dt = Math.min(clock.getDelta(), 0.1);
+  applyLamps(dt);
+  probeTimer += dt;
+  if (probeDirty && probeTimer > 0.1) { updateProbe(); probeDirty = false; probeTimer = 0; }
+  controls.update();
+  composer.render();
+  frames++; fpsT += dt;
+  if (fpsT > 0.5) { fpsEl.textContent = `${Math.round(frames / fpsT)} fps`; frames = 0; fpsT = 0; }
+  if (still && ++total === 3) { renderer.setAnimationLoop(null); window.__still = true; }
+});
+document.getElementById('loading').style.opacity = 0;
+setTimeout(() => document.getElementById('loading').remove(), 700);
+window.__ready = true;
+</script>
+</body>
+</html>

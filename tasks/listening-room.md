@@ -30,6 +30,10 @@ light change across the room.
 | Audio engine | Web Audio API + one AudioWorklet for scratching | Real EQ, pitch, crossfader and spectrum, all in the browser |
 | Records | Discogs collection, fetched at **build time** into a JSON manifest + cover atlas | Avoids the 60 req/min limit and slow image hotlinking. Rebuild weekly in a cron job |
 | Recently played | Existing `/api/spotify`, extended to return `isrc` and track list | Already deployed and cached |
+| Discogs account | `markjenkins81` (public collection) | **Decided 2026-11-03** |
+| Who builds the 3D | **Claude does everything**: sources models, textures, HDRIs; assembles, lights, bakes and animates in Blender. Mark art-directs from renders | **Decided 2026-11-03.** Blender runs headless in the cloud session (`pip install bpy`), so every step is a script in the repo and repeatable |
+| Aesthetic | Highly refined, design-polished, **realism first** | **Decided 2026-11-03** |
+| Devices | Desktop first; mobile must be usable. Two modes on both (below) | **Decided 2026-11-03** |
 
 ## Lighting — the core of the project
 
@@ -67,7 +71,7 @@ baked in, so it reads correctly.
 | Ceiling pendant | Point + bake | Dimmer on the wall switch |
 | Window daylight | Sun + sky HDRI | **Time-of-day slider**. Venetian blinds cast slatted light (gobo shadows) |
 | LED strip behind the record shelf | Rect area light | RGB, can pulse to the music |
-| Neon sign (wording TBD) | Emissive + rect area | Flickers on at power-up |
+| Neon sign: *"Living off borrowed time, the clock ticks faster"* (MF DOOM) | Emissive tube + rect area | Flickers on at power-up. Cursive neon-tube script, warm pink-red |
 | Turntable target lights | Small spot, emissive | Pop up when a deck is powered |
 | Amp VU meters | Emissive | Needles driven by the audio analyser |
 
@@ -87,6 +91,22 @@ baked in, so it reads correctly.
 - **Scenes**: `Sunday morning` (daylight, plants glowing), `Golden hour`, `Late night session`
   (Anglepoise + neon), `Party` (LED strip and target lights pulse to the beat)
 - Scene changes cross-fade every light over ~1.5s
+
+## Two modes: Browse and Mix
+
+| | **Browse** | **Mix** |
+|---|---|---|
+| View | The 3D room, perspective camera | Top-down orthographic view of the 2 decks + mixer, filling the screen |
+| For | Exploring, lighting, digging the shelf, picking records | Playing: platters, tonearms, pitch, EQ, faders, crossfader |
+| Desktop | Default | `M` or click the DJ station; camera glides overhead |
+| Mobile | Default, simplified (tap hotspots, no free-fly) | Default once a record is loaded; landscape recommended |
+
+- **Same scene, different camera**: Mix is the real 3D decks seen from above, not a 2D UI copy. Lighting
+  still applies, so the Anglepoise pool and target lights show on the mixer. The transition is one
+  continuous camera move (perspective → orthographic blend)
+- Mix mode hit targets ≥ 44px on phones. Faders take vertical drags; platters take circular drags
+- **Experiment** (Phase 2): try 3 Mix layouts on a phone: (a) pure top-down, (b) top-down with the mixer
+  enlarged, (c) one deck at a time with a swipe between decks. Keep whichever wins a hallway test
 
 ## Audio — making the decks real
 
@@ -137,8 +157,18 @@ Deck B: preview MP3 → playbackRate (pitch ±8%) → 3-band EQ → channel fade
 | Plants | Monstera, snake plant, trailing pothos off the shelf, fiddle-leaf fig by the window |
 | Walls | Window with blinds, framed prints, neon sign, ceiling pendant |
 
-Sourcing: model the hero pieces (decks, mixer, shelf, lamps) myself in Blender. Use CC0 assets
-(Poly Haven) for textures, HDRIs and filler props. Generate plants with Blender geometry nodes.
+Sourcing (Claude does all of it; I art-direct):
+
+| Source | Licence | Use |
+|---|---|---|
+| Poly Haven | CC0 | Furniture, plants, lamps, PBR textures, HDRIs |
+| ambientCG | CC0 | PBR materials (wood, fabric, plaster, concrete) |
+| Sketchfab (CC-BY, downloadable) | CC-BY | Hero props Poly Haven lacks (turntables, mixer, speakers). Credits page lists each author |
+| Procedural (bpy scripts) | Mine | Record sleeves, shelving, cables, neon tube, room shell, anything that must fit exactly |
+
+Every imported asset is cleaned up by script: rescaled to real-world size, brand marks removed,
+materials rebuilt to one PBR standard, UV2 added, triangle count reduced. An `assets.json` manifest
+records source URL, licence and author for the credits page.
 
 ### Blender conventions (so code wires itself up)
 - `INT_` prefix = interactive. `INT_deckA_platter`, `INT_deckA_tonearm`, `INT_mixer_xfader`
@@ -150,7 +180,7 @@ Sourcing: model the hero pieces (decks, mixer, shelf, lamps) myself in Blender. 
 
 | Task | How |
 |---|---|
-| Blender modelling | Blender MCP server: Claude writes and runs `bpy` to block out the room, place props, set up light groups |
+| Blender | Claude runs Blender headless (`bpy` from PyPI) in the session: imports assets, builds the room, sets up light groups, bakes, renders review stills. No GUI needed |
 | Bake pipeline | Claude-written script: loop light groups → bake → encode → `gltf-transform` optimise |
 | Shaders | Lightmap-mixing GLSL, dim-to-warm curve, blackbody Kelvin → RGB |
 | Audio engine | Web Audio graph and the scratch AudioWorklet |
@@ -161,10 +191,25 @@ Sourcing: model the hero pieces (decks, mixer, shelf, lamps) myself in Blender. 
 ## Phases
 
 ### Phase 0 — Spikes (one day each; do before building anything)
-- [ ] **Lighting**: a box room with 2 lamps in Blender, bake per lamp, mix in three.js with
-      live dimmers. Go/no-go: does it look better than real-time lights, at 60fps on a laptop?
+- [x] **Lighting**: greybox room, 4 lamps, baked per lamp, mixed live in three.js. **GO** (2026-11-03).
+      Code: `listening-room/spikes/lighting/` (`blender/bake.py` → `public/`, viewer `index.html`)
 - [ ] **Audio**: run 20 recently played tracks through ISRC → Deezer. Target match rate ≥ 85%
-- [ ] **Discogs**: fetch the collection, build the atlas, check file size (target < 4 MB)
+      _(blocked: `api.deezer.com` denied by the session's network policy)_
+- [ ] **Discogs**: fetch `markjenkins81`'s collection, build the atlas, check file size (target < 4 MB)
+      _(blocked: `api.discogs.com` denied by the session's network policy)_
+
+**Lighting spike results:**
+
+| Check | Result |
+|---|---|
+| Headless Blender in the cloud session | ✓ `pip install bpy==5.2.3`, Cycles CPU bake, no GUI |
+| Bake time (1024², 256 samples, 4 cores) | ~40–50s per lamp, 2.5 min for all four |
+| Denoising | ✓ Intel OIDN's `RTLightmap` filter (`pyoidn`). Without it, night scenes are blotchy |
+| Live mixing | ✓ dimmer, Kelvin, dim-to-warm, filament lag, 4 scenes, click-a-lamp, all in one shader |
+| Reflection probe | ✓ room re-renders into a cube map when lights change, so reflections track the lamps |
+| File size | ✗ 4 RGBM PNGs = 8 MB. Fix in Phase 3: KTX2 (UASTC) and 512² for the dimmest lamps |
+| Gotcha | Blender primitives carry a default `UVMap`; extra UV layers pushed the lightmap UVs to TEXCOORD_2. The script now forces exactly `UV0` + `UV2` |
+| Not yet tested | Real GPU frame rate (screenshots used software GL). Check on a laptop and a phone from the Vercel preview |
 
 ### Phase 1 — Blockout room, live
 - [ ] Scaffold Vite + R3F with `/listening-room/` base path, deploy, add portfolio rewrites
@@ -203,11 +248,13 @@ Sourcing: model the hero pieces (decks, mixer, shelf, lamps) myself in Blender. 
 - No WebGL: a static path-traced render of the room with the crate as a plain list
 
 ## Open questions
-- Discogs username (and is the collection public?)
-- Blender: how much do I model myself vs. let Claude drive via Blender MCP?
-- Neon sign wording
-- Desert-island ten: which records?
-- Desktop-first, or must the first release work on phones?
+- ~~Discogs username~~ `markjenkins81`, public
+- ~~Who models~~ Claude sources and builds everything
+- ~~Neon sign~~ "Living off borrowed time, the clock ticks faster"
+- Desert-island ten: **later**
+- ~~Devices~~ Desktop first, usable on mobile via Browse/Mix modes
+- Network access: the cloud environment must allow `api.discogs.com`, `i.discogs.com`, `api.polyhaven.com`, `dl.polyhaven.org`, `ambientcg.com`, `api.sketchfab.com`, `api.deezer.com`, `*.dzcdn.net`
+- Repo: create `markj81/listening-room` (Claude can't create repos from the session). Until then, spikes live in this repo under `listening-room/`
 
 ## Risks
 - **Lightmap memory**: 6 HDR atlases is the biggest cost. Fallback: merge rarely-used lamps into one group
