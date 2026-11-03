@@ -93,6 +93,9 @@ export default async function handler(req, res) {
                     artist: item.track.artists.map(a => a.name).join(', '),
                     image: album.images[0]?.url,
                     url: album.external_urls.spotify,
+                    // the track actually played, so the Listening Room can find its exact preview
+                    track: item.track.name,
+                    isrc: item.track.external_ids?.isrc || null,
                 });
             }
         }
