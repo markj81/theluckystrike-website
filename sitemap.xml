@@ -21,6 +21,11 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://www.theluckystrike.co.uk/writing/listening-room</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://www.theluckystrike.co.uk/writing/sample-explorer</loc>
     <changefreq>yearly</changefreq>
     <priority>0.7</priority>
