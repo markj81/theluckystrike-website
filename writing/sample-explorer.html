@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="I built a sample-lineage explorer in one evening by describing it, then spent a week fighting robots for a 10,000-call API limit. The idea, the tech, and exactly how I prompted Claude.">
+    <meta property="og:title" content="Sample Explorer: I built a family tree for every sampled record by describing it to AI">
+    <meta property="og:description" content="One evening to build, a week to defend from the robots. The idea, the tech, and exactly how I prompted to get there.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.theluckystrike.co.uk/writing/sample-explorer">
+    <meta property="og:image" content="https://www.theluckystrike.co.uk/images/writing/sample-explorer/og.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Sample Explorer: I built a family tree for every sampled record by describing it to AI">
+    <meta name="twitter:description" content="One evening to build, a week to defend from the robots. The idea, the tech, and exactly how I prompted to get there.">
+    <meta name="twitter:image" content="https://www.theluckystrike.co.uk/images/writing/sample-explorer/og.jpg">
+    <title>Sample Explorer: I built a family tree for every sampled record by describing it to AI | Mark Jenkins</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧢</text></svg>">
+    <script>
+        (function () {
+            try {
+                var t = localStorage.getItem('theme') ||
+                    (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+                document.documentElement.dataset.theme = t;
+            } catch (e) {}
+        })();
+    </script>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/post.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script>
+        window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
+    <link rel="canonical" href="https://www.theluckystrike.co.uk/writing/sample-explorer">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Sample Explorer: I built a family tree for every sampled record by describing it to AI",
+      "description": "I built a sample-lineage explorer in one evening by describing it, then spent a week fighting robots for a 10,000-call API limit. The idea, the tech, and exactly how I prompted Claude.",
+      "image": "https://www.theluckystrike.co.uk/images/writing/sample-explorer/og.jpg",
+      "datePublished": "2026-11-05",
+      "url": "https://www.theluckystrike.co.uk/writing/sample-explorer",
+      "inLanguage": "en-GB",
+      "author": { "@type": "Person", "@id": "https://www.theluckystrike.co.uk/#mark", "name": "Mark Jenkins" }
+    }
+    </script>
+</head>
+<body>
+    <div class="theme-liquid-overlay">
+        <div class="liquid-blob"></div>
+    </div>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">Mark Jenkins</a>
+            <ul class="nav-links">
+                <li><a href="/#about">About</a></li>
+                <li><a href="/#experience">Experience</a></li>
+                <li><a href="/#philosophy">Philosophy</a></li>
+                <li><a href="/testimonials">Testimonials</a></li>
+            </ul>
+            <div class="nav-right">
+                <button class="theme-toggle" type="button" aria-label="Switch to light theme" aria-pressed="false"></button>
+                <a href="/#contact" class="nav-cta">Get in touch</a>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+        <button class="mobile-menu-close" aria-label="Close menu" onclick="document.querySelector('.mobile-menu').classList.remove('active'); document.querySelector('.nav-toggle').classList.remove('active');">
+            <span></span>
+            <span></span>
+        </button>
+        <div class="mobile-menu-content">
+            <a href="/#about" class="mobile-link">About</a>
+            <a href="/#experience" class="mobile-link">Experience</a>
+            <a href="/#philosophy" class="mobile-link">Philosophy</a>
+            <a href="/testimonials" class="mobile-link">Testimonials</a>
+            <a href="/#contact" class="mobile-link mobile-cta">Get in touch</a>
+            <button class="theme-toggle" type="button" aria-label="Switch to light theme" aria-pressed="false"></button>
+        </div>
+    </div>
+
+    <header class="page-header post-header">
+        <div class="page-header-grid">
+            <span class="page-label">Writing · Side project</span>
+            <h1 class="page-title">Sample Explorer: I built a family tree for every sampled record <em>by describing it to AI</em></h1>
+            <p class="page-intro">One evening to build, a week to defend from the robots. The idea, the tech, and exactly how I prompted to get there.</p>
+            <div class="post-meta"><span>Mark Jenkins</span><span>November 2026</span><span>13 min read</span><a href="/sample-explorer">Open Sample Explorer ↗</a></div>
+        </div>
+    </header>
+
+    <main class="post">
+        <article class="post-body">
+
+            <p class="lede">I built a family tree for every sampled record in one evening, by describing it. Then I spent a week learning that the hard part of a website isn't the website. It's the robots.</p>
+
+            <figure class="post-figure diagram" aria-label="A lineage graph drawn as a timeline">
+                <svg viewBox="0 0 1040 330" xmlns="http://www.w3.org/2000/svg" role="img">
+                    <title>A lineage graph: time runs left to right. Think (About It) by Lyn Collins sits in 1972, with the records that sampled it fanning out to the right, gathered into decade groups.</title>
+                    <g class="axis">
+                        <path class="loop" d="M40 290 H1000"/>
+                        <text class="s" x="150" y="315">1970s</text><text class="s" x="330" y="315">1980s</text><text class="s" x="510" y="315">1990s</text><text class="s" x="690" y="315">2000s</text><text class="s" x="870" y="315">2010s</text>
+                    </g>
+                    <g>
+                        <path class="arrow" d="M178 160 C 260 160, 300 90, 350 90"/>
+                        <path class="arrow" d="M178 160 C 260 160, 300 130, 372 130"/>
+                        <path class="arrow" d="M178 160 C 300 160, 420 70, 520 70"/>
+                        <path class="arrow" d="M178 160 C 300 160, 440 200, 540 200"/>
+                        <path class="loop" d="M178 160 C 330 160, 520 120, 600 120"/>
+                        <path class="loop" d="M178 160 C 360 160, 600 230, 720 230"/>
+                        <path class="loop" d="M178 160 C 380 160, 760 100, 880 100"/>
+                        <circle class="box acid" cx="165" cy="160" r="13"/>
+                        <text class="t" x="110" y="200">Think (About It)</text><text class="s" x="110" y="218">LYN COLLINS · 1972</text>
+                        <circle class="box acid" cx="355" cy="90" r="6"/><circle class="box acid" cx="377" cy="130" r="6"/>
+                        <circle class="box acid" cx="525" cy="70" r="6"/><circle class="box acid" cx="545" cy="200" r="6"/>
+                        <circle class="box" cx="620" cy="120" r="22"/><text class="s" x="604" y="124">+48</text>
+                        <circle class="box" cx="742" cy="230" r="26"/><text class="s" x="725" y="234">+112</text>
+                        <circle class="box" cx="902" cy="100" r="24"/><text class="s" x="886" y="104">+95</text>
+                        <text class="s" x="560" y="40">DECADE GROUPS · ZOOM IN TO OPEN THEM</text>
+                    </g>
+                </svg>
+                <figcaption>How Sample Explorer draws a record: time runs left to right, every dot is a record you can play, and the crowded decades fold into groups until you zoom in. (Group sizes here are illustrative.)</figcaption>
+            </figure>
+
+            <h2 id="idea"><span class="num">01</span>The idea</h2>
+            <p>At 15, <em>Endtroducing</em> rewired my ears. DJ Shadow built that record almost entirely out of other records, and once you know that, you can't unhear it. Every sampled record is a door into another one. Behind the door is a drum break from 1969, a soul B-side, a film score nobody bought.</p>
+            <p>I've always wanted to follow that chain properly. Pick a record, see what it borrowed, see who borrowed from it, and keep going until it's 2am and you're listening to a library record from a Swedish bank advert.</p>
+            <p>The obvious place for that is WhoSampled. It has no public API, and its terms ban scraping, so it was out. Genius, it turned out, has the same kind of data and does let you ask for it.</p>
+            <p><strong>Sample Explorer</strong> is the result. Search any record and see what it sampled and what sampled it. Follow the chain as a graph where left to right is time. Press play on any of it.</p>
+
+            <h2 id="spike"><span class="num">02</span>Check the crates first</h2>
+            <p>I didn't start with a design. I started with the question every designer should ask before drawing anything: does the stuff we need actually exist?</p>
+            <p>So the plan began with a "data spike": half a day to check whether Genius really knows who sampled what, before building a single screen. Ten well-known records, three sources asked about each.</p>
+            <div class="table-wrap">
+            <table class="post-table">
+                <thead><tr><th>Record</th><th>Genius: sampled in</th><th>MusicBrainz: sampled by</th><th>30s preview</th></tr></thead>
+                <tbody>
+                    <tr><td>Amen, Brother</td><td>683</td><td>50</td><td>✓</td></tr>
+                    <tr><td>Think (About It)</td><td>577</td><td>0</td><td>✓</td></tr>
+                    <tr><td>Funky Drummer</td><td>338</td><td>8</td><td>✓</td></tr>
+                    <tr><td>Apache</td><td>76</td><td>0</td><td>✓</td></tr>
+                    <tr><td>Ain't No Half-Steppin'</td><td>73</td><td>3</td><td>✓</td></tr>
+                </tbody>
+            </table>
+            </div>
+            <p>Genius won by a distance, and the spike said "go" the same day. It also handed me the design problem for free: Amen, Brother has 683 records hanging off it. You can't draw 683 lines and call it an interface. Whatever I built had to fold, group and reveal.</p>
+            <p>That's research, just faster. Half a day of checking saved me from designing something beautiful on data that wasn't there.</p>
+
+            <h2 id="built"><span class="num">03</span>What got built</h2>
+            <p>The first evening was the product. The next ten days were the polish, and then a week of fighting robots (more on that later). Here's the tally.</p>
+            <div class="stats" role="list">
+                <div role="listitem"><b>1</b><span>evening to a working product</span></div>
+                <div role="listitem"><b>95</b><span>commits</span></div>
+                <div role="listitem"><b>11</b><span>days of building</span></div>
+                <div role="listitem" class="zero"><b>0</b><span>lines of code I typed</span></div>
+            </div>
+            <div class="table-wrap">
+            <table class="post-table">
+                <thead><tr><th>What</th><th>How much</th></tr></thead>
+                <tbody>
+                    <tr><td>First evening</td><td>21 commits in under three hours: search, track pages, the graph, previews, share images, artist pages, dark and light themes, and a player that keeps playing between pages</td></tr>
+                    <tr><td>Code written</td><td>About 9,900 lines</td></tr>
+                    <tr><td>Starting points on the homepage</td><td>7 breaks hip-hop was built on, and 12 artists</td></tr>
+                    <tr><td>Producers credited</td><td>1,198 records that sampled the homepage breaks</td></tr>
+                    <tr><td>Ideas I killed</td><td>3, one of them a whole second version of the site</td></tr>
+                </tbody>
+            </table>
+            </div>
+            <p>What you can do with it:</p>
+            <ul>
+                <li><strong>Search any record</strong> and get two lists: what it sampled, and what sampled it. Fan edits and mashups are hidden unless you ask for them.</li>
+                <li><strong>Follow the graph.</strong> Time runs left to right. Tap a record to play it, open its connections, and keep going. Zoom in and the decade groups open up; zoom out and they fold away.</li>
+                <li><strong>Listen as you go.</strong> Every record has a 30-second preview, and the player keeps going while you browse. Play a whole list as a queue, and on a phone, swipe the title to skip.</li>
+                <li><strong>Connect two artists.</strong> Pick any two and it finds a chain of samples between them. The Jackson 5 to Taylor Swift is a good one.</li>
+                <li><strong>Who samples this most:</strong> the artists, producers and decades that keep coming back to a record.</li>
+                <li><strong>Compare</strong> an original and the record that sampled it, side by side, and <strong>chop it</strong>: one tap sends the sample to YPC, a pad sampler for YouTube, with sixteen pads ready to play.</li>
+                <li><strong>Share a story card</strong> straight to Instagram, with the record's lineage drawn as a strip of dots.</li>
+            </ul>
+
+            <h2 id="how"><span class="num">04</span>How it works</h2>
+            <p class="reading-note">If you're a designer, read the plain-English bit of each step and skip the code. If you build things, the code is there for you.</p>
+
+            <figure class="post-figure diagram wide" aria-label="From a search to a record playing">
+                <svg viewBox="0 0 1040 250" xmlns="http://www.w3.org/2000/svg" role="img">
+                    <title>From a search to a record playing: a search, the page on the server, the store, Genius only when the store doesn't know, the graph in the browser, and a 30-second preview.</title>
+                    <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="currentColor" style="color: var(--color-accent)"/></marker></defs>
+                    <g>
+                        <rect class="box acid" x="10" y="60" width="140" height="92" rx="2"/>
+                        <text class="n" x="24" y="84">01 · YOU</text><text class="t" x="24" y="110">A search</text><text class="s" x="24" y="132">"think about it"</text><text class="s" x="24" y="146">or a link</text>
+                        <rect class="box" x="186" y="60" width="150" height="92" rx="2"/>
+                        <text class="n" x="200" y="84">02 · NEXT.JS</text><text class="t" x="200" y="110">The page</text><text class="s" x="200" y="132">built on the server,</text><text class="s" x="200" y="146">keys stay there</text>
+                        <rect class="box" x="372" y="60" width="150" height="92" rx="2"/>
+                        <text class="n" x="386" y="84">03 · STORE</text><text class="t" x="386" y="110">Memory</text><text class="s" x="386" y="132">every answer kept</text><text class="s" x="386" y="146">for months</text>
+                        <rect class="box" x="558" y="60" width="150" height="92" rx="2"/>
+                        <text class="n" x="572" y="84">04 · GENIUS</text><text class="t" x="572" y="110">The data</text><text class="s" x="572" y="132">only asked when</text><text class="s" x="572" y="146">the store doesn't know</text>
+                        <rect class="box" x="744" y="60" width="140" height="92" rx="2"/>
+                        <text class="n" x="758" y="84">05 · D3</text><text class="t" x="758" y="110">The graph</text><text class="s" x="758" y="132">x is the year,</text><text class="s" x="758" y="146">drawn in SVG</text>
+                        <rect class="box acid" x="920" y="60" width="110" height="92" rx="2"/>
+                        <text class="n" x="934" y="84">06 · DEEZER</text><text class="t" x="934" y="110">Play</text><text class="s" x="934" y="132">30 seconds,</text><text class="s" x="934" y="146">straight to you</text>
+                        <path class="arrow" d="M150 106 H182" marker-end="url(#ah)"/><path class="arrow" d="M336 106 H368" marker-end="url(#ah)"/>
+                        <path class="arrow" d="M522 106 H554" marker-end="url(#ah)"/><path class="arrow" d="M708 106 H740" marker-end="url(#ah)"/>
+                        <path class="arrow" d="M884 106 H916" marker-end="url(#ah)"/>
+                        <path class="loop" d="M975 152 V205 H80 V156" marker-end="url(#ah)"/>
+                        <text class="s" x="330" y="226">tap any dot and round it goes again, one record further down the chain</text>
+                    </g>
+                </svg>
+                <figcaption>One trip down the chain. The store in the middle is the bit I didn't know I needed until week three.</figcaption>
+            </figure>
+
+            <h3>1. Genius is the record shop</h3>
+            <p>Every record page asks Genius one question: what does this song sample, and what samples it? Genius answers with a list, and the page sorts it oldest first so it reads like a timeline.</p>
+            <p>Genius takes up to ten seconds to answer for a heavily sampled record, and it only lets you ask 10,000 questions a day. So every answer is remembered. The second person to open Think (About It) gets it instantly, and costs nothing. That turned out to matter far more than I expected. Hold that thought.</p>
+
+            <h3>2. A graph where left to right is time</h3>
+            <p>Most network graphs are a hairball: dots pushed around until they stop moving. That tells you what's connected, but not when. In music, when is the whole story.</p>
+            <p>So every dot is pinned to its release year. The physics only gets to move dots up and down, never sideways. The result reads like a family tree on its side: originals on the left, the records that borrowed from them spreading out to the right.</p>
+            <span class="code-label">TypeScript · time runs left to right</span>
+<pre><code><span class="c">// every dot is pulled hard toward its release year; only y is free to settle</span>
+simulation
+  .force(<span class="k">"x"</span>, forceX((d) =&gt; d.targetX).strength(1))
+  .force(<span class="k">"y"</span>, forceY((d) =&gt; d.targetY).strength(0.25))</code></pre>
+            <p>Then there's the 683 problem from the spike. Up to 16 records on a side are shown one by one. Past that, they fold into decade groups: a circle for the 1990s, one for the 2000s. Zoom in and the groups open; zoom out and they close. Open one and every other line fades back, so you can see which records you just let in.</p>
+
+            <h3>3. Every record plays</h3>
+            <p>Each record gets a 30-second preview from Deezer, matched by artist and title. The audio never passes through my site: the page asks Deezer where the clip is and sends your browser straight there. That keeps it fast and keeps the audio off my bandwidth bill.</p>
+            <p>The player lives at the bottom of the screen and keeps playing as you move between pages. Tap a dot in the graph and it plays. Press play on a list and the whole list becomes a queue.</p>
+
+            <h3>4. Everything else</h3>
+            <ul>
+                <li><strong>The site:</strong> Next.js on Vercel, served at theluckystrike.co.uk/sample-explorer through the same kind of rewrite as the rest of my side projects. Same fonts, same ink-and-acid colours as this site.</li>
+                <li><strong>Connect two artists:</strong> a search through the web of samples for a chain between two names. Big pairs take longer than a web page is allowed to, so the search runs in 12-second slices, carrying on where the last one stopped.</li>
+                <li><strong>Who samples this most:</strong> Genius lists samplers by title and year only, so producer credits cost an extra question per record. The homepage breaks' 1,198 samplers were counted once, in advance.</li>
+                <li><strong>Share cards:</strong> every record gets its own share image, drawn on the fly with the record's lineage as a strip of dots.</li>
+            </ul>
+
+            <h2 id="prompting"><span class="num">05</span>How I prompted</h2>
+            <p>Same as last time: these are my real messages, typos and all. Most of the later ones were typed on my phone. I didn't write a clever prompt. I wrote the way I'd talk to a designer sitting next to me.</p>
+
+            <h3>Describe the behaviour, not the build</h3>
+            <blockquote class="prompt"><p>Add zooming to the graph: When zooming in to the lineage graph expand the groups and when zooming out close then again</p></blockquote>
+            <blockquote class="prompt"><p>When tapping or clicking on a node in the graph, auto play that song</p></blockquote>
+            <p>Two sentences, two features. I said what should happen when someone does something. How zoom levels map to decade groups was Claude's problem.</p>
+
+            <h3>Name the worry before it's a bug</h3>
+            <blockquote class="prompt"><p>When a group has been opened, is there a way to differentiate between the lines of the open group and the rest? The problem I foresee is that in the heavily sampled tracks there are SO many lines that it becomes heavy and fiddly</p></blockquote>
+            <p>Claude came back with two options. I said <em>"Yes build both"</em>. Groups now fan out from their circle, and focusing one fades every other line. Spotting the problem was my job. Solving it was a two-minute conversation.</p>
+
+            <h3>Ask for a list, then edit it</h3>
+            <blockquote class="prompt"><p>Any more visual improvements to the graph? For readability and discovery</p></blockquote>
+            <blockquote class="prompt"><p>Do them all apart from 5</p></blockquote>
+            <p>That's a design review in two lines. Claude did the thinking out loud, I did the editing. Visited rings, halos and a position strip went in. Number five didn't, and the reason why is the best part of this whole story.</p>
+
+            <h3>Admit when you got it wrong</h3>
+            <blockquote class="prompt" data-time="09:33"><p>Swipe left = previous track<br>Swipe right = next track</p></blockquote>
+            <blockquote class="prompt" data-time="09:33"><p>Sorry that's wrong; left = next and right = previous</p></blockquote>
+            <p>Same minute. It's cheaper to say "sorry, I got that backwards" than to live with it. Nobody sulked.</p>
+
+            <h3>Kill things fast</h3>
+            <p>Three ideas died, and I'm proud of all three deaths.</p>
+            <blockquote class="prompt"><p>Remove the v2 completely, it's dull in comparison</p></blockquote>
+            <p>I'd asked for a whole second version of the site on Meta's Astryx design system, side by side with the original. It took about a quarter of an hour to build and one look the next morning to bin. It was tidy, consistent and completely forgettable. Worth seeing, so I knew.</p>
+            <blockquote class="prompt"><p>this is terrible, let's not do this</p></blockquote>
+            <blockquote class="prompt"><p>delete it</p></blockquote>
+            <p>That was a prototype of the graph as a race track: you drive towards the future over the horizon. Before building it I asked for the UX pitfalls, which was smart. Then I went ahead anyway, which was not. It was terrible. It took two messages to get rid of.</p>
+            <p>The third was number five, which we'll get to.</p>
+
+            <h3>Ask for a sense check, not a yes</h3>
+            <blockquote class="prompt"><p>I think the target symbol in the player might be overkill now. Thoughts ?</p></blockquote>
+            <p>Claude agreed and said why. I said <em>"yes remove it"</em>. Sometimes you just want a second pair of eyes before you delete something.</p>
+
+            <h3>Report it like a user</h3>
+            <blockquote class="prompt"><p>urls like this are broken</p></blockquote>
+            <p>Followed by a link: the Jackson 5 to Taylor Swift. No diagnosis, no theory. The cause was that the first search for a big pair ran longer than a web page is allowed to, so the page died before it answered. Now it searches in slices and shows "Still digging" while it works.</p>
+
+            <h2 id="broke"><span class="num">06</span>What broke</h2>
+            <p>The usual suspects. None needed me to understand the cause, only to notice it.</p>
+            <div class="table-wrap">
+            <table class="post-table">
+                <thead><tr><th>What I saw</th><th>What was actually wrong</th><th>The fix</th></tr></thead>
+                <tbody>
+                    <tr><td>"Link copied" was hidden on phones</td><td>The phone's share sheet slid up over it</td><td>Moved the message to the top of the screen</td></tr>
+                    <tr><td>Zooming the graph was "very janky"</td><td>Every zoom re-ran the physics for up to two-thirds of a second, and the scroll started before the dots moved</td><td>Dropped a force the time axis didn't need, and made the view glide with the dots</td></tr>
+                    <tr><td>Long track names were cut off in the player</td><td>Not enough room next to the controls</td><td>Scrolling titles on phones; on desktop, controls moved right so the title gets the space</td></tr>
+                    <tr><td>Connect pages for big pairs died</td><td>The first search took longer than a page is allowed to run</td><td>Search in 12-second slices and carry on</td></tr>
+                    <tr><td>Search stopped working, pages errored</td><td>Robots. A lot of robots</td><td>See below. It took a week</td></tr>
+                </tbody>
+            </table>
+            </div>
+
+            <h2 id="limit"><span class="num">07</span>The 10,000 problem</h2>
+            <p>This is the bit I didn't see coming, and the bit I learned the most from.</p>
+            <p>Genius lets you ask 10,000 questions a day. Remember, every answer is kept, so that sounded like loads for a side project with a few visitors. Then search started failing and pages showed errors. So I sent this:</p>
+            <blockquote class="prompt"><p>the limit still seems to be hit frequently with small usage, we need to fix this</p></blockquote>
+            <p>When we dug in, Genius had counted 44,708 questions in a single day. My analytics showed a handful of people. Something didn't add up, and finding it was four layers deep.</p>
+
+            <h3>Layer 1: the site was being helpful</h3>
+            <p>Websites quietly load the pages behind the links you can see, so the next click feels instant. On most sites that's free. On mine, loading a record page meant asking Genius about it. So one person opening one record also asked about every record listed on it, like a waiter bringing every dish on the menu just in case.</p>
+            <p>Claude proved it with a fake version of Genius that counted questions. One page view: <strong>21 questions</strong>. Fixed, it was one.</p>
+
+            <h3>Layer 2: the memory had amnesia</h3>
+            <p>Remember the remembering? It turned out the built-in memory empties every time the site is updated, and can drop things whenever it likes. So every deploy started from scratch. The fix was a proper store, Upstash, that keeps every answer for months, whatever happens to the site. It took me two minutes to switch on, from my phone, once I found the right menu.</p>
+
+            <h3>Layer 3: the limit never lifted</h3>
+            <p>Genius counts refused questions too, over a rolling 24 hours. Each copy of my site stopped asking only after it was personally refused, and there were lots of copies. So the count never fell, and the site never recovered. Now one refusal stops every copy at once, until the time Genius says to come back.</p>
+            <p>Then I added a usage page so we could finally see real numbers. When the block lifted that evening, <strong>9,999 questions went through in under three hours</strong>. About one a second. That wasn't people.</p>
+
+            <h3>Layer 4: the robots</h3>
+            <p>With a counter on the door, the culprits introduced themselves.</p>
+            <div class="table-wrap">
+            <table class="post-table">
+                <thead><tr><th>Who</th><th>Pages in a day</th><th>What we did</th></tr></thead>
+                <tbody>
+                    <tr><td>AI and SEO crawlers</td><td>Not counted: they came in through a side door my robots.txt didn't cover</td><td>Turned away at every door</td></tr>
+                    <tr><td>Unnamed bots</td><td>9,614</td><td>Turned away at the door</td></tr>
+                    <tr><td>Bing (Google barely showed up)</td><td>700 to 1,300, and it would happily crawl forever</td><td>Welcome, with a daily allowance of 1,000 questions</td></tr>
+                    <tr><td>"Browsers"</td><td>6,512, while the site was down</td><td>A browser check, below</td></tr>
+                </tbody>
+            </table>
+            </div>
+            <p>The last row was the clever one. A scraper was posing as ordinary visitors: one from Germany, one from Spain, one from Peru, each on a different network, each running a browser a couple of years out of date. You can't block that by name or by address.</p>
+            <p>So the first page anyone loads now runs one line of JavaScript that sets a cookie and reloads. A real browser does it in a blink, and you'll never notice. A script that only downloads pages never gets past it.</p>
+            <span class="code-label">TypeScript · search engines get an allowance</span>
+<pre><code><span class="c">// a page that's already stored costs nothing; anything new spends today's allowance</span>
+<span class="k">if</span> (<span class="k">await</span> redis.exists(storedKey)) <span class="k">return true</span>;
+<span class="k">return</span> (<span class="k">await</span> bump(<span class="k">"visits"</span>, [<span class="k">"bot-budget"</span>], cost)) &lt;= BOT_BUDGET;</code></pre>
+            <div class="stats" role="list">
+                <div role="listitem"><b>44,708</b><span>questions in a day, at worst</span></div>
+                <div role="listitem"><b>~10,700</b><span>scraper visits turned away the next day</span></div>
+                <div role="listitem"><b>1,551</b><span>questions by that evening</span></div>
+                <div role="listitem" class="zero"><b>0</b><span>refused</span></div>
+            </div>
+            <p>And number five? It was producer counts across the whole graph. Lovely idea, but Genius only gives producers one record at a time, so every page would have cost dozens of extra questions. I said <em>"Let's not build it then"</em>, a full two weeks before I understood how right that was. It came back later in a cheaper form: counted once, in advance, for the homepage breaks, and only on request everywhere else.</p>
+            <p>I couldn't have diagnosed any of this myself. But every layer started with me noticing something felt off and saying so in a sentence. <em>"Small usage"</em> was the clue. The rest was Claude counting.</p>
+
+            <h2 id="takeaways"><span class="num">08</span>What I took from it</h2>
+            <p>The Listening Room taught me that taste is the bottleneck. This one added a few things.</p>
+            <p><strong>Research still comes first.</strong> Half a day checking the data shaped every decision after it. The 683 records behind Amen, Brother designed the graph before I did.</p>
+            <p><strong>The first evening is the easy bit.</strong> A working product took one evening. Making it survive contact with the internet took longer than building it. If you ship things, budget for that. Nobody shows you the week after.</p>
+            <p><strong>Measure before you guess.</strong> I spent days guessing at the limit. The moment there was a counter, the answer took one look. In product terms: instrument it, then decide.</p>
+            <p><strong>Saying no is a feature.</strong> The v2, the race track and number five all died, and the product is better for every one of them. Building things got cheap. Deciding what not to build didn't.</p>
+            <p><strong>Your best prompt might be a symptom.</strong> "Very janky." "Urls like this are broken." "The limit still seems to be hit with small usage." I described what I saw and what I expected. That was always enough.</p>
+            <p>Go and pick a record. Follow it backwards to the break, or forwards to whoever borrowed it last. If it's 2am and you're listening to a Swedish library record, it's working.</p>
+
+            <div class="post-cta">
+                <a class="button" href="/sample-explorer">Open Sample Explorer ↗</a>
+                <p class="post-credits">Built with Claude Code. Sample data from Genius, previews from Deezer. Read the companion piece, <a href="/writing/listening-room">The Listening Room</a>.</p>
+            </div>
+
+        </article>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-left">
+                <span class="footer-logo">Mark Jenkins</span>
+                <span class="footer-copy">© 2026</span>
+            </div>
+            <div class="footer-right">
+                <a href="mailto:mark@theluckystrike.co.uk">Email</a>
+                <a href="https://www.linkedin.com/in/markjenkins1981/" target="_blank" rel="noopener">LinkedIn</a>
+            </div>
+        </div>
+        <div class="footer-colophon">
+            <span>Set in Instrument Serif, Instrument Sans &amp; Geist Mono</span>
+            <span>Hand-written CSS — no frameworks</span>
+            <span>Drawn with code</span>
+        </div>
+    </footer>
+
+    <script src="/script.js"></script>
+
+    <!-- Vercel Speed Insights -->
+    <script>
+        window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/speed-insights/script.js"></script>
+</body>
+</html>
