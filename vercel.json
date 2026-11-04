@@ -27,11 +27,11 @@
     },
     {
       "source": "/listening-room",
-      "destination": "https://listening-room.vercel.app/listening-room"
+      "destination": "https://listening-room-blender.vercel.app/listening-room"
     },
     {
       "source": "/listening-room/:path*",
-      "destination": "https://listening-room.vercel.app/listening-room/:path*"
+      "destination": "https://listening-room-blender.vercel.app/listening-room/:path*"
     }
   ],
   "redirects": [

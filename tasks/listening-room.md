@@ -9,6 +9,6 @@ Sample Explorer:
 { "source": "/listening-room/:path*", "destination": "https://<listening-room-project>.vercel.app/listening-room/:path*" }
 ```
 
-Done on this branch: the rewrites (assuming the Vercel project gets the default `listening-room.vercel.app`
+Done on this branch: the rewrites (assuming the Vercel project gets the default `listening-room-blender.vercel.app`
 domain; change it if not) and `/api/spotify` now returns each album's played `track` and its `isrc`.
 Still to do once the room is live: add it to `sitemap.xml` and a "Step into the room →" link under the carousel.
