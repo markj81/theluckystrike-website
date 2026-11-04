@@ -96,7 +96,7 @@
             <span class="page-label">Writing · Side project</span>
             <h1 class="page-title">Sample Explorer: I built a family tree for every sampled record <em>by describing it to AI</em></h1>
             <p class="page-intro">One evening to build, a week to defend from the robots. The idea, the tech, and exactly how I prompted to get there.</p>
-            <div class="post-meta"><span>Mark Jenkins</span><span>November 2026</span><span>13 min read</span><a href="/sample-explorer">Open Sample Explorer ↗</a></div>
+            <div class="post-meta"><span>Mark Jenkins</span><span>November 2026</span><span>14 min read</span><a href="/sample-explorer">Open Sample Explorer ↗</a></div>
         </div>
     </header>
 
@@ -105,32 +105,9 @@
 
             <p class="lede">I built a family tree for every sampled record in one evening, by describing it. Then I spent a week learning that the hard part of a website isn't the website. It's the robots.</p>
 
-            <figure class="post-figure diagram" aria-label="A lineage graph drawn as a timeline">
-                <svg viewBox="0 0 1040 330" xmlns="http://www.w3.org/2000/svg" role="img">
-                    <title>A lineage graph: time runs left to right. Think (About It) by Lyn Collins sits in 1972, with the records that sampled it fanning out to the right, gathered into decade groups.</title>
-                    <g class="axis">
-                        <path class="loop" d="M40 290 H1000"/>
-                        <text class="s" x="150" y="315">1970s</text><text class="s" x="330" y="315">1980s</text><text class="s" x="510" y="315">1990s</text><text class="s" x="690" y="315">2000s</text><text class="s" x="870" y="315">2010s</text>
-                    </g>
-                    <g>
-                        <path class="arrow" d="M178 160 C 260 160, 300 90, 350 90"/>
-                        <path class="arrow" d="M178 160 C 260 160, 300 130, 372 130"/>
-                        <path class="arrow" d="M178 160 C 300 160, 420 70, 520 70"/>
-                        <path class="arrow" d="M178 160 C 300 160, 440 200, 540 200"/>
-                        <path class="loop" d="M178 160 C 330 160, 520 120, 600 120"/>
-                        <path class="loop" d="M178 160 C 360 160, 600 230, 720 230"/>
-                        <path class="loop" d="M178 160 C 380 160, 760 100, 880 100"/>
-                        <circle class="box acid" cx="165" cy="160" r="13"/>
-                        <text class="t" x="110" y="200">Think (About It)</text><text class="s" x="110" y="218">LYN COLLINS · 1972</text>
-                        <circle class="box acid" cx="355" cy="90" r="6"/><circle class="box acid" cx="377" cy="130" r="6"/>
-                        <circle class="box acid" cx="525" cy="70" r="6"/><circle class="box acid" cx="545" cy="200" r="6"/>
-                        <circle class="box" cx="620" cy="120" r="22"/><text class="s" x="604" y="124">+48</text>
-                        <circle class="box" cx="742" cy="230" r="26"/><text class="s" x="725" y="234">+112</text>
-                        <circle class="box" cx="902" cy="100" r="24"/><text class="s" x="886" y="104">+95</text>
-                        <text class="s" x="560" y="40">DECADE GROUPS · ZOOM IN TO OPEN THEM</text>
-                    </g>
-                </svg>
-                <figcaption>How Sample Explorer draws a record: time runs left to right, every dot is a record you can play, and the crowded decades fold into groups until you zoom in. (Group sizes here are illustrative.)</figcaption>
+            <figure class="post-figure">
+                <img src="/images/writing/sample-explorer/hero.webp" width="1440" height="810" alt="Sample Explorer's page for Think (About It) by Lyn Collins: the sleeve, 586 records that sampled it, producer and label credits, and below, the lineage graph with decade groups along a timeline.">
+                <figcaption>Think (About It), 1972: sampled in 586 records. Everything here was designed, built and deployed by Claude from my descriptions.</figcaption>
             </figure>
 
             <h2 id="idea"><span class="num">01</span>The idea</h2>
@@ -138,6 +115,14 @@
             <p>I've always wanted to follow that chain properly. Pick a record, see what it borrowed, see who borrowed from it, and keep going until it's 2am and you're listening to a library record from a Swedish bank advert.</p>
             <p>The obvious place for that is WhoSampled. It has no public API, and its terms ban scraping, so it was out. Genius, it turned out, has the same kind of data and does let you ask for it.</p>
             <p><strong>Sample Explorer</strong> is the result. Search any record and see what it sampled and what sampled it. Follow the chain as a graph where left to right is time. Press play on any of it.</p>
+            <figure class="post-figure">
+                <div class="grid-2">
+                    <div class="tile"><img src="/images/writing/sample-explorer/home.webp" width="1440" height="810" alt="The Sample Explorer homepage: 'Every record is a family tree.' with a search box, and a small graph of Amen, Brother, sampled in 689 tracks." loading="lazy"><span class="tag">Home</span></div>
+                    <div class="tile"><img src="/images/writing/sample-explorer/home-breaks.webp" width="1440" height="810" alt="The homepage's breaks grid: Amen, Brother, Think (About It), Funky Drummer, Impeach the President, Synthetic Substitution and It's a New Day, each with a strip of dots showing who sampled it and when." loading="lazy"><span class="tag">Start with the breaks</span></div>
+                </div>
+                <figcaption>Start with a search, or with the breaks hip-hop was built on. Each strip of dots is a record's samplers, by year.</figcaption>
+            </figure>
+
 
             <h2 id="spike"><span class="num">02</span>Check the crates first</h2>
             <p>I didn't start with a design. I started with the question every designer should ask before drawing anything: does the stuff we need actually exist?</p>
@@ -154,6 +139,29 @@
                 </tbody>
             </table>
             </div>
+            <figure class="post-figure diagram wide" aria-label="Genius against MusicBrainz for five records">
+                <svg viewBox="0 0 1040 310" xmlns="http://www.w3.org/2000/svg" role="img">
+                    <title>Records that sampled each break: Genius knows far more than MusicBrainz. Amen, Brother 683 against 50; Think (About It) 577 against 0; Funky Drummer 338 against 8; Apache 76 against 0; Ain't No Half-Steppin' 73 against 3.</title>
+                    <text class="n" x="230" y="26">GENIUS: SAMPLED IN</text><rect x="400" y="17" width="12" height="10" style="fill: var(--color-accent)"/>
+                    <text class="n" x="440" y="26" style="fill: var(--color-text-muted)">MUSICBRAINZ: SAMPLED BY</text><rect class="box" x="640" y="17" width="12" height="10"/>
+                    <text class="t" x="10" y="67">Amen, Brother</text>
+                    <rect x="230" y="52" width="720" height="14" style="fill: var(--color-accent)"/><text class="s" x="958" y="64">683</text>
+                    <rect class="box" x="230" y="70" width="53" height="10"/><text class="s" x="291" y="79">50</text>
+                    <text class="t" x="10" y="117">Think (About It)</text>
+                    <rect x="230" y="102" width="608" height="14" style="fill: var(--color-accent)"/><text class="s" x="846" y="114">577</text>
+                    <rect class="box" x="230" y="120" width="2" height="10"/><text class="s" x="240" y="129">0</text>
+                    <text class="t" x="10" y="167">Funky Drummer</text>
+                    <rect x="230" y="152" width="356" height="14" style="fill: var(--color-accent)"/><text class="s" x="594" y="164">338</text>
+                    <rect class="box" x="230" y="170" width="8" height="10"/><text class="s" x="246" y="179">8</text>
+                    <text class="t" x="10" y="217">Apache</text>
+                    <rect x="230" y="202" width="80" height="14" style="fill: var(--color-accent)"/><text class="s" x="318" y="214">76</text>
+                    <rect class="box" x="230" y="220" width="2" height="10"/><text class="s" x="240" y="229">0</text>
+                    <text class="t" x="10" y="267">Ain't No Half-Steppin'</text>
+                    <rect x="230" y="252" width="77" height="14" style="fill: var(--color-accent)"/><text class="s" x="315" y="264">73</text>
+                    <rect class="box" x="230" y="270" width="3" height="10"/><text class="s" x="241" y="279">3</text>
+                </svg>
+                <figcaption>The data check, drawn. Genius knew about ten times more, and MusicBrainz often knew nothing at all. The long bars were also the design brief: 683 records won't fit on one screen.</figcaption>
+            </figure>
             <p>Genius won by a distance, and the spike said "go" the same day. It also handed me the design problem for free: Amen, Brother has 683 records hanging off it. You can't draw 683 lines and call it an interface. Whatever I built had to fold, group and reveal.</p>
             <p>That's research, just faster. Half a day of checking saved me from designing something beautiful on data that wasn't there.</p>
 
@@ -187,6 +195,19 @@
                 <li><strong>Compare</strong> an original and the record that sampled it, side by side, and <strong>chop it</strong>: one tap sends the sample to YPC, a pad sampler for YouTube, with sixteen pads ready to play.</li>
                 <li><strong>Share a story card</strong> straight to Instagram, with the record's lineage drawn as a strip of dots.</li>
             </ul>
+            <figure class="post-figure">
+                <div class="grid-3">
+                    <div class="tile"><img src="/images/writing/sample-explorer/connect.webp" width="1440" height="810" alt="Connect two artists: The Jackson 5 to Taylor Swift, two samples apart, via I'll Be There, two DJ Earworm mashups and Fortnight." loading="lazy"><span class="tag">Connect</span></div>
+                    <div class="tile"><img src="/images/writing/sample-explorer/compare.webp" width="1440" height="810" alt="Compare: Think (About It) interpolated Think by The 5 Royales, 15 years later, with both sleeves side by side and play buttons." loading="lazy"><span class="tag">Compare</span></div>
+                    <div class="tile"><img src="/images/writing/sample-explorer/lists-player.webp" width="1440" height="810" alt="The Sampled in list for Think (About It), oldest first, with the player docked at the bottom playing the track." loading="lazy"><span class="tag">Play</span></div>
+                </div>
+                <figcaption>Connect two artists (the Jackson 5 and Taylor Swift are two samples apart), compare an original with its sampler, or press play and keep browsing.</figcaption>
+            </figure>
+            <figure class="post-figure">
+                <img src="/images/writing/sample-explorer/insights.webp" width="1440" height="371" alt="Who samples this most for Think (About It): top artists, top producers, and a bar chart of samplers by decade, busiest in the 2020s." loading="lazy">
+                <figcaption>Who samples this most: the artists, producers and decades behind a record. Think (About It) is still being sampled more than ever.</figcaption>
+            </figure>
+
 
             <h2 id="how"><span class="num">04</span>How it works</h2>
             <p class="reading-note">If you're a designer, read the plain-English bit of each step and skip the code. If you build things, the code is there for you.</p>
@@ -203,11 +224,11 @@
                         <rect class="box" x="372" y="60" width="150" height="92" rx="2"/>
                         <text class="n" x="386" y="84">03 · STORE</text><text class="t" x="386" y="110">Memory</text><text class="s" x="386" y="132">every answer kept</text><text class="s" x="386" y="146">for months</text>
                         <rect class="box" x="558" y="60" width="150" height="92" rx="2"/>
-                        <text class="n" x="572" y="84">04 · GENIUS</text><text class="t" x="572" y="110">The data</text><text class="s" x="572" y="132">only asked when</text><text class="s" x="572" y="146">the store doesn't know</text>
+                        <text class="n" x="572" y="84">04 · GENIUS</text><text class="t" x="572" y="110">The data</text><text class="s" x="572" y="132">only if the store</text><text class="s" x="572" y="146">doesn't know</text>
                         <rect class="box" x="744" y="60" width="140" height="92" rx="2"/>
                         <text class="n" x="758" y="84">05 · D3</text><text class="t" x="758" y="110">The graph</text><text class="s" x="758" y="132">x is the year,</text><text class="s" x="758" y="146">drawn in SVG</text>
                         <rect class="box acid" x="920" y="60" width="110" height="92" rx="2"/>
-                        <text class="n" x="934" y="84">06 · DEEZER</text><text class="t" x="934" y="110">Play</text><text class="s" x="934" y="132">30 seconds,</text><text class="s" x="934" y="146">straight to you</text>
+                        <text class="n" x="934" y="84">06 · DEEZER</text><text class="t" x="934" y="110">Play</text><text class="s" x="934" y="132">30 seconds,</text><text class="s" x="934" y="146">direct to you</text>
                         <path class="arrow" d="M150 106 H182" marker-end="url(#ah)"/><path class="arrow" d="M336 106 H368" marker-end="url(#ah)"/>
                         <path class="arrow" d="M522 106 H554" marker-end="url(#ah)"/><path class="arrow" d="M708 106 H740" marker-end="url(#ah)"/>
                         <path class="arrow" d="M884 106 H916" marker-end="url(#ah)"/>
@@ -221,16 +242,175 @@
             <h3>1. Genius is the record shop</h3>
             <p>Every record page asks Genius one question: what does this song sample, and what samples it? Genius answers with a list, and the page sorts it oldest first so it reads like a timeline.</p>
             <p>Genius takes up to ten seconds to answer for a heavily sampled record, and it only lets you ask 10,000 questions a day. So every answer is remembered. The second person to open Think (About It) gets it instantly, and costs nothing. That turned out to matter far more than I expected. Hold that thought.</p>
+            <figure class="post-figure diagram wide" aria-label="How the store saves questions">
+                <svg viewBox="0 0 1040 260" xmlns="http://www.w3.org/2000/svg" role="img">
+                    <title>The first visitor to a record makes the site ask Genius, which takes 6 to 10 seconds and uses one of 10,000 daily questions; the answer is kept for months. Everyone after gets it instantly from the store, and Genius is never asked.</title>
+                    <defs><marker id="ah3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="currentColor" style="color: var(--color-accent)"/></marker></defs>
+                    <g><rect class="box" x="10" y="20" width="170" height="84" rx="2"/><text class="n" x="24" y="42">01 · FIRST VISITOR</text><text class="t" x="24" y="66">Think (About It)</text><text class="s" x="24" y="86">opens the page</text></g>
+                    <g><rect class="box" x="230" y="20" width="170" height="84" rx="2"/><text class="n" x="244" y="42">STORE</text><text class="t" x="244" y="66">Memory</text><text class="s" x="244" y="86">nothing yet</text></g>
+                    <g><rect class="box" x="450" y="20" width="170" height="84" rx="2"/><text class="n" x="464" y="42">GENIUS</text><text class="t" x="464" y="66">The question</text><text class="s" x="464" y="86">one of 10,000</text><text class="s" x="464" y="99">a day</text></g>
+                    <g><rect class="box" x="670" y="20" width="170" height="84" rx="2"/><text class="n" x="684" y="42">RESULT</text><text class="t" x="684" y="66">The page</text><text class="s" x="684" y="86">6–10 seconds</text></g>
+                    <path class="arrow" d="M180 62 H226" marker-end="url(#ah3)"/>
+                    <path class="arrow" d="M400 62 H446" marker-end="url(#ah3)"/><path class="arrow" d="M620 62 H666" marker-end="url(#ah3)"/>
+                    <path class="loop" d="M535 104 V124 H315 V108" marker-end="url(#ah3)"/><text class="s" x="345" y="138">the answer is kept for months</text>
+                    <g><rect class="box" x="10" y="150" width="170" height="84" rx="2"/><text class="n" x="24" y="172">04 · EVERYONE AFTER</text><text class="t" x="24" y="196">Think (About It)</text><text class="s" x="24" y="216">opens the page</text></g>
+                    <g><rect class="box acid" x="230" y="150" width="170" height="84" rx="2"/><text class="n" x="244" y="172">STORE</text><text class="t" x="244" y="196">Memory</text><text class="s" x="244" y="216">already knows</text></g>
+                    <g style="opacity:.35"><rect class="box" x="450" y="150" width="170" height="84" rx="2"/><text class="n" x="464" y="172">GENIUS</text><text class="t" x="464" y="196">The question</text><text class="s" x="464" y="216">one of 10,000</text><text class="s" x="464" y="229">a day</text></g>
+                    <g><rect class="box acid" x="670" y="150" width="170" height="84" rx="2"/><text class="n" x="684" y="172">RESULT</text><text class="t" x="684" y="196">The page</text><text class="s" x="684" y="216">instant</text></g>
+                    <path class="arrow" d="M180 192 H226" marker-end="url(#ah3)"/>
+                    <path class="arrow" d="M400 192 C 470 270, 600 270, 666 200" marker-end="url(#ah3)"/><text class="s" x="470" y="258">Genius never asked</text>
+                    <text class="s" x="870" y="66">costs 1 question</text><text class="s" x="870" y="196">costs nothing</text>
+                </svg>
+                <figcaption>Ask once, remember for months. The first person to open a record pays for it in seconds; everyone after gets it for free.</figcaption>
+            </figure>
+
 
             <h3>2. A graph where left to right is time</h3>
             <p>Most network graphs are a hairball: dots pushed around until they stop moving. That tells you what's connected, but not when. In music, when is the whole story.</p>
             <p>So every dot is pinned to its release year. The physics only gets to move dots up and down, never sideways. The result reads like a family tree on its side: originals on the left, the records that borrowed from them spreading out to the right.</p>
+            <figure class="post-figure diagram wide" aria-label="A tangled graph next to one laid out by year">
+                <svg viewBox="0 0 1040 310" xmlns="http://www.w3.org/2000/svg" role="img">
+                    <title>The same records drawn twice. Left, a usual network graph: a tangle that shows connections but not time. Right, every dot pinned to its release year, so originals sit on the left and the records that borrowed from them spread to the right.</title>
+                    <text class="n" x="40" y="30">MOST GRAPHS</text><text class="s" x="40" y="48">what's connected</text>
+                    <text class="n" x="560" y="30">SAMPLE EXPLORER</text><text class="s" x="560" y="48">what's connected, and when</text>
+                    <path class="arrow" d="M250 155 L206 89"/>
+                    <path class="arrow" d="M589 165 C 714 165, 714 117, 839 117"/>
+                    <path class="arrow" d="M250 155 L68 136"/>
+                    <path class="arrow" d="M589 165 C 659 165, 659 154, 729 154"/>
+                    <path class="arrow" d="M250 155 L426 212"/>
+                    <path class="arrow" d="M589 165 C 677 165, 677 191, 765 191"/>
+                    <path class="arrow" d="M250 155 L361 102"/>
+                    <path class="arrow" d="M589 165 C 611 165, 611 228, 633 228"/>
+                    <path class="arrow" d="M250 155 L265 113"/>
+                    <path class="arrow" d="M589 165 C 758 165, 758 95, 927 95"/>
+                    <path class="arrow" d="M250 155 L113 80"/>
+                    <path class="arrow" d="M589 165 C 677 165, 677 132, 765 132"/>
+                    <path class="arrow" d="M250 155 L130 236"/>
+                    <path class="arrow" d="M589 165 C 773 165, 773 169, 956 169"/>
+                    <path class="arrow" d="M250 155 L388 213"/>
+                    <path class="arrow" d="M589 165 C 688 165, 688 206, 787 206"/>
+                    <path class="loop" d="M206 89 L347 222"/>
+                    <path class="loop" d="M839 117 C 883 117, 883 147, 927 147"/>
+                    <path class="loop" d="M108 118 L68 136"/>
+                    <path class="loop" d="M743 214 C 736 214, 736 154, 729 154"/>
+                    <path class="loop" d="M376 97 L381 68"/>
+                    <path class="loop" d="M743 243 C 776 243, 776 81, 809 81"/>
+                    <path class="loop" d="M292 142 L170 179"/>
+                    <path class="loop" d="M839 177 C 850 177, 850 110, 861 110"/>
+                    <path class="arrow" d="M250 155 L170 179"/>
+                    <path class="arrow" d="M589 165 C 725 165, 725 110, 861 110"/>
+                    <path class="loop" d="M376 97 L170 179"/>
+                    <path class="loop" d="M743 243 C 802 243, 802 110, 861 110"/>
+                    <path class="loop" d="M361 102 L59 179"/>
+                    <path class="loop" d="M633 228 C 795 228, 795 118, 956 118"/>
+                    <path class="loop" d="M254 139 L294 188"/>
+                    <path class="loop" d="M714 140 C 740 140, 740 221, 765 221"/>
+                    <path class="loop" d="M411 221 L292 142"/>
+                    <path class="loop" d="M773 103 C 806 103, 806 177, 839 177"/>
+                    <path class="loop" d="M68 136 L376 97"/>
+                    <path class="loop" d="M729 154 C 736 154, 736 243, 743 243"/>
+                    <path class="loop" d="M411 221 L113 80"/>
+                    <path class="loop" d="M773 103 C 769 103, 769 132, 765 132"/>
+                    <path class="loop" d="M253 94 L376 97"/>
+                    <path class="loop" d="M839 88 C 791 88, 791 243, 743 243"/>
+                    <path class="loop" d="M361 102 L388 213"/>
+                    <path class="loop" d="M633 228 C 710 228, 710 206, 787 206"/>
+                    <path class="loop" d="M410 76 L411 221"/>
+                    <path class="loop" d="M839 184 C 806 184, 806 103, 773 103"/>
+                    <path class="loop" d="M265 113 L170 179"/>
+                    <path class="loop" d="M927 95 C 894 95, 894 110, 861 110"/>
+                    <path class="loop" d="M422 169 L250 155"/>
+                    <path class="loop" d="M787 236 C 688 236, 688 165, 589 165"/>
+                    <path class="loop" d="M347 222 L206 89"/>
+                    <path class="loop" d="M927 147 C 883 147, 883 117, 839 117"/>
+                    <path class="loop" d="M253 94 L265 113"/>
+                    <path class="loop" d="M839 88 C 883 88, 883 95, 927 95"/>
+                    <path class="loop" d="M347 222 L158 162"/>
+                    <path class="loop" d="M927 147 C 758 147, 758 155, 589 155"/>
+                    <path class="loop" d="M158 162 L347 222"/>
+                    <path class="loop" d="M589 155 C 758 155, 758 147, 927 147"/>
+                    <path class="loop" d="M376 97 L422 169"/>
+                    <path class="loop" d="M743 243 C 765 243, 765 236, 787 236"/>
+                    <path class="loop" d="M426 212 L253 94"/>
+                    <path class="loop" d="M765 191 C 802 191, 802 88, 839 88"/>
+                    <circle class="box acid" cx="250" cy="155" r="9"/>
+                    <circle class="box" cx="206" cy="89" r="5"/>
+                    <circle class="box" cx="68" cy="136" r="5"/>
+                    <circle class="box" cx="426" cy="212" r="5"/>
+                    <circle class="box" cx="361" cy="102" r="5"/>
+                    <circle class="box" cx="265" cy="113" r="5"/>
+                    <circle class="box" cx="113" cy="80" r="5"/>
+                    <circle class="box" cx="130" cy="236" r="5"/>
+                    <circle class="box" cx="388" cy="213" r="5"/>
+                    <circle class="box" cx="376" cy="97" r="5"/>
+                    <circle class="box" cx="170" cy="179" r="5"/>
+                    <circle class="box" cx="347" cy="222" r="5"/>
+                    <circle class="box" cx="410" cy="76" r="5"/>
+                    <circle class="box" cx="294" cy="188" r="5"/>
+                    <circle class="box" cx="253" cy="94" r="5"/>
+                    <circle class="box" cx="239" cy="77" r="5"/>
+                    <circle class="box" cx="433" cy="224" r="5"/>
+                    <circle class="box" cx="270" cy="117" r="5"/>
+                    <circle class="box" cx="422" cy="169" r="5"/>
+                    <circle class="box" cx="411" cy="221" r="5"/>
+                    <circle class="box" cx="254" cy="139" r="5"/>
+                    <circle class="box" cx="292" cy="142" r="5"/>
+                    <circle class="box" cx="108" cy="118" r="5"/>
+                    <circle class="box" cx="381" cy="68" r="5"/>
+                    <circle class="box" cx="59" cy="179" r="5"/>
+                    <circle class="box" cx="158" cy="162" r="5"/>
+                    <circle class="box acid" cx="589" cy="165" r="9"/>
+                    <circle class="box" cx="839" cy="117" r="5"/>
+                    <circle class="box" cx="729" cy="154" r="5"/>
+                    <circle class="box" cx="765" cy="191" r="5"/>
+                    <circle class="box" cx="633" cy="228" r="5"/>
+                    <circle class="box" cx="927" cy="95" r="5"/>
+                    <circle class="box" cx="765" cy="132" r="5"/>
+                    <circle class="box" cx="956" cy="169" r="5"/>
+                    <circle class="box" cx="787" cy="206" r="5"/>
+                    <circle class="box" cx="743" cy="243" r="5"/>
+                    <circle class="box" cx="861" cy="110" r="5"/>
+                    <circle class="box" cx="927" cy="147" r="5"/>
+                    <circle class="box" cx="839" cy="184" r="5"/>
+                    <circle class="box" cx="765" cy="221" r="5"/>
+                    <circle class="box" cx="839" cy="88" r="5"/>
+                    <circle class="box" cx="714" cy="125" r="5"/>
+                    <circle class="box" cx="611" cy="162" r="5"/>
+                    <circle class="box" cx="773" cy="199" r="5"/>
+                    <circle class="box" cx="787" cy="236" r="5"/>
+                    <circle class="box" cx="773" cy="103" r="5"/>
+                    <circle class="box" cx="714" cy="140" r="5"/>
+                    <circle class="box" cx="839" cy="177" r="5"/>
+                    <circle class="box" cx="743" cy="214" r="5"/>
+                    <circle class="box" cx="809" cy="81" r="5"/>
+                    <circle class="box" cx="956" cy="118" r="5"/>
+                    <circle class="box" cx="589" cy="155" r="5"/>
+                    <path class="loop" d="M560 280 H1000"/>
+                    <text class="s" x="583" y="298">1970s</text>
+                    <text class="s" x="656" y="298">1980s</text>
+                    <text class="s" x="729" y="298">1990s</text>
+                    <text class="s" x="803" y="298">2000s</text>
+                    <text class="s" x="876" y="298">2010s</text>
+                    <text class="s" x="949" y="298">2020s</text>
+                    <path class="loop" d="M520 50 V290"/>
+                </svg>
+                <figcaption>Same records, same connections. On the left, physics decides where dots go. On the right, the year does: the original sits on the left and the borrowing spreads out to the right.</figcaption>
+            </figure>
             <span class="code-label">TypeScript · time runs left to right</span>
 <pre><code><span class="c">// every dot is pulled hard toward its release year; only y is free to settle</span>
 simulation
   .force(<span class="k">"x"</span>, forceX((d) =&gt; d.targetX).strength(1))
   .force(<span class="k">"y"</span>, forceY((d) =&gt; d.targetY).strength(0.25))</code></pre>
             <p>Then there's the 683 problem from the spike. Up to 16 records on a side are shown one by one. Past that, they fold into decade groups: a circle for the 1990s, one for the 2000s. Zoom in and the groups open; zoom out and they close. Open one and every other line fades back, so you can see which records you just let in.</p>
+            <figure class="post-figure">
+                <div style="display:grid;gap:10px">
+                    <div class="tile"><img src="/images/writing/sample-explorer/graph-out.webp" width="1440" height="579" alt="The lineage graph zoomed out: Think (About It) with six decade circles, 40 in the 1980s, 130 in the 1990s, 40 in the 2000s, 115 in the 2010s and 222 in the 2020s." loading="lazy"><span class="tag">Zoomed out</span></div>
+                    <div class="tile"><img src="/images/writing/sample-explorer/graph-start.webp" width="1440" height="579" alt="The graph at its starting zoom: the earliest decades open into individual records, the later ones still grouped." loading="lazy"><span class="tag">Start</span></div>
+                    <div class="tile"><img src="/images/writing/sample-explorer/graph-in.webp" width="1440" height="579" alt="Zoomed all the way in: groups open into hundreds of individual records, up to the 300-record limit." loading="lazy"><span class="tag acid">Zoomed in</span></div>
+                </div>
+                <figcaption>Same record, three zoom levels. Out, the decades fold into circles. In, they open into individual records, up to 300 on screen.</figcaption>
+            </figure>
+
 
             <h3>3. Every record plays</h3>
             <p>Each record gets a 30-second preview from Deezer, matched by artist and title. The audio never passes through my site: the page asks Deezer where the clip is and sends your browser straight there. That keeps it fast and keeps the audio off my bandwidth bill.</p>
@@ -243,6 +423,11 @@ simulation
                 <li><strong>Who samples this most:</strong> Genius lists samplers by title and year only, so producer credits cost an extra question per record. The homepage breaks' 1,198 samplers were counted once, in advance.</li>
                 <li><strong>Share cards:</strong> every record gets its own share image, drawn on the fly with the record's lineage as a strip of dots.</li>
             </ul>
+            <figure class="post-figure narrow" style="max-width: 300px">
+                <img src="/images/writing/sample-explorer/story.webp" width="540" height="960" alt="An Instagram story card for Think (About It): the sleeve, 586 samplers, and a strip of dots by year from 1972 to 2026." loading="lazy">
+                <figcaption>A story card, ready for Instagram.</figcaption>
+            </figure>
+
 
             <h2 id="prompting"><span class="num">05</span>How I prompted</h2>
             <p>Same as last time: these are my real messages, typos and all. Most of the later ones were typed on my phone. I didn't write a clever prompt. I wrote the way I'd talk to a designer sitting next to me.</p>
@@ -255,6 +440,11 @@ simulation
             <h3>Name the worry before it's a bug</h3>
             <blockquote class="prompt"><p>When a group has been opened, is there a way to differentiate between the lines of the open group and the rest? The problem I foresee is that in the heavily sampled tracks there are SO many lines that it becomes heavy and fiddly</p></blockquote>
             <p>Claude came back with two options. I said <em>"Yes build both"</em>. Groups now fan out from their circle, and focusing one fades every other line. Spotting the problem was my job. Solving it was a two-minute conversation.</p>
+            <figure class="post-figure">
+                <img src="/images/writing/sample-explorer/graph-focus.webp" width="1440" height="605" alt="The graph with the 1990s group focused: its lines light up in acid green while every other line fades, and a panel below says 130 tracks sampled it from the 1990s, including Janet Jackson and Madonna." loading="lazy">
+                <figcaption>"SO many lines." The 1990s group focused: its 130 records light up, everything else steps back.</figcaption>
+            </figure>
+
 
             <h3>Ask for a list, then edit it</h3>
             <blockquote class="prompt"><p>Any more visual improvements to the graph? For readability and discovery</p></blockquote>
@@ -265,6 +455,11 @@ simulation
             <blockquote class="prompt" data-time="09:33"><p>Swipe left = previous track<br>Swipe right = next track</p></blockquote>
             <blockquote class="prompt" data-time="09:33"><p>Sorry that's wrong; left = next and right = previous</p></blockquote>
             <p>Same minute. It's cheaper to say "sorry, I got that backwards" than to live with it. Nobody sulked.</p>
+            <figure class="post-figure">
+                <img src="/images/writing/sample-explorer/phone-views.webp" width="1404" height="980" alt="Three phone screenshots: the homepage, the Think (About It) page, and the lineage graph with the player docked at the bottom showing a pause button." loading="lazy">
+                <figcaption>On a phone: search, the record, and the graph you swipe through. The player docks at the bottom: play or pause, and swipe the title to skip.</figcaption>
+            </figure>
+
 
             <h3>Kill things fast</h3>
             <p>Three ideas died, and I'm proud of all three deaths.</p>
@@ -307,6 +502,62 @@ simulation
             <h3>Layer 1: the site was being helpful</h3>
             <p>Websites quietly load the pages behind the links you can see, so the next click feels instant. On most sites that's free. On mine, loading a record page meant asking Genius about it. So one person opening one record also asked about every record listed on it, like a waiter bringing every dish on the menu just in case.</p>
             <p>Claude proved it with a fake version of Genius that counted questions. One page view: <strong>21 questions</strong>. Fixed, it was one.</p>
+            <figure class="post-figure diagram wide" aria-label="One page view before and after the prefetch fix">
+                <svg viewBox="0 0 1040 310" xmlns="http://www.w3.org/2000/svg" role="img">
+                    <title>Before: opening one record page asked Genius about the page plus every record listed on it, 21 questions. After: one question, and other records load only when clicked.</title>
+                    <defs><marker id="ah4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="currentColor" style="color: var(--color-accent)"/></marker></defs>
+                    <text class="n" x="10" y="24">BEFORE · ONE PAGE VIEW</text><text class="n" x="640" y="24">AFTER · ONE PAGE VIEW</text>
+                    <rect class="box acid" x="10" y="110" width="150" height="70" rx="2"/><text class="t" x="24" y="140">You open</text><text class="s" x="24" y="160">Think (About It)</text>
+                    <path class="loop" d="M160 145 C 220 145, 230 50, 286 50"/>
+                    <rect class="box" x="290" y="44" width="140" height="14" rx="2"/><text class="s" x="296" y="55">row 1: ask Genius</text>
+                    <path class="loop" d="M160 145 C 220 145, 230 72, 286 72"/>
+                    <rect class="box" x="290" y="66" width="140" height="14" rx="2"/><text class="s" x="296" y="77">row 2: ask Genius</text>
+                    <path class="loop" d="M160 145 C 220 145, 230 94, 286 94"/>
+                    <rect class="box" x="290" y="88" width="140" height="14" rx="2"/><text class="s" x="296" y="99">row 3: ask Genius</text>
+                    <path class="loop" d="M160 145 C 220 145, 230 116, 286 116"/>
+                    <rect class="box" x="290" y="110" width="140" height="14" rx="2"/><text class="s" x="296" y="121">row 4: ask Genius</text>
+                    <path class="loop" d="M160 145 C 220 145, 230 138, 286 138"/>
+                    <rect class="box" x="290" y="132" width="140" height="14" rx="2"/><text class="s" x="296" y="143">row 5: ask Genius</text>
+                    <path class="loop" d="M160 145 C 220 145, 230 160, 286 160"/>
+                    <rect class="box" x="290" y="154" width="140" height="14" rx="2"/><text class="s" x="296" y="165">row 6: ask Genius</text>
+                    <path class="loop" d="M160 145 C 220 145, 230 182, 286 182"/>
+                    <rect class="box" x="290" y="176" width="140" height="14" rx="2"/><text class="s" x="296" y="187">row 7: ask Genius</text>
+                    <path class="loop" d="M160 145 C 220 145, 230 204, 286 204"/>
+                    <rect class="box" x="290" y="198" width="140" height="14" rx="2"/><text class="s" x="296" y="209">row 8: ask Genius</text>
+                    <path class="loop" d="M160 145 C 220 145, 230 226, 286 226"/>
+                    <rect class="box" x="290" y="220" width="140" height="14" rx="2"/><text class="s" x="296" y="231">row 9: ask Genius</text>
+                    <path class="loop" d="M160 145 C 220 145, 230 248, 286 248"/>
+                    <rect class="box" x="290" y="242" width="140" height="14" rx="2"/><text class="s" x="296" y="253">row 10: ask Genius</text>
+                    <path class="loop" d="M160 145 C 220 145, 230 50, 446 50"/>
+                    <rect class="box" x="450" y="44" width="140" height="14" rx="2"/><text class="s" x="456" y="55">row 11: ask Genius</text>
+                    <path class="loop" d="M160 145 C 220 145, 230 72, 446 72"/>
+                    <rect class="box" x="450" y="66" width="140" height="14" rx="2"/><text class="s" x="456" y="77">row 12: ask Genius</text>
+                    <path class="loop" d="M160 145 C 220 145, 230 94, 446 94"/>
+                    <rect class="box" x="450" y="88" width="140" height="14" rx="2"/><text class="s" x="456" y="99">row 13: ask Genius</text>
+                    <path class="loop" d="M160 145 C 220 145, 230 116, 446 116"/>
+                    <rect class="box" x="450" y="110" width="140" height="14" rx="2"/><text class="s" x="456" y="121">row 14: ask Genius</text>
+                    <path class="loop" d="M160 145 C 220 145, 230 138, 446 138"/>
+                    <rect class="box" x="450" y="132" width="140" height="14" rx="2"/><text class="s" x="456" y="143">row 15: ask Genius</text>
+                    <path class="loop" d="M160 145 C 220 145, 230 160, 446 160"/>
+                    <rect class="box" x="450" y="154" width="140" height="14" rx="2"/><text class="s" x="456" y="165">row 16: ask Genius</text>
+                    <path class="loop" d="M160 145 C 220 145, 230 182, 446 182"/>
+                    <rect class="box" x="450" y="176" width="140" height="14" rx="2"/><text class="s" x="456" y="187">row 17: ask Genius</text>
+                    <path class="loop" d="M160 145 C 220 145, 230 204, 446 204"/>
+                    <rect class="box" x="450" y="198" width="140" height="14" rx="2"/><text class="s" x="456" y="209">row 18: ask Genius</text>
+                    <path class="loop" d="M160 145 C 220 145, 230 226, 446 226"/>
+                    <rect class="box" x="450" y="220" width="140" height="14" rx="2"/><text class="s" x="456" y="231">row 19: ask Genius</text>
+                    <path class="loop" d="M160 145 C 220 145, 230 248, 446 248"/>
+                    <rect class="box" x="450" y="242" width="140" height="14" rx="2"/><text class="s" x="456" y="253">row 20: ask Genius</text>
+                    <rect class="box" x="290" y="270" width="270" height="18" rx="2"/><text class="s" x="298" y="283">the page itself: ask Genius</text><path class="arrow" d="M160 160 C 220 160, 230 279, 286 279" marker-end="url(#ah4)"/>
+                    <text class="t" x="10" y="232">21 questions</text><text class="s" x="10" y="250">for one person, one click</text>
+                    <path class="loop" d="M610 40 V300"/>
+                    <rect class="box acid" x="640" y="110" width="150" height="70" rx="2"/><text class="t" x="654" y="140">You open</text><text class="s" x="654" y="160">Think (About It)</text>
+                    <path class="arrow" d="M790 145 H846" marker-end="url(#ah4)"/><rect class="box" x="850" y="130" width="180" height="30" rx="2"/><text class="s" x="860" y="149">the page itself: ask Genius</text>
+                    <text class="t" x="640" y="232">1 question</text><text class="s" x="640" y="250">the rows load when you click them</text>
+                </svg>
+                <figcaption>The helpful waiter. Loading the pages behind every visible link made one page view cost 21 questions, more on a heavily sampled record. Switching that off made it one.</figcaption>
+            </figure>
+
 
             <h3>Layer 2: the memory had amnesia</h3>
             <p>Remember the remembering? It turned out the built-in memory empties every time the site is updated, and can drop things whenever it likes. So every deploy started from scratch. The fix was a proper store, Upstash, that keeps every answer for months, whatever happens to the site. It took me two minutes to switch on, from my phone, once I found the right menu.</p>
@@ -330,6 +581,33 @@ simulation
             </div>
             <p>The last row was the clever one. A scraper was posing as ordinary visitors: one from Germany, one from Spain, one from Peru, each on a different network, each running a browser a couple of years out of date. You can't block that by name or by address.</p>
             <p>So the first page anyone loads now runs one line of JavaScript that sets a cookie and reloads. A real browser does it in a blink, and you'll never notice. A script that only downloads pages never gets past it.</p>
+            <figure class="post-figure diagram wide" aria-label="Who gets in, and what it costs">
+                <svg viewBox="0 0 1040 310" xmlns="http://www.w3.org/2000/svg" role="img">
+                    <title>Every request meets a doorway. AI and SEO crawlers, unnamed bots and scripts posing as browsers are turned away. Search engines get 1,000 questions a day. People pass a one-line browser check without noticing. Only those reach the store, and Genius only for records nobody has opened before.</title>
+                    <defs><marker id="ah5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="currentColor" style="color: var(--color-accent)"/></marker></defs>
+                    <rect class="box" x="10" y="120" width="150" height="80" rx="2"/><text class="n" x="24" y="144">EVERY REQUEST</text><text class="t" x="24" y="168">Knock knock</text><text class="s" x="24" y="188">people and robots</text>
+                    <path class="loop" d="M160 160 C 210 160, 220 42, 276 42" marker-end="url(#ah5)"/>
+                    <rect class="box" x="280" y="20" width="330" height="44" rx="2"/><text class="t" x="294" y="40" style="font-size:13px">AI and SEO crawlers</text><text class="s" x="294" y="56">on the blocklist by name</text>
+                    <text class="n" x="630" y="47" style="fill: var(--color-text-muted)">TURNED AWAY</text>
+                    <path class="loop" d="M160 160 C 210 160, 220 100, 276 100" marker-end="url(#ah5)"/>
+                    <rect class="box" x="280" y="78" width="330" height="44" rx="2"/><text class="t" x="294" y="98" style="font-size:13px">Unnamed bots</text><text class="s" x="294" y="114">say they're a bot, not which</text>
+                    <text class="n" x="630" y="105" style="fill: var(--color-text-muted)">TURNED AWAY</text>
+                    <path class="arrow" d="M160 160 C 210 160, 220 158, 276 158" marker-end="url(#ah5)"/>
+                    <rect class="box" x="280" y="136" width="330" height="44" rx="2"/><text class="t" x="294" y="156" style="font-size:13px">Search engines</text><text class="s" x="294" y="172">Google, Bing, Apple, DuckDuckGo</text>
+                    <text class="n" x="630" y="163" style="">1,000 A DAY</text>
+                    <path class="arrow" d="M760 158 C 800 158, 800 160, 836 160" marker-end="url(#ah5)"/>
+                    <path class="loop" d="M160 160 C 210 160, 220 216, 276 216" marker-end="url(#ah5)"/>
+                    <rect class="box" x="280" y="194" width="330" height="44" rx="2"/><text class="t" x="294" y="214" style="font-size:13px">Scripts posing as browsers</text><text class="s" x="294" y="230">can't run the one-line check</text>
+                    <text class="n" x="630" y="221" style="fill: var(--color-text-muted)">TURNED AWAY</text>
+                    <path class="arrow" d="M160 160 C 210 160, 220 274, 276 274" marker-end="url(#ah5)"/>
+                    <rect class="box" x="280" y="252" width="330" height="44" rx="2"/><text class="t" x="294" y="272" style="font-size:13px">People</text><text class="s" x="294" y="288">pass the check in a blink</text>
+                    <text class="n" x="630" y="279" style="">STRAIGHT IN</text>
+                    <path class="arrow" d="M760 274 C 800 274, 800 160, 836 160" marker-end="url(#ah5)"/>
+                    <rect class="box acid" x="840" y="110" width="190" height="100" rx="2"/><text class="n" x="854" y="134">STORE, THEN GENIUS</text><text class="t" x="854" y="160">The page</text><text class="s" x="854" y="180">stored? free.</text><text class="s" x="854" y="196">new? one question.</text>
+                </svg>
+                <figcaption>The door, after the week of robots. Three kinds of visitor never reach a page that could cost a question. Search engines get an allowance. People walk straight in.</figcaption>
+            </figure>
+
             <span class="code-label">TypeScript · search engines get an allowance</span>
 <pre><code><span class="c">// a page that's already stored costs nothing; anything new spends today's allowance</span>
 <span class="k">if</span> (<span class="k">await</span> redis.exists(storedKey)) <span class="k">return true</span>;
@@ -340,6 +618,26 @@ simulation
                 <div role="listitem"><b>1,551</b><span>questions by that evening</span></div>
                 <div role="listitem" class="zero"><b>0</b><span>refused</span></div>
             </div>
+            <figure class="post-figure diagram wide" aria-label="Genius questions per day">
+                <svg viewBox="0 0 1040 310" xmlns="http://www.w3.org/2000/svg" role="img">
+                    <title>Genius questions per day against the 10,000 limit: 44,708 on the worst day, 9,999 on 29 October in under three hours, 185 on 30 October while blocked, and 1,551 on 31 October with none refused.</title>
+                    <path class="arrow" d="M80 70 H1010" style="stroke-dasharray:6 4"/><text class="n" x="830" y="62">GENIUS LIMIT · 10,000</text>
+                    <path class="loop" d="M80 260 H1010"/>
+                    <rect class="box" x="130" y="30" width="90" height="230"/>
+                    <text class="t" x="130" y="14">44,708</text>
+                    <text class="n" x="130" y="282">WORST DAY</text><text class="s" x="130" y="298">before the fixes</text>
+                    <rect  class="box" x="350" y="70" width="90" height="190"/>
+                    <text class="t" x="350" y="60">9,999</text>
+                    <text class="n" x="350" y="282">29 OCT</text><text class="s" x="350" y="298">in under three hours</text>
+                    <rect  class="box" x="570" y="256" width="90" height="4"/>
+                    <text class="t" x="570" y="246">185</text>
+                    <text class="n" x="570" y="282">30 OCT</text><text class="s" x="570" y="298">blocked most of the day</text>
+                    <rect x="790" y="231" width="90" height="29" style="fill: var(--color-accent)"/>
+                    <text class="t" x="790" y="221">1,551</text>
+                    <text class="n" x="790" y="282">31 OCT</text><text class="s" x="790" y="298">none refused</text>
+                </svg>
+                <figcaption>Questions per day against the limit. The worst day, before any of this, was more than four times over. Two days after the fixes: 1,551, and Genius didn't refuse a single one.</figcaption>
+            </figure>
             <p>And number five? It was producer counts across the whole graph. Lovely idea, but Genius only gives producers one record at a time, so every page would have cost dozens of extra questions. I said <em>"Let's not build it then"</em>, a full two weeks before I understood how right that was. It came back later in a cheaper form: counted once, in advance, for the homepage breaks, and only on request everywhere else.</p>
             <p>I couldn't have diagnosed any of this myself. But every layer started with me noticing something felt off and saying so in a sentence. <em>"Small usage"</em> was the clue. The rest was Claude counting.</p>
 
