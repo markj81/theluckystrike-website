@@ -121,7 +121,7 @@
             <blockquote class="prompt"><p>Obtain models from online, I won't model anything, you need to do that and drive that, along with textures and any animations. I'm looking for a highly refined and design-polished aesthetic. Realism is key.</p></blockquote>
             <p>That was the deal. I'd be the art director. Claude, working in Claude Code, would be the whole studio: 3D modeller, lighting artist, front-end developer, audio engineer and the person who deploys it at 4am.</p>
             <p>I'll be honest, I didn't think it would hold. I expected to hit a wall somewhere around the 3D and end up in Blender myself, watching tutorials. I never opened it. Not once.</p>
-            <p>That's the bit I find genuinely interesting. Not that AI can write code (we all know that by now), but that the whole chain from "find me a chair" to "bake the light from five lamps" can be driven by someone describing what they want and reacting to what they see.</p>
+            <p>That's the bit I find genuinely interesting. Not that AI can write code (we all know that by now), but that the whole chain from "find me a chair" to "bake the light from six lamps" can be driven by someone describing what they want and reacting to what they see.</p>
 
             <h2 id="built"><span class="num">03</span>What got built</h2>
             <p>One evening, one night's sleep, one long day of feedback. Here's the tally.</p>
@@ -139,7 +139,7 @@
                     <tr><td>Code written</td><td>About 4,000 lines</td></tr>
                     <tr><td>3D models sourced, placed and lit</td><td>15, all credited</td></tr>
                     <tr><td>Records pulled from my Discogs</td><td>2,624 (2,358 of them vinyl)</td></tr>
-                    <tr><td>Lamps, each with its own baked light</td><td>5</td></tr>
+                    <tr><td>Lights, each with its own baked layer</td><td>6</td></tr>
                 </tbody>
             </table>
             </div>
@@ -149,7 +149,7 @@
                 <li><strong>Dig the crate.</strong> Pull records from my collection or my recently played, load them onto deck A or B and press Start.</li>
                 <li><strong>Mix.</strong> Mix mode locks the camera over the decks. Grab the record to scratch, drag the tonearm to drop the needle, ride the faders and the crossfader.</li>
                 <li><strong>Click any sleeve</strong> on the shelf for the tracklist and a short artist bio.</li>
-                <li><strong>Switch the lights.</strong> Five lamps, four scenes (Sunday morning, Golden hour, Late night, All on), dimmers that warm up as they dim like real bulbs.</li>
+                <li><strong>Switch the lights.</strong> Six lights (five lamps and LED strips under the shelves), four scenes (Sunday morning, Golden hour, Late night, All on), dimmers that warm up as they dim like real bulbs.</li>
                 <li><strong>Stream</strong> a classic mix through SoundCloud: Coldcut's <em>70 Minutes of Madness</em>, Larry Levan at the Paradise Garage, the Dirtchamber Sessions.</li>
                 <li><strong>Type DOOM or DILLA.</strong> Actually, I'll let you find that one.</li>
             </ul>
@@ -177,7 +177,7 @@
                         <rect class="box" x="372" y="60" width="150" height="92" rx="2"/>
                         <text class="n" x="386" y="84">03 · CYCLES</text><text class="t" x="386" y="110">Light bake</text><text class="s" x="386" y="132">one lightmap per</text><text class="s" x="386" y="146">lamp, ~20 min</text>
                         <rect class="box" x="558" y="60" width="150" height="92" rx="2"/>
-                        <text class="n" x="572" y="84">04 · COMPRESS</text><text class="t" x="572" y="110">Web assets</text><text class="s" x="572" y="132">41 MB → 12.6 MB,</text><text class="s" x="572" y="146">6 MB for phones</text>
+                        <text class="n" x="572" y="84">04 · COMPRESS</text><text class="t" x="572" y="110">Web assets</text><text class="s" x="572" y="132">39 MB → 12.2 MB,</text><text class="s" x="572" y="146">5.6 MB for phones</text>
                         <rect class="box" x="744" y="60" width="140" height="92" rx="2"/>
                         <text class="n" x="758" y="84">05 · THREE.JS</text><text class="t" x="758" y="110">The browser</text><text class="s" x="758" y="132">mixes the lamps</text><text class="s" x="758" y="146">live, plays audio</text>
                         <rect class="box acid" x="920" y="60" width="110" height="92" rx="2"/>
@@ -207,7 +207,7 @@ cell, th, dep, ncol, nrow = 0.345, 0.02, 0.4, 5, 4
             <h3>2. Light that's real, but cheap</h3>
             <p>Realistic light is the expensive part of 3D. Light bounces: off the walls, the floor, the ceiling, the chair. Calculating that live in a browser would melt your laptop.</p>
             <p>The trick is to work it out once, in advance. Blender fires millions of light rays around the room and saves the result as an image, a <strong>lightmap</strong>, painted onto every surface. It's how games have looked good for twenty years.</p>
-            <p>The twist here: the lamps have to switch on and off. So the room is baked five times, once per lamp, each in plain white light. The browser then blends the five together live, tinting each one with its own colour and brightness.</p>
+            <p>The twist here: the lamps have to switch on and off. So the room is baked six times, once per light, each in plain white light. The browser then blends the six together live, tinting each one with its own colour and brightness.</p>
 
             <figure class="post-figure">
                 <div class="lightsum">
@@ -216,17 +216,18 @@ cell, th, dep, ncol, nrow = 0.345, 0.02, 0.4, 5, 4
                     <div class="tile"><img src="/images/writing/listening-room/lamp-floor.webp" width="720" height="405" alt="The room lit only by the arc floor lamp." loading="lazy"><span class="tag">Arc lamp</span></div>
                     <div class="tile"><img src="/images/writing/listening-room/lamp-desk.webp" width="720" height="405" alt="The room lit only by the anglepoise over the decks." loading="lazy"><span class="tag">Anglepoise</span></div>
                     <div class="tile"><img src="/images/writing/listening-room/lamp-neon.webp" width="720" height="405" alt="The room lit only by the neon sign." loading="lazy"><span class="tag">Neon</span></div>
+                    <div class="tile"><img src="/images/writing/listening-room/lamp-shelf.webp" width="720" height="405" alt="The room lit only by the LED strips under the record shelf." loading="lazy"><span class="tag">Shelf LEDs</span></div>
                     <span class="op" aria-hidden="true">=</span>
-                    <div class="tile all"><img src="/images/writing/listening-room/lamp-all.webp" width="720" height="405" alt="The room with all five lamps on together." loading="lazy"><span class="tag acid">All five</span></div>
+                    <div class="tile all"><img src="/images/writing/listening-room/lamp-all.webp" width="720" height="405" alt="The room with all six lights on together." loading="lazy"><span class="tag acid">All six</span></div>
                 </div>
-                <figcaption>Five baked layers, one per lamp, added together live. Turn a dimmer down and that layer, bounces and all, fades out.</figcaption>
+                <figcaption>Six baked layers, one per light, added together live. Turn a dimmer down and that layer, bounces and all, fades out.</figcaption>
             </figure>
 
             <span class="code-label">GLSL · mixing the lamps</span>
 <pre><code><span class="c">// one lightmap per lamp, mixed live: colour × dimmer for each, added together</span>
 vec3 mixLightmaps(vec2 uv) {
   vec3 sum = vec3(0.0);
-  <span class="k">for</span> (int i = 0; i &lt; 5; i++)
+  <span class="k">for</span> (int i = 0; i &lt; 6; i++)
     sum += decodeRGBM(texture2D(lmMaps[i], uv)) * lmColors[i];
   <span class="k">return</span> sum;
 }</code></pre>
@@ -240,7 +241,7 @@ vec3 mixLightmaps(vec2 uv) {
                     <img src="/images/writing/listening-room/scene-latenight.webp" width="1440" height="810" alt="Late night scene: dark outside, the anglepoise over the decks and the neon on." loading="lazy">
                     <img src="/images/writing/listening-room/scene-allon.webp" width="1440" height="810" alt="All on: every lamp lit." loading="lazy">
                 </div>
-                <figcaption>The four lighting scenes. Same room, same geometry: only the five layers' brightness and colour change.</figcaption>
+                <figcaption>The four lighting scenes. Same room, same geometry: only the six layers' brightness and colour change.</figcaption>
             </figure>
 
             <h3>3. The decks actually play</h3>
@@ -249,10 +250,10 @@ vec3 mixLightmaps(vec2 uv) {
 
             <h3>4. Everything else</h3>
             <ul>
-                <li><strong>The data:</strong> my Discogs collection (2,624 releases) with cover art, and a Wikipedia bio for each artist, only accepted when the page is clearly about a musician. Without that check, "Busy Bee" comes back as an insect.</li>
+                <li><strong>The data:</strong> my Discogs collection (2,624 releases) with cover art, and a bio for each artist. It's checked against the actual Discogs artist and the record's genre before it's shown, from Wikipedia where the page fits, or Discogs's own profile where it doesn't. Without those checks, "Busy Bee" comes back as an insect.</li>
                 <li><strong>The streamer:</strong> SoundCloud's official player, kept visible as their terms ask.</li>
                 <li><strong>The site:</strong> plain HTML and three.js, no framework. Hosted on Vercel in London, served at theluckystrike.co.uk/listening-room.</li>
-                <li><strong>Weight:</strong> the room is compressed from 41 MB to 12.6 MB for desktop, and 6 MB for phones.</li>
+                <li><strong>Weight:</strong> the room is compressed from 39 MB to 12.2 MB for desktop, and 5.6 MB for phones.</li>
             </ul>
 
             <h2 id="prompting"><span class="num">05</span>How I prompted</h2>
@@ -315,6 +316,8 @@ vec3 mixLightmaps(vec2 uv) {
                     <tr><td>The window frame had a dotted line</td><td>No anti-aliasing on the final render</td><td>Turned on multisampling: every edge in the room got smoother</td></tr>
                     <tr><td>The anglepoise looked like a chunk was missing</td><td>My black repaint also painted the white inside of the shade</td><td>Repaint only the coloured parts of the texture</td></tr>
                     <tr><td>The wooden KAWS figure glowed pale grey</td><td>Sketchfab scans ship as "unlit", ignoring the room's lights</td><td>Rebuilt the materials so the lamps reach them</td></tr>
+                    <tr><td>A UK garage record showed GZA's bio</td><td>Discogs credits Genius Cru as "Genius", and Wikipedia's Genius is the Wu-Tang rapper</td><td>Bios now check the real Discogs artist and the record's genre, with Discogs's own profile as a fallback</td></tr>
+                    <tr><td>The record shelf read as one dark mass</td><td>Each 1 cm spine was smaller than one pixel of baked light, so the colours blurred together</td><td>LED strips under every shelf, and the hidden sleeve faces dropped so the spines bake six times sharper</td></tr>
                     <tr><td>Typing DOOM or DILLA fought the D key, which walked me sideways</td><td>Hotkeys and typed words fought over the same letters</td><td>Moved walking to the arrows (and later, back to WASD)</td></tr>
                 </tbody>
             </table>
@@ -333,7 +336,7 @@ vec3 mixLightmaps(vec2 uv) {
             <p>The honest answer was yes and no. Yes, because most people will meet this link on their phone: from LinkedIn, from a message, on the train. That first impression is the whole point. No, because nobody is going to beat-match on an iPhone on the Northern line.</p>
             <p>So phones get a <strong>showroom</strong>, not a cut-down DJ booth:</p>
             <ul>
-                <li><strong>A lighter room.</strong> Plants and figures are simplified, textures shrink, and the baked light comes at half size. About 10 MB instead of 16, and the glow effect is switched off.</li>
+                <li><strong>A lighter room.</strong> Plants and figures are simplified, textures shrink, and the baked light comes at half size. About 12 MB instead of 24, and the glow effect is switched off.</li>
                 <li><strong>No walking.</strong> On a small screen, walking around is how you get lost. Instead you glide between five framed views (the chair, the decks, the records, the window, the art), and you can still drag to look around.</li>
                 <li><strong>Landscape only.</strong> Portrait gets a polite "turn your phone sideways".</li>
                 <li><strong>The good stuff stays.</strong> Lamps, record sheets and the streamer all work, and so do the decks and scratching. Mix mode just tells you it's best on a big screen, "but go on, have a go".</li>
