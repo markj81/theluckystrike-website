@@ -121,7 +121,7 @@
             <blockquote class="prompt"><p>Obtain models from online, I won't model anything, you need to do that and drive that, along with textures and any animations. I'm looking for a highly refined and design-polished aesthetic. Realism is key.</p></blockquote>
             <p>That was the deal. I'd be the art director. Claude, working in Claude Code, would be the whole studio: 3D modeller, lighting artist, front-end developer, audio engineer and the person who deploys it at 4am.</p>
             <p>I'll be honest, I didn't think it would hold. I expected to hit a wall somewhere around the 3D and end up in Blender myself, watching tutorials. I never opened it. Not once.</p>
-            <p>That's the bit I find genuinely interesting. Not that AI can write code (we all know that by now), but that the whole chain from "find me a chair" to "bake the light from six lamps" can be driven by someone describing what they want and reacting to what they see.</p>
+            <p>That's the bit I find genuinely interesting. Not that AI can write code (we all know that by now), but that the whole chain from "find me a chair" to "bake the light from seven lamps" can be driven by someone describing what they want and reacting to what they see.</p>
 
             <h2 id="built"><span class="num">03</span>What got built</h2>
             <p>One evening, one night's sleep, one long day of feedback. Here's the tally.</p>
@@ -149,7 +149,7 @@
                 <li><strong>Dig the crate.</strong> Pull records from my collection or my recently played, load them onto deck A or B and press Start.</li>
                 <li><strong>Mix.</strong> Mix mode locks the camera over the decks. Grab the record to scratch, drag the tonearm to drop the needle, ride the faders and the crossfader.</li>
                 <li><strong>Click any sleeve</strong> on the shelf for the tracklist and a short artist bio.</li>
-                <li><strong>Switch the lights.</strong> Six lights (five lamps and LED strips under the shelves), four scenes (Sunday morning, Golden hour, Late night, All on), dimmers that warm up as they dim like real bulbs.</li>
+                <li><strong>Switch the lights.</strong> Seven lights (five lamps, brass picture lights over the art, and LED strips under the shelves), four scenes (Sunday morning, Golden hour, Late night, All on), dimmers that warm up as they dim like real bulbs.</li>
                 <li><strong>Stream</strong> a classic mix through SoundCloud: Coldcut's <em>70 Minutes of Madness</em>, Larry Levan at the Paradise Garage, the Dirtchamber Sessions.</li>
                 <li><strong>Type DOOM or DILLA.</strong> Actually, I'll let you find that one.</li>
             </ul>
@@ -207,7 +207,7 @@ cell, th, dep, ncol, nrow = 0.345, 0.02, 0.4, 5, 4
             <h3>2. Light that's real, but cheap</h3>
             <p>Realistic light is the expensive part of 3D. Light bounces: off the walls, the floor, the ceiling, the chair. Calculating that live in a browser would melt your laptop.</p>
             <p>The trick is to work it out once, in advance. Blender fires millions of light rays around the room and saves the result as an image, a <strong>lightmap</strong>, painted onto every surface. It's how games have looked good for twenty years.</p>
-            <p>The twist here: the lamps have to switch on and off. So the room is baked six times, once per light, each in plain white light. The browser then blends the six together live, tinting each one with its own colour and brightness.</p>
+            <p>The twist here: the lamps have to switch on and off. So the room is baked seven times, once per light, each in plain white light. The browser then blends the seven together live, tinting each one with its own colour and brightness.</p>
 
             <figure class="post-figure">
                 <div class="lightsum">
@@ -217,10 +217,11 @@ cell, th, dep, ncol, nrow = 0.345, 0.02, 0.4, 5, 4
                     <div class="tile"><img src="/images/writing/listening-room/lamp-desk.webp" width="720" height="405" alt="The room lit only by the anglepoise over the decks." loading="lazy"><span class="tag">Anglepoise</span></div>
                     <div class="tile"><img src="/images/writing/listening-room/lamp-neon.webp" width="720" height="405" alt="The room lit only by the neon sign." loading="lazy"><span class="tag">Neon</span></div>
                     <div class="tile"><img src="/images/writing/listening-room/lamp-shelf.webp" width="720" height="405" alt="The room lit only by the LED strips under the record shelf." loading="lazy"><span class="tag">Shelf LEDs</span></div>
+                    <div class="tile"><img src="/images/writing/listening-room/lamp-picture.webp" width="720" height="405" alt="The room lit only by the brass picture lights over the frames." loading="lazy"><span class="tag">Art lights</span></div>
                     <span class="op" aria-hidden="true">=</span>
-                    <div class="tile all"><img src="/images/writing/listening-room/lamp-all.webp" width="720" height="405" alt="The room with all six lights on together." loading="lazy"><span class="tag acid">All six</span></div>
+                    <div class="tile all"><img src="/images/writing/listening-room/lamp-all.webp" width="720" height="405" alt="The room with all seven lights on together." loading="lazy"><span class="tag acid">All seven</span></div>
                 </div>
-                <figcaption>Six baked layers, one per light, added together live. Turn a dimmer down and that layer, bounces and all, fades out.</figcaption>
+                <figcaption>Seven baked layers, one per light, added together live. Turn a dimmer down and that layer, bounces and all, fades out.</figcaption>
             </figure>
 
             <span class="code-label">GLSL · mixing the lamps</span>
@@ -241,7 +242,7 @@ vec3 mixLightmaps(vec2 uv) {
                     <img src="/images/writing/listening-room/scene-latenight.webp" width="1440" height="810" alt="Late night scene: dark outside, the anglepoise over the decks and the neon on." loading="lazy">
                     <img src="/images/writing/listening-room/scene-allon.webp" width="1440" height="810" alt="All on: every lamp lit." loading="lazy">
                 </div>
-                <figcaption>The four lighting scenes. Same room, same geometry: only the six layers' brightness and colour change.</figcaption>
+                <figcaption>The four lighting scenes. Same room, same geometry: only the seven layers' brightness and colour change.</figcaption>
             </figure>
 
             <h3>3. The decks actually play</h3>
