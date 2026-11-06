@@ -151,7 +151,7 @@
                 <li><strong>Click any sleeve</strong> on the shelf for the tracklist and a short artist bio.</li>
                 <li><strong>Switch the lights.</strong> Seven lights (five lamps, brass picture lights over the art, and LED strips under the shelves), four scenes (Sunday morning, Golden hour, Late night, All on), dimmers that warm up as they dim like real bulbs.</li>
                 <li><strong>Stream</strong> a classic mix through SoundCloud: Coldcut's <em>70 Minutes of Madness</em>, Larry Levan at the Paradise Garage, the Dirtchamber Sessions.</li>
-                <li><strong>Type DOOM or DILLA.</strong> Actually, I'll let you find that one.</li>
+                <li><strong>Type DOOM, DILLA or SUPREME.</strong> Actually, I'll let you find out what they do.</li>
             </ul>
             <figure class="post-figure">
                 <div class="grid-3">
@@ -194,7 +194,7 @@
 
             <h3>1. Blender, with nobody at the controls</h3>
             <p>Blender is the free 3D tool most studios use. It also runs without a screen, as a Python library. So Claude didn't click around a 3D app: it wrote a script that builds the whole room, and re-ran it every time I asked for a change.</p>
-            <p>Every object in the room is a line of code somewhere. The walls, the shelf, the record sleeves (nearly 600 of them, coloured from my actual records), the decks and mixer, which Claude designed from scratch. The chair, plants and lamps are free models from Poly Haven; the KAWS figures and the bonsai are scans from Sketchfab, credited in the room.</p>
+            <p>Every object in the room is a line of code somewhere. The walls, the shelf, the record sleeves (nearly 600 of them, coloured from my actual records), the decks and mixer, which Claude designed from scratch. The chair, plants and lamps are free models from Poly Haven; the KAWS figures and the bonsai are scans from Sketchfab, credited in the room. The “have a good time” rug is drawn by the script too, tuft by tuft.</p>
             <span class="code-label">Python · the record shelf</span>
 <pre><code><span class="c"># the record shelf: 5 × 4 cubbies, walnut, every cubby full</span>
 cell, th, dep, ncol, nrow = 0.345, 0.02, 0.4, 5, 4
@@ -247,7 +247,7 @@ vec3 mixLightmaps(vec2 uv) {
 
             <h3>3. The decks actually play</h3>
             <p>Each record gets a 30-second preview from Deezer (Apple as a backup), matched from my Spotify and Discogs data. The decks run on the Web Audio API with a small custom audio processor that plays the record at any speed, forwards or backwards. That one idea gives you the motor spinning up, the pitch fader, the brake when you press Stop, and scratching, all from the same code.</p>
-            <p>The mixer has gain, three-band EQ per channel, channel faders and an equal-power crossfader. Start a deck the crossfader has cut off and the fader glides over to it, because nobody wants to press play and hear nothing.</p>
+            <p>The mixer has gain, three-band EQ per channel, channel faders, LED level meters that bounce with the music and an equal-power crossfader. Start a deck the crossfader has cut off and the fader glides over to it, because nobody wants to press play and hear nothing.</p>
 
             <h3>4. Everything else</h3>
             <ul>
@@ -319,6 +319,8 @@ vec3 mixLightmaps(vec2 uv) {
                     <tr><td>The wooden KAWS figure glowed pale grey</td><td>Sketchfab scans ship as "unlit", ignoring the room's lights</td><td>Rebuilt the materials so the lamps reach them</td></tr>
                     <tr><td>A UK garage record showed GZA's bio</td><td>Discogs credits Genius Cru as "Genius", and Wikipedia's Genius is the Wu-Tang rapper</td><td>Bios now check the real Discogs artist and the record's genre, with Discogs's own profile as a fallback</td></tr>
                     <tr><td>The record shelf read as one dark mass</td><td>Each 1 cm spine was smaller than one pixel of baked light, so the colours blurred together</td><td>LED strips under every shelf, and the hidden sleeve faces dropped so the spines bake six times sharper</td></tr>
+                    <tr><td>The mixer's level meters never lit up</td><td>Their glow colour was exported as black, and turning black up is still black</td><td>Set the colours in the browser, with real LED ballistics: fast up, slow down, a peak that holds</td></tr>
+                    <tr><td>The new Amsterdam window showed a white van</td><td>The direction maths had the photo mirrored</td><td>Calibrated against the old view, then turned it to face the canal houses</td></tr>
                     <tr><td>Typing DOOM or DILLA fought the D key, which walked me sideways</td><td>Hotkeys and typed words fought over the same letters</td><td>Moved walking to the arrows (and later, back to WASD)</td></tr>
                 </tbody>
             </table>
