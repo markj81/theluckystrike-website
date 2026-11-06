@@ -177,7 +177,7 @@
                         <rect class="box" x="372" y="60" width="150" height="92" rx="2"/>
                         <text class="n" x="386" y="84">03 · CYCLES</text><text class="t" x="386" y="110">Light bake</text><text class="s" x="386" y="132">one lightmap per</text><text class="s" x="386" y="146">lamp, ~20 min</text>
                         <rect class="box" x="558" y="60" width="150" height="92" rx="2"/>
-                        <text class="n" x="572" y="84">04 · COMPRESS</text><text class="t" x="572" y="110">Web assets</text><text class="s" x="572" y="132">39 MB → 12.2 MB,</text><text class="s" x="572" y="146">5.6 MB for phones</text>
+                        <text class="n" x="572" y="84">04 · COMPRESS</text><text class="t" x="572" y="110">Web assets</text><text class="s" x="572" y="132">40 MB → 12.6 MB,</text><text class="s" x="572" y="146">5.8 MB for phones</text>
                         <rect class="box" x="744" y="60" width="140" height="92" rx="2"/>
                         <text class="n" x="758" y="84">05 · THREE.JS</text><text class="t" x="758" y="110">The browser</text><text class="s" x="758" y="132">mixes the lamps</text><text class="s" x="758" y="146">live, plays audio</text>
                         <rect class="box acid" x="920" y="60" width="110" height="92" rx="2"/>
@@ -254,7 +254,7 @@ vec3 mixLightmaps(vec2 uv) {
                 <li><strong>The data:</strong> my Discogs collection (2,624 releases) with cover art, and a bio for each artist. It's checked against the actual Discogs artist and the record's genre before it's shown, from Wikipedia where the page fits, or Discogs's own profile where it doesn't. Without those checks, "Busy Bee" comes back as an insect.</li>
                 <li><strong>The streamer:</strong> SoundCloud's official player, kept visible as their terms ask.</li>
                 <li><strong>The site:</strong> plain HTML and three.js, no framework. Hosted on Vercel in London, served at theluckystrike.co.uk/listening-room.</li>
-                <li><strong>Weight:</strong> the room is compressed from 39 MB to 12.2 MB for desktop, and 5.6 MB for phones.</li>
+                <li><strong>Weight:</strong> the room is compressed from 40 MB to 12.6 MB for desktop, and 5.8 MB for phones.</li>
             </ul>
 
             <h2 id="prompting"><span class="num">05</span>How I prompted</h2>
@@ -337,7 +337,7 @@ vec3 mixLightmaps(vec2 uv) {
             <p>The honest answer was yes and no. Yes, because most people will meet this link on their phone: from LinkedIn, from a message, on the train. That first impression is the whole point. No, because nobody is going to beat-match on an iPhone on the Northern line.</p>
             <p>So phones get a <strong>showroom</strong>, not a cut-down DJ booth:</p>
             <ul>
-                <li><strong>A lighter room.</strong> Plants and figures are simplified, textures shrink, and the baked light comes at half size. About 12 MB instead of 24, and the glow effect is switched off.</li>
+                <li><strong>A lighter room.</strong> Plants and figures are simplified, textures shrink, and the baked light comes at half size. About 13 MB instead of 27, and the glow effect is switched off.</li>
                 <li><strong>No walking.</strong> On a small screen, walking around is how you get lost. Instead you glide between five framed views (the chair, the decks, the records, the window, the art), and you can still drag to look around.</li>
                 <li><strong>Landscape only.</strong> Portrait gets a polite "turn your phone sideways".</li>
                 <li><strong>The good stuff stays.</strong> Lamps, record sheets and the streamer all work, and so do the decks and scratching. Mix mode just tells you it's best on a big screen, "but go on, have a go".</li>
