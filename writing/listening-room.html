@@ -253,6 +253,7 @@ vec3 mixLightmaps(vec2 uv) {
             <ul>
                 <li><strong>The data:</strong> my Discogs collection (2,624 releases) with cover art, and a bio for each artist. It's checked against the actual Discogs artist and the record's genre before it's shown, from Wikipedia where the page fits, or Discogs's own profile where it doesn't. Without those checks, "Busy Bee" comes back as an insect.</li>
                 <li><strong>The streamer:</strong> SoundCloud's official player, kept visible as their terms ask.</li>
+                <li><strong>The clock:</strong> on the wall by the records, showing your own local time, second hand sweeping.</li>
                 <li><strong>The site:</strong> plain HTML and three.js, no framework. Hosted on Vercel in London, served at theluckystrike.co.uk/listening-room.</li>
                 <li><strong>Weight:</strong> the room is compressed from 40 MB to 12.6 MB for desktop, and 5.8 MB for phones.</li>
             </ul>
@@ -319,6 +320,7 @@ vec3 mixLightmaps(vec2 uv) {
                     <tr><td>The wooden KAWS figure glowed pale grey</td><td>Sketchfab scans ship as "unlit", ignoring the room's lights</td><td>Rebuilt the materials so the lamps reach them</td></tr>
                     <tr><td>A UK garage record showed GZA's bio</td><td>Discogs credits Genius Cru as "Genius", and Wikipedia's Genius is the Wu-Tang rapper</td><td>Bios now check the real Discogs artist and the record's genre, with Discogs's own profile as a fallback</td></tr>
                     <tr><td>The record shelf read as one dark mass</td><td>Each 1 cm spine was smaller than one pixel of baked light, so the colours blurred together</td><td>LED strips under every shelf, and the hidden sleeve faces dropped so the spines bake six times sharper</td></tr>
+                    <tr><td>Some SoundCloud mixes wouldn't play</td><td>SoundCloud now streams many tracks with DRM, and the embedded player wasn't allowed to use it</td><td>One permission on the player, plus a nudge to tap ▶ when a phone blocks autoplay</td></tr>
                     <tr><td>The mixer's level meters never lit up</td><td>Their glow colour was exported as black, and turning black up is still black</td><td>Set the colours in the browser, with real LED ballistics: fast up, slow down, a peak that holds</td></tr>
                     <tr><td>The new Amsterdam window showed a white van</td><td>The direction maths had the photo mirrored</td><td>Calibrated against the old view, then turned it to face the canal houses</td></tr>
                     <tr><td>Typing DOOM or DILLA fought the D key, which walked me sideways</td><td>Hotkeys and typed words fought over the same letters</td><td>Moved walking to the arrows (and later, back to WASD)</td></tr>
