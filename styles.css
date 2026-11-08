@@ -959,26 +959,6 @@ body:has(.mobile-menu.active) .nav-toggle {
     }
 }
 
-.diag-row {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 0.75rem;
-}
-
-.diag-row span {
-    font-family: var(--font-mono);
-    font-size: var(--text-note);
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--color-text-muted);
-    opacity: 0;
-    transition: opacity 0.8s ease 1.2s;
-}
-
-.visible .diag-row span { opacity: 1; }
-
-.diagram-diamond { max-width: 720px; margin-bottom: var(--spacing-lg); }
-
 .diagram-curve {
     max-width: 360px;
     margin-left: auto;
