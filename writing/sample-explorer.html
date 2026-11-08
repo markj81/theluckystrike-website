@@ -113,7 +113,7 @@
             <h2 id="idea"><span class="num">01</span>The idea</h2>
             <p>At 15, <em>Endtroducing</em> rewired my ears. DJ Shadow built that record almost entirely out of other records, and once you know that, you can't unhear it. Every sampled record is a door into another one. Behind the door is a drum break from 1969, a soul B-side, a film score nobody bought.</p>
             <p>I've always wanted to follow that chain properly. Pick a record, see what it borrowed, see who borrowed from it, and keep going until it's 2am and you're listening to a library record from a Swedish bank advert.</p>
-            <p>The obvious place for that is WhoSampled. It has no public API, and its terms ban scraping, so it was out. Genius, it turned out, has the same kind of data and does let you ask for it.</p>
+            <p>The obvious place for that is WhoSampled. It has no public API, and its terms ban scraping, so it was out. Genius has the same kind of data and does let you ask for it.</p>
             <p><strong>Sample Explorer</strong> is the result. Search any record and see what it sampled and what sampled it. Follow the chain as a graph where left to right is time. Press play on any of it.</p>
             <figure class="post-figure">
                 <div class="grid-2">
@@ -166,7 +166,7 @@
             <p>That's research, just faster. Half a day of checking saved me from designing something beautiful on data that wasn't there.</p>
 
             <h2 id="built"><span class="num">03</span>What got built</h2>
-            <p>The first evening was the product. The next ten days were the polish, and then a week of fighting robots (more on that later). Here's the tally.</p>
+            <p>The first evening was the product. The next ten days were the polish, and then a week of fighting robots (more on that later).</p>
             <div class="stats" role="list">
                 <div role="listitem"><b>1</b><span>evening to a working product</span></div>
                 <div role="listitem"><b>95</b><span>commits</span></div>
@@ -241,7 +241,7 @@
 
             <h3>1. Genius is the record shop</h3>
             <p>Every record page asks Genius one question: what does this song sample, and what samples it? Genius answers with a list, and the page sorts it oldest first so it reads like a timeline.</p>
-            <p>Genius takes up to ten seconds to answer for a heavily sampled record, and it only lets you ask 10,000 questions a day. So every answer is remembered. The second person to open Think (About It) gets it instantly, and costs nothing. That turned out to matter far more than I expected. Hold that thought.</p>
+            <p>Genius takes up to ten seconds to answer for a heavily sampled record, and it only lets you ask 10,000 questions a day. So every answer is remembered. The second person to open Think (About It) gets it instantly, and costs nothing. That mattered far more than I expected.</p>
             <figure class="post-figure diagram wide" aria-label="How the store saves questions">
                 <svg viewBox="0 0 1040 260" xmlns="http://www.w3.org/2000/svg" role="img">
                     <title>The first visitor to a record makes the site ask Genius, which takes 6 to 10 seconds and uses one of 10,000 daily questions; the answer is kept for months. Everyone after gets it instantly from the store, and Genius is never asked.</title>
@@ -449,7 +449,7 @@ simulation
             <h3>Ask for a list, then edit it</h3>
             <blockquote class="prompt"><p>Any more visual improvements to the graph? For readability and discovery</p></blockquote>
             <blockquote class="prompt"><p>Do them all apart from 5</p></blockquote>
-            <p>That's a design review in two lines. Claude did the thinking out loud, I did the editing. Visited rings, halos and a position strip went in. Number five didn't, and the reason why is the best part of this whole story.</p>
+            <p>That's a design review in two lines. Claude did the thinking out loud, I did the editing. Visited rings, halos and a position strip went in. Number five didn't, for a reason I only understood two weeks later.</p>
 
             <h3>Admit when you got it wrong</h3>
             <blockquote class="prompt" data-time="09:33"><p>Swipe left = previous track<br>Swipe right = next track</p></blockquote>
@@ -560,7 +560,7 @@ simulation
 
 
             <h3>Layer 2: the memory had amnesia</h3>
-            <p>Remember the remembering? It turned out the built-in memory empties every time the site is updated, and can drop things whenever it likes. So every deploy started from scratch. The fix was a proper store, Upstash, that keeps every answer for months, whatever happens to the site. It took me two minutes to switch on, from my phone, once I found the right menu.</p>
+            <p>The remembering had a catch. The built-in memory empties every time the site is updated, and can drop things whenever it likes. So every deploy started from scratch. The fix was a proper store, Upstash, that keeps every answer for months, whatever happens to the site. It took me two minutes to switch on, from my phone, once I found the right menu.</p>
 
             <h3>Layer 3: the limit never lifted</h3>
             <p>Genius counts refused questions too, over a rolling 24 hours. Each copy of my site stopped asking only after it was personally refused, and there were lots of copies. So the count never fell, and the site never recovered. Now one refusal stops every copy at once, until the time Genius says to come back.</p>
@@ -644,13 +644,13 @@ simulation
             <h2 id="takeaways"><span class="num">08</span>What I took from it</h2>
             <p>The Listening Room taught me that taste is the bottleneck. This one added a few things.</p>
             <p><strong>Research still comes first.</strong> Half a day checking the data shaped every decision after it. The 683 records behind Amen, Brother designed the graph before I did.</p>
-            <p><strong>The first evening is the easy bit.</strong> A working product took one evening. Making it survive contact with the internet took longer than building it. If you ship things, budget for that. Nobody shows you the week after.</p>
-            <p><strong>Measure before you guess.</strong> I spent days guessing at the limit. The moment there was a counter, the answer took one look. In product terms: instrument it, then decide.</p>
-            <p><strong>Saying no is a feature.</strong> The v2, the race track and number five all died, and the product is better for every one of them. Building things got cheap. Deciding what not to build didn't.</p>
+            <p><strong>The first evening is the easy bit.</strong> A working product took one evening. Making it survive contact with the internet took longer than building it. If you ship things, budget for that.</p>
+            <p><strong>Measure before you guess.</strong> I spent days guessing at the limit. The moment there was a counter, the answer took one look.</p>
+            <p><strong>Saying no is a feature.</strong> The v2, the race track and number five all died, and the product is better for every one of them.</p>
             <p><strong>Your best prompt might be a symptom.</strong> "Very janky." "Urls like this are broken." "The limit still seems to be hit with small usage." I described what I saw and what I expected. That was always enough.</p>
             <p>Go and pick a record. Follow it backwards to the break, or forwards to whoever borrowed it last. If it's 2am and you're listening to a Swedish library record, it's working.</p>
 
-            <p><strong>A shout-out.</strong> Thanks to Umang in the WeTravel design team, whose feedback and ideas on the graph UI were genuinely valuable. I put them into practice, and the graph is better for it. The best crits still come from people.</p>
+            <p><strong>A shout-out.</strong> Thanks to Umang in the WeTravel design team, whose feedback and ideas on the graph UI were valuable. I put them into practice, and the graph is better for it. The best crits still come from people.</p>
 
             <div class="post-cta">
                 <a class="button" href="/sample-explorer">Open Sample Explorer ↗</a>
