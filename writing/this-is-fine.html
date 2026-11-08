@@ -114,8 +114,8 @@
 
             <h2 id="idea"><span class="num">01</span>The idea</h2>
             <p>You know the comic. A dog in a bowler hat sits in a room that's on fire, sips his coffee and says <em>"This is fine."</em> KC Green drew it in 2013 and it has described most weeks of most people's lives since.</p>
-            <p>I wanted to step inside it. Not a filter, not a sticker: the actual room, in 3D, that you can walk the camera around. And I wanted to be the dog. Upload a selfie, and it's your face sipping coffee while everything burns.</p>
-            <p>My first message set the brief and, importantly, asked for a plan before anything got built:</p>
+            <p>I wanted to step inside it: the actual room, in 3D, that you can walk the camera around. And I wanted to be the dog. Upload a selfie, and it's your face sipping coffee while everything burns.</p>
+            <p>My first message set the brief and asked for a plan before anything got built:</p>
             <blockquote class="prompt"><p>Keep the stylised comic but enable the use to pan and zoom and rotate (with proper camera angles) … button that allows the user to pause the animation and … take a snapshot, and copy to their clipboard or save to their local storage. Help me plan this out before you begin</p></blockquote>
             <p><strong>This is fine</strong> is the result. Add a selfie and become the dog, as a photo or as a cartoon. Spin the camera round. Snap it, make a two-panel comic, record a clip. And if you know where to look, throw a disco in the inferno.</p>
             <figure class="post-figure">
@@ -145,11 +145,10 @@
             </div>
             <p>Then, before a single screen existed, a design note that changed the whole product:</p>
             <blockquote class="prompt"><p>Think about how the photo upload can be stylised so instead of mapping it as a photo it might be better to be a 3d model stylised like the dog</p></blockquote>
-            <p>A photo pasted onto a cartoon dog looks like a photo pasted onto a cartoon dog. So the app measures your face instead and draws it in the comic's style: your face shape, your skin tone, your hair, your glasses, your beard. I asked to keep the photo as an option too. It turns out people want to see themselves first, so photo is now the default and cartoon is one tap away.</p>
-            <p>That's design, just faster. The questions that matter most are the ones you answer before you draw.</p>
-
+            <p>A photo pasted onto a cartoon dog looks like a photo pasted onto a cartoon dog. So the app measures your face instead and draws it in the comic's style: your face shape, your skin tone, your hair, your glasses, your beard. I asked to keep the photo as an option too. People want to see themselves first, so photo is now the default and cartoon is one tap away.</p>
+            
             <h2 id="built"><span class="num">03</span>What got built</h2>
-            <p>The first day was the product. The rest of the week was the dog, the polish and, it turns out, a lot of secrets.</p>
+            <p>The first day was the product. The rest of the week was the dog, the polish and a lot of secrets.</p>
             <div class="stats" role="list">
                 <div role="listitem"><b>1</b><span>day to a working app</span></div>
                 <div role="listitem"><b>63</b><span>commits</span></div>
@@ -235,7 +234,7 @@
                         <text class="s" x="290" y="212">all of this happens on your phone · nothing is uploaded · it even works offline</text>
                     </g>
                 </svg>
-                <figcaption>One selfie's trip into the room. The dashed line is the point: there's no server on the other side of it.</figcaption>
+                <figcaption>One selfie's trip into the room. There's no server on the other side of the dashed line.</figcaption>
             </figure>
 
             <h3>1. Your face never leaves your phone</h3>
@@ -317,7 +316,7 @@
 
             <h3>Ask why, not for a fix</h3>
             <blockquote class="prompt"><p>Im wondering why my face does not work well</p></blockquote>
-            <p>With a screenshot of my own face, blotchy and purple. There turned out to be three causes, one of them a bug introduced that same day. Asking "why" got all three. Asking "make it better" might have got one.</p>
+            <p>With a screenshot of my own face, blotchy and purple. There were three causes, one of them a bug introduced that same day. Asking "why" got all three. Asking "make it better" might have got one.</p>
             <figure class="post-figure">
                 <img src="/images/writing/this-is-fine/my-face-bug.webp" width="1440" height="900" alt="My own face on the dog, before the fix: harsh bands of pink, purple and green across the skin, dark red blotches on the lips and nostrils, and patches of orange fur showing through the forehead and cheek." loading="lazy">
                 <figcaption>The screenshot I sent. Orange fur showing through (the skull poking out after a change that day), skin crushed into purple and green bands, and a strong pink tint. All three fixed in the next commit.</figcaption>
@@ -335,7 +334,7 @@
             <h3>Typos are fine</h3>
             <blockquote class="prompt"><p>Do it in</p></blockquote>
             <blockquote class="prompt"><p>Phong check seems fine</p></blockquote>
-            <p>"Do it in" meant "do it". "Phong check" meant "phone check". Both understood, both done. Precision matters in what you want, not how you spell it.</p>
+            <p>"Do it in" meant "do it". "Phong check" meant "phone check". Both understood, both done.</p>
 
             <h3>Hear "no" when it's right</h3>
             <blockquote class="prompt"><p>Need a hot key that is when the user types “2Cap” it replaces the beanie and adds to 2 caps to the dog. The music / background sounds changes to a chiptune rendition of 2Pac’s California Love</p></blockquote>
@@ -345,7 +344,7 @@
                 <figcaption>Type "2cap": two caps each, a twin across the table, two beards, a podcast banner and an original chiptune. The bubble updates itself.</figcaption>
             </figure>
 
-            <h3>Ask for safety, not just features</h3>
+            <h3>Ask for a security check</h3>
             <blockquote class="prompt"><p>It’s probably a good thing to do a security check on this repo</p></blockquote>
             <p>Nothing serious turned up, which is the best answer. It still tightened the rules about what the page may load, I checked them on a preview on my phone first, and now the tests fail if anything ever breaks them. Ten minutes, and I sleep better.</p>
 
@@ -369,7 +368,7 @@
 
 
             <h2 id="dog"><span class="num">07</span>Teaching a robot to draw a dog</h2>
-            <p>This is the bit that took longest, and the bit I learned most from. Faces, cameras, sharing: all quick. The dog took the whole week, one layer at a time.</p>
+            <p>Faces, cameras and sharing were quick. The dog took the whole week, one layer at a time.</p>
 
             <h3>Layer 1: a dog made of balls</h3>
             <p>Day one's dog was spheres and capsules arranged in the right places. From the front it passed. From the side it fell apart.</p>
@@ -416,7 +415,7 @@
             <p><strong>Decide before you draw.</strong> Five questions answered on day one shaped everything that came after. "A blend" became a slider. "MediaPipe first" became a privacy promise.</p>
             <p><strong>The character is the product.</strong> The face tech is clever, but people react to the dog. Most of the week went on how he sits, sips and reads. That was the right place to spend it.</p>
             <p><strong>Defaults are design.</strong> Starting new faces as human, and as the photo, changed how the app feels more than any feature did.</p>
-            <p><strong>Let it say no.</strong> The best call in the project was Claude turning down a cover of someone else's song and writing an original instead. A good collaborator pushes back.</p>
+            <p><strong>Let it say no.</strong> The best call in the project was Claude turning down a cover of someone else's song and writing an original instead.</p>
             <p><strong>Your best prompt might be a symptom.</strong> "The cup disappears to his ear." "Flat line artifacts at the top." "My face does not work well." I said what I saw. That was always enough.</p>
             <p>Go and put your face on the dog. Slide it to full dog. Type party. If you end up sipping coffee in a burning room with a crowd of strangers dancing round you, it's working. This is fine.</p>
 
