@@ -18,6 +18,10 @@
       "destination": "/writing/sample-explorer.html"
     },
     {
+      "source": "/writing/this-is-fine",
+      "destination": "/writing/this-is-fine.html"
+    },
+    {
       "source": "/sample-explorer",
       "destination": "https://sample-explorer.vercel.app/sample-explorer"
     },

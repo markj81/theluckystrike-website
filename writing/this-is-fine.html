@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="I turned the This is fine comic into a 3D room you can put your own face into, in five days, by describing it. The idea, the tech, the dog that took the longest, and exactly how I prompted Claude.">
+    <meta property="og:title" content="This is fine: I put my face on the dog in the burning room by describing it to AI">
+    <meta property="og:description" content="A working app on day one, a dog that took all week. The idea, the tech, and exactly how I prompted to get there.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.theluckystrike.co.uk/writing/this-is-fine">
+    <meta property="og:image" content="https://www.theluckystrike.co.uk/images/writing/this-is-fine/og.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="This is fine: I put my face on the dog in the burning room by describing it to AI">
+    <meta name="twitter:description" content="A working app on day one, a dog that took all week. The idea, the tech, and exactly how I prompted to get there.">
+    <meta name="twitter:image" content="https://www.theluckystrike.co.uk/images/writing/this-is-fine/og.jpg">
+    <title>This is fine: I put my face on the dog in the burning room by describing it to AI | Mark Jenkins</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧢</text></svg>">
+    <script>
+        (function () {
+            try {
+                var t = localStorage.getItem('theme') ||
+                    (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+                document.documentElement.dataset.theme = t;
+            } catch (e) {}
+        })();
+    </script>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/post.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script>
+        window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
+    <link rel="canonical" href="https://www.theluckystrike.co.uk/writing/this-is-fine">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "This is fine: I put my face on the dog in the burning room by describing it to AI",
+      "description": "I turned the This is fine comic into a 3D room you can put your own face into, in five days, by describing it. The idea, the tech, the dog that took the longest, and exactly how I prompted Claude.",
+      "image": "https://www.theluckystrike.co.uk/images/writing/this-is-fine/og.jpg",
+      "datePublished": "2026-11-08",
+      "url": "https://www.theluckystrike.co.uk/writing/this-is-fine",
+      "inLanguage": "en-GB",
+      "author": { "@type": "Person", "@id": "https://www.theluckystrike.co.uk/#mark", "name": "Mark Jenkins" }
+    }
+    </script>
+</head>
+<body>
+    <div class="theme-liquid-overlay">
+        <div class="liquid-blob"></div>
+    </div>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">Mark Jenkins</a>
+            <ul class="nav-links">
+                <li><a href="/#about">About</a></li>
+                <li><a href="/#experience">Experience</a></li>
+                <li><a href="/#philosophy">Philosophy</a></li>
+                <li><a href="/testimonials">Testimonials</a></li>
+            </ul>
+            <div class="nav-right">
+                <button class="theme-toggle" type="button" aria-label="Switch to light theme" aria-pressed="false"></button>
+                <a href="/#contact" class="nav-cta">Get in touch</a>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+        <button class="mobile-menu-close" aria-label="Close menu" onclick="document.querySelector('.mobile-menu').classList.remove('active'); document.querySelector('.nav-toggle').classList.remove('active');">
+            <span></span>
+            <span></span>
+        </button>
+        <div class="mobile-menu-content">
+            <a href="/#about" class="mobile-link">About</a>
+            <a href="/#experience" class="mobile-link">Experience</a>
+            <a href="/#philosophy" class="mobile-link">Philosophy</a>
+            <a href="/testimonials" class="mobile-link">Testimonials</a>
+            <a href="/#contact" class="mobile-link mobile-cta">Get in touch</a>
+            <button class="theme-toggle" type="button" aria-label="Switch to light theme" aria-pressed="false"></button>
+        </div>
+    </div>
+
+    
+
+    <header class="page-header post-header">
+        <div class="page-header-grid">
+            <span class="page-label">Writing · Side project</span>
+            <h1 class="page-title">This is fine: I put my face on the dog in the burning room <em>by describing it to AI</em></h1>
+            <p class="page-intro">A working app on day one, a dog that took all week. The idea, the tech, and exactly how I prompted to get there.</p>
+            <div class="post-meta"><span>Mark Jenkins</span><span>November 2026</span><span>14 min read</span><a href="/this-is-fine">Open This is fine ↗</a></div>
+        </div>
+    </header>
+
+    <main class="post">
+        <article class="post-body">
+
+            <p class="lede">I turned the most famous comic on the internet into a 3D room you can put your own face into, in five days, by describing it. The app worked on day one. The dog took all week.</p>
+
+            <figure class="post-figure">
+                <img src="/images/writing/this-is-fine/hero.webp" width="1440" height="810" alt="This is fine as a 3D scene: the cartoon dog in a bowler hat sits on a chair with a mug of coffee, flames all around the room, smoke on the ceiling and a speech bubble saying THIS IS FINE. Camera angle buttons and a shutter button sit along the bottom.">
+                <figcaption>The room, the fire, the dog, the coffee. Everything here was designed, modelled, built and deployed by Claude from my descriptions.</figcaption>
+            </figure>
+
+            <h2 id="idea"><span class="num">01</span>The idea</h2>
+            <p>You know the comic. A dog in a bowler hat sits in a room that's on fire, sips his coffee and says <em>"This is fine."</em> KC Green drew it in 2013 and it has described most weeks of most people's lives since.</p>
+            <p>I wanted to step inside it. Not a filter, not a sticker: the actual room, in 3D, that you can walk the camera around. And I wanted to be the dog. Upload a selfie, and it's your face sipping coffee while everything burns.</p>
+            <p>My first message set the brief and, importantly, asked for a plan before anything got built:</p>
+            <blockquote class="prompt"><p>Keep the stylised comic but enable the use to pan and zoom and rotate (with proper camera angles) … button that allows the user to pause the animation and … take a snapshot, and copy to their clipboard or save to their local storage. Help me plan this out before you begin</p></blockquote>
+            <p><strong>This is fine</strong> is the result. Add a selfie and become the dog, as a photo or as a cartoon. Spin the camera round. Snap it, make a two-panel comic, record a clip. And if you know where to look, throw a disco in the inferno.</p>
+            <figure class="post-figure">
+                <div class="grid-2">
+                    <div class="tile"><img src="/images/writing/this-is-fine/intro.webp" width="1440" height="810" alt="The first-visit card: the dog in the burning room at the top, then three lines: add a selfie and become the dog, go live and the dog copies your moves, style it then share a snap, comic or clip. A note says photos stay in your browser." loading="lazy"><span class="tag">First visit</span></div>
+                    <div class="tile"><img src="/images/writing/this-is-fine/side.webp" width="1440" height="810" alt="The same room from the side: the dog on its chair in profile, the table beside it, flames along the walls, showing the scene is fully 3D." loading="lazy"><span class="tag">Spin it round</span></div>
+                </div>
+                <figcaption>A short welcome that says up front your photo never leaves your phone, and the room from an angle the comic never showed you.</figcaption>
+            </figure>
+
+
+            <h2 id="plan"><span class="num">02</span>Plan before you draw</h2>
+            <p>Last time I checked the data before designing anything. This time there was no data to check, but there were decisions, and they'd shape everything after. So before writing a line, Claude came back with a plan and five questions.</p>
+            <p>I answered all five in one breath:</p>
+            <blockquote class="prompt"><p>1 let's try a blend 2 real 3d 3 media pipe first and option to add later 4 also in browser gallery 5 this-is-fine. Also make this mobile first so the user can also take a photo with their front facing camera or add from their photo gallery</p></blockquote>
+            <div class="table-wrap">
+            <table class="post-table">
+                <thead><tr><th>The question</th><th>My answer</th><th>What it decided</th></tr></thead>
+                <tbody>
+                    <tr><td>Your face, or a dog with your face?</td><td>A blend</td><td>A slider from human to full dog, so you can be anywhere in between</td></tr>
+                    <tr><td>Real 3D, or a flat comic with depth?</td><td>Real 3D</td><td>A proper scene you can orbit, built with three.js</td></tr>
+                    <tr><td>How do we read a face?</td><td>MediaPipe first</td><td>Google's face tracking, running in the browser. No server, so no upload</td></tr>
+                    <tr><td>Where do snapshots go?</td><td>In-browser gallery</td><td>Saved on your device only</td></tr>
+                    <tr><td>What's it called?</td><td>this-is-fine</td><td>The repo, the URL, the lot</td></tr>
+                </tbody>
+            </table>
+            </div>
+            <p>Then, before a single screen existed, a design note that changed the whole product:</p>
+            <blockquote class="prompt"><p>Think about how the photo upload can be stylised so instead of mapping it as a photo it might be better to be a 3d model stylised like the dog</p></blockquote>
+            <p>A photo pasted onto a cartoon dog looks like a photo pasted onto a cartoon dog. So the app measures your face instead and draws it in the comic's style: your face shape, your skin tone, your hair, your glasses, your beard. I asked to keep the photo as an option too. It turns out people want to see themselves first, so photo is now the default and cartoon is one tap away.</p>
+            <p>That's design, just faster. The questions that matter most are the ones you answer before you draw.</p>
+
+            <h2 id="built"><span class="num">03</span>What got built</h2>
+            <p>The first day was the product. The rest of the week was the dog, the polish and, it turns out, a lot of secrets.</p>
+            <div class="stats" role="list">
+                <div role="listitem"><b>1</b><span>day to a working app</span></div>
+                <div role="listitem"><b>63</b><span>commits</span></div>
+                <div role="listitem"><b>5</b><span>days of building</span></div>
+                <div role="listitem" class="zero"><b>0</b><span>lines of code I typed</span></div>
+            </div>
+            <figure class="post-figure diagram wide" aria-label="Commits per day">
+                <svg viewBox="0 0 1040 300" xmlns="http://www.w3.org/2000/svg" role="img">
+                    <title>Commits per day: 38 on 30 October, 13 on 31 October, none on 1 November, 8 on 2 November and 4 on 3 November.</title>
+                    <path class="loop" d="M60 240 H1000"/>
+                    <rect x="110" y="50" width="110" height="190" style="fill: var(--color-accent)"/>
+                    <text class="t" x="110" y="38">38</text><text class="n" x="110" y="262">30 OCT</text><text class="s" x="110" y="280">the app, the face, the room</text>
+                    <rect class="box" x="300" y="175" width="110" height="65"/>
+                    <text class="t" x="300" y="163">13</text><text class="n" x="300" y="262">31 OCT</text><text class="s" x="300" y="280">the dog, rebuilt</text>
+                    <rect class="box" x="490" y="238" width="110" height="2"/>
+                    <text class="t" x="490" y="226">0</text><text class="n" x="490" y="262">1 NOV</text><text class="s" x="490" y="280">Sunday</text>
+                    <rect class="box" x="680" y="200" width="110" height="40"/>
+                    <text class="t" x="680" y="188">8</text><text class="n" x="680" y="262">2 NOV</text><text class="s" x="680" y="280">moods and sharing</text>
+                    <rect class="box" x="870" y="220" width="110" height="20"/>
+                    <text class="t" x="870" y="208">4</text><text class="n" x="870" y="262">3 NOV</text><text class="s" x="870" y="280">2Cap and the bed</text>
+                </svg>
+                <figcaption>Commits per day. Day one built the app; everything after was making it better and making it weirder.</figcaption>
+            </figure>
+            <div class="table-wrap">
+            <table class="post-table">
+                <thead><tr><th>What</th><th>How much</th></tr></thead>
+                <tbody>
+                    <tr><td>Day one</td><td>38 commits: the 3D room, face detection, the cartoon face, photo mode, snapshots, the gallery, and a first dog made of spheres</td></tr>
+                    <tr><td>Code written</td><td>About 9,950 lines, plus a 345-line Blender script that builds the dog</td></tr>
+                    <tr><td>Test faces I sent</td><td>42, in three batches, to tune the cartoon's skin, glasses and beard detection</td></tr>
+                    <tr><td>Improvements in one go</td><td>18, from a single "do them all"</td></tr>
+                    <tr><td>Secret modes</td><td>8 on the keyboard, 5 of them with a gesture on phones too</td></tr>
+                    <tr><td>Automated tests</td><td>59, run on every change</td></tr>
+                </tbody>
+            </table>
+            </div>
+            <p>What you can do with it:</p>
+            <ul>
+                <li><strong>Become the dog.</strong> Take a selfie or pick a photo. Choose photo or cartoon, then slide from human to full dog and watch a snout grow out of your face.</li>
+                <li><strong>Go live.</strong> Turn on the front camera and the dog copies your head, your blinks and your mouth. Smile and it falls in love. Frown and it cries.</li>
+                <li><strong>Direct the scene.</strong> Panel 1, Panel 2, front, side and above, or drag to orbit and pinch to zoom. The fire grows the longer you watch.</li>
+                <li><strong>Share it.</strong> A snapshot, a two-panel comic like the original strip, an 8-second clip with sound, or a looping GIF, in screen shape or 9:16 for Stories.</li>
+                <li><strong>Find the secrets.</strong> Type <code>party</code> for a disco inferno. Then there are moods: cry, dance, sleep, angry, love. Type <code>2cap</code> for a podcast. Press B for bed.</li>
+            </ul>
+            <figure class="post-figure">
+                <div class="grid-3">
+                    <div class="tile"><img src="/images/writing/this-is-fine/face-photo.webp" width="1440" height="810" alt="A close-up of the dog with a smiling woman's photographic face mapped onto its head, under the bowler hat, with the floppy ears either side." loading="lazy"><span class="tag">Photo</span></div>
+                    <div class="tile"><img src="/images/writing/this-is-fine/face-cartoon.webp" width="1440" height="810" alt="The same face drawn as a cartoon: big round comic eyes, inked brows, a toothy grin and curly cartoon hair, in the comic's flat colours." loading="lazy"><span class="tag">Cartoon</span></div>
+                    <div class="tile"><img src="/images/writing/this-is-fine/face-dog.webp" width="1440" height="810" alt="The cartoon face slid all the way to dog: the same eyes and grin, but with a black dog nose and a snout pushing forward." loading="lazy"><span class="tag acid">Full dog</span></div>
+                </div>
+                <figcaption>One face, three ways: the photo, the cartoon drawn from measurements, and the slider pushed to full dog. (The face is NASA's public-domain test portrait.)</figcaption>
+            </figure>
+            <figure class="post-figure">
+                <img src="/images/writing/this-is-fine/party.webp" width="1440" height="810" alt="Party mode: the room lit by coloured disco spots, a mirror ball hanging from the smoke, a pink DISCO INFERNO neon sign on the wall, and a crowd of colourful original characters dancing around the dog among the flames." loading="lazy">
+                <figcaption>Type "party". The lights drop, a mirror ball comes down, a crowd turns up, and everyone dances while the room burns. Disco inferno.</figcaption>
+            </figure>
+
+
+            <h2 id="how"><span class="num">04</span>How it works</h2>
+            <p class="reading-note">If you're a designer, read the plain-English bit of each step and skip the code. If you build things, the code is there for you.</p>
+
+            <figure class="post-figure diagram wide" aria-label="From a selfie to the dog wearing your face">
+                <svg viewBox="0 0 1040 260" xmlns="http://www.w3.org/2000/svg" role="img">
+                    <title>From a selfie to a shareable picture: your photo, face tracking in a background worker, your face built as a photo or a cartoon, attached to the dog's head, drawn in the 3D room with comic ink, then shared. All of it runs on your phone; nothing is uploaded.</title>
+                    <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="currentColor" style="color: var(--color-accent)"/></marker></defs>
+                    <g>
+                        <rect class="box acid" x="10" y="60" width="140" height="92" rx="2"/>
+                        <text class="n" x="24" y="84">01 · YOU</text><text class="t" x="24" y="110">A selfie</text><text class="s" x="24" y="132">or a photo,</text><text class="s" x="24" y="146">or the camera</text>
+                        <rect class="box" x="186" y="60" width="150" height="92" rx="2"/>
+                        <text class="n" x="200" y="84">02 · MEDIAPIPE</text><text class="t" x="200" y="110">The face</text><text class="s" x="200" y="132">478 points, in a</text><text class="s" x="200" y="146">background worker</text>
+                        <rect class="box" x="372" y="60" width="150" height="92" rx="2"/>
+                        <text class="n" x="386" y="84">03 · BUILDER</text><text class="t" x="386" y="110">You, drawn</text><text class="s" x="386" y="132">as the photo,</text><text class="s" x="386" y="146">or as a cartoon</text>
+                        <rect class="box" x="558" y="60" width="150" height="92" rx="2"/>
+                        <text class="n" x="572" y="84">04 · THE DOG</text><text class="t" x="572" y="110">The head</text><text class="s" x="572" y="132">your face rides</text><text class="s" x="572" y="146">its head bone</text>
+                        <rect class="box" x="744" y="60" width="140" height="92" rx="2"/>
+                        <text class="n" x="758" y="84">05 · THREE.JS</text><text class="t" x="758" y="110">The room</text><text class="s" x="758" y="132">toon shading,</text><text class="s" x="758" y="146">comic ink</text>
+                        <rect class="box acid" x="920" y="60" width="110" height="92" rx="2"/>
+                        <text class="n" x="934" y="84">06 · SHARE</text><text class="t" x="934" y="110">Snap</text><text class="s" x="934" y="132">photo, comic,</text><text class="s" x="934" y="146">clip or GIF</text>
+                        <path class="arrow" d="M150 106 H182" marker-end="url(#ah)"/><path class="arrow" d="M336 106 H368" marker-end="url(#ah)"/>
+                        <path class="arrow" d="M522 106 H554" marker-end="url(#ah)"/><path class="arrow" d="M708 106 H740" marker-end="url(#ah)"/>
+                        <path class="arrow" d="M884 106 H916" marker-end="url(#ah)"/>
+                        <path class="loop" d="M10 186 H1030"/>
+                        <text class="s" x="290" y="212">all of this happens on your phone · nothing is uploaded · it even works offline</text>
+                    </g>
+                </svg>
+                <figcaption>One selfie's trip into the room. The dashed line is the point: there's no server on the other side of it.</figcaption>
+            </figure>
+
+            <h3>1. Your face never leaves your phone</h3>
+            <p>Face tracking is Google's MediaPipe, which finds 478 points on a face plus expressions like a smile or a blink. It runs in your browser, in a background worker so the page doesn't freeze, and its model files are served from my own site. There is no upload, because there is nowhere to upload to.</p>
+            <p>That made the privacy note in the welcome card an easy promise to keep: your photo stays in your browser. It also means the whole thing works with no signal at all once you've visited.</p>
+
+            <h3>2. Measured, not pasted</h3>
+            <p>The cartoon face is drawn from measurements. The app lines your face up, compares it with an average face and exaggerates the differences, the way a caricaturist does. Then it samples your skin and hair colour, nudges them into the comic's palette, and checks for glasses, sunglasses and a beard.</p>
+            <p>I sent 42 test faces to tune it. The first batch found real bugs: a beard spotted on a clean-shaven face because of a shadow, glasses missed on thin frames. Beard detection now looks for texture rather than darkness. You only find those with real faces.</p>
+
+            <h3>3. A dog built by a script</h3>
+            <p>The dog isn't drawn in a 3D app by hand. It's built by a Python script that drives Blender: spheres and capsules for each part, fused into smooth shapes, given a skeleton, and exported as a 220 KB file. Change a number, run the script, get a new dog. More on why in section 07.</p>
+
+            <h3>4. Comic ink</h3>
+            <p>Comics have outlines, and not just around the edge. Where an arm crosses a tummy, there's a line. The usual 3D trick for outlines only draws the silhouette, so the dog read as one orange blob.</p>
+            <p>So every frame is drawn twice. The second time, invisibly, each body part gets its own colour: arm, paw, tummy, leg. Wherever two different colours meet with a jump in depth, the app inks a line on the nearer one.</p>
+            <figure class="post-figure diagram wide" aria-label="Outline only against comic ink">
+                <svg viewBox="0 0 1040 300" xmlns="http://www.w3.org/2000/svg" role="img">
+                    <title>Left: the usual outline traces only the silhouette, so an arm in front of the body disappears into it. Right: comic ink also draws a line wherever one body part sits in front of another, so the arm reads clearly.</title>
+                    <text class="n" x="70" y="30">THE USUAL OUTLINE</text><text class="s" x="70" y="48">silhouette only</text>
+                    <text class="n" x="590" y="30">COMIC INK</text><text class="s" x="590" y="48">every part that overlaps another</text>
+                    <g transform="translate(150 70)">
+                        <ellipse cx="120" cy="125" rx="95" ry="95" style="fill: var(--color-bg-raised)"/>
+                        <circle cx="120" cy="20" r="55" style="fill: var(--color-bg-raised)"/>
+                        <rect x="62" y="110" width="150" height="38" rx="19" transform="rotate(-18 137 129)" style="fill: var(--color-bg-raised)"/>
+                        <path d="M25 125 A95 95 0 0 0 215 125 A95 95 0 0 0 175 49 A55 55 0 1 0 65 49 A95 95 0 0 0 25 125 Z" class="arrow" style="stroke-width:3"/>
+                        <text class="s" x="40" y="246">the arm vanishes into the tummy</text>
+                    </g>
+                    <g transform="translate(670 70)">
+                        <ellipse cx="120" cy="125" rx="95" ry="95" style="fill: var(--color-bg-raised)"/>
+                        <circle cx="120" cy="20" r="55" style="fill: var(--color-bg-raised)"/>
+                        <path d="M25 125 A95 95 0 0 0 215 125 A95 95 0 0 0 175 49 A55 55 0 1 0 65 49 A95 95 0 0 0 25 125 Z" class="arrow" style="stroke-width:3"/>
+                        <rect x="62" y="110" width="150" height="38" rx="19" transform="rotate(-18 137 129)" class="arrow" style="fill: var(--color-bg-raised); stroke-width:3"/>
+                        <path d="M70 62 Q120 80 170 62" class="arrow" style="stroke-width:3"/>
+                        <text class="s" x="50" y="246">the arm, the chin, the tummy</text>
+                    </g>
+                    <path class="loop" d="M520 60 V280"/>
+                </svg>
+                <figcaption>Same shapes. The outline on the left can't tell an arm from a tummy. The ink on the right draws where parts overlap, like a comic artist would.</figcaption>
+            </figure>
+            <span class="code-label">GLSL · ink the near side of a step between parts</span>
+<pre><code><span class="c">// look either side of each pixel: a different part that's further away means an edge</span>
+<span class="k">float</span> jump = thereDepth - here.y - slope;
+<span class="k">if</span> (there.x != here.x &amp;&amp; jump &gt; 0.03) hits += 1.0;</code></pre>
+
+            <h3>5. Every sound is made up on the spot</h3>
+            <p>There isn't a single audio file in the app. The fire's crackle, the disco loop, the sobbing, the snoring, the 2Cap chiptune: all of it is synthesised in the browser as it plays, from oscillators and noise. It costs nothing to download, and everything plays through one engine, so a clip records exactly what you hear.</p>
+
+            <h3>6. Everything else</h3>
+            <ul>
+                <li><strong>The site:</strong> Vite, React and three.js, on Vercel, served at theluckystrike.co.uk/this-is-fine through the same rewrite as my other side projects.</li>
+                <li><strong>Offline:</strong> a service worker keeps every file, including the face models, so it works on a plane.</li>
+                <li><strong>Sharing:</strong> clips record the canvas and the sound together; GIFs are encoded in the browser; Story mode crops to 9:16 and follows the dog.</li>
+                <li><strong>Security:</strong> I asked for a check halfway through. It found nothing serious and tightened what the page is allowed to load.</li>
+                <li><strong>A launch video:</strong> 20 seconds, captured frame by frame from the real app, with a soundtrack Claude wrote in code.</li>
+            </ul>
+            <figure class="post-figure">
+                <img src="/images/writing/this-is-fine/phone-views.webp" width="1404" height="980" alt="Three phone screenshots: the room with the camera chips and shutter, the Your face sheet with Take a selfie, Choose a photo and Go live buttons, and party mode with a Party badge and a dancer in a top hat." loading="lazy">
+                <figcaption>Built for phones first: the room, the face sheet, and a party in your pocket.</figcaption>
+            </figure>
+
+
+            <h2 id="prompting"><span class="num">05</span>How I prompted</h2>
+            <p>As before, these are my real messages, typos and all. Most were typed on my phone. None of them is clever. They read like notes to a designer sitting next to me.</p>
+
+            <h3>Answer the questions in one line</h3>
+            <p>You saw it in section 02: five questions, five answers, one message. When Claude asks good questions, the fastest thing you can do is answer them plainly and get out of the way.</p>
+
+            <h3>Ask for a list, then say "do them all"</h3>
+            <blockquote class="prompt"><p>What other improvements can be made</p></blockquote>
+            <blockquote class="prompt"><p>Do them all</p></blockquote>
+            <blockquote class="prompt"><p>18 can be Vercel analytics</p></blockquote>
+            <p>Eighteen improvements, from a smoother face pipeline to offline support, in three messages. The third one was me editing a single item on the list. I did it again later with <em>"Do 3 through to 17"</em>.</p>
+
+            <h3>Describe what you see</h3>
+            <blockquote class="prompt"><p>The drinking motion is still off, he drinks and the cup disappears to his ear</p></blockquote>
+            <blockquote class="prompt"><p>also the flames have flat line artifacts at the top</p></blockquote>
+            <p>No diagnosis, just the symptom. The cup was going to his ear because the arm was posed by angles rather than aimed at his mouth; now it reaches for the mouth like a real arm. The flame lines were a maths cliff at the tip of each flame. I didn't need to know either of those things. I only needed to notice.</p>
+
+            <h3>Ask why, not for a fix</h3>
+            <blockquote class="prompt"><p>Im wondering why my face does not work well</p></blockquote>
+            <p>With a screenshot of my own face, blotchy and purple. There turned out to be three causes, one of them a bug introduced that same day. Asking "why" got all three. Asking "make it better" might have got one.</p>
+
+            <h3>Change your mind out loud</h3>
+            <blockquote class="prompt"><p>When doing the face tracking mode, it's probably better to track the face only and not transfer the face onto the dog. That keeps it simpler too</p></blockquote>
+            <p>Live mode originally put your live face on the dog. It was clever, and it was busy. Now the dog's own face copies yours. Simpler, and funnier.</p>
+
+            <h3>Make it feel right for the person</h3>
+            <blockquote class="prompt"><p>All of it but first when the user takes a photo or selfie for the face it is replacement, default to the face being human not dog, so that they feel the effect</p></blockquote>
+            <blockquote class="prompt"><p>Default to photo too when the use adds a selfie or photo</p></blockquote>
+            <p>Two small defaults, the biggest change to how the app feels. The first thing you see should be you.</p>
+
+            <h3>Typos are fine</h3>
+            <blockquote class="prompt"><p>Do it in</p></blockquote>
+            <blockquote class="prompt"><p>Phong check seems fine</p></blockquote>
+            <p>"Do it in" meant "do it". "Phong check" meant "phone check". Both understood, both done. Precision matters in what you want, not how you spell it.</p>
+
+            <h3>Hear "no" when it's right</h3>
+            <blockquote class="prompt"><p>Need a hot key that is when the user types “2Cap” it replaces the beanie and adds to 2 caps to the dog. The music / background sounds changes to a chiptune rendition of 2Pac’s California Love</p></blockquote>
+            <p>Claude built the two caps and said no to the song. A chiptune cover is still a copy of someone else's music, and this is a public site. Instead it wrote an original West Coast-style chiptune for the mode. Same vibe, nobody's song. That was the right call, and I didn't have to think of it.</p>
+            <figure class="post-figure">
+                <img src="/images/writing/this-is-fine/twocap.webp" width="1440" height="810" alt="2Cap mode: two dogs face each other across the table, each wearing two stacked caps, navy and red. The left dog has a short trimmed beard, the right one a long dark beard. A 2CAP PODCAST banner hangs on the wall and the speech bubble says WEST SIDE. THIS IS FINE." loading="lazy">
+                <figcaption>Type "2cap": two caps each, a twin across the table, two beards, a podcast banner and an original chiptune. The bubble updates itself.</figcaption>
+            </figure>
+
+            <h3>Ask for safety, not just features</h3>
+            <blockquote class="prompt"><p>It’s probably a good thing to do a security check on this repo</p></blockquote>
+            <p>Nothing serious turned up, which is the best answer. It still tightened the rules about what the page may load, I checked them on a preview on my phone first, and now the tests fail if anything ever breaks them. Ten minutes, and I sleep better.</p>
+
+
+            <h2 id="broke"><span class="num">06</span>What broke</h2>
+            <p>The usual suspects, and a few new ones. None needed me to understand the cause, only to notice it.</p>
+            <div class="table-wrap">
+            <table class="post-table">
+                <thead><tr><th>What I saw</th><th>What was actually wrong</th><th>The fix</th></tr></thead>
+                <tbody>
+                    <tr><td>The dog's feet were floating</td><td>It was made of separate spheres, and nothing held them together</td><td>Rebuilt as one rigged model, in Blender, by script</td></tr>
+                    <tr><td>Live mode didn't see my face on desktop</td><td>A second face tracker, for video, couldn't start alongside the photo one</td><td>One tracker that switches between photo and video</td></tr>
+                    <tr><td>Orange blotches on my face</td><td>The dog's skull was poking through the face after a change that day</td><td>The skull flattens further back when a face is on</td></tr>
+                    <tr><td>Purple and green patches on skin</td><td>Colours were reduced channel by channel, in a space that crushes shadows</td><td>Reduce brightness only, and keep each colour's hue</td></tr>
+                    <tr><td>Thin lines streaking off the flames</td><td>A sudden drop in the maths at each flame's tip</td><td>Make the drop smooth</td></tr>
+                    <tr><td>No sound on my phone</td><td>Phones mute web audio on silent unless it's started in the right way</td><td>Start it inside the tap, and play it as media</td></tr>
+                    <tr><td>Two-finger tap did nothing</td><td>The second finger landing on the dog reset the first</td><td>Count it as the second finger</td></tr>
+                </tbody>
+            </table>
+            </div>
+
+
+            <h2 id="dog"><span class="num">07</span>Teaching a robot to draw a dog</h2>
+            <p>This is the bit that took longest, and the bit I learned most from. Faces, cameras, sharing: all quick. The dog took the whole week, one layer at a time.</p>
+
+            <h3>Layer 1: a dog made of balls</h3>
+            <p>Day one's dog was spheres and capsules arranged in the right places. From the front it passed. From the side it fell apart.</p>
+            <blockquote class="prompt"><p>the dog needs improvements too, the render means the feet are detached. what can you do to improve it</p></blockquote>
+            <figure class="post-figure narrow" style="max-width: 560px">
+                <div class="grid-2">
+                    <div class="tile"><img src="/images/writing/this-is-fine/day-one.webp" width="390" height="844" alt="The day-one dog on a phone: a chunky orange figure made of rounded shapes, with a big speech bubble." loading="lazy"><span class="tag">Day one</span></div>
+                    <div class="tile"><img src="/images/writing/this-is-fine/day-five.webp" width="390" height="844" alt="The day-five dog on a phone, from the same camera angle: one smooth model with inked inner contours, floppy ears and the mug held in its paw." loading="lazy"><span class="tag acid">Day five</span></div>
+                </div>
+                <figcaption>Same camera, five days apart. The left one is built from balls. The right one has a skeleton.</figcaption>
+            </figure>
+
+            <h3>Layer 2: a 3D artist that's actually a script</h3>
+            <p>Claude offered three options. The best one needed a proper 3D model with a skeleton, which normally means a 3D artist. I asked the obvious question:</p>
+            <blockquote class="prompt"><p>C, but cant you do that?</p></blockquote>
+            <p>It could. It installed Blender as a Python library and wrote a script that builds the dog part by part, fuses each part into one smooth surface, gives it bones, and decides how much each bone moves each bit of fur. The app then poses those bones live: breathing, sipping, wagging, dancing.</p>
+
+            <h3>Layer 3: the outline only knew the edge</h3>
+            <blockquote class="prompt"><p>hmm, whilst renders better, the outline is failing because it only exists around the edge of the dog so cannot tell where the arms and legs and rest of the body are when viewing and it animates..</p></blockquote>
+            <p>That message led to the comic ink in section 04. It's my favourite kind of feedback to give: what I expected, what I saw, and why it mattered. Then a few rounds of <em>"I feel like the dog outline on limbs and feet and hands can still be improved"</em> until the paws read properly.</p>
+
+            <h3>Layer 4: the cup and the ear</h3>
+            <p>The sip was posed by rotating the shoulder and elbow by set amounts. Set amounts don't know where a mouth is, so the cup kept ending up at his ear. The fix was the way robot arms and game characters do it: say where the hand should go and work backwards to the elbow. Now the cup always meets the mouth.</p>
+
+            <h3>Layer 5: the head joins the body</h3>
+            <p>The head was a separate ball sitting on the neck, because the face swap needed to replace it. That left a seam under the chin. I'd asked how much work it would be to fix early on, and parked it with <em>"wait for now"</em>. After testing on a real phone, I came back with <em>"let's do it now"</em>. The skull, snout and ears went into the model, the face now rides the head bone, and the ears swing a little behind every head turn.</p>
+
+            <h3>Layer 6: and then it got silly</h3>
+            <p>Once the dog could move properly, it could do anything. Cry, with tears that arc to the floor and pool into puddles. Get angry and turn red. Fall in love. Fall asleep. Climb into bed.</p>
+            <figure class="post-figure">
+                <div class="grid-2">
+                    <div class="tile"><img src="/images/writing/this-is-fine/mood-cry.webp" width="1440" height="810" alt="The dog crying: fountains of blue tears arcing out from both eyes, a frown, and one paw raised to wipe an eye." loading="lazy"><span class="tag">C · cry</span></div>
+                    <div class="tile"><img src="/images/writing/this-is-fine/mood-angry.webp" width="1440" height="810" alt="The dog angry: its fur flushed red-orange, thick scowling brows, a frown, and puffs of steam rising from its head." loading="lazy"><span class="tag">G · angry</span></div>
+                    <div class="tile"><img src="/images/writing/this-is-fine/mood-love.webp" width="1440" height="810" alt="The dog in love: pink heart-shaped eyes, a wide smile and little red hearts floating around its head." loading="lazy"><span class="tag">L · love</span></div>
+                    <div class="tile"><img src="/images/writing/this-is-fine/bed.webp" width="1280" height="720" alt="Bed mode: a wooden bed beside the empty chair, the dog lying with its head on the pillow under a soft blue duvet, Zs floating up and a speech bubble saying THIS IS… ZZZ." loading="lazy"><span class="tag acid">B · bed</span></div>
+                </div>
+                <figcaption>Four of the eight secrets, each with a key on desktop. On phones: long-press the dog to cry, double-tap to dance, tap its hat for 2Cap, two-finger tap for bed.</figcaption>
+            </figure>
+            <p>The last thing I asked for was the duvet: <em>"it’s blocky and looks off"</em>. It was a rounded box. Now it's a soft surface draped over the dog, with lumps where its knees are, a sheet folded back at the chin, and fabric hanging over the sides. A week earlier the dog's feet were floating. Now we're arguing about bedding.</p>
+
+
+            <h2 id="takeaways"><span class="num">08</span>What I took from it</h2>
+            <p>The Listening Room taught me that taste is the bottleneck. Sample Explorer taught me the first evening is the easy bit. This one added a few more.</p>
+            <p><strong>Decide before you draw.</strong> Five questions answered on day one shaped everything that came after. "A blend" became a slider. "MediaPipe first" became a privacy promise.</p>
+            <p><strong>The character is the product.</strong> The face tech is clever, but people react to the dog. Most of the week went on how he sits, sips and reads. That was the right place to spend it.</p>
+            <p><strong>Defaults are design.</strong> Starting new faces as human, and as the photo, changed how the app feels more than any feature did.</p>
+            <p><strong>Let it say no.</strong> The best call in the project was Claude turning down a cover of someone else's song and writing an original instead. A good collaborator pushes back.</p>
+            <p><strong>Your best prompt might be a symptom.</strong> "The cup disappears to his ear." "Flat line artifacts at the top." "My face does not work well." I said what I saw. That was always enough.</p>
+            <p>Go and put your face on the dog. Slide it to full dog. Type party. If you end up sipping coffee in a burning room with a crowd of strangers dancing round you, it's working. This is fine.</p>
+
+            <div class="post-cta">
+                <a class="button" href="/this-is-fine">Open This is fine ↗</a>
+                <p class="post-credits">Built with Claude Code, after KC Green's comic. Face tracking by Google MediaPipe; every sound synthesised in the browser. Read the companion pieces, <a href="/writing/listening-room">The Listening Room</a> and <a href="/writing/sample-explorer">Sample Explorer</a>.</p>
+            </div>
+
+        </article>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-left">
+                <span class="footer-logo">Mark Jenkins</span>
+                <span class="footer-copy">© 2026</span>
+            </div>
+            <div class="footer-right">
+                <a href="mailto:mark@theluckystrike.co.uk">Email</a>
+                <a href="https://www.linkedin.com/in/markjenkins1981/" target="_blank" rel="noopener">LinkedIn</a>
+            </div>
+        </div>
+        <div class="footer-colophon">
+            <span>Set in Instrument Serif, Instrument Sans &amp; Geist Mono</span>
+            <span>Hand-written CSS — no frameworks</span>
+            <span>Drawn with code</span>
+        </div>
+    </footer>
+
+    <script src="/script.js"></script>
+
+    <!-- Vercel Speed Insights -->
+    <script>
+        window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/speed-insights/script.js"></script>
+</body>
+</html>
