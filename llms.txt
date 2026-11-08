@@ -17,6 +17,14 @@ Currently: leads the design team at WeTravel.
 
 Previously, clients and companies include: HackerOne, Funda, Uber, Adidas, Google, Klarna, eBay, The Guardian, Virgin Group, Emirates, Hilton, Unilever, Depop, Just Eat, Hyundai, Time Out.
 
+## Side projects
+
+Built after hours by describing them to Claude Code:
+
+- **The Listening Room** (https://www.theluckystrike.co.uk/listening-room): a 3D room for his record collection — pull records, mix on two turntables, stream mixes, set the lights. Built in about 22 hours without opening a 3D tool. Write-up: https://www.theluckystrike.co.uk/writing/listening-room
+- **Sample Explorer** (https://www.theluckystrike.co.uk/sample-explorer): a family tree for every sampled record, on a timeline. Write-up: https://www.theluckystrike.co.uk/writing/sample-explorer
+- **This Is Fine** (https://www.theluckystrike.co.uk/this-is-fine): put your face on the dog in the burning room.
+
 ## Teaching
 
 - **Lead Instructor, General Assembly** (2017–2020): Developed and delivered UX design curriculum for 200+ aspiring designers.

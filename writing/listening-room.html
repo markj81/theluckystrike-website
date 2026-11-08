@@ -120,11 +120,11 @@
             <p>I set one rule at the start, in my second message:</p>
             <blockquote class="prompt"><p>Obtain models from online, I won't model anything, you need to do that and drive that, along with textures and any animations. I'm looking for a highly refined and design-polished aesthetic. Realism is key.</p></blockquote>
             <p>That was the deal. I'd be the art director. Claude, working in Claude Code, would be the whole studio: 3D modeller, lighting artist, front-end developer, audio engineer and the person who deploys it at 4am.</p>
-            <p>I'll be honest, I didn't think it would hold. I expected to hit a wall somewhere around the 3D and end up in Blender myself, watching tutorials. I never opened it. Not once.</p>
-            <p>That's the bit I find genuinely interesting. Not that AI can write code (we all know that by now), but that the whole chain from "find me a chair" to "bake the light from seven lamps" can be driven by someone describing what they want and reacting to what they see.</p>
+            <p>I didn't think it would hold. I expected to hit a wall somewhere around the 3D and end up in Blender myself, watching tutorials. I never opened it.</p>
+            <p>AI writing code is old news. What interests me is that the whole chain, from "find me a chair" to "bake the light from seven lamps", can be driven by someone describing what they want and reacting to what they see.</p>
 
             <h2 id="built"><span class="num">03</span>What got built</h2>
-            <p>One evening, one night's sleep, one long day of feedback. Here's the tally.</p>
+            <p>It took one evening, one night's sleep and one long day of feedback.</p>
             <div class="stats" role="list">
                 <div role="listitem"><b>22h</b><span>first message to live</span></div>
                 <div role="listitem"><b>53</b><span>messages from me</span></div>
@@ -202,12 +202,12 @@ cell, th, dep, ncol, nrow = 0.345, 0.02, 0.4, 5, 4
     <span class="k">for</span> c <span class="k">in</span> range(ncol):
         <span class="k">for</span> k <span class="k">in</span> range(random.randint(28, 30)):          <span class="c"># full cubbies</span>
             box(f'Sleeve_{r}{c}_{k}', size, position, random.choice(SPINES))</code></pre>
-            <p>That matters more than it sounds. When I said "the plant pots are not modern enough", nobody had to find a file and fiddle. The script changed, the room rebuilt, and nothing else moved.</p>
+            <p>When I said "the plant pots are not modern enough", nobody had to find a file and fiddle. The script changed, the room rebuilt, and nothing else moved.</p>
 
             <h3>2. Light that's real, but cheap</h3>
             <p>Realistic light is the expensive part of 3D. Light bounces: off the walls, the floor, the ceiling, the chair. Calculating that live in a browser would melt your laptop.</p>
             <p>The trick is to work it out once, in advance. Blender fires millions of light rays around the room and saves the result as an image, a <strong>lightmap</strong>, painted onto every surface. It's how games have looked good for twenty years.</p>
-            <p>The twist here: the lamps have to switch on and off. So the room is baked seven times, once per light, each in plain white light. The browser then blends the seven together live, tinting each one with its own colour and brightness.</p>
+            <p>The lamps have to switch on and off, so the room is baked seven times, once per light, each in plain white light. The browser then blends the seven together live, tinting each one with its own colour and brightness.</p>
 
             <figure class="post-figure">
                 <div class="lightsum">
@@ -232,7 +232,7 @@ vec3 mixLightmaps(vec2 uv) {
     sum += decodeRGBM(texture2D(lmMaps[i], uv)) * lmColors[i];
   <span class="k">return</span> sum;
 }</code></pre>
-            <p>That's why dimming a lamp looks right. The light still bounces off the ceiling and warms the wall behind the decks, because that bounce was baked in. The dimmer is just turning that layer down. Dim a bulb and it warms up too, like a real filament. Small detail. Huge difference.</p>
+            <p>That's why dimming a lamp looks right. The light still bounces off the ceiling and warms the wall behind the decks, because that bounce was baked in. The dimmer is just turning that layer down. Dim a bulb and it warms up too, like a real filament.</p>
 
             <figure class="post-figure">
                 <div class="scenes-loop">
@@ -294,7 +294,7 @@ vec3 mixLightmaps(vec2 uv) {
             <h3>Change your mind out loud</h3>
             <blockquote class="prompt" data-time="05:00"><p>Remove the neon sign completely</p></blockquote>
             <blockquote class="prompt" data-time="05:01"><p>"Remove the neon sign completely", ignore that, keep it and move it facing the chair</p></blockquote>
-            <p>No drama, no wasted work. It's a draft until it's live, and even then.</p>
+            <p>The second message cancelled the first a minute later, and nothing had to be undone.</p>
 
             <h3>Answer questions fast</h3>
             <p>When Claude needed a decision, it asked a short numbered question. I answered like this:</p>
@@ -334,12 +334,12 @@ vec3 mixLightmaps(vec2 uv) {
                 </div>
                 <figcaption>The dotted window frame. One setting, and every thin edge in the room stopped breaking up.</figcaption>
             </figure>
-            <p>None of those needed me to understand the cause. I needed to notice, describe it and say when it looked right. Which, if you think about it, is the job.</p>
+            <p>None of those needed me to understand the cause. I needed to notice it, describe it and say when it looked right.</p>
 
             <h2 id="mobile"><span class="num">07</span>Mobile: a showroom, not a DJ booth</h2>
             <p>At one point I asked the obvious question: is mobile even worth it?</p>
-            <p>The honest answer was yes and no. Yes, because most people will meet this link on their phone: from LinkedIn, from a message, on the train. That first impression is the whole point. No, because nobody is going to beat-match on an iPhone on the Northern line.</p>
-            <p>So phones get a <strong>showroom</strong>, not a cut-down DJ booth:</p>
+            <p>The answer was yes and no. Yes, because most people will meet this link on their phone: from LinkedIn, from a message, on the train. That first impression is the whole point. No, because nobody is going to beat-match on an iPhone on the Northern line.</p>
+            <p>So phones get a <strong>showroom</strong>:</p>
             <ul>
                 <li><strong>A lighter room.</strong> Plants and figures are simplified, textures shrink, and the baked light comes at half size. About 13 MB instead of 27, and the glow effect is switched off.</li>
                 <li><strong>No walking.</strong> On a small screen, walking around is how you get lost. Instead you glide between five framed views (the chair, the decks, the records, the window, the art), and you can still drag to look around.</li>
@@ -354,11 +354,11 @@ vec3 mixLightmaps(vec2 uv) {
             <p>It's the same call I'd make at work: don't port the whole product to every screen. Work out what each screen is for.</p>
 
             <h2 id="takeaways"><span class="num">08</span>What I took from it</h2>
-            <p>I've spent twenty-five years making things and helping other people make things. Here's what this changed for me, and what it didn't.</p>
-            <p><strong>Taste is the bottleneck now.</strong> Claude could build anything I asked for. The hard part was knowing what to ask for: that the pots looked dated, that the shelf needed balance, that "realism is key" meant the light, not the polygon count. The making got cheap. The judgement didn't.</p>
+            <p>I've spent twenty-five years making things and helping other people make things. This is what the project changed for me, and what it didn't.</p>
+            <p><strong>Taste is the bottleneck now.</strong> Claude could build anything I asked for. The hard part was knowing what to ask for: that the pots looked dated, that the shelf needed balance, that "realism is key" meant the light, not the polygon count.</p>
             <p><strong>The crit is the interface.</strong> I didn't learn a new way of working. I used the one I've used with every team I've led: say what you see, say what you want, let them work out how. Short feedback, often, with a picture when words are slow. If you can run a good design review, you can do this.</p>
             <p><strong>Delegate outcomes, not tasks.</strong> "Make the corners smoother" beat any instruction I could have written about lightmap UVs. The more I described the result and the less I described the method, the better it got.</p>
-            <p><strong>It's a force multiplier, not a replacement.</strong> I didn't do this instead of designing. I did it as a designer, with a studio's worth of hands. One person, one evening and a day, a thing that would have taken a small team weeks.</p>
+            <p><strong>It's a force multiplier, not a replacement.</strong> I did this as a designer, with a studio's worth of hands: one person, an evening and a day, on something that would have taken a small team weeks.</p>
             <p><strong>Perfect is a direction, not a destination.</strong> There's a list of things I'd still change. That's fine. It's live, people are poking at it, and the next fix is one sentence away.</p>
             <p>Come and have a listen. Pull something out of the crate. Dim the lights. And if you type the right name, the shelf might rearrange itself.</p>
 

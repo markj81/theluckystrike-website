@@ -18,6 +18,10 @@
       "destination": "/writing/sample-explorer.html"
     },
     {
+      "source": "/writing/this-is-fine",
+      "destination": "/writing/this-is-fine.html"
+    },
+    {
       "source": "/sample-explorer",
       "destination": "https://sample-explorer.vercel.app/sample-explorer"
     },
@@ -62,6 +66,16 @@
       "source": "/writing/sample-explorer.html",
       "destination": "/writing/sample-explorer",
       "permanent": true
+    },
+    {
+      "source": "/writing/this-is-fine.html",
+      "destination": "/writing/this-is-fine",
+      "permanent": true
+    },
+    {
+      "source": "/writing",
+      "destination": "/#side-projects",
+      "permanent": false
     }
   ]
 }
