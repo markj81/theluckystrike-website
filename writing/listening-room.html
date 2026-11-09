@@ -146,9 +146,11 @@
             <p>What you can do in the room:</p>
             <ul>
                 <li><strong>Walk around</strong> with WASD, or drag to look. You can't leave the room, but you can look out of the window at a real Amsterdam canal.</li>
-                <li><strong>Dig the crate.</strong> Pull records from my collection or my recently played, load them onto deck A or B and press Start.</li>
-                <li><strong>Mix.</strong> Mix mode locks the camera over the decks. Grab the record to scratch, drag the tonearm to drop the needle, ride the faders and the crossfader. The decks behave like real ones: the platter takes a moment to get up to speed, the needle lowers once it's turning, and when a preview runs out the arm swings home.</li>
-                <li><strong>Click any sleeve</strong> on the shelf for the tracklist and a short artist bio.</li>
+                <li><strong>Dig the crate.</strong> Pull records from my collection or my recently played, or search all 2,600 by artist, title or label, with genre and decade filters. Load them onto deck A or B and press Start.</li>
+                <li><strong>Mix.</strong> Mix mode locks the camera over the decks. Grab the record to scratch, drag the tonearm to drop the needle, ride the faders and the crossfader. The decks behave like real ones: the platter takes a moment to get up to speed, the needle lowers once it's turning, and when a preview runs out the arm swings home. On a keyboard: <kbd>A</kbd>/<kbd>D</kbd> pick a deck, <kbd>Space</kbd> starts it, the arrows nudge and pitch it, <kbd>[</kbd> <kbd>]</kbd> ride the crossfader.</li>
+                <li><strong>Sync.</strong> Each deck card shows the preview's tempo, measured in the browser, and a waveform that fills as it plays. Sync matches one deck's tempo to the other.</li>
+                <li><strong>Keep it going.</strong> Switch it on and the room DJs for you: before each preview ends, the next record from the shelf is already spinning on the other deck and the crossfader glides across.</li>
+                <li><strong>Click any sleeve</strong> on the shelf for the tracklist and a short artist bio, and Share for a link that opens the room on that record.</li>
                 <li><strong>Switch the lights.</strong> Seven lights (five lamps, brass picture lights over the art, and LED strips under the shelves), four scenes (Sunday morning, Golden hour, Late night, All on), dimmers that warm up as they dim like real bulbs.</li>
                 <li><strong>Stream</strong> a classic mix through SoundCloud: Coldcut's <em>70 Minutes of Madness</em>, Larry Levan at the Paradise Garage, the Dirtchamber Sessions.</li>
                 <li><strong>Type DOOM, DILLA, SUPREME or FINE</strong> (on a phone, press and hold the sign, the covers or the chair). Actually, I'll let you find out what they do.</li>
@@ -328,6 +330,7 @@ vec3 mixLightmaps(vec2 uv) {
                     <tr><td>Flames cut through the record shelf and the plants</td><td>Each flame is a flat card that turns to face you, so it sweeps a circle as wide as itself</td><td>A top-down map of the room, and every flame moved or shrank until its whole circle is clear</td></tr>
                     <tr><td>The records on the shelf looked see-through from an angle</td><td>To sharpen the spines, the build had deleted each sleeve's sides, leaving floating strips</td><td>Put the sides back with only a sliver of the lightmap, so the spines stay sharp</td></tr>
                     <tr><td>Press-and-hold on the chair went black on iPhone, then did nothing</td><td>iPhone browsers ignored the page's base address when loading the easter-egg code, so they asked for a file that doesn't exist</td><td>Build the full address in code. Then the song stayed silent: iOS only starts audio when a finger lifts, so the hold now acts on release</td></tr>
+                    <tr><td>FINE stopped playing music, on every device</td><td>Deezer's preview links now expire after about 15 minutes, but the server cached them for an hour, so most of the time it handed out a dead link</td><td>Cache each link only while it lives, and fetch a fresh one if a download fails</td></tr>
                     <tr><td>Typing DOOM or DILLA fought the D key, which walked me sideways</td><td>Hotkeys and typed words fought over the same letters</td><td>Moved walking to the arrows (and later, back to WASD)</td></tr>
                 </tbody>
             </table>
