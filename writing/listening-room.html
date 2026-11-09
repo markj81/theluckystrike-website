@@ -151,7 +151,7 @@
                 <li><strong>Click any sleeve</strong> on the shelf for the tracklist and a short artist bio.</li>
                 <li><strong>Switch the lights.</strong> Seven lights (five lamps, brass picture lights over the art, and LED strips under the shelves), four scenes (Sunday morning, Golden hour, Late night, All on), dimmers that warm up as they dim like real bulbs.</li>
                 <li><strong>Stream</strong> a classic mix through SoundCloud: Coldcut's <em>70 Minutes of Madness</em>, Larry Levan at the Paradise Garage, the Dirtchamber Sessions.</li>
-                <li><strong>Type DOOM, DILLA or SUPREME</strong> (on a phone, press and hold the sign or the covers). Actually, I'll let you find out what they do.</li>
+                <li><strong>Type DOOM, DILLA, SUPREME or FINE</strong> (on a phone, press and hold the sign, the covers or the chair). Actually, I'll let you find out what they do.</li>
             </ul>
             <figure class="post-figure">
                 <div class="grid-3">
@@ -323,6 +323,8 @@ vec3 mixLightmaps(vec2 uv) {
                     <tr><td>Some SoundCloud mixes wouldn't play</td><td>SoundCloud now streams many tracks with DRM, and the embedded player wasn't allowed to use it</td><td>One permission on the player, plus a nudge to tap ▶ when a phone blocks autoplay</td></tr>
                     <tr><td>The mixer's level meters never lit up</td><td>Their glow colour was exported as black, and turning black up is still black</td><td>Set the colours in the browser, with real LED ballistics: fast up, slow down, a peak that holds</td></tr>
                     <tr><td>The new Amsterdam window showed a white van</td><td>The direction maths had the photo mirrored</td><td>Calibrated against the old view, then turned it to face the canal houses</td></tr>
+                    <tr><td>The guest in the armchair looked sunk into the seat, not sitting on it</td><td>The model was built for a 0.5 m stool with its feet on the floor; in a low lounge chair its legs went straight through the cushion</td><td>Lifted it onto the cushion and stretched its legs out, checked with a cutaway render through the chair</td></tr>
+                    <tr><td>The camera ran at a wall, then jerked back</td><td>It glided in a straight line to a spot outside the area the camera is allowed to stand, and the controls snapped it back in</td><td>An orbit round the chair that shrinks near walls, ending somewhere the camera can stay</td></tr>
                     <tr><td>Typing DOOM or DILLA fought the D key, which walked me sideways</td><td>Hotkeys and typed words fought over the same letters</td><td>Moved walking to the arrows (and later, back to WASD)</td></tr>
                 </tbody>
             </table>
