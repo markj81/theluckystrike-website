@@ -147,7 +147,7 @@
             <ul>
                 <li><strong>Walk around</strong> with WASD, or drag to look. You can't leave the room, but you can look out of the window at a real Amsterdam canal.</li>
                 <li><strong>Dig the crate.</strong> Pull records from my collection or my recently played, load them onto deck A or B and press Start.</li>
-                <li><strong>Mix.</strong> Mix mode locks the camera over the decks. Grab the record to scratch, drag the tonearm to drop the needle, ride the faders and the crossfader.</li>
+                <li><strong>Mix.</strong> Mix mode locks the camera over the decks. Grab the record to scratch, drag the tonearm to drop the needle, ride the faders and the crossfader. The decks behave like real ones: the platter takes a moment to get up to speed, the needle lowers once it's turning, and when a preview runs out the arm swings home.</li>
                 <li><strong>Click any sleeve</strong> on the shelf for the tracklist and a short artist bio.</li>
                 <li><strong>Switch the lights.</strong> Seven lights (five lamps, brass picture lights over the art, and LED strips under the shelves), four scenes (Sunday morning, Golden hour, Late night, All on), dimmers that warm up as they dim like real bulbs.</li>
                 <li><strong>Stream</strong> a classic mix through SoundCloud: Coldcut's <em>70 Minutes of Madness</em>, Larry Levan at the Paradise Garage, the Dirtchamber Sessions.</li>
@@ -194,7 +194,7 @@
 
             <h3>1. Blender, with nobody at the controls</h3>
             <p>Blender is the free 3D tool most studios use. It also runs without a screen, as a Python library. So Claude didn't click around a 3D app: it wrote a script that builds the whole room, and re-ran it every time I asked for a change.</p>
-            <p>Every object in the room is a line of code somewhere. The walls, the shelf, the record sleeves (nearly 600 of them, coloured from my actual records), the decks and mixer, which Claude designed from scratch. The chair, plants and lamps are free models from Poly Haven; the KAWS figures and the bonsai are scans from Sketchfab, credited in the room. The “have a good time” rug is drawn by the script too, tuft by tuft.</p>
+            <p>Every object in the room is a line of code somewhere. The walls, the shelf, the record sleeves (nearly 600 of them, coloured from my actual records), the mixer, which Claude designed from scratch, and the turntables, which came from Guillermo Rauch's open-source <a href="https://github.com/rauchg/vinyl">vinyl</a>: a record player simulated from the groove up. Claude ported its deck model, its groove sheen and its platter physics into the room. The chair, plants and lamps are free models from Poly Haven; the KAWS figures and the bonsai are scans from Sketchfab, credited in the room. The “have a good time” rug is drawn by the script too, tuft by tuft.</p>
             <span class="code-label">Python · the record shelf</span>
 <pre><code><span class="c"># the record shelf: 5 × 4 cubbies, walnut, every cubby full</span>
 cell, th, dep, ncol, nrow = 0.345, 0.02, 0.4, 5, 4
@@ -369,7 +369,7 @@ vec3 mixLightmaps(vec2 uv) {
 
             <div class="post-cta">
                 <a class="button" href="/listening-room">Open the Listening Room ↗</a>
-                <p class="post-credits">Built with Claude Code. 3D models from Poly Haven (CC0) and Sketchfab (CC BY), credited in the room. Records via Discogs, previews via Deezer and Apple Music, mixes via SoundCloud. Loading orb: thinking-orbs by Jakub Antalik.</p>
+                <p class="post-credits">Built with Claude Code. 3D models from Poly Haven (CC0) and Sketchfab (CC BY), credited in the room. Records via Discogs, previews via Deezer and Apple Music, mixes via SoundCloud. Loading orb: thinking-orbs by Jakub Antalik. Turntables: vinyl by Guillermo Rauch (MIT).</p>
             </div>
         </article>
     </main>
