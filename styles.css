@@ -2174,21 +2174,26 @@ body:has(.mobile-menu.active) .nav-toggle {
 .modal-overlay {
     position: fixed;
     inset: 0;
-    background: var(--overlay-veil);
-    -webkit-backdrop-filter: blur(6px);
-    backdrop-filter: blur(6px);
+    /* Fade the veil and blur in, never the overlay's opacity. Fading
+       opacity made Chrome composite the WebGPU hero canvas above the
+       half-faded overlay, so the portrait flickered over the dialog. */
+    background: transparent;
+    -webkit-backdrop-filter: blur(0);
+    backdrop-filter: blur(0);
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 3000;
-    opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
+    transition: background-color 0.3s ease, backdrop-filter 0.3s ease, -webkit-backdrop-filter 0.3s ease, visibility 0s linear 0.3s;
 }
 
 .modal-overlay.active {
-    opacity: 1;
+    background: var(--overlay-veil);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
     visibility: visible;
+    transition: background-color 0.3s ease, backdrop-filter 0.3s ease, -webkit-backdrop-filter 0.3s ease, visibility 0s;
 }
 
 .modal {
@@ -2199,11 +2204,12 @@ body:has(.mobile-menu.active) .nav-toggle {
     max-width: 420px;
     width: 90%;
     position: relative;
-    transform: scale(0.94) translateY(8px);
-    transition: transform 0.35s var(--ease-out);
+    opacity: 0;
+    transform: scale(0.96) translateY(8px);
+    transition: opacity 0.18s ease, transform 0.35s var(--ease-out);
 }
 
-.modal-overlay.active .modal { transform: scale(1) translateY(0); }
+.modal-overlay.active .modal { opacity: 1; transform: scale(1) translateY(0); }
 
 .modal-close {
     position: absolute;
