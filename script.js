@@ -467,11 +467,12 @@ function initScrollAnimations() {
 // Modal - Press M to open
 function initMackerelEasterEgg() {
     document.addEventListener('keydown', (e) => {
-        const tag = e.target.tagName.toLowerCase();
-        const isInput = tag === 'input' || tag === 'textarea' || e.target.isContentEditable;
-        if (!isInput && (e.key === 'm' || e.key === 'M')) {
-            openModal();
-        }
+        if (e.key !== 'm' && e.key !== 'M') return;
+        if (e.repeat || e.metaKey || e.ctrlKey || e.altKey) return;
+        const t = e.target;
+        const isInput = t instanceof Element && (t.matches('input, textarea, select') || t.isContentEditable);
+        if (isInput || document.querySelector('.modal-overlay.active')) return;
+        openModal();
     });
 }
 
