@@ -42,7 +42,13 @@ If nothing qualifies, stop and say: **"Blog: no update needed (only <reason>)."*
 - **Add only what a reader would care about.** Extend existing lists and tables (a feature list, a "what broke" table, stats) rather than adding new sections. Add a section only for a genuinely new idea.
 - **Keep the author's voice.** Match the post's tone, sentence length, spelling (British or American) and punctuation. Short, concrete, no hype. Quote the user's real prompts verbatim, typos included, if the post does that.
 - **Never** put model names or IDs in the post.
-- **Screenshots:** if an image shows UI that changed, retake it from the **live** site at the same size and crop, save it over the same filename in the same format (for example webp, quality about 82), and keep `width`/`height` attributes correct. Wait for animations and camera moves to finish before capturing. Look at every new image before using it.
+- **Images: a full pass, every time. Never just the ones you think changed.**
+  1. Inventory every image the post uses: each `<img>`, CSS backgrounds, and the share image in `og:image` / `twitter:image`. List each with its size and when it last changed (`git log -1 --format=%cs -- <file>`).
+  2. Put them all on one contact sheet and look at it.
+  3. For each one, decide whether it still matches the live product. It's stale if it predates a change to anything it shows: the UI (bars, panels, buttons, labels), the content or the 3D scene. Clean renders with no UI only go stale when what they show changes. Before/after pairs and other deliberately historical images stay.
+  4. Retake every stale image from the **live** site with the same framing, size, crop, format (for example webp, quality about 82) and filename. Rebuild composites (grids of phone views and so on) in the same layout. Wait for animations and camera moves to finish. Look at each new image before using it.
+  5. If the share image changed, version its URL in the meta tags (`og.jpg?v=N`), because LinkedIn, Slack and iMessage cache previews by URL.
+  6. In the report, list every image as kept (with why) or replaced.
 - **Stats** (counts, totals): update only those you can verify; otherwise leave them.
 
 ## 4. Check and ship
