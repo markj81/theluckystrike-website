@@ -147,17 +147,17 @@
             <ul>
                 <li><strong>Walk around</strong> with WASD, or drag to look. You can't leave the room, but you can look out of the window at a real Amsterdam canal.</li>
                 <li><strong>Dig the crate.</strong> Pull records from my collection or my recently played, or search all 2,600 by artist, title or label, with genre and decade filters. Load them onto deck A or B and press Start.</li>
-                <li><strong>Mix.</strong> Mix mode locks the camera over the decks. Grab the record to scratch, drag the tonearm to drop the needle, ride the faders and the crossfader. A card floats under each deck with the record, its tempo and Start, so the mixer sits dead centre with nothing in the way. The decks behave like real ones: the platter takes a moment to get up to speed, the needle lowers once it's turning, and when a preview runs out the arm swings home. On a keyboard: <kbd>A</kbd>/<kbd>D</kbd> pick a deck, <kbd>Space</kbd> starts it, the arrows nudge and pitch it, <kbd>[</kbd> <kbd>]</kbd> ride the crossfader.</li>
+                <li><strong>Mix.</strong> Mix mode locks the camera over the decks. Grab the record to scratch, drag the tonearm to drop the needle, ride the faders and the crossfader. A card floats under each deck with the record, its tempo and Start, so the mixer sits dead centre with nothing in the way. The decks behave like real ones: the platter takes a moment to get up to speed, the needle lowers once it's turning, and when a preview runs out the arm swings home. On a keyboard: <kbd>A</kbd>/<kbd>D</kbd> pick a deck, <kbd>Space</kbd> starts it, <kbd>S</kbd> syncs it, <kbd>[</kbd> <kbd>]</kbd> ride the crossfader. Everything else you drag.</li>
                 <li><strong>Sync.</strong> Each deck card shows the preview's tempo, measured in the browser, and a waveform that fills as it plays. Sync matches one deck's tempo to the other.</li>
                 <li><strong>Keep it going.</strong> Press ∞ in the control bar and the room DJs for you: before each preview ends, the next record from the shelf is already spinning on the other deck and the crossfader glides across.</li>
                 <li><strong>Click any sleeve</strong> on the shelf for the tracklist and a short artist bio, and Share for a link that opens the room with that record face-out on the wall.</li>
-                <li><strong>Switch the lights.</strong> Seven lights (five lamps, brass picture lights over the art, and LED strips under the shelves), four scenes (Sunday morning, Golden hour, Late night, All on), dimmers that warm up as they dim like real bulbs.</li>
-                <li><strong>Stream</strong> a classic mix through SoundCloud: Coldcut's <em>70 Minutes of Madness</em>, Larry Levan at the Paradise Garage, the Dirtchamber Sessions.</li>
+                <li><strong>Switch the lights.</strong> Seven lights (five lamps, brass picture lights over the art, and LED strips under the shelves), four scenes (Sunday morning, Golden hour, Late night, All on) and a switch for each light. Behind the scenes, the bulbs warm up as they dim, like real ones.</li>
+                <li><strong>Stream</strong> a classic mix through SoundCloud: Coldcut's <em>70 Minutes of Madness</em>, Larry Levan at the Paradise Garage, the Dirtchamber Sessions. While it plays, the two silent decks step aside for one card with the mix and a button back to the records.</li>
                 <li><strong>Type DOOM, DILLA, SUPREME or FINE</strong> (on a phone, press and hold the sign, the covers or the chair). Actually, I'll let you find out what they do.</li>
             </ul>
             <figure class="post-figure">
                 <div class="grid-3">
-                    <div class="tile"><img src="/images/writing/listening-room/ui-crate.webp" width="1440" height="810" alt="The crate panel open on the left: a search box over the whole collection, genre and decade filters, and records with a play button and buttons to load each onto deck A or B. Two deck cards sit above the control bar." loading="lazy"><span class="tag">The crate</span></div>
+                    <div class="tile"><img src="/images/writing/listening-room/ui-crate.webp" width="1440" height="810" alt="The crate panel open on the left: a search box over the whole collection, genre and decade filters, and records with a play button and buttons to load each onto deck A or B. Two deck cards sit above a five-button control bar." loading="lazy"><span class="tag">The crate</span></div>
                     <div class="tile"><img src="/images/writing/listening-room/ui-mix.webp" width="1440" height="810" alt="Mix mode: the camera locked above the two turntables with the mixer in the centre, a card under each deck showing the record, its tempo, a waveform, Start and Sync." loading="lazy"><span class="tag">Mix mode</span></div>
                     <div class="tile"><img src="/images/writing/listening-room/ui-streamer.webp" width="1440" height="810" alt="The Streamer panel with a list of classic SoundCloud mixes." loading="lazy"><span class="tag">The streamer</span></div>
                 </div>
@@ -303,6 +303,11 @@ vec3 mixLightmaps(vec2 uv) {
             <blockquote class="prompt"><p>1 landscape 2 yes but on scratching 3 no</p></blockquote>
             <p>That's the whole mobile strategy, decided in nine words.</p>
 
+            <h3>Ask what to take away</h3>
+            <p>After a day of adding things, the room had grown knobs: an exposure slider, dimmers, picture-quality buttons, a Browse button that did the same job as Mix, a message for every click. So I asked the opposite question:</p>
+            <blockquote class="prompt"><p>think about what we might want to strip back, simplify and reduce complexity, rather than add to UX and UI</p></blockquote>
+            <p>It came back with twelve cuts, ranked. I took nine and parked three to judge once I'd used the slimmer version. The bar went from eight controls to five and the lights panel to two rows, and nothing anyone would miss went with them. Taking things out is a design decision too, and it's the one you forget to ask for.</p>
+
             <h3>Push back when it's wrong</h3>
             <p>It got things wrong. When it told me a change hadn't touched any existing hotkeys and it had, I said so:</p>
             <blockquote class="prompt"><p>not true, S is for Streaming</p></blockquote>
@@ -334,6 +339,7 @@ vec3 mixLightmaps(vec2 uv) {
                     <tr><td>The deck cards, toasts and control bar each looked fine alone, but not together, and different on every screen</td><td>They had grown one fix at a time: a pill here, a toast there, a full-width bar</td><td>One system: the same card everywhere (slim in the room, fuller under each deck in Mix), messages always top centre, a bar that hugs its buttons and grows on big screens</td></tr>
                     <tr><td>The dog's tail disappeared into the chair</td><td>On its original stool the tail hangs straight back, which here is into the backrest</td><td>Swept round his hip, where it can wag in the clear</td></tr>
                     <tr><td>A shared record link opened the room but no record</td><td>The phone's share sheet glued the message onto the link, so the page couldn't read the record number</td><td>Read just the number, and put the record face-out on the wall before its sheet opens</td></tr>
+                    <tr><td>After the clean-up, Mix mode had no way out: M, Esc and Back to the room all did nothing</td><td>Trimming the Mix keys removed a small helper, but the code that leaves Mix still called it, so every exit stopped with an error. The checks only went into Mix, never back out</td><td>One line, then a test that leaves Mix every way, on desktop and phone</td></tr>
                     <tr><td>Typing DOOM or DILLA fought the D key, which walked me sideways</td><td>Hotkeys and typed words fought over the same letters</td><td>Moved walking to the arrows (and later, back to WASD)</td></tr>
                 </tbody>
             </table>
