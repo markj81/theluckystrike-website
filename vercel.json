@@ -44,6 +44,14 @@
     {
       "source": "/listening-room/:path*",
       "destination": "https://listening-room-blender.vercel.app/listening-room/:path*"
+    },
+    {
+      "source": "/doom",
+      "destination": "https://all-caps-doom.vercel.app/doom"
+    },
+    {
+      "source": "/doom/:path*",
+      "destination": "https://all-caps-doom.vercel.app/doom/:path*"
     }
   ],
   "redirects": [
