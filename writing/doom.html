@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A walkable tribute to MF DOOM, built in a day by describing it to Claude. What worked, what I threw away, and why the photoreal version only arrived after I stopped polishing the wrong thing.">
+    <meta property="og:title" content="ALL CAPS: I built MF DOOM a room, and then rebuilt him four times">
+    <meta property="og:description" content="One day, about 75 messages, and four different DOOMs before the right one. What worked, what I threw away, and how I prompted.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.theluckystrike.co.uk/writing/doom">
+    <meta property="og:image" content="https://www.theluckystrike.co.uk/images/writing/doom/og.jpg?v=2">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ALL CAPS: I built MF DOOM a room, and then rebuilt him four times">
+    <meta name="twitter:description" content="One day, about 75 messages, and four different DOOMs before the right one. What worked, what I threw away, and how I prompted.">
+    <meta name="twitter:image" content="https://www.theluckystrike.co.uk/images/writing/doom/og.jpg?v=2">
+    <title>ALL CAPS: I built MF DOOM a room, and then rebuilt him four times | Mark Jenkins</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧢</text></svg>">
+    <script>
+        (function () {
+            try {
+                var t = localStorage.getItem('theme') ||
+                    (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+                document.documentElement.dataset.theme = t;
+            } catch (e) {}
+        })();
+    </script>
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/post.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script>
+        window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/insights/script.js"></script>
+    <link rel="canonical" href="https://www.theluckystrike.co.uk/writing/doom">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "ALL CAPS: I built MF DOOM a room, and then rebuilt him four times",
+      "description": "A walkable tribute to MF DOOM, built in a day by describing it to Claude. What worked, what I threw away, and why the photoreal version only arrived after I stopped polishing the wrong thing.",
+      "image": "https://www.theluckystrike.co.uk/images/writing/doom/og.jpg?v=2",
+      "datePublished": "2026-11-12",
+      "url": "https://www.theluckystrike.co.uk/writing/doom",
+      "inLanguage": "en-GB",
+      "author": { "@type": "Person", "@id": "https://www.theluckystrike.co.uk/#mark", "name": "Mark Jenkins" }
+    }
+    </script>
+</head>
+<body>
+    <div class="theme-liquid-overlay">
+        <div class="liquid-blob"></div>
+    </div>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="/" class="nav-logo">Mark Jenkins</a>
+            <ul class="nav-links">
+                <li><a href="/#about">About</a></li>
+                <li><a href="/#experience">Experience</a></li>
+                <li><a href="/#philosophy">Philosophy</a></li>
+                <li><a href="/testimonials">Testimonials</a></li>
+            </ul>
+            <div class="nav-right">
+                <button class="theme-toggle" type="button" aria-label="Switch to light theme" aria-pressed="false"></button>
+                <a href="/#contact" class="nav-cta">Get in touch</a>
+            </div>
+            <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="mobile-menu">
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+        <button class="mobile-menu-close" aria-label="Close menu" onclick="document.querySelector('.mobile-menu').classList.remove('active'); document.querySelector('.nav-toggle').classList.remove('active');">
+            <span></span>
+            <span></span>
+        </button>
+        <div class="mobile-menu-content">
+            <a href="/#about" class="mobile-link">About</a>
+            <a href="/#experience" class="mobile-link">Experience</a>
+            <a href="/#philosophy" class="mobile-link">Philosophy</a>
+            <a href="/testimonials" class="mobile-link">Testimonials</a>
+            <a href="/#contact" class="mobile-link mobile-cta">Get in touch</a>
+            <button class="theme-toggle" type="button" aria-label="Switch to light theme" aria-pressed="false"></button>
+        </div>
+    </div>
+
+    <header class="page-header post-header">
+        <div class="page-header-grid">
+            <span class="page-label">Writing · Side project</span>
+            <h1 class="page-title">ALL CAPS: I built MF DOOM a room, <em>and then rebuilt him four times</em></h1>
+            <p class="page-intro">One day, about 75 messages, and four different DOOMs before the right one. What worked, what I threw away, and how I prompted.</p>
+            <div class="post-meta"><span>Mark Jenkins</span><span>November 2026</span><span>10 min read</span><a href="/doom">Open the room ↗</a></div>
+        </div>
+    </header>
+
+    <main class="post">
+        <article class="post-body">
+
+            <p class="lede">The cover of <em>MM..FOOD</em> is a man in a metal mask eating cereal. I wanted to walk into that painting, sit him down and pour the milk. So I asked Claude to build it.</p>
+
+            <figure class="post-figure">
+                <img src="/images/writing/doom/hero.webp" width="1440" height="810" alt="A 3D room with dark walls and a wooden floor. MF DOOM, in a green hoodie and metal mask, stands by a breakfast table with a cereal box, a milk carton and a red bowl. Green dripping graffiti on the wall reads MF DOOM.">
+                <figcaption>The room. The table, the bowl and the green hoodie come from Jason Jägel's cover painting; everything around them is new.</figcaption>
+            </figure>
+
+            <h2 id="idea"><span class="num">01</span>The idea</h2>
+            <p>My <a href="/writing/listening-room">Listening Room</a> has a neon sign on the wall with a DOOM lyric on it. That was a nod. This is the whole thing.</p>
+            <p>Daniel Dumile died in 2020. He left behind a body of work that rewards you for paying attention: every album is a different character, every beat on <em>Special Herbs</em> is named after a herb or a spice, and you have to write his name in capitals or you've spelled it wrong.</p>
+            <p>A list of facts about him would miss the point. He hid things. So the tribute had to be a place you poke around in.</p>
+            <p><strong>ALL CAPS</strong> is a room you walk around in your browser, as DOOM. There are six things to do, nineteen secrets to find, and 77 records in the crates. All the music is real: 30-second previews from Deezer and Apple Music.</p>
+
+            <h2 id="brief"><span class="num">02</span>The brief</h2>
+            <p>My first message set the idea and the order of work. The last five lines were these:</p>
+            <blockquote class="prompt"><p>First research<br>Then help me plan<br>Then design<br>Then build<br>Then deploy</p></blockquote>
+            <p>That's a normal project plan, and Claude followed it. It came back with research on the cover and on the man, a plan, three questions (new repo or existing, first or third person, one corner or the full room), and then it built.</p>
+            <p>An hour after the first message there was a room on a live URL, with a blocky DOOM made of code who could eat cereal. The other sixteen hours went on making it good.</p>
+
+            <h2 id="built"><span class="num">03</span>What got built</h2>
+            <div class="stats" role="list">
+                <div role="listitem"><b>17h</b><span>first message to this post</span></div>
+                <div role="listitem"><b>~75</b><span>messages from me</span></div>
+                <div role="listitem"><b>19</b><span>pull requests</span></div>
+                <div role="listitem" class="zero"><b>4</b><span>DOOMs before the right one</span></div>
+            </div>
+            <p>What you can do in the room:</p>
+            <ul>
+                <li><strong>Eat breakfast.</strong> Sit down, pour the cereal, pour the milk, eat. It's the cover.</li>
+                <li><strong>Cook.</strong> Every dish is a track title from <em>MM..FOOD</em>. Pick one and find its three ingredients.</li>
+                <li><strong>Make a beat.</strong> Sixteen pads and a step sequencer, swung at 88 BPM.</li>
+                <li><strong>Dig the crates.</strong> All 77 <em>Special Herbs</em> instrumentals across six crates. Pull one and it plays. There's a counter for how many you've dug, and one record at the back of the last crate has no name.</li>
+                <li><strong>Watch cartoons.</strong> Sit on the sofa and flip channels.</li>
+                <li><strong>Finish the rhymes.</strong> A notebook with the last word missing from each line.</li>
+                <li><strong>Find the secrets.</strong> Nineteen of them: a wardrobe, a telescope on the balcony, a calendar with the wrong birthday, a milk carton asking if you've seen someone.</li>
+            </ul>
+            <figure class="post-figure">
+                <div class="grid-3">
+                    <div class="tile"><img src="/images/writing/doom/cereal.webp" width="1440" height="810" alt="DOOM seated at the table with a bowl of cereal, the camera close on him." loading="lazy"><span class="tag">Breakfast</span></div>
+                    <div class="tile"><img src="/images/writing/doom/crates.webp" width="1440" height="810" alt="The crates panel: six tabs, one per Special Herbs volume, the album sleeve, and a strip of coloured spines to jump along." loading="lazy"><span class="tag">The crates</span></div>
+                    <div class="tile"><img src="/images/writing/doom/scope.webp" width="1440" height="810" alt="The view through the telescope: a circular view of a mural painted on the side of a building across the street." loading="lazy"><span class="tag">The telescope</span></div>
+                </div>
+                <figcaption>Breakfast, the crates, and what's at the other end of the telescope.</figcaption>
+            </figure>
+
+            <h2 id="look"><span class="num">04</span>The look: I polished the wrong thing for hours</h2>
+            <p>This is the part I'd do differently, so it gets the most words.</p>
+            <p>The first version looked like a cartoon: flat colours, black outlines, a character built from boxes and cylinders. It worked, and it wasn't what I wanted. I asked for something else:</p>
+            <blockquote class="prompt"><p>I want to explore a hand drawn but more realistic graphic style and art direction. Help me to do that</p></blockquote>
+            <p>Claude built a set of styles I could flip between: pencil, ink, gouache, ink with a colour wash. I picked ink and gouache. Then I spent the afternoon asking for more detail, better hands, more lifelike movement, a better mask. Each round was better than the last. None of them was right.</p>
+            <p>Around hour eight I said what I should have said at hour two:</p>
+            <blockquote class="prompt"><p>Im wondering how we go more photo realistic here, we're not making a stepped improvement</p></blockquote>
+            <p>And a few minutes later, looking at yet another round on his hat:</p>
+            <blockquote class="prompt"><p>the hat is off, but we should stop and improve with photorealism instead</p></blockquote>
+            <p>That one message changed the project more than the fifty around it. Real materials, real light from a photographed room, furniture scanned from real objects. The drawn styles are gone from the final thing.</p>
+            <figure class="post-figure">
+                <div class="grid-2">
+                    <div class="tile"><img src="/images/writing/doom/style-inkwash.webp" width="960" height="720" alt="The room drawn with ink outlines, hatched shadows and a colour wash." loading="lazy"><span class="tag">Ink &amp; gouache</span></div>
+                    <div class="tile"><img src="/images/writing/doom/style-real.webp" width="960" height="720" alt="The same view rendered photoreal, with soft shadows and real materials." loading="lazy"><span class="tag acid">Photoreal</span></div>
+                </div>
+                <figcaption>The same view, before and after. I chose the first, lived with it for hours, and shipped the second.</figcaption>
+            </figure>
+            <p>The lesson is about me, not the tool. I was giving good small notes on a direction I hadn't questioned. Claude will happily improve the thing in front of it forever. Asking "is this the right thing?" was my job, and I was late.</p>
+
+            <h2 id="doom"><span class="num">05</span>Four DOOMs</h2>
+            <p><strong>One: built from code.</strong> Boxes, cylinders, a mask made of plates. Fine for a cartoon. When I asked for realism, Claude proposed sculpting him better in code. I pushed back:</p>
+            <blockquote class="prompt"><p>What level of realism are you proposing? It feels like you need to do some research into him first</p></blockquote>
+            <p>It went away and researched him properly: build, clothes by era, how the mask sits, how he stood. I sent three reference photos.</p>
+            <p><strong>Two: a generic human.</strong> My next suggestion was to stop building and start finding:</p>
+            <blockquote class="prompt"><p>What if we search for models and use those instead. If you're missing a model then build one from scratch.</p></blockquote>
+            <p>Claude built a body from open-source human data and dressed it. Better, still a mannequin.</p>
+            <p><strong>Three: a scanned person.</strong> I found a 3D scan of a real man on Sketchfab and asked if it could use that, add a mask, and change the build. Claude asked the right question back (it can only download with my account), so I uploaded the file. It kept the scan's body and clothes, turned the purple hoodie green, removed the head and fitted its own, with a mask model I found separately.</p>
+            <p>One decision I didn't make and agree with: Claude wouldn't recolour the scanned man's face to turn him into someone else. It removed the head and built a new one. It also painted the brand logos off the hoodie.</p>
+            <p><strong>Four: less.</strong> The last version came from taking things away.</p>
+            <blockquote class="prompt"><p>I think we can drop the gilet completely, it looks a mess?</p></blockquote>
+            <blockquote class="prompt"><p>Remove the baseball cap too, it looks like trash, go back to the bald head</p></blockquote>
+            <p>Hoodie, jeans, mask. That's him.</p>
+
+            <h2 id="how"><span class="num">06</span>How it works</h2>
+            <p class="reading-note">The short version. Skip it if you came for the prompting.</p>
+            <ul>
+                <li><strong>The site:</strong> plain HTML, CSS and three.js. No framework and no build step. Hosted on Vercel and served at theluckystrike.co.uk/doom.</li>
+                <li><strong>The light:</strong> a photographed room (an HDRI) lights everything, with soft contact shadows and a little bloom added after each frame. On a slow device it drops to a lighter picture by itself.</li>
+                <li><strong>The furniture:</strong> 21 scanned models from Poly Haven, all free to use. Claude wrote a script that downloads them, shrinks them and places them.</li>
+                <li><strong>The walking:</strong> the scan came with one animation, a dance. The walk is worked out live: where each foot should land, then the knee and hip angles to get it there. That's why his feet stay planted and don't slide.</li>
+                <li><strong>The music:</strong> a small server function turns a track into a fresh 30-second preview from Deezer, with Apple Music as backup. Deezer's links die after about 15 minutes, so each one is fetched when you need it.</li>
+                <li><strong>The footsteps:</strong> synthesised in the browser, a different sound for wood, rug and balcony.</li>
+            </ul>
+
+            <h2 id="prompting"><span class="num">07</span>How I prompted</h2>
+            <p>The same way as last time: like a design crit. These are my real messages.</p>
+
+            <h3>Report what you see</h3>
+            <blockquote class="prompt"><p>After eating breakfast he gets stuck on the chair</p></blockquote>
+            <blockquote class="prompt"><p>his feet also sink into the ground, looks weird</p></blockquote>
+            <blockquote class="prompt"><p>Still messy, wire is half broken, starts from the middle of the floor</p></blockquote>
+            <p>No causes, no fixes. Often with a screenshot. Claude found the cause each time, and usually a second bug next to it.</p>
+
+            <h3>Say when it feels cheap</h3>
+            <blockquote class="prompt"><p>on the loading screen, remove the jump when the loader has finished and the button appears. that makes it look cheap</p></blockquote>
+            <blockquote class="prompt"><p>the rain needs to be faster, it feels like it lags a bit</p></blockquote>
+            <p>"Cheap" and "lags" are feelings. Both got turned into measurements: the layout shift went to zero pixels, the intro animation went to 0.8 seconds.</p>
+
+            <h3>Question the words</h3>
+            <blockquote class="prompt"><p>Back into the room is a weird CTA, why is it that</p></blockquote>
+            <p>Claude had made the button say something different for returning visitors. It explained why, I said no, and it's now "Enter the room" for everyone.</p>
+
+            <h3>Ask it a question back</h3>
+            <p>I'd forgotten two of the nineteen secrets and asked for the list, and for a way to hide that list in the interface. Claude proposed a counter you can click. I asked:</p>
+            <blockquote class="prompt"><p>would villain give you cryptic hints for the ones that are left?</p></blockquote>
+            <p>So that's in. Click the secrets counter and you see blanks. Type <em>villain</em> and each blank gets a clue.</p>
+            <figure class="post-figure narrow">
+                <img src="/images/writing/doom/secrets.webp" width="1440" height="810" alt="The secrets list open on the right: nineteen rows of question marks, each with a handwritten cryptic hint beneath it." loading="lazy">
+                <figcaption>Hints, once you ask like a villain. They point at a place or an action, never the answer.</figcaption>
+            </figure>
+
+            <h3>Think about day two</h3>
+            <blockquote class="prompt"><p>Need to add much more tracks in the crates, that builds longevity. Put in all the special herbs</p></blockquote>
+            <p>The crates had seven records. They now have 77, with a counter. It's the cheapest reason to come back that I could think of.</p>
+
+            <h2 id="broke"><span class="num">08</span>What broke</h2>
+            <div class="table-wrap">
+            <table class="post-table">
+                <thead><tr><th>What I saw</th><th>What was actually wrong</th><th>The fix</th></tr></thead>
+                <tbody>
+                    <tr><td>He got stuck on the chair after breakfast, and on the sofa</td><td>Standing up put him back inside the furniture's collision box</td><td>Each seat has an exit spot on open floor, and he faces the room when he stands</td></tr>
+                    <tr><td>The spoon went nowhere near his mouth</td><td>The arm maths swung the arm before lowering it, which only twisted it</td><td>Lower, then swing, then turn. The eating pose was solved again from scratch</td></tr>
+                    <tr><td>His feet sank into the floor</td><td>The ankle height was a guess</td><td>Measured from the scan: 13.2 cm</td></tr>
+                    <tr><td>The cap rendered black</td><td>The model's surface-detail map was broken</td><td>Flat colours. Then I removed the cap anyway</td></tr>
+                    <tr><td>The TV lost its picture</td><td>The picture sat behind the screen's glass</td><td>Moved in front of the glass and sized to the bezel</td></tr>
+                    <tr><td>Drawn album covers flashed up before the real ones</td><td>Placeholders showed while the real covers loaded</td><td>Blank until the real cover arrives</td></tr>
+                    <tr><td>The Doomposter walked through the wardrobe door</td><td>The door's panelling was fixed to the room, not the door, so it stayed put when the door swung</td><td>Panels and knobs ride on the doors; he walks straight out before turning</td></tr>
+                    <tr><td>One side of the wardrobe looked open</td><td>The camera had drifted inside it</td><td>The camera now stays out of tall furniture</td></tr>
+                    <tr><td>The audio player sat on top of the joystick on my phone</td><td>The phone layout had grown one fix at a time</td><td>One system: notices at the top, controls at the bottom, cards take the whole screen</td></tr>
+                    <tr><td>A change I'd approved wasn't on the live site</td><td>I merged the pull request before Claude's last push landed on it</td><td>Claude now checks what's on main after every merge</td></tr>
+                </tbody>
+            </table>
+            </div>
+            <figure class="post-figure">
+                <img src="/images/writing/doom/doomposter.webp" width="1440" height="810" alt="Two masked figures in the room: DOOM in his green hoodie, and a second figure in a red hoodie who has come out of the wardrobe." loading="lazy">
+                <figcaption>The Doomposter. From around 2007 fans suspected the man on stage wasn't always DOOM. He gets a red hoodie so you can tell.</figcaption>
+            </figure>
+
+            <h2 id="mobile"><span class="num">09</span>On a phone</h2>
+            <p>The first phone layout put the music player on top of the joystick. I sent a screenshot. The fix worked and the next screenshot showed a different clash, so I stopped sending clashes:</p>
+            <blockquote class="prompt"><p>it all needs a better layout on a mobile device. rethink the system for it, the cards the toasts and the controls. so they don't clash but are workable and make sense</p></blockquote>
+            <p>Asking for a system got a system. The top of the screen is for things the room tells you: progress, what's playing, a lyric. The bottom is for your thumbs: joystick left, one green button right, with its label sitting on top of it. Cards and panels take the whole screen and put the controls away.</p>
+            <p>Then I turned the phone sideways and suggested moving the player to the gap between the joystick and the button. I asked Claude to test my idea against its own system. It agreed, for a reason: sideways, height is what you're short of, and that gap is the only free space.</p>
+            <figure class="post-figure">
+                <img src="/images/writing/doom/phone.webp" width="1600" height="620" alt="Three phone screenshots: the room in portrait with the player bar at the top and the joystick and action button at the bottom; the crates panel filling the screen; and the room in landscape with the player between the joystick and the button." loading="lazy">
+                <figcaption>Upright, the crates, and sideways. Nothing shares space with anything else.</figcaption>
+            </figure>
+
+            <h2 id="takeaways"><span class="num">10</span>What I took from it</h2>
+            <p><strong>Question the direction early.</strong> I lost hours improving a style I should have dropped. The tool won't tell you that you're polishing the wrong thing. Ask yourself every hour or so.</p>
+            <p><strong>Find, don't build.</strong> The character got good when we stopped sculpting and started from a scan of a real person. Same with the furniture and the mask. Most of what you need exists and is free to use, with credit.</p>
+            <p><strong>Taking away is the fastest fix.</strong> The gilet, the cap and five art styles all went. Each removal made it better in one message.</p>
+            <p><strong>Ask for a system when you've sent three screenshots.</strong> One clash is a bug. Three is a missing rule.</p>
+            <p><strong>Details matter.</strong> That was my last message before bed, with a list of eight small things. The spoon stopped ten centimetres short of the bowl. His hands were a shade lighter than his face. Nobody would name those, and everybody would feel them. They were fixed by morning.</p>
+            <p>Go and have breakfast with him. Dig a few herbs out of the crates. And remember: all caps when you spell the man's name.</p>
+
+            <div class="post-cta">
+                <a class="button" href="/doom">Open the room ↗</a>
+                <p class="post-credits">A fan-made tribute to Daniel Dumile, 1971–2020. Built with Claude Code. Inspired by Jason Jägel's cover painting for <em>MM..FOOD</em>; all art in the room is original. Body scan by OverseerThuror and mask by silentic (both CC BY 4.0, via Sketchfab). Furniture and materials from Poly Haven (CC0). Music previews via Deezer and Apple Music.</p>
+            </div>
+        </article>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-left">
+                <span class="footer-logo">Mark Jenkins</span>
+                <span class="footer-copy">© 2026</span>
+            </div>
+            <div class="footer-right">
+                <a href="mailto:mark@theluckystrike.co.uk">Email</a>
+                <a href="https://www.linkedin.com/in/markjenkins1981/" target="_blank" rel="noopener">LinkedIn</a>
+            </div>
+        </div>
+        <div class="footer-colophon">
+            <span>Set in Instrument Serif, Instrument Sans &amp; Geist Mono</span>
+            <span>Hand-written CSS — no frameworks</span>
+            <span>Drawn with code</span>
+        </div>
+    </footer>
+
+    <script src="/script.js"></script>
+
+    <!-- Vercel Speed Insights -->
+    <script>
+        window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
+    </script>
+    <script defer src="/_vercel/speed-insights/script.js"></script>
+</body>
+</html>

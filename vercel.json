@@ -22,6 +22,10 @@
       "destination": "/writing/this-is-fine.html"
     },
     {
+      "source": "/writing/doom",
+      "destination": "/writing/doom.html"
+    },
+    {
       "source": "/sample-explorer",
       "destination": "https://sample-explorer.vercel.app/sample-explorer"
     },
@@ -78,6 +82,11 @@
     {
       "source": "/writing/this-is-fine.html",
       "destination": "/writing/this-is-fine",
+      "permanent": true
+    },
+    {
+      "source": "/writing/doom.html",
+      "destination": "/writing/doom",
       "permanent": true
     },
     {

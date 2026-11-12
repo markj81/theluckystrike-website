@@ -21,6 +21,7 @@ Previously, clients and companies include: HackerOne, Funda, Uber, Adidas, Googl
 
 Built after hours by describing them to Claude Code:
 
+- **ALL CAPS** (https://www.theluckystrike.co.uk/doom): a walkable 3D tribute to MF DOOM — eat cereal, dig all 77 Special Herbs beats, find nineteen secrets. Built in a day. Write-up: https://www.theluckystrike.co.uk/writing/doom
 - **The Listening Room** (https://www.theluckystrike.co.uk/listening-room): a 3D room for his record collection — pull records, mix on two turntables, stream mixes, set the lights. Built in about 22 hours without opening a 3D tool. Write-up: https://www.theluckystrike.co.uk/writing/listening-room
 - **Sample Explorer** (https://www.theluckystrike.co.uk/sample-explorer): a family tree for every sampled record, on a timeline. Write-up: https://www.theluckystrike.co.uk/writing/sample-explorer
 - **This Is Fine** (https://www.theluckystrike.co.uk/this-is-fine): put your face on the dog in the burning room.
