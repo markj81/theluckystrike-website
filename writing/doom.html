@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="A walkable tribute to MF DOOM, built in a day by describing it to Claude. What worked, what I threw away, and why the photoreal version only arrived after I stopped polishing the wrong thing.">
     <meta property="og:title" content="ALL CAPS: A room for MF DOOM, with 19 secrets and all 77 Special Herbs">
-    <meta property="og:description" content="Three days, about 120 messages, and five different DOOMs before the right one. What worked, what I threw away, and how I prompted.">
+    <meta property="og:description" content="Four days, about 135 messages, and five different DOOMs before the right one. What worked, what I threw away, and how I prompted.">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://www.theluckystrike.co.uk/writing/doom">
     <meta property="og:image" content="https://www.theluckystrike.co.uk/images/writing/doom/og.jpg?v=4">
@@ -13,7 +13,7 @@
     <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="ALL CAPS: A room for MF DOOM, with 19 secrets and all 77 Special Herbs">
-    <meta name="twitter:description" content="Three days, about 120 messages, and five different DOOMs before the right one. What worked, what I threw away, and how I prompted.">
+    <meta name="twitter:description" content="Four days, about 135 messages, and five different DOOMs before the right one. What worked, what I threw away, and how I prompted.">
     <meta name="twitter:image" content="https://www.theluckystrike.co.uk/images/writing/doom/og.jpg?v=4">
     <title>ALL CAPS: A room for MF DOOM, with 19 secrets and all 77 Special Herbs | Mark Jenkins</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧢</text></svg>">
@@ -95,8 +95,8 @@
         <div class="page-header-grid">
             <span class="page-label">Writing · Side project</span>
             <h1 class="page-title">ALL CAPS: A room for MF DOOM, <em>with 19 secrets and all 77 Special Herbs</em></h1>
-            <p class="page-intro">Three days, about 120 messages, and five different DOOMs before the right one. What worked, what I threw away, and how I prompted.</p>
-            <div class="post-meta"><span>Mark Jenkins</span><span>November 2026</span><span>12 min read</span><a href="/doom">Open the room ↗</a></div>
+            <p class="page-intro">Four days, about 135 messages, and five different DOOMs before the right one. What worked, what I threw away, and how I prompted.</p>
+            <div class="post-meta"><span>Mark Jenkins</span><span>November 2026</span><span>13 min read</span><a href="/doom">Open the room ↗</a></div>
         </div>
     </header>
 
@@ -125,8 +125,8 @@
             <h2 id="built"><span class="num">03</span>What got built</h2>
             <div class="stats" role="list">
                 <div role="listitem"><b>17h</b><span>first message to first version</span></div>
-                <div role="listitem"><b>~120</b><span>messages from me, over three days</span></div>
-                <div role="listitem"><b>24</b><span>pull requests</span></div>
+                <div role="listitem"><b>~135</b><span>messages from me, over four days</span></div>
+                <div role="listitem"><b>30</b><span>pull requests</span></div>
                 <div role="listitem" class="zero"><b>5</b><span>DOOMs before the right one</span></div>
             </div>
             <p>What you can do in the room:</p>
@@ -238,6 +238,12 @@
             <blockquote class="prompt"><p>Are the box and carton too big too?</p></blockquote>
             <blockquote class="prompt"><p>Overall better. Hands are still passing through the edges of the box and carton, looks odd</p></blockquote>
             <p>They were too big; the bowl was 35 cm across. And his hands kept going through things until Claude stopped judging by eye and wrote a check that measured, on every frame, how far any part of his hand was inside the box. That check found problems neither of us had named, including that he couldn't reach the cereal at all.</p>
+            <p>Once it moved properly I zoomed in. Four cropped screenshots, a few words each:</p>
+            <blockquote class="prompt"><p>Spoon and hand needs work</p></blockquote>
+            <blockquote class="prompt"><p>Hand sinking in to the table</p></blockquote>
+            <blockquote class="prompt"><p>beard and mask is problematic</p></blockquote>
+            <blockquote class="prompt"><p>The mask should go over the beard</p></blockquote>
+            <p>The first one caught a bug no video had. His grip on the spoon only existed while a spoonful was in progress. Between spoonfuls his hand went slack, and the thumb I'd asked him to fold in that morning had never shown in that state. A still frame at the right moment found what seven clips hadn't.</p>
 
             <h2 id="broke"><span class="num">08</span>What broke</h2>
             <div class="table-wrap">
@@ -256,9 +262,13 @@
                     <tr><td>His hands went through the box</td><td>The middle of his hand was placed on the surface, so half its thickness sank in, and his sleeve ran flat along the side</td><td>Measured every frame for anything inside the box, and angled his hand from the wrist until it read zero</td></tr>
                     <tr><td>His eating hand went through the cereal box</td><td>Every spot he could reach to put the box down was in the way of his eating arm</td><td>He sits a little nearer the cereal side, so one spot is both in reach and out of the way</td></tr>
                     <tr><td>His whole body shook in the preview videos</td><td>His breathing was timed off the real clock, and the frame-by-frame capture took uneven time per frame</td><td>He animates from his own clock</td></tr>
+                    <tr><td>His hand went slack round the spoon between spoonfuls</td><td>The grip was only applied while a spoonful was in progress</td><td>It holds for as long as the spoon is in his hand</td></tr>
+                    <tr><td>His fingertips sank into the table</td><td>A resting hand kept its curled fingers and sat at a fixed height</td><td>It lies flat, and is raised or lowered until the lowest fingertip touches the top</td></tr>
+                    <tr><td>His beard came through the mask</td><td>The beard was modelled fuller than the mask and stood up to 2 cm in front of its cheek plates</td><td>Pressed back under the plates, left showing round the mouth and chin</td></tr>
                     <tr><td>The album art in the player flickered</td><td>The player set the same picture again several times a second, and some browsers reloaded it each time</td><td>Set once per track</td></tr>
                     <tr><td>The audio player sat on top of the joystick on my phone</td><td>The phone layout had grown one fix at a time</td><td>One system: notices at the top, controls at the bottom, cards take the whole screen</td></tr>
-                    <tr><td>A change I'd approved wasn't on the live site</td><td>I merged the pull request before Claude's last push landed on it</td><td>Claude now checks what's on main after every merge</td></tr>
+                    <tr><td>A dead strip down the left of my phone, held sideways</td><td>The browser already kept the page clear of the notch, and still reported the notch as space to avoid, so the layout allowed for it twice</td><td>If the page is already narrower than the screen by that much, the allowance is dropped</td></tr>
+                    <tr><td>A change I'd approved wasn't on the live site</td><td>I merged the pull request before Claude's last push landed on it. I did it three more times</td><td>Claude checks what's on main after every merge, which is how each one was caught</td></tr>
                 </tbody>
             </table>
             </div>
@@ -272,8 +282,11 @@
             <blockquote class="prompt"><p>it all needs a better layout on a mobile device. rethink the system for it, the cards the toasts and the controls. so they don't clash but are workable and make sense</p></blockquote>
             <p>This time Claude came back with a set of rules. The top of the screen is for things the room tells you: progress, what's playing, a lyric. The bottom is for your thumbs: joystick left, one green button right, with its label sitting on top of it. Cards and panels take the whole screen and put the controls away.</p>
             <p>Then I turned the phone sideways and suggested moving the player to the gap between the joystick and the button. I asked Claude to test my idea against its own system. It agreed, for a reason: sideways, height is what you're short of, and that gap is the only free space.</p>
+            <p>Two days later I played it sideways on my own phone and it was still crowded. A lyric sat over his face, the player sat over his bowl, and a strip down the left was empty.</p>
+            <blockquote class="prompt"><p>Let's fix up landscape and portrait HUD layout. There's wasted space on the left on landscape and it's very busy. Think about it from a systems perspective and fix it</p></blockquote>
+            <p>The answer was one rule. Everything that floats over the room is one of three kinds, and each kind has one home: status along the top, notices never over the middle of the picture, controls under your thumbs. Upright, notices stack under the top. Sideways, the screen becomes three columns: notices left, him in the middle, actions right. The player shrank to one slim line, and the joystick goes away when he sits down, because there's nowhere to walk.</p>
             <figure class="post-figure">
-                <img src="/images/writing/doom/phone.webp" width="1600" height="620" alt="Three phone screenshots: the room in portrait with the title and progress at the top, and the joystick and a labelled action button at the bottom; the crates panel filling the screen; and the room in landscape with the player between the joystick and the button." loading="lazy">
+                <img src="/images/writing/doom/phone.webp" width="1600" height="620" alt="Three phone screenshots: the room in portrait with the title and progress at the top, and the joystick and a labelled action button at the bottom; the crates panel filling the screen; and the room in landscape with a slim player between the joystick and the button." loading="lazy">
                 <figcaption>Upright, the crates, and sideways. Nothing shares space with anything else.</figcaption>
             </figure>
 
